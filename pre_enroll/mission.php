@@ -3,29 +3,48 @@
         <!-- Mission & Vision Section -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
             <!-- Vision Section -->
-            <div class="mx-auto max-w-xl">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center mb-6">Our Vision</h2>
-                <div class="mt-6 text-lg leading-8 text-gray-600">
-                    <p class="text-center">
-                        To be a beacon of opportunity and diversity, attracting and nurturing students who aspire to create 
-                        positive change, excel academically, and contribute to the global community.
-                    </p>
+            <div class="mx-auto w-full max-w-xl h-full">
+                <div class="rounded-lg border-2 border-gray-200 bg-white p-8 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105 h-full flex flex-col">
+                    <div class="flex justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center mb-6">Our Vision</h2>
+                    <div class="mt-6 text-lg leading-8 text-gray-600  flex items-center">
+                        <p class="text-center">
+                            To be a beacon of opportunity and diversity, attracting and nurturing students who aspire to create 
+                            positive change, excel academically, and contribute to the global community.
+                        </p>
+                    </div>
                 </div>
             </div>
-
+        
             <!-- Mission Section -->
-            <div class="mx-auto max-w-xl">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center mb-6">Our Mission</h2>
-                <div class="mt-6 text-lg leading-8 text-gray-600">
-                    <p class="text-center">
-                        Bestlink College of the Philippines Admissions is dedicated to identifying and welcoming students 
-                        from all backgrounds who demonstrate potential and passion for learning. We strive to provide an 
-                        inclusive and supportive admissions process that values individual strengths, fosters academic 
-                        excellence, and prepares students for a future of impactful leadership and service.
-                    </p>
+            <div class="mx-auto w-full max-w-xl h-full">
+                <div class="rounded-lg border-2 border-gray-200 bg-white p-8 shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105 h-full flex flex-col">
+                    <div class="flex justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center mb-6">Our Mission</h2>
+                    <div class="mt-6 text-lg leading-8 text-gray-600  flex items-center">
+                        <p class="text-center">
+                            Bestlink College of the Philippines Admissions is dedicated to identifying and welcoming students 
+                            from all backgrounds who demonstrate potential and passion for learning. We strive to provide an 
+                            inclusive and supportive admissions process that values individual strengths, fosters academic 
+                            excellence, and prepares students for a future of impactful leadership and service.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
+
+        
 
         <!-- Goals Section -->
         <div class="mx-auto mt-16 max-w-7xl sm:mt-20 lg:mt-24">
