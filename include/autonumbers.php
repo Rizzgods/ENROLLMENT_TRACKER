@@ -1,5 +1,8 @@
 <?php
+define('DS', DIRECTORY_SEPARATOR);
+define('LIB_PATH', __DIR__);
 require_once(LIB_PATH.DS.'database.php');
+
 class Autonumber {
 	protected static  $tblname = "tblauto";
 
