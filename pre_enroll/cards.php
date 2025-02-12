@@ -32,7 +32,7 @@
                         ?>
                     </div>
                     <!-- Positioned pagination absolutely at the bottom -->
-                    <div class="swiper-pagination !absolute bottom-0 left-0 right-0"></div>
+                    <div class="swiper-pagination  left-0 right-0"></div>
                 </div>
             </div>
         </div>
