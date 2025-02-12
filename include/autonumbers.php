@@ -1,6 +1,13 @@
 <?php
-define('DS', DIRECTORY_SEPARATOR);
-define('LIB_PATH', __DIR__);
+// Only define constants if they're not already defined
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+
+if (!defined('LIB_PATH')) {
+    define('LIB_PATH', __DIR__);
+}
+
 require_once(LIB_PATH.DS.'database.php');
 
 class Autonumber {
