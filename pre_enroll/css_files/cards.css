@@ -1,5 +1,5 @@
 .card-container {
-    min-height: 400px; /* Set a minimum height for all cards */
+    min-height: 350px;
     display: flex;
     flex-direction: column;
 }
@@ -16,4 +16,9 @@
     -webkit-box-orient: vertical;
 }
 
+@media (min-width: 640px) {
+    .card-container {
+        min-height: 400px;
+    }
+}
 
