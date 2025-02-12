@@ -42,10 +42,6 @@ $total_course = $conn->query($count_course);
         <?php 
         
         include "header.php";
-        include "banner.php";
-        include "num.php";
-        include 'cards.php'; 
-        include 'mission.php';
         ?>
     </div>
 
