@@ -1,9 +1,15 @@
+<?php
+require_once __DIR__ .  "/Logic_enroll.php";
+require_once __DIR__ .  "/Logic_validate.php";
+?>
+
+
 <body class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 p-6">
     <div class="container mx-auto">
         <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-2xl">
             <!-- Header Section -->
             <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-800 mb-2">Pre-Registration Form</h2>
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Registration Form</h2>
                 <div class="flex items-center justify-center space-x-2 mb-4">
                     <span class="text-sm font-medium text-gray-500">Step</span>
                     <span id="stepCounter" class="px-3 py-1 bg-blue-500 text-white rounded-full text-sm font-bold">1</span>

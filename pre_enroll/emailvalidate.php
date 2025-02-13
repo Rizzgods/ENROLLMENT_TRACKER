@@ -26,7 +26,7 @@ require_once __DIR__ .  "/Logic_validate.php";
         echo"<br>";
         echo"<br>";
         echo"<br>";
-        include "enrollform.php";
+        include "emailform.php";
         ?>
     </div>
 

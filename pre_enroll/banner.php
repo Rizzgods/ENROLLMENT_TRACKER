@@ -13,7 +13,7 @@
                     and unique techniques to enhance the skills and knowledge of our dear students, making them 
                     globally competitive and productive citizens.
                 </p>
-                <a href="enroll.php">
+                <a href="emailvalidate.php">
                     <button class="mt-6 md:mt-8 px-4 md:px-6 py-2 md:py-3 bg-blue-600 bg-opacity-10 text-white font-semibold 
                                    rounded-full border-2 md:border-4 border-blue-300 hover:bg-blue-300 hover:bg-opacity-100 
                                    transition duration-150">
