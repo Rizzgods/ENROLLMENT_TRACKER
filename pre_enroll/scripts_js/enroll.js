@@ -124,13 +124,14 @@ function hideLoadingScreen() {
     loadingScreen.classList.remove('flex');
 }
 
+// Update the countdown and redirection logic
 function showSuccessPopup() {
     const successPopup = document.getElementById('successPopup');
     successPopup.classList.remove('hidden');
     successPopup.classList.add('flex');
     
     let countdown = 3;
-    const countdownElement = document.getElementById('countdown');
+    const countdownElement = document.getElementById('countdownTimer');
     
     const timer = setInterval(() => {
         countdown--;
@@ -138,7 +139,7 @@ function showSuccessPopup() {
         
         if (countdown <= 0) {
             clearInterval(timer);
-            window.location.href = 'home.php';
+            window.location.href = 'home.php'; // Changed to redirect to home.php in the same directory
         }
     }, 1000);
 }
@@ -159,20 +160,18 @@ document.querySelector('form').addEventListener('submit', async (e) => {
         showLoadingScreen();
         const form = e.target;
         const formData = new FormData(form);
-        formData.append('regsubmit', 'true'); // Add the submit button value
+        formData.append('regsubmit', 'true');
 
         const response = await fetch('Logic_enroll.php', {
             method: 'POST',
             body: formData
         });
 
-        const result = await response.text();
-        console.log('Server response:', result); // For debugging
-
         if (response.ok) {
             hideLoadingScreen();
             showSuccessPopup();
         } else {
+            const result = await response.text();
             throw new Error(`Submission failed: ${result}`);
         }
     } catch (error) {

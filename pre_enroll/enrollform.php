@@ -195,7 +195,7 @@ require_once __DIR__ .  "/Logic_validate.php";
     <!-- Loading Screen -->
     <div id="loadingScreen" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
         <div class="bg-white p-8 rounded-lg shadow-xl flex flex-col items-center">
-            <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+            <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-500"></div>
             <p class="mt-4 text-gray-700">Submitting your application...</p>
         </div>
     </div>
