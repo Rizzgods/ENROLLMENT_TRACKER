@@ -11,7 +11,7 @@ $password = "";
 $dbname = "dbgreenvalley";
 
 // Create connection
-$conn = new mysqli(hostname: $servername, username: $username, password: $password, database: $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -42,7 +42,7 @@ if (isset($_POST['regsubmit'])) {
     $LNAME        = $_POST['LNAME'];
     $MI           = $_POST['MI'];
     $PADDRESS     = $_POST['PADDRESS'];
-    $SEX          = $_POST['optionsRadios'];
+    $SEX          = $_POST['SEX'];
     $BIRTHDATE    = date_format(object: date_create(datetime: $_POST['BIRTHDATE']), format: 'Y-m-d'); 
     $NATIONALITY  = $_POST['NATIONALITY'];
     $BIRTHPLACE   = $_POST['BIRTHPLACE'];

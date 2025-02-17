@@ -3,7 +3,9 @@
         <div class="container mx-auto max-w-[1920px] px-4">
             <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
                 <div class="flex items-center space-x-4">
+                <a href="home.php">
                     <img src="assets/logo" alt="Logo" class="h-10 w-10">
+                </a>
                     <h1 class="text-2xl font-bold tracking-tight"></h1>
                 </div>
                 <div class="space-x-4 sm:space-x-6">
