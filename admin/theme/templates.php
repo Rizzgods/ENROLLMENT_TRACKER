@@ -47,7 +47,7 @@
 
 admin_confirm_logged_in();
 
-  $sql = "SELECT count(*) as 'enrollees' FROM tblstudent WHERE NewEnrollees=1 and student_status ='New'";
+  $sql = "SELECT count(*) as 'enrollees' FROM tblstudent WHERE NewEnrollees=1";
   $mydb->setQuery($sql); 
   $enrollees = $mydb->loadSingleResult(); 
  

@@ -24,7 +24,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                 </div>
             </div>
 
-            <form action="Logic_enroll.php" method="POST" class="space-y-8">
+            <form action="" method="post" class="space-y-8">
                 <!-- Step 1 -->
                 <div class="step" id="step1">
                     <input type="hidden" id="IDNO" name="IDNO" value="<?php echo isset($_SESSION['STUDID']) ? $_SESSION['STUDID'] : $autonum->AUTO; ?>">
@@ -59,18 +59,14 @@ require_once __DIR__ .  "/Logic_validate.php";
                         <div class="space-y-4">
                             <label class="block text-sm font-medium text-gray-700">Sex</label>
                             <div class="flex space-x-4">
-                            <label class="inline-flex items-center">
-    <input type="radio" name="SEX" value="Female" 
-        <?php echo (isset($_SESSION['SEX']) && $_SESSION['SEX'] == 'Female') ? 'checked' : ''; ?>
-        class="w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-500">
-    <span class="ml-2">Female</span>
-</label>
-<label class="inline-flex items-center">
-    <input type="radio" name="SEX" value="Male"
-        <?php echo (isset($_SESSION['SEX']) && $_SESSION['SEX'] == 'Male') ? 'checked' : ''; ?>
-        class="w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-500">
-    <span class="ml-2">Male</span>
-</label>
+                                <label class="inline-flex items-center">
+                                    <input checked id="optionsRadios1" name="optionsRadios" type="radio" value="Female" class="w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-500">
+                                    <span class="ml-2">Female</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input id="optionsRadios2" name="optionsRadios" type="radio" value="Male" class="w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-500">
+                                    <span class="ml-2">Male</span>
+                                </label>
                             </div>
                         </div>
                         <div class="space-y-4">
@@ -138,9 +134,9 @@ require_once __DIR__ .  "/Logic_validate.php";
                             <label for="CIVILSTATUS" class="block text-sm font-medium text-gray-700">Civil Status</label>
                             <select name="CIVILSTATUS" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                 <option value="Select">Select Status</option>
-                                <option value="Single" <?php echo (isset($_SESSION['CIVILSTATUS']) && $_SESSION['CIVILSTATUS'] == 'Single') ? 'selected' : ''; ?>>Single</option>
-                                <option value="Married" <?php echo (isset($_SESSION['CIVILSTATUS']) && $_SESSION['CIVILSTATUS'] == 'Married') ? 'selected' : ''; ?>>Married</option>
-                                <option value="Widow" <?php echo (isset($_SESSION['CIVILSTATUS']) && $_SESSION['CIVILSTATUS'] == 'Widow') ? 'selected' : ''; ?>>Widow</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Widow">Widow</option>
                             </select>
                         </div>
                         <div class="space-y-4">

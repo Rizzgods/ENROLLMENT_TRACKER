@@ -33,9 +33,6 @@
         </div>
     </div>
 
-    <div id="otpErrorMessage" class="text-red-500 mt-2 hidden"></div>
-
-
     <script src="scripts_js/email.js"></script>
 
    

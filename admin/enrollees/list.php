@@ -40,7 +40,7 @@
 				  <tbody>
 				  	<?php  //`IDNO`, `FNAME`, `LNAME`, `MNAME`, `SEX`, `BDAY`, `BPLACE`,
 				  	// `STATUS`, `AGE`, `NATIONALITY`, `RELIGION`, `CONTACT_NO`, `HOME_ADD`, `EMAIL`, `student_status`
-				  		$mydb->setQuery("SELECT * FROM `tblstudent` s, course c WHERE s.COURSE_ID=c.COURSE_ID AND NewEnrollees=1 AND student_status='New'");
+				  		$mydb->setQuery("SELECT * FROM `tblstudent` s, course c WHERE s.COURSE_ID=c.COURSE_ID AND NewEnrollees=1");
 
 				  		$cur = $mydb->loadResultList();
 
@@ -65,8 +65,7 @@
 				  		 if($result->student_status=='New'){
 				  		 	echo '<td align="center" > 
 				  		             <a title="Confirm" href="controller.php?action=confirm&IDNO='.$result->IDNO.'"  class="btn btn-info btn-xs  ">Confirm <span class="fa fa-info-circle fw-fa"></span></a>
-				  			      	 <a title="Reject" href="controller.php?action=Reject&IDNO='.$result->IDNO.'"  class="btn btn-info btn-xs  ">Reject <span class="fa fa-info-circle fw-fa"></span></a>
-								  </td>';
+				  			      </td>';
 				  		// echo '<td align="center" > <a title="View Grades" href="index.php?view=grades&id='.$result->IDNO.'" class="btn btn-primary btn-xs" >Grades <span class="fa fa-info-circle fw-fa"></span> </a>
 				  		// 			 </td>';
 				  		 }else{

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = emailInput.value.trim();
 
         if (email === "") {
+            alert("Please enter your email.");
             return;
         }
 
@@ -25,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.text())
         .then(data => {
+            console.log(data); // Debugging
+            alert("OTP has been sent to your email.");
         })
         .catch(error => console.error("Error:", error));
     });
@@ -40,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const otp = otpInput.value.trim();
 
         if (otp === "") {
+            alert("Please enter the OTP.");
             return;
         }
 
@@ -54,11 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 otp: otp
             }),
         })
-        .then(response => response.text()) 
+        .then(response => response.text())
         .then(data => {
             if (data.trim() === "success") {
+                alert("OTP verified! Redirecting...");
                 window.location.href = "enroll.php";
             } else {
+                alert("Invalid OTP. Please try again.");
             }
         })
         .catch(error => console.error("Error:", error));
