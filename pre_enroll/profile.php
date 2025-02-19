@@ -1,29 +1,12 @@
 <?php
-
 session_start();
-// Database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "dbgreenvalley";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
 }
-
-$sql = "SELECT * FROM tbl_bcpdepts";
-$result = $conn->query($sql);
-
-$count_stud = "SELECT COUNT(*) FROM tblstudent";
-$total = $conn->query($count_stud);
-
-$count_course = "SELECT COUNT(*) FROM course";
-$total_course = $conn->query($count_course);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,11 +27,10 @@ $total_course = $conn->query($count_course);
         <?php 
         
         include "header.php";
-        include "banner.php";
-        include "num.php";
-        include 'cards.php'; 
-        include 'mission.php';
-        include 'footer.php';
+        echo"<br>";
+        echo"<br>";
+        echo"<br>";
+        include "profilelaman.php";
         ?>
     </div>
 

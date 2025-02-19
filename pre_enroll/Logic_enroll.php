@@ -53,7 +53,7 @@ if (isset($_POST['regsubmit'])) {
     $GCONTACT     = $_POST['GCONTACT'];
     $COURSEID     = $_POST['COURSE'];
     $USER_NAME    = $_POST['USER_NAME']; 
-    $PASS         = sha1(string: $_POST['PASS']); // Encrypt password
+    $PASS         = password_hash($_POST['PASS'], PASSWORD_DEFAULT);
     $EMAIL        = $_POST['EMAIL']; 
     $SEMESTER     = $_POST['SEMESTER']; 
 
