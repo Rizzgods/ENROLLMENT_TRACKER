@@ -17,7 +17,13 @@ $dbname = "dbgreenvalley";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["sendOTP"])) {
-    $email = $_POST['email'];
+    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+    
+    if (!$email) {
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'error', 'message' => 'Invalid email']);
+        exit;
+    }
     
     // Generate a 6-digit OTP
     $otp = rand(100000, 999999);
@@ -25,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["sendOTP"])) {
     // Store OTP in session for verification later
     $_SESSION['otp'] = $otp;
     $_SESSION['otp_expiry'] = time() + (10 * 60);
-
 
     // Send OTP via email
     $mail = new PHPMailer(true);
@@ -45,10 +50,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["sendOTP"])) {
         $mail->Body    = "Your OTP is: $otp. Please enter this code to continue. The OTP will expire in 10 minutes";
 
         $mail->send();
-        echo "OTP sent successfully";
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'success', 'message' => 'OTP sent successfully']);
     } catch (Exception $e) {
-        echo "Error sending OTP: " . $mail->ErrorInfo;
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'error', 'message' => 'Error sending OTP: ' . $mail->ErrorInfo]);
     }
+    exit;
 }
 
 if (isset($_POST['verifyOTP'])) {
@@ -67,7 +75,7 @@ if (isset($_POST['verifyOTP'])) {
     if ($_POST['otp'] == $_SESSION['otp']) {
         unset($_SESSION['otp']);
         unset($_SESSION['otp_expiry']);
-        echo "success"; // ✅ This is what JavaScript is looking for
+        echo "success";
     } else {
         echo "invalid";
     }
