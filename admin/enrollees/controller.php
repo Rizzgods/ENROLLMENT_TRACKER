@@ -2,15 +2,23 @@
 require_once ("../../include/initialize.php");
 	 if (!isset($_SESSION['ACCOUNT_ID'])){
       redirect(web_root."admin/index.php");
-     }
 
+	  
+     }
+	 use PHPMailer\PHPMailer\PHPMailer;
+	 use PHPMailer\PHPMailer\Exception;
+
+	 require_once __DIR__ . '/../../vendor/autoload.php';
 $action = (isset($_GET['action']) && $_GET['action'] != '') ? $_GET['action'] : '';
 
 switch ($action) {
 	
-case 'confirm' :
-	doConfirm();
-	break;
+	case 'confirm':
+		if (isset($_GET['IDNO'])) {
+			doConfirm($_GET['IDNO'], $mydb);  // Pass IDNO from the URL and the $mydb connection
+		}
+		break;
+	
 case 'doadd' :
 	doAddsubject();
 	break;
@@ -25,12 +33,130 @@ case 'addcreditsubject' :
 	doAddCreditSubject();
 	break;
 }
-   
-function doConfirm(){
+
+
+if (isset($_GET['action']) && isset($_GET['IDNO'])) {
+    $action = $_GET['action'];
+    $IDNO = $_GET['IDNO'];
+
+    if ($action == "confirm") {
+        doConfirm($IDNO, $mydb);
+    } elseif ($action == "reject") {
+        rejectStudent($IDNO, $mydb);
+    }
+}
+
+
+function assignSchedule($db) {
+	// Define available schedule slots (1-hour range)
+	$availableSlots = [
+		"08:00 - 09:00", "09:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00",
+		"01:00 - 02:00", "02:00 - 03:00", "03:00 - 04:00", "04:00 - 05:00"
+	];
+
+	// Loop through each time slot and check if there is space
+	foreach ($availableSlots as $slot) {
+		$countQuery = "SELECT COUNT(*) AS student_count FROM studentaccount WHERE SCHEDULE = ?";
+		$stmt = $db->conn->prepare($countQuery);
+		$stmt->bind_param("s", $slot);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+		$stmt->close();
+
+		// If there are less than 200 students in this slot, assign it
+		if ($row['student_count'] < 200) {
+			return $slot;
+		}
+	}
+
+	// If all slots are full, return 'TBA'
+	return "TBA";
+
+
+	
+}
+
+function sendEmail($EMAIL, $FNAME, $LNAME, $status, $IDNO, $db) {
+	$mail = new PHPMailer(true);
+	try {
+		// Server settings
+		$mail->isSMTP();
+		$mail->Host       = 'smtp.gmail.com'; // Your SMTP server
+		$mail->SMTPAuth   = true;
+		$mail->Username   = 'taranavalvista@gmail.com'; // Your email
+		$mail->Password   = 'kdiq oeqm cuyr yhuz'; // Your email password
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+		$mail->Port       = 587;
+		$mail->isHTML(true);
+
+		// Recipients
+		$mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
+		$mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
+
+
+		$scheduleQuery = "SELECT SCHEDULE FROM studentaccount WHERE user_id = ?";
+		$stmt = $db->conn->prepare($scheduleQuery);
+		$stmt->bind_param("i", $IDNO);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+		$schedule = $row['SCHEDULE'];
+		$stmt->close();
+
+		if ($status == "approved") {
+			$mail->Subject = "Enrollment Confirmation";
+			$mail->Body = "<p>Hello $FNAME,</p>
+				<p>Your enrollment has been successfully processed.</p>
+				<p><b>Student ID:</b> $IDNO</p>
+				<p><b>Schedule:</b> $schedule</p>
+				<p>Welcome aboard!</p>";
+
+		} else {
+			$mail->Subject = "Enrollment Rejection";
+			$mail->Body = "<p>Hello $FNAME,</p>
+				<p>Unfortunately, your enrollment application has been rejected.</p>
+				<p>Please contact the administration for further details.</p>";
+		}
+
+		$mail->send();
+	} catch (Exception $e) {
+		error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
+	}
+}
+
+function doConfirm($IDNO, $db){
 global $mydb;
 $sem = new Semester();
 $resSem = $sem->single_semester();
 $_SESSION['SEMESTER'] = $resSem->SEMESTER; 
+
+$updateStatus = "UPDATE tblstudent SET student_status = 'approved' WHERE IDNO = ?";
+    $stmt = $db->conn->prepare($updateStatus);
+    $stmt->bind_param("i", $IDNO);
+    $stmt->execute();
+    $stmt->close();
+
+	$schedule = assignSchedule($db);
+
+	$updateSchedule = "UPDATE studentaccount SET SCHEDULE = ? WHERE user_id = ?";
+    $stmt2 = $db->conn->prepare($updateSchedule);
+    $stmt2->bind_param("si", $schedule, $IDNO);
+    $stmt2->execute();
+    $stmt2->close();
+
+	$updateStatus = "UPDATE tblstudent SET student_status = 'approved', NewEnrollees = 0 WHERE IDNO = ?";
+    $stmt = $db->conn->prepare($updateStatus);
+    $stmt->bind_param("i", $IDNO);
+    $stmt->execute();
+    $stmt->close();
+
+	$updateaccount = "UPDATE studentaccount SET STATUS = 'accepted', WHERE IDNO = ?";
+    $stmt = $db->conn->prepare($updateaccount);
+    $stmt->bind_param("i", $IDNO);
+    $stmt->execute();
+    $stmt->close();
+
 
 
 $currentyear = date('Y');
@@ -50,33 +176,15 @@ $_SESSION['SY'] = $sy;
 
 		 $sql = "SELECT * FROM `subject` s, `course` c 
 					WHERE s.COURSE_ID=c.COURSE_ID AND s.COURSE_ID=".$studcourse['COURSE_ID']." AND SEMESTER='".$_SESSION['SEMESTER']."'";
- 			$resSubject = mysqli_query($mydb->conn,$sql) or die(mysqli_error($mydb->conn));	
 
- 			while ($row = mysqli_fetch_array($resSubject)) {
-
- 					# code...
- 					$studentsubject = New StudentSubjects();
-					$studentsubject->IDNO 		= $_GET['IDNO'];
-					$studentsubject->SUBJ_ID	= $row['SUBJ_ID'];
-					$studentsubject->LEVEL 		= 1;
-					$studentsubject->SEMESTER 	= $_SESSION['SEMESTER'];
-					$studentsubject->SY 		= $_SESSION['SY'];
-					$studentsubject->ATTEMP 	= 1; 
-					$studentsubject->create();
-
-
-					$grade = New Grade();
-					$grade->IDNO = $_GET['IDNO'];
-					$grade->SUBJ_ID	 = $row['SUBJ_ID'];
-					$grade->create();
- 				}	
+				 $EMAIL = $studcourse['EMAIL'];
+   				 $FNAME = $studcourse['FNAME'];
+   				 $LNAME = $studcourse['LNAME'];
+   				 $MI = $studcourse['MNAME'];
+    			$COURSEID = $studcourse['COURSE_ID'];
  			
 
-				$sql = "INSERT INTO `schoolyr`
-				               (`AY`, `SEMESTER`, `COURSE_ID`, `IDNO`, `CATEGORY`, `DATE_RESERVED`, `DATE_ENROLLED`, `STATUS`)
-				        VALUES ('".$_SESSION['SY']."','".$_SESSION['SEMESTER']."','".$studcourse['COURSE_ID']."','".$_GET['IDNO']."','ENROLLED','".date('Y-m-d')."','".date('Y-m-d')."','New');";
-				$res = mysqli_query($mydb->conn,$sql) or die(mysqli_error($mydb->conn));
-
+				
 
 
 			$query = "SELECT * FROM `tblstudent` WHERE `COURSE_ID`=".$studcourse['COURSE_ID'];
@@ -84,29 +192,48 @@ $_SESSION['SY'] = $sy;
 			$numrow = mysqli_num_rows($result);
 			// $maxrows = count($numrow);
 
-
-			if ($numrow > 40) {
-				# code...
-				$student = New Student();  
-				$student->NewEnrollees =0;  
-				$student->YEARLEVEL = 1;
-				$student->STUDSECTION = 2;
-				$student->update($_GET['IDNO']);
-			}else{
-				$student = New Student();  
-				$student->NewEnrollees =0;  
-				$student->YEARLEVEL = 1;
-				$student->STUDSECTION = 1;
-				$student->update($_GET['IDNO']);
-			}
-
 		
 
 			unset($_SESSION['SEMESTER']);
 			unset($_SESSION['SY']);
 
+			sendEmail($EMAIL,$FNAME,$LNAME,"approved",$IDNO, $db);
 			message("Regular loads has been added to the new enrollees!", "success");
 			redirect("index.php?view=success&IDNO=".$_GET['IDNO']);
+
+			
+			function rejectStudent($IDNO, $db) {
+				$updateStatus = "UPDATE tblstudent SET student_status = 'rejected' WHERE IDNO = ?";
+				$stmt = $db->conn->prepare($updateStatus);
+				$stmt->bind_param("i", $IDNO);
+				$stmt->execute();
+				$stmt->close();
+
+				$sql = "SELECT EMAIL, FNAME, LNAME FROM tblstudent WHERE IDNO = ?";
+				$stmt2 = $db->conn->prepare($sql);
+				$stmt2->bind_param("i", $IDNO);
+				$stmt2->execute();
+				$result = $stmt2->get_result();
+				$student = $result->fetch_assoc();
+				$stmt2->close();
+
+				$updateaccount = "UPDATE studentaccount SET STATUS = 'rejected', WHERE IDNO = ?";
+				$stmt = $db->conn->prepare($updateaccount);
+				$stmt->bind_param("i", $IDNO);
+				$stmt->execute();
+				$stmt->close();
+			
+
+				sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], "rejected", $IDNO,$db);
+
+				message("Student Rejected", "success");
+				redirect("index.php?view=success&IDNO=".$_GET['IDNO']);
+				exit();
+			}
+
+
+
+			
 			
 		 
 	}
