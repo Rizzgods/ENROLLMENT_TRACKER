@@ -12,7 +12,7 @@
             <form id="otpForm" class="space-y-6" method="POST" action="Logic_validate.php">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email Address:</label>
                 <input type="email" name="email" id="email" required 
-                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:text-gray-500">
                 
                 <button type="submit" id="sendOTP" name="sendOTP" 
                         class="w-full mt-4 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
@@ -22,6 +22,7 @@
 
             <form>
                 <div id="otpSection" class="hidden mt-4">
+                    <p id="otpSentMessage" class="text-sm font-medium text-gray-700 mb-4"></p>
                     <label for="otp" class="block text-sm font-medium text-gray-700">Enter OTP:</label>
                     <input type="text" name="otp" id="otp" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     

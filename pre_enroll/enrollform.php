@@ -48,7 +48,9 @@ require_once __DIR__ .  "/Logic_validate.php";
                         </div>
                         <div class="space-y-4">
                             <label for="EMAIL" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input required id="EMAIL" name="EMAIL" placeholder="Email Address" type="text" value="<?php echo isset($_SESSION['EMAIL']) ? $_SESSION['EMAIL'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <input type="email" name="EMAIL" id="email" required 
+                                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   value="<?php echo isset($_SESSION['verifiedEmail']) ? $_SESSION['verifiedEmail'] : ''; ?>" readonly>
                         </div>
                     </div>
                 </div>
@@ -191,6 +193,17 @@ require_once __DIR__ .  "/Logic_validate.php";
     </div>
 
     <script src="scripts_js/enroll.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const verifiedEmail = localStorage.getItem('verifiedEmail');
+            if (verifiedEmail) {
+                const emailInput = document.getElementById('email');
+                emailInput.value = verifiedEmail;
+                emailInput.setAttribute('readonly', true);
+            }
+        });
+    </script>
 
     <!-- Loading Screen -->
     <div id="loadingScreen" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">

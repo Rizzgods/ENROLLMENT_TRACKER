@@ -43,7 +43,7 @@ if (isset($_POST['regsubmit'])) {
     $MI           = $_POST['MI'];
     $PADDRESS     = $_POST['PADDRESS'];
     $SEX          = $_POST['optionsRadios'];
-    $BIRTHDATE    = date_format(object: date_create(datetime: $_POST['BIRTHDATE']), format: 'Y-m-d'); 
+    $BIRTHDATE    = date_format(date_create($_POST['BIRTHDATE']), 'Y-m-d'); 
     $NATIONALITY  = $_POST['NATIONALITY'];
     $BIRTHPLACE   = $_POST['BIRTHPLACE'];
     $RELIGION     = $_POST['RELIGION'];
@@ -166,13 +166,12 @@ if (isset($_POST['regsubmit'])) {
             </div>
         ";
 
-
         $mail->send();
     } catch (Exception $e) {
-        error_log(message: "Email could not be sent. Error: {$mail->ErrorInfo}");
+        error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
     }
 
-    redirect(location: "home.php");
+    redirect("home.php");
 }
 
 // School Year Calculation

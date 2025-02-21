@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
         otpErrorModal: document.getElementById('otpErrorModal'),
         serverErrorModal: document.getElementById('serverErrorModal'),
         verifyOTPButton: document.getElementById('verifyOTP'),
-        otpInput: document.querySelector('input[name="otp"]')
+        otpInput: document.querySelector('input[name="otp"]'),
+        otpSentMessage: document.getElementById('otpSentMessage'),
+        verifiedEmail: '',  // Add this new property
     };
 
     function validateEmail(email) {
@@ -53,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            elements.verifiedEmail = email; // Store the email when sending OTP
             showLoading();
             elements.sendOTPButton.disabled = true;
 
@@ -72,6 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.status === 'success') {
                     showModal('otpSentModal');
                     elements.otpSection.classList.remove('hidden');
+                    elements.otpSentMessage.textContent = `We have sent an OTP to "${email}"`;
+                    elements.form.classList.add('hidden'); // Hide the email form
                 } else if (data.status === 'error') {
                     if (data.message === 'Invalid email') {
                         showModal('invalidEmailModal');
@@ -115,6 +120,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 elements.verifyOTPButton.disabled = false;
 
                 if (data === 'success') {
+                    // Store the verified email in local storage
+                    localStorage.setItem('verifiedEmail', elements.verifiedEmail);
+
+                    // Show the email form again with the verified email
+                    elements.form.classList.remove('hidden');
+                    elements.emailInput.value = elements.verifiedEmail;
+                    elements.emailInput.classList.add('bg-gray-100');
+                    elements.sendOTPButton.classList.add('hidden');
+                    
+                    // Hide the OTP section
+                    elements.otpSection.classList.add('hidden');
+                    
+                    // Proceed to next page
                     window.location.href = 'enroll.php';
                 } else if (data === 'expired') {
                     showModal('otpErrorModal');
