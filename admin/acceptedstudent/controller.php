@@ -4,25 +4,9 @@ require_once ("../../include/initialize.php");
       redirect(web_root."admin/index.php");
      }
 
-
-	 use PHPMailer\PHPMailer\PHPMailer;
-	 use PHPMailer\PHPMailer\Exception;
-
-	 require_once __DIR__ . '/../../vendor/autoload.php';
-
 $action = (isset($_GET['action']) && $_GET['action'] != '') ? $_GET['action'] : '';
 
 switch ($action) {
-
-
-
-	case 'confirm':
-		if (isset($_GET['IDNO'])) {
-			doConfirm($_GET['IDNO'], $mydb);  // Pass IDNO from the URL and the $mydb connection
-		}
-		break;
-
-
 	case 'add' :
 	doInsert();
 	break;
@@ -43,129 +27,8 @@ switch ($action) {
 	doupdateimage();
 	break;
 
-	
+ 
 	}
-
-	if (isset($_GET['action']) && isset($_GET['IDNO'])) {
-		$action = $_GET['action'];
-		$IDNO = $_GET['IDNO'];
-	
-		if ($action == "confirm") {
-			doConfirm($IDNO, $mydb);
-		} elseif ($action == "reject") {
-			rejectStudent($IDNO, $mydb);
-		}
-	}
-	
-
-
-	function sendEmail($EMAIL, $FNAME, $LNAME, $MNAME, $IDNO,$COURSEID) {
-		$mail = new PHPMailer(true);
-		try {
-			// Server settings
-			$mail->isSMTP();
-			$mail->Host       = 'smtp.gmail.com'; // Your SMTP server
-			$mail->SMTPAuth   = true;
-			$mail->Username   = 'taranavalvista@gmail.com'; // Your email
-			$mail->Password   = 'kdiq oeqm cuyr yhuz'; // Your email password
-			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-			$mail->Port       = 587;
-			$mail->isHTML(true);
-	
-			// Recipients
-			$mail->setFrom($EMAIL, 'Enrollment Team');
-			$mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
-	
-			$mail->Subject = "Enrollment Confirmation";
-			$mail->Body = "<p>Hello $FNAME,</p>
-				<p>You are officially enrolled in BestLink.</p>
-				<p><b>Student ID:</b> $IDNO</p>
-				<p><b>Last Name:</b> $LNAME</p>
-				<p><b>First Name:</b> $FNAME</p>
-				<p><b>Middle Name:</b> $MNAME</p>
-				<p><b>Course ID:</b> $COURSEID</p>
-				<p>Welcome aboard!</p>";
-	
-			$mail->send();
-		} catch (Exception $e) {
-			error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
-		}
-	}
-	
-	function doConfirm($IDNO, $db){
-		global $mydb;
-	
-		// Update student payment status
-		$updatePayment = "UPDATE studentaccount SET PAYMENT = 'Paid' WHERE user_id = ?";
-		$stmt = $db->conn->prepare($updatePayment);
-		$stmt->bind_param("i", $IDNO);
-		$stmt->execute();
-		$stmt->close();
-	
-		// Fetch student details from tblstudent
-		$sql = "SELECT IDNO, LNAME, FNAME, MNAME, EMAIL, COURSE_ID FROM tblstudent WHERE IDNO = ?";
-		$stmt = $db->conn->prepare($sql);
-		$stmt->bind_param("i", $IDNO);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		$student = $result->fetch_assoc();
-		$stmt->close();
-	
-		// Fetch payment status from studentaccount
-		$sql = "SELECT PAYMENT FROM studentaccount WHERE user_id = ?";
-		$stmt = $db->conn->prepare($sql);
-		$stmt->bind_param("i", $IDNO);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		$paymentData = $result->fetch_assoc();
-		$stmt->close();
-		$PAYMENT = $paymentData['PAYMENT'];
-	
-		// Insert into student table
-		$insertStudent = "INSERT INTO student (id, LNAME, FNAME, MNAME, PAYMENT) VALUES (?, ?, ?, ?, ?)";
-		$stmt = $db->conn->prepare($insertStudent);
-		$stmt->bind_param("issss", $student['IDNO'], $student['LNAME'], $student['FNAME'], $student['MNAME'], $PAYMENT);
-		$stmt->execute();
-		$stmt->close();
-	
-		sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], $student['MNAME'], $student['IDNO'],  $student['COURSE_ID']);
-	
-		message("Student successfully confirmed!", "success");
-		redirect("index.php?view=success&IDNO=".$IDNO);
-	}
-	
-	function rejectStudent($IDNO, $db) {
-		// Fetch student email
-		$sql = "SELECT EMAIL, FNAME, LNAME FROM tblstudent WHERE IDNO = ?";
-		$stmt = $db->conn->prepare($sql);
-		$stmt->bind_param("i", $IDNO);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		$student = $result->fetch_assoc();
-		$stmt->close();
-	
-		// Delete studentaccount entry
-		$deleteAccount = "DELETE FROM studentaccount WHERE user_id = ?";
-		$stmt = $db->conn->prepare($deleteAccount);
-		$stmt->bind_param("i", $IDNO);
-		$stmt->execute();
-		$stmt->close();
-	
-		// Send rejection email
-		sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], "", $IDNO, "N/A", "N/A");
-	
-		message("Student rejected and account deleted", "success");
-		redirect("index.php?view=success&IDNO=".$IDNO);
-	}
-	
-
-
-
-
-
-
-
-
    
 	function doInsert(){
 		global $mydb;

@@ -31,8 +31,6 @@
 				  		<th>Address</th>
 				  		<th>Contact No.</th>
 				  		<th>Course</th>
-						  <th>Status</th>
-						<th>Schedule</th>
 						<th>Payment</th>
 				  		<!-- <th>Status</th> -->
 				  		<th width="14%" >Action</th>
@@ -53,17 +51,12 @@
 						  s.HOME_ADD, 
 						  s.CONTACT_NO, 
 						  c.COURSE_NAME, 
-						  sa.SCHEDULE, 
-						  sa.STATUS, 
 						  sa.PAYMENT
 					  FROM tblstudent s
 					  JOIN course c ON s.COURSE_ID = c.COURSE_ID
 					  LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id
-					  LEFT JOIN student st ON sa.user_id = st.id 
 					  WHERE s.student_status = 'accepted'
-					  AND (sa.STATUS IS NULL OR sa.STATUS = '')
 				  ");
-				  
 				  
 				  $cur = $mydb->loadResultList();
 				  
@@ -82,14 +75,11 @@
 					  echo '<td>' . $result->HOME_ADD . '</td>';
 					  echo '<td>' . $result->CONTACT_NO . '</td>';
 					  echo '<td>' . $result->COURSE_NAME . '</td>';
-					  echo '<td>' . $result->STATUS . '</td>';
-					  echo '<td>' . $result->SCHEDULE . '</td>';  // Displaying Schedule from studentaccount
 					  echo '<td>' . $result->PAYMENT . '</td>';   // Displaying Payment Status from studentaccount
 				  		 
-					  echo '<td align="center" > 
-					  <a title="Confirm" href="controller.php?action=confirm&IDNO='.$result->IDNO.'"  class="btn btn-info btn-xs  ">Confirm <span class="fa fa-info-circle fw-fa"></span></a>
-						<a title="Reject" href="controller.php?action=Reject&IDNO='.$result->IDNO.'"  class="btn btn-info btn-xs  ">Reject <span class="fa fa-info-circle fw-fa"></span></a>
-				 </td>';
+					  echo '<td align="center" > <a title="View Information" href="index.php?view=view&id='.$result->IDNO.'"  class="btn btn-info btn-xs  ">View <span class="fa fa-info-circle fw-fa"></span></a>
+
+					  </td>';
 				  		// echo '<td align="center" > <a title="View Grades" href="index.php?view=grades&id='.$result->IDNO.'" class="btn btn-primary btn-xs" >Grades <span class="fa fa-info-circle fw-fa"></span> </a>
 				  		// 			 </td>';
 				  		echo '</tr>';

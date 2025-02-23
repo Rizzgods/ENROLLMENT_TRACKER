@@ -170,9 +170,15 @@ $singleuser = $user->single_user($_SESSION['ACCOUNT_ID']);
                       
                        
                         <li>
-                             <a href="<?php echo web_root; ?>admin/student/index.php" ><i class="fa fa-group fa-fw"></i>  Students </a>
+                             <a href="<?php echo web_root; ?>admin/student/index.php" ><i class="fa fa-group fa-fw"></i>  Enrollees </a>
             
                         </li>
+
+                        <li>
+                             <a href="<?php echo web_root; ?>admin/acceptedstudent/index.php" ><i class="fa fa-group fa-fw"></i>  Student </a>
+            
+                        </li>
+    
     
                                 
 
