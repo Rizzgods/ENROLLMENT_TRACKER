@@ -73,7 +73,7 @@ switch ($action) {
 			$mail->isHTML(true);
 	
 			// Recipients
-			$mail->setFrom($EMAIL, 'Enrollment Team');
+			$mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
 			$mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
 	
 			$mail->Subject = "Enrollment Confirmation";
