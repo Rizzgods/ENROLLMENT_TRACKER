@@ -59,9 +59,10 @@
 					  FROM tblstudent s
 					  JOIN course c ON s.COURSE_ID = c.COURSE_ID
 					  LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id
-					  LEFT JOIN student st ON sa.user_id = st.id 
-					  WHERE s.student_status = 'accepted'
-					  AND (sa.STATUS IS NULL OR sa.STATUS = '')
+					  WHERE sa.STATUS = 'accepted'
+					  AND NOT EXISTS (
+						  SELECT 1 FROM student st WHERE st.id = s.IDNO
+					  )
 				  ");
 				  
 				  

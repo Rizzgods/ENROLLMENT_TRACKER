@@ -13,11 +13,7 @@ $action = (isset($_GET['action']) && $_GET['action'] != '') ? $_GET['action'] : 
 
 switch ($action) {
 	
-	case 'confirm':
-		if (isset($_GET['IDNO'])) {
-			doConfirm($_GET['IDNO'], $mydb);  // Pass IDNO from the URL and the $mydb connection
-		}
-		break;
+
 	
 case 'doadd' :
 	doAddsubject();

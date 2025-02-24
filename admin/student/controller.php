@@ -16,11 +16,7 @@ switch ($action) {
 
 
 
-	case 'confirm':
-		if (isset($_GET['IDNO'])) {
-			doConfirm($_GET['IDNO'], $mydb);  // Pass IDNO from the URL and the $mydb connection
-		}
-		break;
+
 
 
 	case 'add' :
@@ -92,7 +88,7 @@ switch ($action) {
 		}
 	}
 	
-	function doConfirm($IDNO, $db){
+	function doConfirm($IDNO, $db) {
 		global $mydb;
 	
 		// Update student payment status
@@ -111,6 +107,12 @@ switch ($action) {
 		$student = $result->fetch_assoc();
 		$stmt->close();
 	
+		if (!$student) {
+			message("Error: Student not found.", "error");
+			redirect("index.php?view=error");
+			return;
+		}
+	
 		// Fetch payment status from studentaccount
 		$sql = "SELECT PAYMENT FROM studentaccount WHERE user_id = ?";
 		$stmt = $db->conn->prepare($sql);
@@ -119,43 +121,30 @@ switch ($action) {
 		$result = $stmt->get_result();
 		$paymentData = $result->fetch_assoc();
 		$stmt->close();
-		$PAYMENT = $paymentData['PAYMENT'];
+		$PAYMENT = $paymentData['PAYMENT'] ?? 'Unpaid';
 	
-		// Insert into student table
-		$insertStudent = "INSERT INTO student (id, LNAME, FNAME, MNAME, PAYMENT) VALUES (?, ?, ?, ?, ?)";
-		$stmt = $db->conn->prepare($insertStudent);
-		$stmt->bind_param("issss", $student['IDNO'], $student['LNAME'], $student['FNAME'], $student['MNAME'], $PAYMENT);
+		// Check if student already exists in student table
+		$checkStudent = "SELECT id FROM student WHERE id = ?";
+		$stmt = $db->conn->prepare($checkStudent);
+		$stmt->bind_param("i", $IDNO);
 		$stmt->execute();
+		$stmt->store_result();
+		$studentExists = $stmt->num_rows > 0;
 		$stmt->close();
 	
-		sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], $student['MNAME'], $student['IDNO'],  $student['COURSE_ID']);
+		if (!$studentExists) {
+			// Insert into student table only if the student is not already present
+			$insertStudent = "INSERT INTO student (id, LNAME, FNAME, MNAME, PAYMENT) VALUES (?, ?, ?, ?, ?)";
+			$stmt = $db->conn->prepare($insertStudent);
+			$stmt->bind_param("issss", $student['IDNO'], $student['LNAME'], $student['FNAME'], $student['MNAME'], $PAYMENT);
+			$stmt->execute();
+			$stmt->close();
+		}
+	
+		sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], $student['MNAME'], $student['IDNO'], $student['COURSE_ID']);
 	
 		message("Student successfully confirmed!", "success");
-		redirect("index.php?view=success&IDNO=".$IDNO);
-	}
-	
-	function rejectStudent($IDNO, $db) {
-		// Fetch student email
-		$sql = "SELECT EMAIL, FNAME, LNAME FROM tblstudent WHERE IDNO = ?";
-		$stmt = $db->conn->prepare($sql);
-		$stmt->bind_param("i", $IDNO);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		$student = $result->fetch_assoc();
-		$stmt->close();
-	
-		// Delete studentaccount entry
-		$deleteAccount = "DELETE FROM studentaccount WHERE user_id = ?";
-		$stmt = $db->conn->prepare($deleteAccount);
-		$stmt->bind_param("i", $IDNO);
-		$stmt->execute();
-		$stmt->close();
-	
-		// Send rejection email
-		sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], "", $IDNO, "N/A", "N/A");
-	
-		message("Student rejected and account deleted", "success");
-		redirect("index.php?view=success&IDNO=".$IDNO);
+		redirect("index.php?view=success&IDNO={$IDNO}");
 	}
 	
 

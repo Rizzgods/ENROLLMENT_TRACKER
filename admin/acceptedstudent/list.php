@@ -55,9 +55,9 @@
 					  FROM tblstudent s
 					  JOIN course c ON s.COURSE_ID = c.COURSE_ID
 					  LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id
-					  WHERE s.student_status = 'accepted'
+					  INNER JOIN student st ON s.IDNO = st.id  -- Ensures only students in 'student' table are included
+				
 				  ");
-				  
 				  $cur = $mydb->loadResultList();
 				  
 				  foreach ($cur as $result) {
