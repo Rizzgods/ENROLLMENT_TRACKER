@@ -4,6 +4,7 @@ require_once __DIR__ .  "/Logic_validate.php";
 ?>
 
 
+
 <body class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 p-6">
     <div class="container mx-auto">
         <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-2xl">
@@ -13,7 +14,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                 <div class="flex items-center justify-center space-x-2 mb-4">
                     <span class="text-sm font-medium text-gray-500">Step</span>
                     <span id="stepCounter" class="px-3 py-1 bg-blue-500 text-white rounded-full text-sm font-bold">1</span>
-                    <span class="text-sm font-medium text-gray-500">of 4</span>
+                    <span class="text-sm font-medium text-gray-500">of 5</span>
                 </div>
                 <!-- Progress Bar -->
                 <div class="w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden">
@@ -24,7 +25,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                 </div>
             </div>
 
-            <form action="" method="post" class="space-y-8">
+            <form action="" method="post" class="space-y-8" enctype="multipart/form-data">
                 <!-- Step 1 -->
                 <div class="step" id="step1">
                     <input type="hidden" id="IDNO" name="IDNO" value="<?php echo isset($_SESSION['STUDID']) ? $_SESSION['STUDID'] : $autonum->AUTO; ?>">
@@ -160,6 +161,158 @@ require_once __DIR__ .  "/Logic_validate.php";
                     </div>
                 </div>
 
+                <!-- Step 5 -->
+                <div class="step hidden" id="step5">
+                    <div class="space-y-6">
+                        <!-- Student Type Dropdown -->
+                        <div class="space-y-4">
+                            <label for="stud_type" class="block text-sm font-medium text-gray-700">Student Type</label>
+                            <select required id="stud_type" name="stud_type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                                <option value="">Select Student Type</option>
+                                <option value="senior high">Senior High</option>
+                                <option value="octoberian">Octoberian</option>
+                                <option value="freshmen college">Freshmen College</option>
+                            </select>
+                        </div>
+
+                        <!-- Required Documents -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Form 138 -->
+                            <div class="space-y-4">
+                                <label for="form_138" class="block text-sm font-medium text-gray-700">Form 138</label>
+                                <div class="relative">
+                                    <input required type="file" id="form_138" name="form_138" accept="image/*,.pdf" 
+                                        class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
+                                        onchange="updateFileName(this)"/>
+                                    <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <svg class="w-6 h-6 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                            </svg>
+                                            <span class="text-sm text-gray-500 file-name">Choose file...</span>
+                                        </div>
+                                        <span class="bg-blue-50 text-blue-700 py-1 px-3 rounded-full text-xs font-medium">Browse</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Good Moral -->
+                            <div class="space-y-4">
+                                <label for="good_moral" class="block text-sm font-medium text-gray-700">Good Moral</label>
+                                <div class="relative">
+                                    <input required type="file" id="good_moral" name="good_moral" accept="image/*,.pdf" 
+                                        class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
+                                        onchange="updateFileName(this)"/>
+                                    <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <svg class="w-6 h-6 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                            </svg>
+                                            <span class="text-sm text-gray-500 file-name">Choose file...</span>
+                                        </div>
+                                        <span class="bg-blue-50 text-blue-700 py-1 px-3 rounded-full text-xs font-medium">Browse</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PSA Birth Certificate -->
+                            <div class="space-y-4">
+                                <label for="psa_birthCert" class="block text-sm font-medium text-gray-700">PSA Birth Certificate</label>
+                                <div class="relative">
+                                    <input required type="file" id="psa_birthCert" name="psa_birthCert" accept="image/*,.pdf" 
+                                        class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
+                                        onchange="updateFileName(this)"/>
+                                    <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <svg class="w-6 h-6 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                            </svg>
+                                            <span class="text-sm text-gray-500 file-name">Choose file...</span>
+                                        </div>
+                                        <span class="bg-blue-50 text-blue-700 py-1 px-3 rounded-full text-xs font-medium">Browse</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ID Picture -->
+                            <div class="space-y-4">
+                                <label for="id_pic" class="block text-sm font-medium text-gray-700">2x2 ID Picture</label>
+                                <div class="relative">
+                                    <input required type="file" id="id_pic" name="id_pic" accept="image/*" 
+                                        class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
+                                        onchange="updateFileName(this)"/>
+                                    <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <svg class="w-6 h-6 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                            </svg>
+                                            <span class="text-sm text-gray-500 file-name">Choose file...</span>
+                                        </div>
+                                        <span class="bg-blue-50 text-blue-700 py-1 px-3 rounded-full text-xs font-medium">Browse</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Barangay Clearance -->
+                            <div class="space-y-4">
+                                <label for="Brgy_clearance" class="block text-sm font-medium text-gray-700">Barangay Clearance</label>
+                                <div class="relative">
+                                    <input required type="file" id="Brgy_clearance" name="Brgy_clearance" accept="image/*,.pdf" 
+                                        class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
+                                        onchange="updateFileName(this)"/>
+                                    <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <svg class="w-6 h-6 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                            </svg>
+                                            <span class="text-sm text-gray-500 file-name">Choose file...</span>
+                                        </div>
+                                        <span class="bg-blue-50 text-blue-700 py-1 px-3 rounded-full text-xs font-medium">Browse</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Transcript of Records -->
+                            <div class="space-y-4">
+                                <label for="tor" class="block text-sm font-medium text-gray-700">Transcript of Records</label>
+                                <div class="relative">
+                                    <input required type="file" id="tor" name="tor" accept="image/*,.pdf" 
+                                        class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
+                                        onchange="updateFileName(this)"/>
+                                    <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <svg class="w-6 h-6 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                            </svg>
+                                            <span class="text-sm text-gray-500 file-name">Choose file...</span>
+                                        </div>
+                                        <span class="bg-blue-50 text-blue-700 py-1 px-3 rounded-full text-xs font-medium">Browse</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Honorable Dismissal -->
+                            <div class="space-y-4">
+                                <label for="honor_dismissal" class="block text-sm font-medium text-gray-700">Honorable Dismissal</label>
+                                <div class="relative">
+                                    <input required type="file" id="honor_dismissal" name="honor_dismissal" accept="image/*,.pdf" 
+                                        class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
+                                        onchange="updateFileName(this)"/>
+                                    <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <svg class="w-6 h-6 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                            </svg>
+                                            <span class="text-sm text-gray-500 file-name">Choose file...</span>
+                                        </div>
+                                        <span class="bg-blue-50 text-blue-700 py-1 px-3 rounded-full text-xs font-medium">Browse</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="flex justify-between items-center pt-6 border-t border-gray-200">
                     <button type="button" id="prev" class="hidden px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all duration-200">
                         <span class="flex items-center">
@@ -202,6 +355,46 @@ require_once __DIR__ .  "/Logic_validate.php";
                 emailInput.value = verifiedEmail;
                 emailInput.setAttribute('readonly', true);
             }
+        });
+
+        function updateFileName(input) {
+            const fileName = input.files[0]?.name || 'Choose file...';
+            const fileNameElement = input.parentElement.querySelector('.file-name');
+            if (fileNameElement) {
+                fileNameElement.textContent = fileName;
+            }
+            
+            // Update border color based on validation
+            const container = input.parentElement.querySelector('.border');
+            if (input.files.length > 0) {
+                container.classList.remove('border-red-500');
+                container.classList.add('border-green-500');
+            } else {
+                container.classList.remove('border-green-500');
+                container.classList.add('border-red-500');
+            }
+        }
+
+        // Add drag and drop functionality
+        document.querySelectorAll('.relative').forEach(dropZone => {
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.querySelector('.border').classList.add('border-blue-500', 'bg-blue-50');
+            });
+
+            dropZone.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                dropZone.querySelector('.border').classList.remove('border-blue-500', 'bg-blue-50');
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const input = dropZone.querySelector('input[type="file"]');
+                const dt = e.dataTransfer;
+                input.files = dt.files;
+                updateFileName(input);
+                dropZone.querySelector('.border').classList.remove('border-blue-500', 'bg-blue-50');
+            });
         });
     </script>
 

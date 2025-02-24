@@ -56,7 +56,33 @@ if (isset($_POST['regsubmit'])) {
     $PASS         = password_hash($_POST['PASS'], PASSWORD_DEFAULT);
     $EMAIL        = $_POST['EMAIL']; 
     $SEMESTER     = $_POST['SEMESTER']; 
+    $stud_type    = $_POST['stud_type'];
 
+    // Function to handle file upload
+    function handleFileUpload($file, $fieldName) {
+        if (isset($file['error']) && $file['error'] === UPLOAD_ERR_OK) {
+            return file_get_contents($file['tmp_name']);
+        }
+        return null;
+    }
+
+    // Handle document uploads
+    $form_138 = handleFileUpload($_FILES['form_138'], 'form_138');
+    $good_moral = handleFileUpload($_FILES['good_moral'], 'good_moral');
+    $psa_birthCert = handleFileUpload($_FILES['psa_birthCert'], 'psa_birthCert');
+    $id_pic = handleFileUpload($_FILES['id_pic'], 'id_pic');
+    $Brgy_clearance = handleFileUpload($_FILES['Brgy_clearance'], 'Brgy_clearance');
+    $tor = handleFileUpload($_FILES['tor'], 'tor');
+    $honor_dismissal = handleFileUpload($_FILES['honor_dismissal'], 'honor_dismissal');
+
+    // Validate required documents
+    if (!$form_138 || !$good_moral || !$psa_birthCert || !$id_pic || 
+        !$Brgy_clearance || !$tor || !$honor_dismissal) {
+        message("All documents are required.", "error");
+        redirect("pre_enroll/home.php");
+        exit();
+    }
+    
     // Check if student already exists
     $student = new Student();
     $res = $student->find_all_student(lname: $LNAME, fname: $FNAME, mname: $MI);
@@ -118,60 +144,89 @@ if (isset($_POST['regsubmit'])) {
     $student->student_status = 'New';
     $student->YEARLEVEL     = 1;
     $student->NewEnrollees  = 1;
-    $student->create();
+    $student->stud_type     = $stud_type;
+    $student->form_138      = $form_138;
+    $student->good_moral    = $good_moral;
+    $student->psa_birthCert = $psa_birthCert;
+    $student->id_pic        = $id_pic;
+    $student->Brgy_clearance = $Brgy_clearance;
+    $student->tor           = $tor;
+    $student->honor_dismissal = $honor_dismissal;
 
-    // Insert guardian details
-    $studentdetails = new StudentDetails();
-    $studentdetails->IDNO     = $IDNO;
-    $studentdetails->GUARDIAN = $GUARDIAN;
-    $studentdetails->GCONTACT = $GCONTACT;
-    $studentdetails->create();
-
-    // Update student auto-number
-    $studAuto = new Autonumber();
-    $studAuto->studauto_update();
-
-    // ✅ Send Confirmation Email
-    $mail = new PHPMailer(true);
     try {
-        // Server settings
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com'; // Your SMTP server
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'taranavalvista@gmail.com'; // Your email
-        $mail->Password   = 'kdiq oeqm cuyr yhuz'; // Your email password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+        if ($student->create()) {
+            // Insert into studentaccount
+            $sql = "INSERT INTO studentaccount (user_id, username, password) VALUES (?, ?, ?)";
+            $stmt = $mydb->conn->prepare($sql);
+            $stmt->bind_param("sss", $IDNO, $USER_NAME, $PASS);
+            $stmt->execute();
+        
+            if ($stmt->affected_rows > 0) {
+                // Insert guardian details
+                $studentdetails = new StudentDetails();
+                $studentdetails->IDNO     = $IDNO;
+                $studentdetails->GUARDIAN = $GUARDIAN;
+                $studentdetails->GCONTACT = $GCONTACT;
+                $studentdetails->create();
 
-        // Recipients
-        $mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
-        $mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
+                // Update student auto-number
+                $studAuto = new Autonumber();
+                $studAuto->studauto_update();
 
-        // Email content
-        $mail->isHTML(true);
-        $mail->Subject = "Enrollment Confirmation";
-        $mail->Body    = "
-            <div style='font-family: Arial, sans-serif; color: #333;'>
-            <h3 style='color: #4A5568;'>Hello $FNAME,</h3>
-            <p>Your enrollment has been successfully processed.</p>
-            <p><strong>Enrollment Details:</strong></p>
-            <ul style='list-style-type: none; padding: 0;'>
-                <li style='margin-bottom: 10px;'><b>Student ID:</b> $IDNO</li>
-                <li style='margin-bottom: 10px;'><b>Full Name:</b> $FNAME $MI $LNAME</li>
-                <li style='margin-bottom: 10px;'><b>Course:</b> $COURSEID</li>
-                <li style='margin-bottom: 10px;'><b>Semester:</b> $SEMESTER</li>
-            </ul>
-            <p>Thank you for enrolling. If you have any questions, contact us at <a href='mailto:support@yourdomain.com' style='color: #3182CE;'>support@yourdomain.com</a>.</p>
-            <p><b>- Enrollment Team</b></p>
-            </div>
-        ";
+                // ✅ Send Confirmation Email
+                $mail = new PHPMailer(true);
+                try {
+                    // Server settings
+                    $mail->isSMTP();
+                    $mail->Host       = 'smtp.gmail.com'; // Your SMTP server
+                    $mail->SMTPAuth   = true;
+                    $mail->Username   = 'taranavalvista@gmail.com'; // Your email
+                    $mail->Password   = 'kdiq oeqm cuyr yhuz'; // Your email password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port       = 587;
 
-        $mail->send();
+                    // Recipients
+                    $mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
+                    $mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
+
+                    // Email content
+                    $mail->isHTML(true);
+                    $mail->Subject = "Enrollment Confirmation";
+                    $mail->Body    = "
+                        <div style='font-family: Arial, sans-serif; color: #333;'>
+                        <h3 style='color: #4A5568;'>Hello $FNAME,</h3>
+                        <p>Your enrollment has been successfully processed.</p>
+                        <p><strong>Enrollment Details:</strong></p>
+                        <ul style='list-style-type: none; padding: 0;'>
+                            <li style='margin-bottom: 10px;'><b>Student ID:</b> $IDNO</li>
+                            <li style='margin-bottom: 10px;'><b>Full Name:</b> $FNAME $MI $LNAME</li>
+                            <li style='margin-bottom: 10px;'><b>Course:</b> $COURSEID</li>
+                            <li style='margin-bottom: 10px;'><b>Semester:</b> $SEMESTER</li>
+                            <li style='margin-bottom: 10px;'><b>Student Type:</b> $stud_type</li>
+                        </ul>
+                        <p>Your documents have been received and are being processed.</p>
+                        <p>Thank you for enrolling. If you have any questions, contact us at <a href='mailto:support@yourdomain.com' style='color: #3182CE;'>support@yourdomain.com</a>.</p>
+                        <p><b>- Enrollment Team</b></p>
+                        </div>
+                    ";
+
+                    $mail->send();
+                } catch (Exception $e) {
+                    error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
+                }
+
+                redirect("home.php");
+            } else {
+                throw new Exception("Failed to create student account");
+            }
+        } else {
+            throw new Exception("Failed to create student record");
+        }
     } catch (Exception $e) {
-        error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
+        message("Error: " . $e->getMessage(), "error");
+        redirect("pre_enroll/home.php");
+        exit();
     }
-
-    redirect("home.php");
 }
 
 // School Year Calculation

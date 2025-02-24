@@ -1,5 +1,5 @@
 let currentStep = 1;
-const totalSteps = 4;
+const totalSteps = 5; // Update from 4 to 5
 let errorTimeout;
 
 // Initialize progress bar when page loads
@@ -54,6 +54,20 @@ function validateStep(step) {
     return isValid;
 }
 
+function updateRequiredFields() {
+    document.querySelectorAll('.step').forEach(step => {
+        if (step.classList.contains('hidden')) {
+            step.querySelectorAll('[required]').forEach(field => field.removeAttribute('required'));
+        } else {
+            step.querySelectorAll('input, select').forEach(field => {
+                if (!field.hasAttribute('required')) {
+                    field.setAttribute('required', 'true');
+                }
+            });
+        }
+    });
+}
+
 function showErrorBubble(show) {
     const nextButton = document.getElementById("next");
     let errorBubble = document.getElementById("error-bubble");
@@ -85,16 +99,11 @@ function updateButtons() {
     document.getElementById("next").classList.toggle("hidden", currentStep === totalSteps);
     document.getElementById("submit").classList.toggle("hidden", currentStep !== totalSteps);
 }
-
 function updateUI() {
-    // Update progress bar
     updateProgress(currentStep);
-    
-    // Update step counter
     document.getElementById('stepCounter').textContent = currentStep;
-    
-    // Update buttons visibility
     updateButtons();
+    updateRequiredFields();
 }
 
 function updateProgress(step) {
