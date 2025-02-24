@@ -50,8 +50,8 @@ if (isset($_GET['action']) && isset($_GET['IDNO'])) {
 function assignSchedule($db) {
 	// Define available schedule slots (1-hour range)
 	$availableSlots = [
-		"08:00 - 09:00", "09:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00",
-		"01:00 - 02:00", "02:00 - 03:00", "03:00 - 04:00", "04:00 - 05:00"
+		"08:00am - 09:00am", "09:00am - 10:00am", "10:00am - 11:00am", "11:00am - 12:00pm",
+		"01:00pm - 02:00pm", "02:00pm - 03:00pm", "03:00pm - 04:00pm", "04:00pm - 05:00pm"
 	];
 
 	// Loop through each time slot and check if there is space
@@ -151,7 +151,7 @@ $updateStatus = "UPDATE tblstudent SET student_status = 'approved' WHERE IDNO = 
     $stmt->execute();
     $stmt->close();
 
-	$updateaccount = "UPDATE studentaccount SET STATUS = 'accepted', WHERE IDNO = ?";
+	$updateaccount = "UPDATE studentaccount SET STATUS = 'accepted' WHERE user_id = ?";
     $stmt = $db->conn->prepare($updateaccount);
     $stmt->bind_param("i", $IDNO);
     $stmt->execute();
