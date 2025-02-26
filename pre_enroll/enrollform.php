@@ -25,7 +25,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                 </div>
             </div>
 
-            <form action="" method="post" class="space-y-8" enctype="multipart/form-data">
+            <form action="Logic_enroll.php" method="post" class="space-y-8" enctype="multipart/form-data">
                 <!-- Step 1 -->
                 <div class="step" id="step1">
                     <input type="hidden" id="IDNO" name="IDNO" value="<?php echo isset($_SESSION['STUDID']) ? $_SESSION['STUDID'] : $autonum->AUTO; ?>">
@@ -143,14 +143,6 @@ require_once __DIR__ .  "/Logic_validate.php";
                             </select>
                         </div>
                         <div class="space-y-4">
-                            <label for="USER_NAME" class="block text-sm font-medium text-gray-700">Username</label>
-                            <input required id="USER_NAME" name="USER_NAME" placeholder="Username" type="text" value="<?php echo isset($_SESSION['USER_NAME']) ? $_SESSION['USER_NAME'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
-                        </div>
-                        <div class="space-y-4">
-                            <label for="PASS" class="block text-sm font-medium text-gray-700">Password</label>
-                            <input required id="PASS" name="PASS" placeholder="Password" type="password" value="<?php echo isset($_SESSION['PASS']) ? $_SESSION['PASS'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
-                        </div>
-                        <div class="space-y-4">
                             <label for="GUARDIAN" class="block text-sm font-medium text-gray-700">Guardian</label>
                             <input required id="GUARDIAN" name="GUARDIAN" placeholder="Guardian Name" type="text" value="<?php echo isset($_SESSION['GUARDIAN']) ? $_SESSION['GUARDIAN'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
@@ -181,7 +173,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                             <div class="space-y-4">
                                 <label for="form_138" class="block text-sm font-medium text-gray-700">Form 138</label>
                                 <div class="relative">
-                                    <input required type="file" id="form_138" name="form_138" accept="image/*,.pdf" 
+                                    <input type="file" id="form_138" name="form_138" accept="image/*,.pdf" 
                                         class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
                                         onchange="updateFileName(this)"/>
                                     <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
@@ -200,7 +192,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                             <div class="space-y-4">
                                 <label for="good_moral" class="block text-sm font-medium text-gray-700">Good Moral</label>
                                 <div class="relative">
-                                    <input required type="file" id="good_moral" name="good_moral" accept="image/*,.pdf" 
+                                    <input type="file" id="good_moral" name="good_moral" accept="image/*,.pdf" 
                                         class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
                                         onchange="updateFileName(this)"/>
                                     <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
@@ -219,7 +211,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                             <div class="space-y-4">
                                 <label for="psa_birthCert" class="block text-sm font-medium text-gray-700">PSA Birth Certificate</label>
                                 <div class="relative">
-                                    <input required type="file" id="psa_birthCert" name="psa_birthCert" accept="image/*,.pdf" 
+                                    <input type="file" id="psa_birthCert" name="psa_birthCert" accept="image/*,.pdf" 
                                         class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
                                         onchange="updateFileName(this)"/>
                                     <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
@@ -238,7 +230,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                             <div class="space-y-4">
                                 <label for="id_pic" class="block text-sm font-medium text-gray-700">2x2 ID Picture</label>
                                 <div class="relative">
-                                    <input required type="file" id="id_pic" name="id_pic" accept="image/*" 
+                                    <input type="file" id="id_pic" name="id_pic" accept="image/*" 
                                         class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
                                         onchange="updateFileName(this)"/>
                                     <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
@@ -257,7 +249,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                             <div class="space-y-4">
                                 <label for="Brgy_clearance" class="block text-sm font-medium text-gray-700">Barangay Clearance</label>
                                 <div class="relative">
-                                    <input required type="file" id="Brgy_clearance" name="Brgy_clearance" accept="image/*,.pdf" 
+                                    <input type="file" id="Brgy_clearance" name="Brgy_clearance" accept="image/*,.pdf" 
                                         class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
                                         onchange="updateFileName(this)"/>
                                     <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
@@ -276,7 +268,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                             <div class="space-y-4">
                                 <label for="tor" class="block text-sm font-medium text-gray-700">Transcript of Records</label>
                                 <div class="relative">
-                                    <input required type="file" id="tor" name="tor" accept="image/*,.pdf" 
+                                    <input type="file" id="tor" name="tor" accept="image/*,.pdf" 
                                         class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
                                         onchange="updateFileName(this)"/>
                                     <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
@@ -295,7 +287,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                             <div class="space-y-4">
                                 <label for="honor_dismissal" class="block text-sm font-medium text-gray-700">Honorable Dismissal</label>
                                 <div class="relative">
-                                    <input required type="file" id="honor_dismissal" name="honor_dismissal" accept="image/*,.pdf" 
+                                    <input type="file" id="honor_dismissal" name="honor_dismissal" accept="image/*,.pdf" 
                                         class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
                                         onchange="updateFileName(this)"/>
                                     <div class="w-full p-3 bg-white border border-gray-300 rounded-lg flex items-center justify-between">

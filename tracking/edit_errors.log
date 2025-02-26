@@ -1,0 +1,67 @@
+[26-Feb-2025 22:04:50 UTC] PHP Warning:  Undefined array key "AGE" in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 30
+[26-Feb-2025 22:04:50 UTC] PHP Stack trace:
+[26-Feb-2025 22:04:50 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:0
+[26-Feb-2025 22:04:50 UTC] PHP Warning:  Undefined array key "YEARLEVEL" in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 35
+[26-Feb-2025 22:04:50 UTC] PHP Stack trace:
+[26-Feb-2025 22:04:50 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:0
+[26-Feb-2025 22:04:50 UTC] PHP Warning:  Undefined array key "STUDSECTION" in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 36
+[26-Feb-2025 22:04:50 UTC] PHP Stack trace:
+[26-Feb-2025 22:04:50 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:0
+[26-Feb-2025 22:04:50 UTC] PHP Warning:  Undefined array key "COURSE_ID" in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 37
+[26-Feb-2025 22:04:50 UTC] PHP Stack trace:
+[26-Feb-2025 22:04:50 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:0
+[26-Feb-2025 22:04:50 UTC] PHP Warning:  Undefined array key "SYEAR" in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 39
+[26-Feb-2025 22:04:50 UTC] PHP Stack trace:
+[26-Feb-2025 22:04:50 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:0
+[26-Feb-2025 22:04:50 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:37) in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 46
+[26-Feb-2025 22:04:50 UTC] PHP Stack trace:
+[26-Feb-2025 22:04:50 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:0
+[26-Feb-2025 22:04:50 UTC] PHP   2. header($header = 'Location: profile.php?page=profile') C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:46
+[26-Feb-2025 22:06:07 UTC] PHP Warning:  Undefined array key "COURSE_ID" in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 37
+[26-Feb-2025 22:06:07 UTC] PHP Stack trace:
+[26-Feb-2025 22:06:07 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:0
+[26-Feb-2025 22:06:22 UTC] PHP Warning:  Undefined array key "COURSE_ID" in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 37
+[26-Feb-2025 22:06:22 UTC] PHP Stack trace:
+[26-Feb-2025 22:06:22 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:0
+[26-Feb-2025 22:10:41 UTC] Student record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:10:41 UTC] Guardian record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:11:01 UTC] Student record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:11:01 UTC] Guardian record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:11:22 UTC] Student record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:11:22 UTC] Guardian record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:14:27 UTC] PHP Warning:  Undefined array key "SYEAR" in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 35
+[26-Feb-2025 22:14:27 UTC] PHP Stack trace:
+[26-Feb-2025 22:14:27 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:0
+[26-Feb-2025 22:14:27 UTC] Student record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:14:27 UTC] Guardian record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:14:46 UTC] PHP Warning:  Undefined array key "SYEAR" in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 35
+[26-Feb-2025 22:14:46 UTC] PHP Stack trace:
+[26-Feb-2025 22:14:46 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:0
+[26-Feb-2025 22:14:46 UTC] Student record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:14:46 UTC] Guardian record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:15:02 UTC] Student record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:15:02 UTC] Guardian record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:15:12 UTC] Student record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:15:12 UTC] Guardian record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:19:21 UTC] PHP Warning:  Undefined array key "SYEAR" in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 35
+[26-Feb-2025 22:19:21 UTC] PHP Stack trace:
+[26-Feb-2025 22:19:21 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:0
+[26-Feb-2025 22:19:21 UTC] Student record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:19:21 UTC] Guardian record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:23:32 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of variables must match the number of parameters in the prepared statement in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php:59
+Stack trace:
+#0 C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php(59): mysqli_stmt->bind_param('sssssssssisssss...', 'Hazardous', 'Cenigga', 'C', 'Female', '2002-06-11', 'Hospital ni gog...', 'Single', 'Japanese', 'satanista', '9319089290', 'Sa kalye malaki', '1', NULL, 'cenizamaki@gmai...', '\xFF\xD8\xFF\xE0\x00\x10JFIF\x00\x01\x01\x00\x00...', NULL, '\xFF\xD8\xFF\xE0\x00\x10JFIF\x00\x01\x01\x00\x00...', NULL, NULL, NULL, NULL, 1000000252)
+#1 {main}
+  thrown in C:\wamp64\www\onlineenrolmentsystem\tracking\edit_backend.php on line 59
+[26-Feb-2025 22:26:14 UTC] Student record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:26:14 UTC] Guardian record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:26:23 UTC] Student record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:26:23 UTC] Guardian record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:29:58 UTC] Student record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:29:58 UTC] Guardian record updated successfully for IDNO: 1000000252
+[26-Feb-2025 22:47:39 UTC] Student record updated successfully for IDNO: 1000000254
+[26-Feb-2025 22:47:39 UTC] Guardian record updated successfully for IDNO: 1000000254
+[26-Feb-2025 22:47:52 UTC] Student record updated successfully for IDNO: 1000000254
+[26-Feb-2025 22:47:52 UTC] Guardian record updated successfully for IDNO: 1000000254
+[26-Feb-2025 22:48:06 UTC] Student record updated successfully for IDNO: 1000000254
+[26-Feb-2025 22:48:06 UTC] Guardian record updated successfully for IDNO: 1000000254

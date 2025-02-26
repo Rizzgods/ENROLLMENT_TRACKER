@@ -1,0 +1,23 @@
+@media (max-width: 1024px) {
+    #sidebar {
+        transform: translateX(-100%);
+    }
+    
+    #sidebar.active {
+        transform: translateX(0);
+    }
+}
+
+.sidebar-transition {
+    transition: transform 0.3s ease-in-out;
+}
+
+#sidebarToggle {
+    transition: left 0.3s ease-in-out;
+}
+
+@media (min-width: 1024px) {
+    #sidebarToggle {
+        display: none;
+    }
+}

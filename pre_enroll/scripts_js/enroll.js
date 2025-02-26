@@ -43,6 +43,11 @@ function validateStep(step) {
     let isValid = true;
 
     requiredFields.forEach(field => {
+        // Skip validation for file inputs
+        if (field.type === 'file') {
+            return;
+        }
+
         if (!field.value) {
             isValid = false;
             field.classList.add('border-red-500');
@@ -57,10 +62,16 @@ function validateStep(step) {
 function updateRequiredFields() {
     document.querySelectorAll('.step').forEach(step => {
         if (step.classList.contains('hidden')) {
-            step.querySelectorAll('[required]').forEach(field => field.removeAttribute('required'));
+            step.querySelectorAll('[required]').forEach(field => {
+                // Skip file inputs
+                if (field.type !== 'file') {
+                    field.removeAttribute('required');
+                }
+            });
         } else {
             step.querySelectorAll('input, select').forEach(field => {
-                if (!field.hasAttribute('required')) {
+                // Skip file inputs
+                if (field.type !== 'file' && !field.hasAttribute('required')) {
                     field.setAttribute('required', 'true');
                 }
             });
@@ -157,14 +168,6 @@ function showSuccessPopup() {
 document.querySelector('form').addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Validate all steps before submission
-    for (let step = 1; step <= totalSteps; step++) {
-        if (!validateStep(step)) {
-            alert('Please fill in all required fields');
-            return;
-        }
-    }
-
     try {
         showLoadingScreen();
         const form = e.target;
@@ -176,16 +179,39 @@ document.querySelector('form').addEventListener('submit', async (e) => {
             body: formData
         });
 
-        if (response.ok) {
+        const result = await response.json(); // Change to parse JSON
+        console.log('Server response:', result); // Debug log
+
+        if (response.ok && result.status === 'success') {
             hideLoadingScreen();
             showSuccessPopup();
+            // The redirect is now handled by showSuccessPopup()
         } else {
-            const result = await response.text();
-            throw new Error(`Submission failed: ${result}`);
+            throw new Error(result.message || 'Submission failed');
         }
     } catch (error) {
         console.error('Form submission error:', error);
         hideLoadingScreen();
-        alert('An error occurred. Please try again.');
+        alert('An error occurred during submission: ' + error.message);
     }
 });
+
+// Update showSuccessPopup to handle the redirect
+function showSuccessPopup() {
+    const successPopup = document.getElementById('successPopup');
+    successPopup.classList.remove('hidden');
+    successPopup.classList.add('flex');
+    
+    let countdown = 3;
+    const countdownElement = document.getElementById('countdownTimer');
+    
+    const timer = setInterval(() => {
+        countdown--;
+        countdownElement.textContent = countdown;
+        
+        if (countdown <= 0) {
+            clearInterval(timer);
+            window.location.href = 'home.php';
+        }
+    }, 1000);
+}

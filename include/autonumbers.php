@@ -141,13 +141,22 @@ class Autonumber {
 		
 	}
 	public function studauto_update() {
-	  global $mydb;
-		$sql = "UPDATE ".self::$tblname." SET ";
-		$sql .= "autoend = autoend + incrementvalue";
-		$sql .= " WHERE ID=3";
-	  $mydb->setQuery($sql);
-	 	if(!$mydb->executeQuery())  return false; 	
-		
+	    global $mydb;
+	    $sql = "UPDATE tblauto SET 
+	            autoend = autoend + incrementvalue 
+	            WHERE id = 3";
+	    
+	    try {
+	        $mydb->setQuery($sql);
+	        if($mydb->executeQuery()) {
+	            error_log("Auto-number updated successfully");
+	            return true;
+	        }
+	        throw new Exception("Failed to update auto-number");
+	    } catch (Exception $e) {
+	        error_log("Error updating auto-number: " . $e->getMessage());
+	        return false;
+	    }
 	}
 	public function delete($id="") {
 		global $mydb;

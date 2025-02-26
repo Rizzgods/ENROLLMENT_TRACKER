@@ -22,8 +22,7 @@
                     <a href="logout.php" class="text-white hover:text-blue-200 transition duration-150">Logout</a>
                 <?php else: ?>
                     <!-- Show Login Link if Not Authenticated -->
-                    <a href="login.php" class="text-white hover:text-blue-200 transition duration-150">Login</a>
-                <?php endif; ?>
+                    <a href="../tracking/student_login.php" class="text-white hover:text-blue-200 transition duration-150">Login</a>    <?php endif; ?>
             </div>
         </div>
     </div>

@@ -1,0 +1,82 @@
+[25-Feb-2025 05:51:47 UTC] PHP Warning:  Undefined variable $EMAIL in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 8
+[25-Feb-2025 05:51:47 UTC] PHP Stack trace:
+[25-Feb-2025 05:51:47 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\pre_enroll\emailvalidate.php:0
+[25-Feb-2025 05:51:47 UTC] PHP   2. require_once() C:\wamp64\www\onlineenrolmentsystem\pre_enroll\emailvalidate.php:2
+[25-Feb-2025 05:51:47 UTC] Processing enrollment for: 
+[25-Feb-2025 05:51:47 UTC] PHP Warning:  Undefined variable $username in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 9
+[25-Feb-2025 05:51:47 UTC] PHP Stack trace:
+[25-Feb-2025 05:51:47 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\pre_enroll\emailvalidate.php:0
+[25-Feb-2025 05:51:47 UTC] PHP   2. require_once() C:\wamp64\www\onlineenrolmentsystem\pre_enroll\emailvalidate.php:2
+[25-Feb-2025 05:51:47 UTC] Generated username: 
+[25-Feb-2025 05:55:10 UTC] Processing enrollment for: cenizamaki@gmail.com
+[25-Feb-2025 05:55:10 UTC] Generated username: winstonceniza
+[25-Feb-2025 05:55:10 UTC] Password generated from birthdate: 2002-06-11
+[25-Feb-2025 05:55:10 UTC] Student details - Name: Winston C Ceniza, Course: 21, Semester: 1
+[25-Feb-2025 05:55:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'student_status' cannot be null in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:137
+Stack trace:
+#0 C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php(137): mysqli_stmt->execute()
+#1 {main}
+  thrown in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 137SS
+[25-Feb-2025 06:02:34 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[25-Feb-2025 06:02:34 UTC] Generated username: winstonceniza
+[25-Feb-2025 06:02:34 UTC] Password generated from birthdate: 2002-06-11
+[25-Feb-2025 06:02:34 UTC] Student details - Name: Winston C Ceniza, Course: 21, Semester: 1
+[25-Feb-2025 06:02:34 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Duplicate entry '1000000247' for key 'tblstudent.IDNO' in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:142
+Stack trace:
+#0 C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php(142): mysqli_stmt->execute()
+#1 {main}
+  thrown in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 142
+[25-Feb-2025 06:12:33 UTC] Auto-number updated successfully
+[25-Feb-2025 06:12:33 UTC] Generated IDNO: 1000000247
+[25-Feb-2025 06:12:33 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[25-Feb-2025 06:12:33 UTC] Generated username: sojournceniza
+[25-Feb-2025 06:12:33 UTC] Password generated from birthdate: 2002-06-11
+[25-Feb-2025 06:12:33 UTC] Student details - Name: Sojourn C Ceniza, Course: 21, Semester: 1
+[25-Feb-2025 06:12:33 UTC] Error: Duplicate Student ID generated. Please try again.
+[25-Feb-2025 06:14:15 UTC] Auto-number updated successfully
+[25-Feb-2025 06:14:15 UTC] Generated IDNO: 1000000248
+[25-Feb-2025 06:14:15 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[25-Feb-2025 06:14:15 UTC] Generated username: sojournceniza
+[25-Feb-2025 06:14:15 UTC] Password generated from birthdate: 2002-06-11
+[25-Feb-2025 06:14:15 UTC] Student details - Name: Sojourn C Ceniza, Course: 21, Semester: 1
+[25-Feb-2025 06:14:15 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'dbgreenvalley.studentdetails' doesn't exist in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:174
+Stack trace:
+#0 C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php(174): mysqli->prepare('INSERT INTO stu...')
+#1 {main}
+  thrown in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 174
+[25-Feb-2025 06:19:03 UTC] Auto-number updated successfully
+[25-Feb-2025 06:19:03 UTC] Generated IDNO: 1000000249
+[25-Feb-2025 06:19:03 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[25-Feb-2025 06:19:03 UTC] Generated username: winstonceniza
+[25-Feb-2025 06:19:03 UTC] Password generated from birthdate: 2002-06-11
+[25-Feb-2025 06:19:03 UTC] Student details - Name: Winston C Ceniza, Course: 21, Semester: 1
+[26-Feb-2025 12:29:56 UTC] Auto-number updated successfully
+[26-Feb-2025 12:29:56 UTC] Generated IDNO: 1000000250
+[26-Feb-2025 12:29:56 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[26-Feb-2025 12:29:57 UTC] Generated username: reaperceniza
+[26-Feb-2025 12:29:57 UTC] Password generated from birthdate: 2002-06-11
+[26-Feb-2025 12:29:57 UTC] Student details - Name: Reaper C Ceniza, Course: 21, Semester: 1
+[26-Feb-2025 12:54:09 UTC] Auto-number updated successfully
+[26-Feb-2025 12:54:09 UTC] Generated IDNO: 1000000251
+[26-Feb-2025 12:54:09 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[26-Feb-2025 12:54:09 UTC] Generated username: hazardceniza
+[26-Feb-2025 12:54:09 UTC] Password generated from birthdate: 2002-06-11
+[26-Feb-2025 12:54:09 UTC] Student details - Name: Hazard C Ceniza, Course: 21, Semester: 1
+[26-Feb-2025 12:56:25 UTC] Auto-number updated successfully
+[26-Feb-2025 12:56:25 UTC] Generated IDNO: 1000000252
+[26-Feb-2025 12:56:25 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[26-Feb-2025 12:56:25 UTC] Generated username: hazardousceniza
+[26-Feb-2025 12:56:25 UTC] Password generated from birthdate: 2002-06-11
+[26-Feb-2025 12:56:25 UTC] Student details - Name: Hazardous C Ceniza, Course: 21, Semester: 1
+[26-Feb-2025 22:34:51 UTC] Auto-number updated successfully
+[26-Feb-2025 22:34:51 UTC] Generated IDNO: 1000000253
+[26-Feb-2025 22:34:51 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[26-Feb-2025 22:34:51 UTC] Generated username: powerceniza
+[26-Feb-2025 22:34:51 UTC] Password generated from birthdate: 2002-06-11
+[26-Feb-2025 22:34:51 UTC] Student details - Name: Power A Ceniza, Course: 21, Semester: 1
+[26-Feb-2025 22:47:06 UTC] Auto-number updated successfully
+[26-Feb-2025 22:47:06 UTC] Generated IDNO: 1000000254
+[26-Feb-2025 22:47:06 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[26-Feb-2025 22:47:06 UTC] Generated username: jeanceniza
+[26-Feb-2025 22:47:06 UTC] Password generated from birthdate: 2002-06-11
+[26-Feb-2025 22:47:06 UTC] Student details - Name: Jean A Ceniza, Course: 21, Semester: 1

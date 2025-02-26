@@ -1,4 +1,9 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/enrollment_errors.log');
+
 require_once __DIR__ .  "/../include/autonumbers.php";
 require_once __DIR__ .  "/../include/students.php";
 require_once __DIR__ .  "/../include/session.php";
@@ -11,7 +16,7 @@ $password = "";
 $dbname = "dbgreenvalley";
 
 // Create connection
-$conn = new mysqli(hostname: $servername, username: $username, password: $password, database: $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -19,13 +24,13 @@ if ($conn->connect_error) {
 }
 
 $sql = "SELECT * FROM tbl_bcpdepts";
-$result = $conn->query(query: $sql);
+$result = $conn->query($sql);
 
 $count_stud = "SELECT COUNT(*) FROM tblstudent";
-$total = $conn->query(query: $count_stud);
+$total = $conn->query($count_stud);
 
 $count_course = "SELECT COUNT(*) FROM course";
-$total_course = $conn->query(query: $count_course);
+$total_course = $conn->query($count_course);
 ?>
 
 <?php
@@ -34,10 +39,26 @@ use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__. '/../vendor/autoload.php'; // Ensure PHPMailer is included
 
+// Add this function at the top of your file
+function handleFileUpload($file) {
+    if (isset($file) && $file['error'] === UPLOAD_ERR_OK) {
+        return file_get_contents($file['tmp_name']);
+    }
+    return null;
+}
+
 if (isset($_POST['regsubmit'])) {
     require_once "../include/database.php"; 
 
-    $IDNO         = $_POST['IDNO'];
+    // Generate new IDNO using Autonumber class
+    $studAuto = new Autonumber();
+    $autonum = $studAuto->stud_autonumber();
+    $IDNO = $autonum->AUTO;
+
+    // Update the auto-number immediately to prevent duplicates
+    $studAuto->studauto_update();
+
+    // Get POST data
     $FNAME        = $_POST['FNAME'];
     $LNAME        = $_POST['LNAME'];
     $MI           = $_POST['MI'];
@@ -52,186 +73,174 @@ if (isset($_POST['regsubmit'])) {
     $GUARDIAN     = $_POST['GUARDIAN'];
     $GCONTACT     = $_POST['GCONTACT'];
     $COURSEID     = $_POST['COURSE'];
-    $USER_NAME    = $_POST['USER_NAME']; 
-    $PASS         = password_hash($_POST['PASS'], PASSWORD_DEFAULT);
     $EMAIL        = $_POST['EMAIL']; 
     $SEMESTER     = $_POST['SEMESTER']; 
     $stud_type    = $_POST['stud_type'];
-
-    // Function to handle file upload
-    function handleFileUpload($file, $fieldName) {
-        if (isset($file['error']) && $file['error'] === UPLOAD_ERR_OK) {
-            return file_get_contents($file['tmp_name']);
-        }
-        return null;
-    }
-
-    // Handle document uploads
-    $form_138 = handleFileUpload($_FILES['form_138'], 'form_138');
-    $good_moral = handleFileUpload($_FILES['good_moral'], 'good_moral');
-    $psa_birthCert = handleFileUpload($_FILES['psa_birthCert'], 'psa_birthCert');
-    $id_pic = handleFileUpload($_FILES['id_pic'], 'id_pic');
-    $Brgy_clearance = handleFileUpload($_FILES['Brgy_clearance'], 'Brgy_clearance');
-    $tor = handleFileUpload($_FILES['tor'], 'tor');
-    $honor_dismissal = handleFileUpload($_FILES['honor_dismissal'], 'honor_dismissal');
-
-    // Validate required documents
-    if (!$form_138 || !$good_moral || !$psa_birthCert || !$id_pic || 
-        !$Brgy_clearance || !$tor || !$honor_dismissal) {
-        message("All documents are required.", "error");
-        redirect("pre_enroll/home.php");
-        exit();
-    }
     
-    // Check if student already exists
-    $student = new Student();
-    $res = $student->find_all_student(lname: $LNAME, fname: $FNAME, mname: $MI);
-
-    if ($res) {
-        message(msg: "Student already exists.", msgtype: "error");
-        redirect(location: "pre_enroll/home.php");
-        exit();
-    }
-
-    // Check if username is already taken
-    $sql = "SELECT * FROM tblstudent WHERE ACC_USERNAME=?";
-    $stmt = $mydb->conn->prepare(query: $sql);
-    $stmt->bind_param("s", $_SESSION['USER_NAME']);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $userStud = $result->fetch_assoc();
+    // Set default values
+    $student_status = "New";  // Set student_status to "New"
+    $YEARLEVEL = "1st";      // Optionally set YEARLEVEL for new students
+    $NewEnrollees = 1;    // Set NewEnrollees flag to 1
     
-    if ($userStud) {
-        message(msg: "Username is already taken.", msgtype: "error");
-        redirect(location: "pre_enroll/home.php");
-        exit();
-    }
+    // Add logging after we have the variables
+    error_log("Generated IDNO: " . $IDNO);
+    error_log("Processing enrollment for: " . $EMAIL . " (Status: " . $student_status . ")");
 
-    // Validate course and semester selection
-    if ($COURSEID == 'Select' || $SEMESTER == 'Select') {
-        message(msg: "Select course and semester correctly.", msgtype: "error");
-        redirect(location: "pre_enroll/home.php");
-        exit();
-    }
-
-    // Validate age
-    $age = date_diff(baseObject: date_create(datetime: $BIRTHDATE), targetObject: date_create('today'))->y;
-    if ($age < 15) {
-        message(msg: "Cannot proceed. Must be 15 years old and above to enroll.", msgtype: "error");
-        redirect(location: "pre_enroll/home.php");
-        exit();
-    }
-
-    // Insert student data
-    $student = new Student();
-    $student->IDNO          = $IDNO;
-    $student->FNAME         = $FNAME;
-    $student->LNAME         = $LNAME;
-    $student->MNAME         = $MI;
-    $student->SEX           = $SEX;
-    $student->BDAY          = $BIRTHDATE;
-    $student->BPLACE        = $BIRTHPLACE;
-    $student->STATUS        = $CIVILSTATUS;
-    $student->NATIONALITY   = $NATIONALITY;
-    $student->RELIGION      = $RELIGION;
-    $student->CONTACT_NO    = $CONTACT;
-    $student->HOME_ADD      = $PADDRESS;
-    $student->ACC_USERNAME  = $USER_NAME;
-    $student->ACC_PASSWORD  = $PASS;
-    $student->COURSE_ID     = $COURSEID;
-    $student->SEMESTER      = $SEMESTER;
-    $student->EMAIL         = $EMAIL;
-    $student->student_status = 'New';
-    $student->YEARLEVEL     = 1;
-    $student->NewEnrollees  = 1;
-    $student->stud_type     = $stud_type;
-    $student->form_138      = $form_138;
-    $student->good_moral    = $good_moral;
-    $student->psa_birthCert = $psa_birthCert;
-    $student->id_pic        = $id_pic;
-    $student->Brgy_clearance = $Brgy_clearance;
-    $student->tor           = $tor;
-    $student->honor_dismissal = $honor_dismissal;
-
+    // Then in your form processing
     try {
-        if ($student->create()) {
-            // Insert into studentaccount
-            $sql = "INSERT INTO studentaccount (user_id, username, password) VALUES (?, ?, ?)";
-            $stmt = $mydb->conn->prepare($sql);
-            $stmt->bind_param("sss", $IDNO, $USER_NAME, $PASS);
-            $stmt->execute();
-        
-            if ($stmt->affected_rows > 0) {
-                // Insert guardian details
-                $studentdetails = new StudentDetails();
-                $studentdetails->IDNO     = $IDNO;
-                $studentdetails->GUARDIAN = $GUARDIAN;
-                $studentdetails->GCONTACT = $GCONTACT;
-                $studentdetails->create();
+        // Handle file uploads
+        $form_138 = handleFileUpload($_FILES['form_138'] ?? null);
+        $good_moral = handleFileUpload($_FILES['good_moral'] ?? null);
+        $psa_birthCert = handleFileUpload($_FILES['psa_birthCert'] ?? null);
+        $id_pic = handleFileUpload($_FILES['id_pic'] ?? null);
+        $Brgy_clearance = handleFileUpload($_FILES['Brgy_clearance'] ?? null);
+        $tor = handleFileUpload($_FILES['tor'] ?? null);
+        $honor_dismissal = handleFileUpload($_FILES['honor_dismissal'] ?? null);
 
-                // Update student auto-number
-                $studAuto = new Autonumber();
-                $studAuto->studauto_update();
+        // Check if student already exists
+        $student = new Student();
+        $res = $student->find_all_student($LNAME, $FNAME, $MI);
 
-                // ✅ Send Confirmation Email
-                $mail = new PHPMailer(true);
-                try {
-                    // Server settings
-                    $mail->isSMTP();
-                    $mail->Host       = 'smtp.gmail.com'; // Your SMTP server
-                    $mail->SMTPAuth   = true;
-                    $mail->Username   = 'taranavalvista@gmail.com'; // Your email
-                    $mail->Password   = 'kdiq oeqm cuyr yhuz'; // Your email password
-                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                    $mail->Port       = 587;
+        if ($res) {
+            message("Student already exists.", "error");
+            redirect("pre_enroll/home.php");
+            exit();
+        }
 
-                    // Recipients
-                    $mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
-                    $mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
+        // Validate course and semester selection
+        if ($COURSEID == 'Select' || $SEMESTER == 'Select') {
+            message("Select course and semester correctly.", "error");
+            redirect("pre_enroll/home.php");
+            exit();
+        }
 
-                    // Email content
-                    $mail->isHTML(true);
-                    $mail->Subject = "Enrollment Confirmation";
-                    $mail->Body    = "
-                        <div style='font-family: Arial, sans-serif; color: #333;'>
-                        <h3 style='color: #4A5568;'>Hello $FNAME,</h3>
-                        <p>Your enrollment has been successfully processed.</p>
-                        <p><strong>Enrollment Details:</strong></p>
-                        <ul style='list-style-type: none; padding: 0;'>
-                            <li style='margin-bottom: 10px;'><b>Student ID:</b> $IDNO</li>
-                            <li style='margin-bottom: 10px;'><b>Full Name:</b> $FNAME $MI $LNAME</li>
-                            <li style='margin-bottom: 10px;'><b>Course:</b> $COURSEID</li>
-                            <li style='margin-bottom: 10px;'><b>Semester:</b> $SEMESTER</li>
-                            <li style='margin-bottom: 10px;'><b>Student Type:</b> $stud_type</li>
-                        </ul>
-                        <p>Your documents have been received and are being processed.</p>
-                        <p>Thank you for enrolling. If you have any questions, contact us at <a href='mailto:support@yourdomain.com' style='color: #3182CE;'>support@yourdomain.com</a>.</p>
-                        <p><b>- Enrollment Team</b></p>
-                        </div>
-                    ";
+        // Validate age
+        $age = date_diff(date_create($BIRTHDATE), date_create('today'))->y;
+        if ($age < 15) {
+            message("Cannot proceed. Must be 15 years old and above to enroll.", "error");
+            redirect("pre_enroll/home.php");
+            exit();
+        }
 
-                    $mail->send();
-                } catch (Exception $e) {
-                    error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
-                }
+        // Generate username and password
+        $username = strtolower($FNAME . $LNAME); // firstnamelastname
+        error_log("Generated username: " . $username);
 
-                redirect("home.php");
-            } else {
-                throw new Exception("Failed to create student account");
+        $birthdate = new DateTime($BIRTHDATE);
+        $password = $birthdate->format('mdy'); // mmddyy format
+        error_log("Password generated from birthdate: " . $BIRTHDATE);
+
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Add more detailed logging
+        error_log("Student details - Name: $FNAME $MI $LNAME, Course: $COURSEID, Semester: $SEMESTER");
+
+        try {
+            // First, check if IDNO already exists
+            $check_sql = "SELECT COUNT(*) as count FROM tblstudent WHERE IDNO = ?";
+            $check_stmt = $conn->prepare($check_sql);
+            $check_stmt->bind_param("s", $IDNO);
+            $check_stmt->execute();
+            $result = $check_stmt->get_result();
+            $row = $result->fetch_assoc();
+
+            if ($row['count'] > 0) {
+                throw new Exception("Duplicate Student ID generated. Please try again.");
             }
-        } else {
-            throw new Exception("Failed to create student record");
+
+            // Proceed with insertion if no duplicate found
+            $sql = "INSERT INTO tblstudent (IDNO, FNAME, LNAME, MNAME, SEX, BDAY, BPLACE, STATUS, NATIONALITY, RELIGION, CONTACT_NO, HOME_ADD, COURSE_ID, SEMESTER, EMAIL, student_status, YEARLEVEL, NewEnrollees, stud_type, form_138, good_moral, psa_birthCert, id_pic, Brgy_clearance, tor, honor_dismissal) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssssssssssssssssssssssssss", $IDNO, $FNAME, $LNAME, $MI, $SEX, $BIRTHDATE, $BIRTHPLACE, $CIVILSTATUS, $NATIONALITY, $RELIGION, $CONTACT, $PADDRESS, $COURSEID, $SEMESTER, $EMAIL, $student_status, $YEARLEVEL, $NewEnrollees, $stud_type, $form_138, $good_moral, $psa_birthCert, $id_pic, $Brgy_clearance, $tor, $honor_dismissal);
+
+            if ($stmt->execute()) {
+                // Insert into studentaccount with generated credentials
+                $sql = "INSERT INTO studentaccount (user_id, username, password) VALUES (?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("sss", $IDNO, $username, $hashed_password);
+                $stmt->execute();
+            
+                if ($stmt->affected_rows > 0) {
+                    // Insert guardian details
+                    $sql = "INSERT INTO tblstuddetails (IDNO, GUARDIAN, GCONTACT) VALUES (?, ?, ?)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("sss", $IDNO, $GUARDIAN, $GCONTACT);
+                    $stmt->execute();
+
+                    // ✅ Send Confirmation Email
+                    $mail = new PHPMailer(true);
+                    try {
+                        // Server settings
+                        $mail->isSMTP();
+                        $mail->Host       = 'smtp.gmail.com'; // Your SMTP server
+                        $mail->SMTPAuth   = true;
+                        $mail->Username   = 'taranavalvista@gmail.com'; // Your email
+                        $mail->Password   = 'kdiq oeqm cuyr yhuz'; // Your email password
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                        $mail->Port       = 587;
+
+                        // Recipients
+                        $mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
+                        $mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
+
+                        // Email content
+                        $mail->isHTML(true);
+                        $mail->Subject = "Enrollment Confirmation";
+                        $mail->Body    = "
+                            <div style='font-family: Arial, sans-serif; color: #333;'>
+                            <h3 style='color: #4A5568;'>Hello $FNAME,</h3>
+                            <p>Your enrollment has been successfully processed.</p>
+                            <p><strong>Enrollment Details:</strong></p>
+                            <ul style='list-style-type: none; padding: 0;'>
+                                <li style='margin-bottom: 10px;'><b>Student ID:</b> $IDNO</li>
+                                <li style='margin-bottom: 10px;'><b>Full Name:</b> $FNAME $MI $LNAME</li>
+                                <li style='margin-bottom: 10px;'><b>Course:</b> $COURSEID</li>
+                                <li style='margin-bottom: 10px;'><b>Semester:</b> $SEMESTER</li>
+                                <li style='margin-bottom: 10px;'><b>Student Type:</b> $stud_type</li>
+                                <li style='margin-bottom: 10px;'><b>Username:</b> $username</li>
+                                <li style='margin-bottom: 10px;'><b>Password:</b> $password</li>
+                            </ul>
+                            <p>Your documents have been received and are being processed.</p>
+                            <p>Thank you for enrolling. If you have any questions, contact us at <a href='mailto:support@yourdomain.com' style='color: #3182CE;'>support@yourdomain.com</a>.</p>
+                            <p><b>- Enrollment Team</b></p>
+                            </div>
+                        ";
+
+                        $mail->send();
+                        
+                        // Return JSON response instead of redirect
+                        header('Content-Type: application/json');
+                        echo json_encode(['status' => 'success', 'message' => 'Enrollment successful']);
+                        exit;
+                    } catch (Exception $e) {
+                        error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
+                        header('Content-Type: application/json');
+                        echo json_encode(['status' => 'error', 'message' => 'Email sending failed']);
+                        exit;
+                    }
+                }
+            } else {
+                throw new Exception("Failed to create student record: " . $stmt->error);
+            }
+        } catch (Exception $e) {
+            error_log("Error: " . $e->getMessage());
+            message("Error: " . $e->getMessage(), "error");
+            redirect("pre_enroll/home.php");
+            exit();
         }
     } catch (Exception $e) {
-        message("Error: " . $e->getMessage(), "error");
-        redirect("pre_enroll/home.php");
-        exit();
+        error_log("Error: " . $e->getMessage());
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+        exit;
     }
 }
 
 // School Year Calculation
-$currentyear = date(format: 'Y');
-$nextyear = date(format: 'Y') + 1;
+$currentyear = date('Y');
+$nextyear = date('Y') + 1;
 $sy = $currentyear . '-' . $nextyear;
 
 $studAuto = new Autonumber();
