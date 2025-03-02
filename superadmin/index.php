@@ -2,11 +2,10 @@
 session_start();
 
 if (!isset($_SESSION['id'])) {
-    // Redirect to login page if not logged in
     header("Location: login.php");
-    exit(); // Ensure no further execution
+    exit();
 }
-require_once __DIR__ .  "/database.php";
+require_once __DIR__ . "/database.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +17,17 @@ require_once __DIR__ .  "/database.php";
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Swiper CSS CDN -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        .content-section {
+            display: none;
+        }
+        #list-content {
+            display: block; /* Show by default */
+        }
+    </style>
 </head>
 
-<body class="overflow-x-hidden"> <!-- Prevent horizontal scrolling -->
+<body class="overflow-x-hidden bg-gray-100"> <!-- Prevent horizontal scrolling -->
     <!-- Include Sidebar -->
     <?php include "sidebar.php"; ?>
 
@@ -31,15 +38,22 @@ require_once __DIR__ .  "/database.php";
             <?php include "list.php"; ?>
         </div>
         
-        <div id="account-content" class="content-section hidden">
+        <div id="account-content" class="content-section">
             <?php include "account_create.php"; ?>
         </div>
+
+        <div id="logs-content" class="content-section">
+            <?php include "user_logs.php"; ?>
+        </div>
+        
     </div>
 
-    <!-- Swiper JS CDN -->
+    <!-- JavaScript -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="scripts_js/list.js"></script>
+    <!-- Load sidebar.js first to ensure navigation works -->
     <script src="scripts_js/sidebar.js"></script>
+    <!-- Load other scripts after -->
+    <script src="scripts_js/list.js"></script>
 </body>
 </html>

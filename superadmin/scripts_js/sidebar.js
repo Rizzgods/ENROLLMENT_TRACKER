@@ -1,44 +1,89 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Get content sections
-    const listContent = document.getElementById('list-content');
-    const accountContent = document.getElementById('account-content');
+// Simple, direct sidebar navigation script
+window.addEventListener('load', function() {
+    console.log('=== SIDEBAR NAVIGATION LOADED ===');
     
-    // Get sidebar buttons
+    // Direct DOM element references
     const homeBtn = document.getElementById('home-btn');
     const accountBtn = document.getElementById('account-btn');
+    const logsBtn = document.getElementById('logs-btn');
     
-    // Function to show list content
-    homeBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Show list content, hide account content
-        listContent.classList.remove('hidden');
-        accountContent.classList.add('hidden');
-        
-        // Update active state
-        homeBtn.classList.add('bg-white', 'text-blue-700');
-        homeBtn.classList.remove('bg-blue-700', 'text-white');
-        
-        accountBtn.classList.remove('bg-white', 'text-blue-700');
-        accountBtn.classList.add('bg-blue-700', 'text-white');
+    const listContent = document.getElementById('list-content');
+    const accountContent = document.getElementById('account-content');
+    const logsContent = document.getElementById('logs-content');
+    
+    console.log('Elements found:', {
+        homeBtn: !!homeBtn,
+        accountBtn: !!accountBtn,
+        logsBtn: !!logsBtn,
+        listContent: !!listContent,
+        accountContent: !!accountContent,
+        logsContent: !!logsContent
     });
     
-    // Function to show account content
-    accountBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Show account content, hide list content
-        accountContent.classList.remove('hidden');
-        listContent.classList.add('hidden');
-        
-        // Update active state
-        accountBtn.classList.add('bg-white', 'text-blue-700');
-        accountBtn.classList.remove('bg-blue-700', 'text-white');
-        
-        homeBtn.classList.remove('bg-white', 'text-blue-700');
-        homeBtn.classList.add('bg-blue-700', 'text-white');
-    });
+    // Direct click handlers with minimal logic
+    if (homeBtn) {
+        homeBtn.onclick = function(e) {
+            e.preventDefault();
+            console.log('Home clicked');
+            
+            // Show/hide content
+            listContent.style.display = 'block';
+            accountContent.style.display = 'none';
+            logsContent.style.display = 'none';
+            
+            // Update styles
+            homeBtn.className = 'bg-white text-blue-700 hover:text-blue-800 transition duration-150 text-center p-2 rounded-lg';
+            accountBtn.className = 'bg-blue-700 text-white hover:text-blue-200 transition duration-150 text-center p-2 rounded-lg';
+            logsBtn.className = 'bg-blue-700 text-white hover:text-blue-200 transition duration-150 text-center p-2 rounded-lg';
+        };
+    }
     
-    // Set home as default active button
-    homeBtn.click();
+    if (accountBtn) {
+        accountBtn.onclick = function(e) {
+            e.preventDefault();
+            console.log('Account clicked');
+            
+            // Show/hide content
+            listContent.style.display = 'none';
+            accountContent.style.display = 'block';
+            logsContent.style.display = 'none';
+            
+            // Update styles
+            homeBtn.className = 'bg-blue-700 text-white hover:text-blue-200 transition duration-150 text-center p-2 rounded-lg';
+            accountBtn.className = 'bg-white text-blue-700 hover:text-blue-800 transition duration-150 text-center p-2 rounded-lg';
+            logsBtn.className = 'bg-blue-700 text-white hover:text-blue-200 transition duration-150 text-center p-2 rounded-lg';
+        };
+    }
+    
+    if (logsBtn) {
+        logsBtn.onclick = function(e) {
+            e.preventDefault();
+            console.log('Logs clicked');
+            
+            // Show/hide content
+            listContent.style.display = 'none';
+            accountContent.style.display = 'none';
+            logsContent.style.display = 'block';
+            
+            // Update styles
+            homeBtn.className = 'bg-blue-700 text-white hover:text-blue-200 transition duration-150 text-center p-2 rounded-lg';
+            accountBtn.className = 'bg-blue-700 text-white hover:text-blue-200 transition duration-150 text-center p-2 rounded-lg';
+            logsBtn.className = 'bg-white text-blue-700 hover:text-blue-800 transition duration-150 text-center p-2 rounded-lg';
+        };
+    }
+    
+    // Explicitly set default view
+    if (homeBtn) {
+        console.log('Setting default view');
+        // Trigger home view
+        listContent.style.display = 'block';
+        accountContent.style.display = 'none';
+        logsContent.style.display = 'none';
+        
+        // Update styles
+        homeBtn.className = 'bg-white text-blue-700 hover:text-blue-800 transition duration-150 text-center p-2 rounded-lg';
+        accountBtn.className = 'bg-blue-700 text-white hover:text-blue-200 transition duration-150 text-center p-2 rounded-lg';
+        logsBtn.className = 'bg-blue-700 text-white hover:text-blue-200 transition duration-150 text-center p-2 rounded-lg';
+        console.log('Default view set');
+    }
 });

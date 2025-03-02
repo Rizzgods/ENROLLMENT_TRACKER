@@ -21,25 +21,43 @@ class User {
 		$row_count = $mydb->num_rows($cur);
 		return $row_count;
 	}
-	static function userAuthentication($U_USERNAME,$h_pass){
+	static function userAuthentication($U_USERNAME, $password){
 		global $mydb;
-		$mydb->setQuery("SELECT * FROM `useraccounts` WHERE `ACCOUNT_USERNAME` = '". $U_USERNAME ."' and `ACCOUNT_PASSWORD` = '". $h_pass ."'");
+		$mydb->setQuery("SELECT * FROM `useraccounts` WHERE `ACCOUNT_USERNAME` = '". $U_USERNAME ."'");
 		$cur = $mydb->executeQuery();
 		if($cur==false){
 			die(mysql_error());
 		}
-		$row_count = $mydb->num_rows($cur);//get the number of count
-		 if ($row_count == 1){
-		 $user_found = $mydb->loadSingleResult();
-		 	$_SESSION['ACCOUNT_ID']   		= $user_found->ACCOUNT_ID;
-		 	$_SESSION['ACCOUNT_NAME']      	= $user_found->ACCOUNT_NAME;
-		 	$_SESSION['ACCOUNT_USERNAME'] 	= $user_found->ACCOUNT_USERNAME;
-		 	$_SESSION['ACCOUNT_PASSWORD'] 		= $user_found->ACCOUNT_PASSWORD;
-		 	$_SESSION['ACCOUNT_TYPE'] 		= $user_found->ACCOUNT_TYPE;
-		   return true;
-		 }else{
-		 	return false;
-		 }
+		$row_count = $mydb->num_rows($cur);
+		
+		if ($row_count == 1){
+			$user_found = $mydb->loadSingleResult();
+			$stored_password = $user_found->ACCOUNT_PASSWORD;
+			$password_verified = false;
+			
+			// Check for SHA1 hash (40 characters long)
+			if(strlen($stored_password) == 40) {
+				$password_verified = (sha1($password) == $stored_password);
+			} 
+			// Check for bcrypt hash (starts with $2y$ or $2a$)
+			else if(substr($stored_password, 0, 4) == '$2y$' || substr($stored_password, 0, 4) == '$2a$') {
+				$password_verified = password_verify($password, $stored_password);
+			}
+			// Fallback to direct comparison (not recommended but kept for compatibility)
+			else {
+				$password_verified = ($password == $stored_password);
+			}
+			
+			if($password_verified) {
+				$_SESSION['ACCOUNT_ID']      = $user_found->ACCOUNT_ID;
+				$_SESSION['ACCOUNT_NAME']    = $user_found->ACCOUNT_NAME;
+				$_SESSION['ACCOUNT_USERNAME'] = $user_found->ACCOUNT_USERNAME;
+				$_SESSION['ACCOUNT_PASSWORD'] = $user_found->ACCOUNT_PASSWORD;
+				$_SESSION['ACCOUNT_TYPE']    = $user_found->ACCOUNT_TYPE;
+				return true;
+			}
+		}
+		return false;
 	}
 	function single_user($id=""){
 			global $mydb;

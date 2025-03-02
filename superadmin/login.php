@@ -23,7 +23,7 @@ session_start();
         <!-- Carousel -->
         <?php 
         
-        include "header.php";
+
         echo"<br>";
         echo"<br>";
         echo"<br>";

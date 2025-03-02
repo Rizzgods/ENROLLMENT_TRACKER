@@ -92,6 +92,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['student_photo'] = $user['STUDPHOTO'];
         $_SESSION['id_pic'] = $user['id_pic']; // Add this line to store the photo
         
+        // Log the login activity
+        $logStmt = $conn->prepare("INSERT INTO tbllogs (USERID, LOGDATETIME, LOGROLE, LOGMODE) VALUES (?, NOW(), 'Student', 'Login')");
+        $logStmt->bind_param("i", $user['user_id']);
+        $logStmt->execute();
+        $logStmt->close();
+        
         echo "success";
         exit();
     } else {
