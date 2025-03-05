@@ -640,3 +640,42 @@
 [2025-03-05 20:18:26] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"okay thanks"}
 [2025-03-05 20:18:35] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API response received successfully - {"response_length":206}
 [2025-03-05 20:18:35] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using API response - {"response_length":206}
+[2025-03-05 20:19:15] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:19:28] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:19:28] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"where is campus"}
+[2025-03-05 20:19:38] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API response received successfully - {"response_length":289}
+[2025-03-05 20:19:38] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using API response - {"response_length":289}
+[2025-03-05 20:20:11] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:20:11] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"if im from valennzuela, how to get to bestlink"}
+[2025-03-05 20:20:28] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API response received successfully - {"response_length":947}
+[2025-03-05 20:20:28] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using API response - {"response_length":947}
+[2025-03-05 20:20:50] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:20:50] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"ooh okay, give me my schedule"}
+[2025-03-05 20:20:50] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:20:50] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:20:50] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:20:50] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 20:20:50] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 20:20:50] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 20:20:50] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:20:50] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000258}}
+[2025-03-05 20:20:50] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Schedule found for student - {"studentId":1000000258,"status":"has_schedule"}
+[2025-03-05 20:20:50] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Personal information requested - {"request_type":"personal_info","user_id":1000000258}
+[2025-03-05 20:20:50] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using database response - {"response_length":518}
+[2025-03-05 20:20:55] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:20:55] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"my status?"}
+[2025-03-05 20:20:55] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:20:55] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:20:55] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:20:55] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 20:20:55] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 20:20:55] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 20:20:55] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:20:55] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000258}}
+[2025-03-05 20:20:55] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Schedule found for student - {"studentId":1000000258,"status":"has_schedule"}
+[2025-03-05 20:20:55] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Personal information requested - {"request_type":"personal_info","user_id":1000000258}
+[2025-03-05 20:20:55] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using database response - {"response_length":505}
+[2025-03-05 20:21:01] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:21:01] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"thank you emily"}
+[2025-03-05 20:21:10] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API response received successfully - {"response_length":219}
+[2025-03-05 20:21:10] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using API response - {"response_length":219}

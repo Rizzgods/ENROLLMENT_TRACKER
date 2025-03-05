@@ -105,10 +105,10 @@
             
             <!-- Chat area -->
             <div id="chat-messages" class="chat-container p-4 overflow-y-auto">
-                <!-- Welcome message -->
+                <!-- Welcome message - updated to be more human-like -->
                 <div class="flex mb-4">
                     <div class="message-bubble bot-message p-3 ml-2">
-                        <p>Hello <?php echo htmlspecialchars($_SESSION['verified_user']['FNAME']); ?>! I'm your Bestlink College of the Philippines enrollment assistant. How can I help you today?</p>
+                        <p>Hi <?php echo htmlspecialchars($_SESSION['verified_user']['FNAME']); ?>! 👋 I'm Emily, your enrollment assistant at Bestlink College. Great to meet you! How can I help with your questions about enrollment, courses, or anything else related to your studies today?</p>
                     </div>
                 </div>
                 
