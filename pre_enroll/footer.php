@@ -25,15 +25,7 @@
 
  
             <!-- Courses -->
-            <div class="space-y-4">
-                <h3 class="text-white text-lg font-semibold">Our Courses</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Information Technology</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Business Administration</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Secondary Education</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-200">Bachelor of Elementary Education</a></li>
-                </ul>
-            </div>
+            
 
             <!-- Connect -->
             <div class="space-y-4">

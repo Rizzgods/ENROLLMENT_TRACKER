@@ -54,7 +54,6 @@ $total_course = $conn->query($count_course);
         include 'cards.php'; 
         include 'chatbot_notification.php'; 
         include 'mission.php';
-        include 'chatbot_notification.php'; 
         include 'footer.php';
         ?>
     </div>

@@ -10,9 +10,8 @@
             </div>
             <div class="space-x-4 sm:space-x-6">
                 <a href="#about" class="text-white hover:text-blue-200 transition duration-150 scroll-smooth">About</a>
-                <a href="#" class="text-white hover:text-blue-200 transition duration-150">Department</a>
-                <a href="#" class="text-white hover:text-blue-200 transition duration-150">Contact</a>
-
+                <a href="#courses" class="text-white hover:text-blue-200 transition duration-150 scroll-smooth">Courses</a>
+               
                 <?php if (isset($_SESSION['username'])): ?>
                     <!-- Show Welcome Message & Logout -->
                     <a href="profile.php" class="text-white hover:text-blue-200 transition duration-150">Profile</a>
