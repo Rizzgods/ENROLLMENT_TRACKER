@@ -88,8 +88,9 @@
 					  echo '<td>' . $result->PAYMENT . '</td>';   // Displaying Payment Status from studentaccount
 				  		 
 					  echo '<td align="center" > 
-					  <a title="Confirm" href="controller.php?action=confirm&IDNO='.$result->IDNO.'"  class="btn btn-info btn-xs  ">Confirm <span class="fa fa-info-circle fw-fa"></span></a>
-						<a title="Reject" href="controller.php?action=Reject&IDNO='.$result->IDNO.'"  class="btn btn-info btn-xs  ">Reject <span class="fa fa-info-circle fw-fa"></span></a>
+					   <a title="Confirm" href="controller.php?action=confirm&IDNO=' . $result->IDNO . '" class="btn btn-success btn-xs">Confirm <span class="fa fa-info-circle fw-fa"></span></a>
+                                <a title="Reject" href="controller.php?action=reject&IDNO=' . $result->IDNO . '" class="btn btn-danger btn-xs">Reject <span class="fa fa-info-circle fw-fa"></span></a>
+                                <a title="View Information" href="index.php?view=view&id='.$result->IDNO.'"  class="btn btn-info btn-xs  ">View <span class="fa fa-info-circle fw-fa"></span></a>
 				 </td>';
 				  		// echo '<td align="center" > <a title="View Grades" href="index.php?view=grades&id='.$result->IDNO.'" class="btn btn-primary btn-xs" >Grades <span class="fa fa-info-circle fw-fa"></span> </a>
 				  		// 			 </td>';

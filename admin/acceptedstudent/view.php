@@ -8,40 +8,104 @@
     $course = New Course();
     $resCourse = $course->single_course($res->COURSE_ID);
 
-   ?>
+    $conn = new mysqli('localhost', 'root', '', 'dbgreenvalley');
+
+    // Check connection
+    if ($conn->connect_error) {
+        exit("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("SELECT * FROM tblstudent WHERE IDNO = ?");
+$stmt->bind_param("s", $_SESSION['user_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+
+
+
+
+<div class="row">
+    <!-- Left Panel: Student Info -->
+    <div class="col-sm-3">
+        <div class="panel">
+            <a href="" data-target="#myModal" data-toggle="modal"></a>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item text-right">
+                <span class="pull-left"><strong>Real Name</strong></span>
+                <?php echo $res->FNAME . ' ' . $res->LNAME; ?>
+            </li>
+            <li class="list-group-item text-right">
+                <span class="pull-left"><strong>Course</strong></span>
+                <?php echo $resCourse->COURSE_NAME . '-' . $res->YEARLEVEL; ?>
+            </li>
+            <li class="list-group-item text-right">
+                <span class="pull-left"><strong>Status</strong></span>
+                <?php echo $res->student_status; ?>
+            </li>
+        </ul>
+    </div>
+
+
     
-  <style type="text/css">
-  #img_profile{
-    width: 100%;
-    height:auto;
-  }
-    #img_profile >  a > img {
-    width: 100%;
-    height:auto;
-}
+    <!-- Right Panel: Documents -->
+    <div class="col-sm-8">
+        <div class="panel">
+            <ul class="list-group">
+                <?php 
+                $documents = [
+                    'form_138' => 'Form 138',
+                    'form_137' => 'Form 137',
+                    'good_moral' => 'Good Moral',
+                    'psa_birthCert' => 'PSA Birth Certificate',
+                    'Brgy_clearance' => 'Barangay Clearance',
+                    'tor' => 'Transcript of Records',
+                    'honor_dismissal' => 'Honorable Dismissal'
+                ];
 
-
-  </style>
-  		<div class="col-sm-3">
- 
-          <div class="panel">            
-            <div id="img_profile" class="panel-body">
-            <a href="" data-target="#myModal" data-toggle="modal" >
-            <img title="profile image" class="img-hover"   src="<?php echo web_root. 'student/'.  $res->STUDPHOTO; ?>">
-            </a>
-             </div>
-          <ul class="list-group">
-          
-         
-               <li class="list-group-item text-right"><span class="pull-left"><strong>Real name</strong></span> <?php echo $res->FNAME .' '.$res->LNAME; ?> </li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong>Course</strong></span> <?php echo $resCourse->COURSE_NAME .'-'.$res->YEARLEVEL; ?> </li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong>Status</strong></span> <?php echo $res->student_status; ?> </li>
-                
-            
-          </ul> 
-                
+                foreach ($documents as $field => $label):
+                  
+                    $hasDocument = !empty($res->$field);
+                    $documentSrc = !empty($res->$field) ? 'data:image/jpeg;base64,' . base64_encode($res->$field) : '#';
+                ?>
+                    <li class="list-group-item text-right">
+    <span class="pull-left"><strong><?php echo $label; ?></strong></span>
+    <?php if ($hasDocument): ?>
+      <a href="javascript:void(0);" class="open-modal" 
+           data-img="<?php echo htmlspecialchars($documentSrc, ENT_QUOTES, 'UTF-8'); ?>" 
+           data-target="#imageModal">View</a>
+    <?php else: ?>
+        <span class="text-muted">No document uploaded</span>
+    <?php endif; ?>
+</li>
+                <?php endforeach; ?>
+            </ul>
         </div>
     </div>
+
+    <!-- Modal for Viewing Images -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Document Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true" style="font-size: 3rem;">&times;</span>
+</button>
+            </div>
+            <div class="modal-body text-center">
+                <img style="width: 50vh;" id="modalImage" src="" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+                
+
+         
          
         <!--/col-3-->
 <div class="col-sm-9"> 
@@ -71,98 +135,103 @@
       <tr>
         <td><label>Firstname</label></td>
         <td>
-          <input required="true"   class="form-control input-md" id="FNAME" name="FNAME" placeholder="First Name" type="text" value="<?php echo  $res->FNAME; ?>">
+          <input required="true"   class="form-control input-md" id="FNAME" name="FNAME" placeholder="First Name" type="text" readonly value="<?php echo  $res->FNAME; ?>">
         </td>
         <td><label>Lastname</label></td>
         <td colspan="2">
-          <input required="true"  class="form-control input-md" id="LNAME" name="LNAME" placeholder="Last Name" type="text" value="<?php echo $res->LNAME; ?>">
+          <input required="true"  class="form-control input-md" id="LNAME" name="LNAME" placeholder="Last Name" type="text" readonly value="<?php echo $res->LNAME; ?>">
         </td> 
         <td>
-          <input class="form-control input-md" id="MI" name="MI" placeholder="MI" type="text" value="<?php echo $res->MNAME; ?>">
+          <input class="form-control input-md" id="MI" name="MI" placeholder="MI" type="text" readonly value="<?php echo $res->MNAME; ?>">
         </td>
       </tr>
       <tr>
         <td><label>Address</label></td>
         <td colspan="5"  >
-        <input required="true"  class="form-control input-md" id="PADDRESS" name="PADDRESS" placeholder="Permanent Address" type="text" value="<?php echo $res->HOME_ADD; ?>">
+        <input required="true"  class="form-control input-md" id="PADDRESS" name="PADDRESS" placeholder="Permanent Address" type="text" readonly value="<?php echo $res->HOME_ADD; ?>">
         </td> 
       </tr>
       <tr>
-        <td ><label>Sex </label></td> 
-        <td colspan="2">
-          <label>
-          <?php
-            if ($res->SEX=='Male') {
-              # code...
-              echo '<input checked id="optionsRadios1" name="optionsRadios" type="radio"   value="Female">Female 
-             <input id="optionsRadios2" name="optionsRadios" type="radio"  CHECKED="true"  value="Male"> Male';
-            }else{
-                 echo '<input checked id="optionsRadios1" name="optionsRadios" type="radio"  CHECKED="true"  value="Female">Female 
-             <input id="optionsRadios2" name="optionsRadios" type="radio"   value="Male"> Male';
-            }
-
-          ?>
-            
-          </label>
-        </td>
+      <td><label>Sex </label></td> 
+<td colspan="2">
+    <label>
+        <?php
+        if ($res->SEX == 'Male') {
+            echo '<input id="optionsRadios1" name="optionsRadios" type="radio" value="Female" disabled> Female 
+                  <input id="optionsRadios2" name="optionsRadios" type="radio" value="Male" checked disabled> Male';
+        } else {
+            echo '<input id="optionsRadios1" name="optionsRadios" type="radio" value="Female" checked disabled> Female 
+                  <input id="optionsRadios2" name="optionsRadios" type="radio" value="Male" disabled> Male';
+        }
+        ?>
+    </label>
+</td>
         <td><label>Date of birth</label></td>
         <td colspan="2"> 
         <div class="input-group " >
                   <div class="input-group-addon"> 
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input  required="true" name="BIRTHDATE"  id="BIRTHDATE"  type="text" class="form-control input-md"   data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo date_format(date_create($res->BDAY),'m/d/Y'); ?>">
+                  <input  required="true" name="BIRTHDATE"  id="BIRTHDATE"  type="text" class="form-control input-md" readonly  data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo date_format(date_create($res->BDAY),'m/d/Y'); ?>">
            </div>             
         </td>
          
       </tr>
       <tr><td><label>Place of Birth</label></td>
         <td colspan="5">
-        <input required="true"  class="form-control input-md" id="BIRTHPLACE" name="BIRTHPLACE" placeholder="Place of Birth" type="text" value="<?php echo $res->BPLACE; ?>">
+        <input required="true"  class="form-control input-md" id="BIRTHPLACE" name="BIRTHPLACE" readonly placeholder="Place of Birth" type="text" value="<?php echo $res->BPLACE; ?>">
          </td>
       </tr>
       <tr>
         <td><label>Nationality</label></td>
-        <td colspan="2"><input required="true"  class="form-control input-md" id="NATIONALITY" name="NATIONALITY" placeholder="Nationality" type="text" value="<?php echo $res->NATIONALITY; ?>">
+        <td colspan="2"><input required="true"  class="form-control input-md" id="NATIONALITY" readonly name="NATIONALITY" placeholder="Nationality" type="text" value="<?php echo $res->NATIONALITY; ?>">
               </td>
         <td><label>Religion</label></td>
-        <td colspan="2"><input  required="true" class="form-control input-md" id="RELIGION" name="RELIGION" placeholder="Religion" type="text" value="<?php echo $res->RELIGION; ?>">
+        <td colspan="2"><input  required="true" class="form-control input-md" id="RELIGION" readonly name="RELIGION" placeholder="Religion" type="text" value="<?php echo $res->RELIGION; ?>">
         </td>
         
       </tr>
       <tr>
       <td><label>Contact No.</label></td>
-        <td colspan="3"><input required="true"  class="form-control input-md" id="CONTACT" name="CONTACT" placeholder="Contact Number" type="text" value="<?php echo $res->CONTACT_NO; ?>">
+        <td colspan="3"><input required="true"  class="form-control input-md" id="CONTACT" readonly name="CONTACT" placeholder="Contact Number" type="text" value="<?php echo $res->CONTACT_NO; ?>">
               </td>
-        <td><label>Civil Status</label></td>
-        <td colspan="2">
-          <select class="form-control input-sm" name="CIVILSTATUS">
-            <option value="<?php echo $res->STATUS; ?>"><?php echo $res->STATUS; ?></option>
-             <option value="Single">Single</option>
-             <option value="Married">Married</option> 
-             <option value="Widow">Widow</option>
-          </select>
-        </td>
+              <td><label>Civil Status</label></td>
+<td colspan="2">
+    <select class="form-control input-sm" name="CIVILSTATUS" disabled>
+        <option value="<?php echo $res->STATUS; ?>"><?php echo $res->STATUS; ?></option>
+        <option value="Single">Single</option>
+        <option value="Married">Married</option> 
+        <option value="Widow">Widow</option>
+    </select>
+</td>
       </tr> 
      
       <tr>
-        <td><label>Gaurdian</label></td>
+        <td><label>Guardian</label></td>
         <td colspan="2">
-          <input required="true"  class="form-control input-md" id="GUARDIAN" name="GUARDIAN" placeholder="Parents/Guardian Name" type="text"value="<?php echo isset($resguardian->GUARDIAN) ? $resguardian->GUARDIAN : ''; ?>">
+          <input required="true"  class="form-control input-md" id="GUARDIAN" readonly name="GUARDIAN" placeholder="Parents/Guardian Name" type="text"value="<?php echo isset($resguardian->GUARDIAN) ? $resguardian->GUARDIAN : ''; ?>">
         </td>
         <td><label>Contact No.</label></td>
-        <td colspan="2"><input  required="true" class="form-control input-md" id="GCONTACT" name="GCONTACT" placeholder="Contact Number" type="text"value="<?php echo isset($resguardian->GCONTACT) ? $resguardian->GCONTACT : ''; ?>"></td>
+        <td colspan="2"><input  required="true" class="form-control input-md" readonly id="GCONTACT" name="GCONTACT" placeholder="Contact Number" type="text"value="<?php echo isset($resguardian->GCONTACT) ? $resguardian->GCONTACT : ''; ?>"></td>
       </tr>
       <tr>
       <td></td>
         <td colspan="5">  
-          <button class="btn btn-success btn-lg" name="save" type="submit">Save</button>
+          <a class="btn btn-success btn-lg" href="index.php" type="submit">Back</a>
         </td>
       </tr>
     </table>
   </div>
 </form>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/modal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
 
 
  

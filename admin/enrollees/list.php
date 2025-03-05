@@ -55,9 +55,10 @@ require_once("../../include/initialize.php");
                     echo '<td>' . $result->COURSE_NAME . '</td>';
                     if ($result->student_status == 'New') {
                         echo '<td align="center">
-                                <a title="Confirm" href="controller.php?action=confirm&IDNO=' . $result->IDNO . '" class="btn btn-info btn-xs">Confirm <span class="fa fa-info-circle fw-fa"></span></a>
+                                <a title="Confirm" href="controller.php?action=confirm&IDNO=' . $result->IDNO . '" class="btn btn-success btn-xs">Confirm <span class="fa fa-info-circle fw-fa"></span></a>
                                 <a title="Reject" href="controller.php?action=reject&IDNO=' . $result->IDNO . '" class="btn btn-danger btn-xs">Reject <span class="fa fa-info-circle fw-fa"></span></a>
-                              </td>';
+                                <a title="View Information" href="index.php?view=view&id='.$result->IDNO.'"  class="btn btn-info btn-xs  ">View <span class="fa fa-info-circle fw-fa"></span></a>
+                                </td>';
                     } else {
                         echo '<td align="center">
                                 <a title="Add Subject" href="index.php?view=addCredit&IDNO=' . $result->IDNO . '" class="btn btn-info btn-xs">Add Subject <span class="fa fa-info-circle fw-fa"></span></a>
