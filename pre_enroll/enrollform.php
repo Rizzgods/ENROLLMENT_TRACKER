@@ -105,7 +105,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                                 if(isset($_SESSION['COURSEID'])){
                                     $course = New Course();
                                     $singlecourse = $course->single_course($_SESSION['COURSEID']);
-                                    echo '<option value='.$singlecourse->COURSE_ID.' >'.$singlecourse->COURSE_NAME.'-'.$singlecourse->COURSE_LEVEL.' </option>';
+                                    echo '<option value='.$singlecourse->COURSE_ID.' >'.$singlecourse->COURSE_NAME.'-'.$singlecourse->COURSE_DESC.' </option>';
                                 }else{
                                     echo '<option value="Select">Select</option>';
                                 }
@@ -114,7 +114,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                                 $mydb->setQuery("SELECT * FROM `course` WHERE COURSE_LEVEL=1");
                                 $cur = $mydb->loadResultList();
                                 foreach ($cur as $result) {
-                                    echo '<option value='.$result->COURSE_ID.' >'.$result->COURSE_NAME.'-'.$result->COURSE_LEVEL.' </option>';
+                                    echo '<option value='.$result->COURSE_ID.' >'.$result->COURSE_NAME.'-'.$result->COURSE_DESC.' </option>';
                                 }
                                 ?>
                             </select>

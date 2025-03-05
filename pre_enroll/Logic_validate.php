@@ -43,6 +43,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["sendOTP"])) {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
+        // Add these lines to fix SSL certificate verification issue
+        $mail->SMTPOptions = [
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            ]
+        ];
+
         $mail->setFrom('taranavalvista@gmail.com', 'Enrollment OTP');
         $mail->addAddress($email);
 

@@ -35,6 +35,11 @@ $total_course = $conn->query($count_course);
     <!-- Swiper CSS CDN -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css_files/cards.css" />
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 
 <body class="overflow-x-hidden"> <!-- Prevent horizontal scrolling -->
@@ -47,7 +52,9 @@ $total_course = $conn->query($count_course);
         include "banner.php";
         include "num.php";
         include 'cards.php'; 
+        include 'chatbot_notification.php'; 
         include 'mission.php';
+        include 'chatbot_notification.php'; 
         include 'footer.php';
         ?>
     </div>

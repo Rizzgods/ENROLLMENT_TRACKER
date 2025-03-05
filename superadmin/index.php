@@ -35,6 +35,10 @@ require_once __DIR__ . "/database.php";
     <div class="ml-32 p-4">
         <!-- Content sections -->
         <div id="list-content" class="content-section">
+            <br>
+            <br>
+            <br>
+            <br>
             <?php include "list.php"; ?>
         </div>
         
