@@ -1,11 +1,25 @@
 <?php
-// Initialize session if you need to track conversations
+// First include config for session settings
+require_once('config.php');
+// Then start the session
 session_start();
 
+// Check if user is verified
+if (!isset($_SESSION['verified_email']) || !isset($_SESSION['verified_user'])) {
+    // Redirect to verification page
+    header('Location: verify_email.php');
+    exit;
+}
+
 // Include configuration and helper functions
-require_once('config.php');
 require_once('db_functions.php');
 require_once('chat_functions.php');
+
+// Log access to the chat page
+ChatbotLogger::info("Chat page accessed", [
+    'user_id' => $_SESSION['verified_user']['IDNO'],
+    'email' => $_SESSION['verified_email']
+]);
 
 // Initialize response array
 $response = [
@@ -27,14 +41,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
     
+    ChatbotLogger::info("Chat message received", [
+        'user_id' => $_SESSION['verified_user']['IDNO'],
+        'message' => $userMessage
+    ]);
+    
     // Initialize conversation history if it doesn't exist
     if (!isset($_SESSION['conversation'])) {
+        // Get user's first name for personalization
+        $firstName = $_SESSION['verified_user']['FNAME'];
+        $studentId = $_SESSION['verified_user']['IDNO'];
+        
+        // Customize the system prompt to include student ID and always use their verified information
         $_SESSION['conversation'] = [
             [
                 'role' => 'system', 
-                'content' => 'You are a helpful enrollment assistant for Bestlink College of the Philippines. Your goal is to assist students with enrollment questions, course information, class schedules, and academic procedures. When students ask about their information, always ask for their student ID number. Keep responses concise, friendly, and educational. Always refer to the institution as "Bestlink College of the Philippines" - never mention any other college or university. If asked about topics outside of the academic context, politely redirect the conversation to enrollment and college-related matters.'
+                'content' => "You are a helpful enrollment assistant for Bestlink College of the Philippines. You are currently helping {$firstName} (Student ID: {$studentId}). Your goal is to assist with enrollment questions, course information, schedules, and academic procedures. Keep responses concise, friendly, and educational. Always refer to the institution as \"Bestlink College of the Philippines\". For student-specific information like schedules or records, remind them that you'll use their verified account information - they don't need to provide their ID again. If asked about topics outside of the academic context, politely redirect the conversation to enrollment and college-related matters."
             ]
         ];
+        
+        ChatbotLogger::debug("New conversation initialized for user", [
+            'user_id' => $studentId
+        ]);
     }
     
     // Add user message to conversation
@@ -49,47 +77,112 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $useApi = true;
     
     try {
-        // Check for student ID patterns or specific database queries
-        if (preg_match('/\b\d{5,10}\b/', $userMessage) || 
-            stripos($userMessage, 'schedule') !== false ||
-            stripos($userMessage, 'class') !== false ||
-            stripos($userMessage, 'status') !== false || 
-            stripos($userMessage, 'record') !== false || 
-            stripos($userMessage, 'enrollment') !== false ||
-            stripos($userMessage, 'information') !== false ||
-            stripos($userMessage, 'details') !== false) {
+        // Only use database responses for specific personal information or sensitive data
+        // This is a more focused list than before
+        if (stripos($userMessage, 'my schedule') !== false ||
+            stripos($userMessage, 'my status') !== false || 
+            stripos($userMessage, 'my record') !== false || 
+            stripos($userMessage, 'my enrollment') !== false ||
+            stripos($userMessage, 'my account') !== false || 
+            stripos($userMessage, 'my profile') !== false ||
+            stripos($userMessage, 'my balance') !== false || 
+            stripos($userMessage, 'who am i') !== false) {
             
             $dbInfoRequested = true;
-            $dbResponse = getFallbackResponse($userMessage);
+            // Always use the verified student ID from session
+            $dbResponse = getFallbackResponse($userMessage, $_SESSION['verified_user']['IDNO']);
+            
+            // Add any database responses to the AI conversation history too,
+            // so it can maintain context even when DB answers questions
+            if ($dbResponse) {
+                $_SESSION['conversation'][] = [
+                    'role' => 'assistant',
+                    'content' => $dbResponse
+                ];
+            }
+            
+            ChatbotLogger::info("Personal information requested", [
+                'request_type' => 'personal_info',
+                'user_id' => $_SESSION['verified_user']['IDNO']
+            ]);
+        } else {
+            // For general questions about the college, courses, etc., use the AI
+            $dbInfoRequested = false;
         }
         
-        // If database information requested, skip API and use fallback
+        // If database information requested and successfully retrieved, use it
         if ($dbInfoRequested && $dbResponse) {
             $botMessage = $dbResponse;
             $useApi = false;
+            
+            // Check if the response contains HTML (for logout links)
+            if (strpos($botMessage, '<a href') !== false) {
+                $response['html_content'] = true;
+            }
+            
+            ChatbotLogger::info("Using database response", [
+                'response_length' => strlen($botMessage)
+            ]);
         } else {
-            // Get response from AI API
-            $botMessage = getAIResponse($_SESSION['conversation']);
+            // Check if API fallback mode is enabled before trying API
+            try {
+                // Skip API call if in local dev mode without API access
+                if (defined('LOCAL_DEV_MODE') && LOCAL_DEV_MODE) {
+                    // Simulate API error to use fallback
+                    throw new Exception('Development mode - using fallback responses');
+                }
+                
+                // For everything else, try to use AI API
+                $botMessage = getAIResponse($_SESSION['conversation']);
+                
+                ChatbotLogger::info("Using API response", [
+                    'response_length' => strlen($botMessage)
+                ]);
+            } catch (Exception $apiEx) {
+                ChatbotLogger::info("API not available - using rule-based responses", [
+                    'reason' => $apiEx->getMessage()
+                ]);
+                
+                // Use our regular expression system as fallback
+                $fallbackMessage = getFallbackResponse($userMessage, $_SESSION['verified_user']['IDNO']);
+                
+                if ($fallbackMessage !== null) {
+                    $botMessage = $fallbackMessage;
+                    ChatbotLogger::info("Using fallback rule-based response", [
+                        'response_length' => strlen($botMessage)
+                    ]);
+                } else {
+                    // If even the fallback system returns null, give a generic response
+                    $botMessage = "I understand you're asking about Bestlink College of the Philippines. " .
+                                 "For this specific question, please contact our admissions office at info@bestlink.edu.ph " .
+                                 "or call (083) 228-9722 for the most accurate information.";
+                }
+            }
         }
     } catch (Exception $e) {
         // Log the error with more details
-        error_log('Chat processing error: ' . $e->getMessage());
+        ChatbotLogger::error("Chat processing error", $e);
         
         // Fall back to database-based response
         $useApi = false;
         
         // Try to provide a meaningful fallback response
-        if (stripos($userMessage, 'schedule') !== false || 
-            (stripos($userMessage, 'class') !== false && !stripos($userMessage, 'classroom'))) {
-            // If it's a schedule request, try to handle that specifically
-            $botMessage = "I can help you find a class schedule! Please provide a student ID number, for example: 'Show me the schedule for student ID 1000000252'.";
-        } else {
-            // General fallback
-            $botMessage = getFallbackResponse($userMessage);
+        try {
+            if (stripos($userMessage, 'schedule') !== false || 
+                (stripos($userMessage, 'class') !== false && !stripos($userMessage, 'classroom'))) {
+                // If it's a schedule request, provide personalized response using verified ID
+                $botMessage = getFallbackResponse($userMessage, $_SESSION['verified_user']['IDNO']);
+            } else {
+                // General fallback
+                $botMessage = getFallbackResponse($userMessage, $_SESSION['verified_user']['IDNO']);
+            }
+            
+            // Add a note to the error log about using fallback
+            error_log('Using fallback response system for query: ' . $userMessage);
+        } catch (Exception $fallbackException) {
+            ChatbotLogger::error("Fallback response error", $fallbackException);
+            $botMessage = "Sorry, we are currently experiencing technical difficulties. Please try again later.";
         }
-        
-        // Add a note to the error log about using fallback
-        error_log('Using fallback response system for query: ' . $userMessage);
     }
     
     // Add bot response to conversation history

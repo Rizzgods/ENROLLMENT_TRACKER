@@ -50,8 +50,13 @@ document.addEventListener('DOMContentLoaded', function() {
             hideTypingIndicator();
             
             if (data.success) {
-                // Add bot response
-                addMessage(data.message);
+                // Check if the response contains HTML that should be rendered
+                if (data.html_content) {
+                    addMessage({html_content: true, message: data.message});
+                } else {
+                    // Regular text message
+                    addMessage(data.message);
+                }
             } else {
                 // Show error
                 addMessage('Sorry, I encountered an error: ' + (data.error || 'Unknown error'));
@@ -84,9 +89,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const messageBubble = document.createElement('div');
         messageBubble.classList.add('message-bubble', sender === 'user' ? 'user-message' : 'bot-message', 'p-3', 'mb-4');
         
-        // Create paragraph element for the message content with line breaks
-        const formattedContent = content.replace(/\n/g, '<br>');
-        messageBubble.innerHTML = `<p>${formattedContent}</p>`;
+        // Create paragraph element for the message content with line breaks or HTML content
+        if (typeof content === 'object' && content.html_content) {
+            // This is HTML content that should be rendered as-is
+            messageBubble.innerHTML = content.message;
+        } else {
+            // Regular text with line breaks
+            const formattedContent = content.replace(/\n/g, '<br>');
+            messageBubble.innerHTML = `<p>${formattedContent}</p>`;
+        }
         
         const messageContainer = document.createElement('div');
         messageContainer.classList.add('flex', sender === 'user' ? 'justify-end' : 'justify-start');
@@ -94,6 +105,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
         chatMessages.appendChild(messageContainer);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // If there are any links in the message, make them work
+        const links = messageBubble.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === 'logout.php') {
+                    if (confirm('Are you sure you want to end your session?')) {
+                        window.location.href = 'logout.php';
+                    }
+                    e.preventDefault();
+                }
+            });
+        });
     }
 
     function showTypingIndicator() {

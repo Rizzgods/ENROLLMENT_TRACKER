@@ -64,15 +64,41 @@
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
             <!-- Header -->
             <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-4 text-white">
-                <div class="flex items-center">
-                    <div class="h-10 w-10 rounded-full bg-white flex items-center justify-center mr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                        </svg>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 rounded-full bg-white flex items-center justify-center mr-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold">Enrollment Assistant</h1>
+                            <p class="text-sm text-blue-100">Bestlink College of the Philippines</p>
+                        </div>
                     </div>
-                    <div>
-                        <h1 class="text-xl font-bold">Enrollment Assistant</h1>
-                        <p class="text-sm text-blue-100">Bestlink College of the Philippines</p>
+                    
+                    <!-- User info display and logout button -->
+                    <div class="flex items-center">
+                        <div class="text-right mr-2">
+                            <p class="font-medium">
+                                <?php 
+                                    echo htmlspecialchars($_SESSION['verified_user']['FNAME']) . ' ' . 
+                                         htmlspecialchars($_SESSION['verified_user']['LNAME']); 
+                                ?>
+                            </p>
+                            <p class="text-xs text-blue-100">
+                                ID: <?php echo htmlspecialchars($_SESSION['verified_user']['IDNO']); ?>
+                            </p>
+                        </div>
+                        <div class="h-10 w-10 rounded-full bg-blue-300 flex items-center justify-center text-blue-800 font-bold">
+                            <?php echo strtoupper(substr($_SESSION['verified_user']['FNAME'], 0, 1)); ?>
+                        </div>
+                        <a href="logout.php" class="ml-3 px-3 py-1 bg-blue-800 hover:bg-red-600 rounded text-xs text-white transition-colors flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                            Logout
+                        </a>
                     </div>
                 </div>
             </div>
@@ -82,7 +108,7 @@
                 <!-- Welcome message -->
                 <div class="flex mb-4">
                     <div class="message-bubble bot-message p-3 ml-2">
-                        <p>Hello! I'm your Bestlink College of the Philippines enrollment assistant. How can I help you today?</p>
+                        <p>Hello <?php echo htmlspecialchars($_SESSION['verified_user']['FNAME']); ?>! I'm your Bestlink College of the Philippines enrollment assistant. How can I help you today?</p>
                     </div>
                 </div>
                 

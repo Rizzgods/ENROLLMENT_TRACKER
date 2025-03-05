@@ -1,0 +1,642 @@
+[2025-03-05 19:09:00] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:10:18] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:10:46] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:10:48] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:10:48] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification attempt - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:10:48] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception when connecting to database - {"exception_type":"mysqli_sql_exception","exception_message":"Unknown database 'schooldb'","exception_code":1049,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php","line":7,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php(7): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'schooldb')\n#1 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\verify_email.php(35): connectToDatabase()\n#2 {main}"}
+[2025-03-05 19:10:48] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connection failed during email verification
+[2025-03-05 19:10:58] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:10:58] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification attempt - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:10:58] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception when connecting to database - {"exception_type":"mysqli_sql_exception","exception_message":"Unknown database 'schooldb'","exception_code":1049,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php","line":7,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php(7): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'schooldb')\n#1 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\verify_email.php(35): connectToDatabase()\n#2 {main}"}
+[2025-03-05 19:10:58] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connection failed during email verification
+[2025-03-05 19:13:02] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:13:02] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification attempt - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:13:02] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception when connecting to database - {"exception_type":"mysqli_sql_exception","exception_message":"Access denied for user ''@'localhost' (using password: NO)","exception_code":1045,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php","line":7,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php(7): mysqli->__construct('localhost', NULL, Object(SensitiveParameterValue), NULL)\n#1 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\verify_email.php(35): connectToDatabase()\n#2 {main}"}
+[2025-03-05 19:13:02] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connection failed during email verification
+[2025-03-05 19:13:08] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:13:08] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification attempt - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:13:09] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception when connecting to database - {"exception_type":"mysqli_sql_exception","exception_message":"Access denied for user ''@'localhost' (using password: NO)","exception_code":1045,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php","line":7,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php(7): mysqli->__construct('localhost', NULL, Object(SensitiveParameterValue), NULL)\n#1 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\verify_email.php(35): connectToDatabase()\n#2 {main}"}
+[2025-03-05 19:13:09] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connection failed during email verification
+[2025-03-05 19:19:44] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:19:46] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:19:46] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification attempt - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:19:46] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception when connecting to database - {"exception_type":"mysqli_sql_exception","exception_message":"Access denied for user ''@'localhost' (using password: NO)","exception_code":1045,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php","line":7,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php(7): mysqli->__construct('localhost', NULL, Object(SensitiveParameterValue), NULL)\n#1 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\verify_email.php(44): connectToDatabase()\n#2 {main}"}
+[2025-03-05 19:19:46] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connection failed during email verification
+[2025-03-05 19:21:21] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:21:21] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification attempt - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:21:21] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception when connecting to database - {"exception_type":"mysqli_sql_exception","exception_message":"Access denied for user ''@'localhost' (using password: NO)","exception_code":1045,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php","line":7,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php(7): mysqli->__construct(NULL, NULL, Object(SensitiveParameterValue), NULL)\n#1 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\verify_email.php(44): connectToDatabase()\n#2 {main}"}
+[2025-03-05 19:21:21] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connection failed during email verification
+[2025-03-05 19:21:23] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:21:25] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:21:25] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification attempt - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:21:25] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception when connecting to database - {"exception_type":"mysqli_sql_exception","exception_message":"Access denied for user ''@'localhost' (using password: NO)","exception_code":1045,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php","line":7,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\db_functions.php(7): mysqli->__construct(NULL, NULL, Object(SensitiveParameterValue), NULL)\n#1 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\verify_email.php(44): connectToDatabase()\n#2 {main}"}
+[2025-03-05 19:21:25] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connection failed during email verification
+[2025-03-05 19:21:49] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:21:49] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification attempt - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:21:49] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:21:50] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:21:50] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT * FROM tblstudent WHERE EMAIL = ?","params":{"email":"cenizamaki@gmail.com"}}
+[2025-03-05 19:21:50] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Student found by email - {"email":"cenizamaki@gmail.com","studentId":1000000240}
+[2025-03-05 19:21:50] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Verification code generated - {"email":"cenizamaki@gmail.com","code":984322,"studentId":1000000240}
+[2025-03-05 19:21:50] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Development mode: Email not sent, logging instead - {"email":"cenizamaki@gmail.com","code":984322,"student":"kowalski A Cagsawa"}
+[2025-03-05 19:21:52] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:21:54] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:21:56] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:21:56] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification attempt - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:21:56] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:21:56] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:21:56] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT * FROM tblstudent WHERE EMAIL = ?","params":{"email":"cenizamaki@gmail.com"}}
+[2025-03-05 19:21:56] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Student found by email - {"email":"cenizamaki@gmail.com","studentId":1000000240}
+[2025-03-05 19:21:56] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Verification code generated - {"email":"cenizamaki@gmail.com","code":179509,"studentId":1000000240}
+[2025-03-05 19:21:56] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Development mode: Email not sent, logging instead - {"email":"cenizamaki@gmail.com","code":179509,"student":"kowalski A Cagsawa"}
+[2025-03-05 19:26:29] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:26:32] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:26:32] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification attempt - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:26:32] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:26:32] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:26:32] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT * FROM tblstudent WHERE EMAIL = ?","params":{"email":"cenizamaki@gmail.com"}}
+[2025-03-05 19:26:32] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Student found by email - {"email":"cenizamaki@gmail.com","studentId":1000000240}
+[2025-03-05 19:26:32] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Verification code generated - {"email":"cenizamaki@gmail.com","code":424292,"studentId":1000000240}
+[2025-03-05 19:26:34] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Verification email sent successfully - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:26:34] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Code verification page accessed - {"page":"verify_code.php","ip":"::1"}
+[2025-03-05 19:26:56] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Code verification page accessed - {"page":"verify_code.php","ip":"::1"}
+[2025-03-05 19:26:56] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Code verification attempt - {"email":"cenizamaki@gmail.com","submitted_code":"424292","expected_code":424292}
+[2025-03-05 19:26:56] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Successful verification - {"email":"cenizamaki@gmail.com","studentId":1000000240}
+[2025-03-05 19:26:56] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:27:09] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:27:09] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"whats my schedule"}
+[2025-03-05 19:27:09] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:27:09] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using provided student ID - {"student_id":1000000240}
+[2025-03-05 19:27:09] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:27:09] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:27:09] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":21}}
+[2025-03-05 19:27:09] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Student information retrieved - {"studentId":1000000240,"found":true}
+[2025-03-05 19:27:09] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:27:09] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:27:09] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Schedule found for student - {"studentId":1000000240,"status":"has_schedule"}
+[2025-03-05 19:27:09] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database info requested - {"request_type":"database_info","user_id":1000000240}
+[2025-03-05 19:27:09] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using database response - {"response_length":47}
+[2025-03-05 19:27:23] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:27:23] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"that is not class schedule but enrollment schedule"}
+[2025-03-05 19:27:23] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:27:23] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using provided student ID - {"student_id":1000000240}
+[2025-03-05 19:27:23] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:27:23] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:27:23] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":21}}
+[2025-03-05 19:27:23] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Student information retrieved - {"studentId":1000000240,"found":true}
+[2025-03-05 19:27:23] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:27:23] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:27:23] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Schedule found for student - {"studentId":1000000240,"status":"has_schedule"}
+[2025-03-05 19:27:23] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database info requested - {"request_type":"database_info","user_id":1000000240}
+[2025-03-05 19:27:23] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using database response - {"response_length":47}
+[2025-03-05 19:28:44] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:28:44] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"my status"}
+[2025-03-05 19:28:44] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:28:44] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using provided student ID - {"student_id":1000000240}
+[2025-03-05 19:28:44] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database info requested - {"request_type":"database_info","user_id":1000000240}
+[2025-03-05 19:28:44] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using database response - {"response_length":240}
+[2025-03-05 19:28:54] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:28:54] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"1000000240"}
+[2025-03-05 19:28:54] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:28:54] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:28:54] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":57,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:28:54] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":57,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:28:54] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:28:54] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using provided student ID - {"student_id":1000000240}
+[2025-03-05 19:28:59] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:28:59] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"my id is 1000000240"}
+[2025-03-05 19:28:59] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:28:59] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:28:59] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":57,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:28:59] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":57,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:28:59] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:28:59] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using provided student ID - {"student_id":1000000240}
+[2025-03-05 19:29:15] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:29:15] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"My student ID is 1000000240"}
+[2025-03-05 19:29:15] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:29:15] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:29:15] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":57,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:29:15] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":57,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:29:15] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:29:15] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using provided student ID - {"student_id":1000000240}
+[2025-03-05 19:29:29] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:29:29] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"track My student ID is 21000001"}
+[2025-03-05 19:29:29] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:29:29] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:29:29] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":57,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:29:29] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":57,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:29:29] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:29:29] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using provided student ID - {"student_id":1000000240}
+[2025-03-05 19:29:29] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:29:29] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:29:29] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":21}}
+[2025-03-05 19:29:29] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Student information retrieved - {"studentId":1000000240,"found":true}
+[2025-03-05 19:29:29] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:29:29] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:29:29] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Schedule found for student - {"studentId":1000000240,"status":"has_schedule"}
+[2025-03-05 19:30:31] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:30:31] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"that nnot my info why are you giving me that"}
+[2025-03-05 19:30:31] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:30:31] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:30:31] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":57,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:30:31] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":57,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:30:31] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:30:31] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using provided student ID - {"student_id":1000000240}
+[2025-03-05 19:32:13] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:32:21] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:32:21] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"schedule"}
+[2025-03-05 19:32:21] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:32:21] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using provided student ID - {"student_id":1000000240}
+[2025-03-05 19:32:21] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:32:21] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:32:21] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":21}}
+[2025-03-05 19:32:21] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Student information retrieved - {"studentId":1000000240,"found":true}
+[2025-03-05 19:32:21] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:32:21] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:32:21] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Schedule found for student - {"studentId":1000000240,"status":"has_schedule"}
+[2025-03-05 19:32:21] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database info requested - {"request_type":"database_info","user_id":1000000240}
+[2025-03-05 19:32:21] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using database response - {"response_length":518}
+[2025-03-05 19:32:37] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:32:37] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"track My student ID is 21000001"}
+[2025-03-05 19:32:37] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:32:37] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:32:37] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:32:37] [ERROR] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(107): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:32:37] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:32:37] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using provided student ID - {"student_id":1000000240}
+[2025-03-05 19:32:37] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:32:37] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:32:37] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":21}}
+[2025-03-05 19:32:37] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Student information retrieved - {"studentId":1000000240,"found":true}
+[2025-03-05 19:32:37] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:32:37] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:32:37] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Schedule found for student - {"studentId":1000000240,"status":"has_schedule"}
+[2025-03-05 19:35:24] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Code verification page accessed - {"page":"verify_code.php","ip":"::1"}
+[2025-03-05 19:35:24] [WARNING] [l0a3n743fgpnc4h13m8r587csu] [::1] - Missing session data for code verification, redirecting to email verification
+[2025-03-05 19:35:24] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:35:24] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - User already verified, redirecting to chat - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:35:24] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:35:26] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:35:26] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - User already verified, redirecting to chat - {"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:35:26] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:35:29] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:37:23] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:37:27] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:37:27] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"track My student ID is 21000001"}
+[2025-03-05 19:37:27] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:37:27] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using verified user's ID - {"student_id":1000000240}
+[2025-03-05 19:37:27] [WARNING] [l0a3n743fgpnc4h13m8r587csu] [::1] - User attempted to access another student's information - {"user_id":1000000240,"requested_id":"21000001"}
+[2025-03-05 19:37:27] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database info requested - {"request_type":"database_info","user_id":1000000240}
+[2025-03-05 19:37:27] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using database response - {"response_length":151}
+[2025-03-05 19:37:33] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:37:33] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"Hazard C Ceniza (ID: 1000000251)"}
+[2025-03-05 19:37:33] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:37:33] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using verified user's ID - {"student_id":1000000240}
+[2025-03-05 19:37:33] [WARNING] [l0a3n743fgpnc4h13m8r587csu] [::1] - User attempted to access another student's information - {"user_id":1000000240,"requested_id":"1000000251"}
+[2025-03-05 19:37:33] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database info requested - {"request_type":"database_info","user_id":1000000240}
+[2025-03-05 19:37:33] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using database response - {"response_length":151}
+[2025-03-05 19:37:40] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:37:40] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"whats my status"}
+[2025-03-05 19:37:40] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:37:40] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using verified user's ID - {"student_id":1000000240}
+[2025-03-05 19:37:40] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:37:40] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:37:40] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":21}}
+[2025-03-05 19:37:40] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Student information retrieved - {"studentId":1000000240,"found":true}
+[2025-03-05 19:37:40] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:37:40] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:37:40] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Schedule found for student - {"studentId":1000000240,"status":"has_schedule"}
+[2025-03-05 19:37:40] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database info requested - {"request_type":"database_info","user_id":1000000240}
+[2025-03-05 19:37:40] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using database response - {"response_length":500}
+[2025-03-05 19:37:45] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:37:45] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat message received - {"user_id":1000000240,"message":"my schedule"}
+[2025-03-05 19:37:45] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:37:45] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using verified user's ID - {"student_id":1000000240}
+[2025-03-05 19:37:45] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:37:45] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:37:45] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":21}}
+[2025-03-05 19:37:45] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Student information retrieved - {"studentId":1000000240,"found":true}
+[2025-03-05 19:37:45] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database connected successfully
+[2025-03-05 19:37:45] [DEBUG] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000240}}
+[2025-03-05 19:37:45] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Schedule found for student - {"studentId":1000000240,"status":"has_schedule"}
+[2025-03-05 19:37:45] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Database info requested - {"request_type":"database_info","user_id":1000000240}
+[2025-03-05 19:37:45] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Using database response - {"response_length":518}
+[2025-03-05 19:40:00] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:42:22] [INFO] [l0a3n743fgpnc4h13m8r587csu] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-05 19:42:24] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:42:27] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:42:27] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Email verification attempt - {"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:42:27] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:42:27] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:42:27] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT * FROM tblstudent WHERE EMAIL = ?","params":{"email":"ryanceniza11@gmail.com"}}
+[2025-03-05 19:42:27] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Student found by email - {"email":"ryanceniza11@gmail.com","studentId":1000000258}
+[2025-03-05 19:42:27] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Verification code generated - {"email":"ryanceniza11@gmail.com","code":630426,"studentId":1000000258}
+[2025-03-05 19:42:30] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Verification email sent successfully - {"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:42:30] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Code verification page accessed - {"page":"verify_code.php","ip":"::1"}
+[2025-03-05 19:42:45] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Code verification page accessed - {"page":"verify_code.php","ip":"::1"}
+[2025-03-05 19:42:45] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Code verification attempt - {"email":"ryanceniza11@gmail.com","submitted_code":"630426","expected_code":630426}
+[2025-03-05 19:42:45] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Successful verification - {"email":"ryanceniza11@gmail.com","studentId":1000000258}
+[2025-03-05 19:42:45] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:42:54] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:42:54] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"my schedule"}
+[2025-03-05 19:42:54] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - New conversation initialized for user - {"user_id":1000000258}
+[2025-03-05 19:42:54] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:42:54] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:42:54] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:42:54] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 19:42:54] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 19:42:54] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 19:42:54] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:42:54] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000258}}
+[2025-03-05 19:42:54] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Schedule found for student - {"studentId":1000000258,"status":"has_schedule"}
+[2025-03-05 19:42:54] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database info requested - {"request_type":"database_info","user_id":1000000258}
+[2025-03-05 19:42:54] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using database response - {"response_length":518}
+[2025-03-05 19:42:59] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:42:59] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"my status"}
+[2025-03-05 19:42:59] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:42:59] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:42:59] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:42:59] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 19:42:59] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 19:42:59] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 19:42:59] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:42:59] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000258}}
+[2025-03-05 19:42:59] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Schedule found for student - {"studentId":1000000258,"status":"has_schedule"}
+[2025-03-05 19:42:59] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database info requested - {"request_type":"database_info","user_id":1000000258}
+[2025-03-05 19:42:59] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using database response - {"response_length":505}
+[2025-03-05 19:43:43] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:43:43] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"can i go earlier than my schedule"}
+[2025-03-05 19:43:43] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:43:43] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:43:43] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:43:43] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 19:43:43] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 19:43:43] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 19:43:43] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:43:43] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000258}}
+[2025-03-05 19:43:43] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Schedule found for student - {"studentId":1000000258,"status":"has_schedule"}
+[2025-03-05 19:43:43] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database info requested - {"request_type":"database_info","user_id":1000000258}
+[2025-03-05 19:43:43] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using database response - {"response_length":518}
+[2025-03-05 19:44:07] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:44:07] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"who can i contact for bestlik"}
+[2025-03-05 19:44:07] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":8}
+[2025-03-05 19:44:07] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:44:07] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:44:07] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:44:08] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:44:08] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:44:59] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:45:04] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:45:04] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"who can i contact for bestlik"}
+[2025-03-05 19:45:04] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":10}
+[2025-03-05 19:45:04] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:45:04] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:04] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:04] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:45:04] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:45:18] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:45:18] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"how many students are there in bestlink"}
+[2025-03-05 19:45:18] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:45:18] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:45:18] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:18] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:18] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:45:18] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:45:28] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:45:28] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"oh okat"}
+[2025-03-05 19:45:28] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:45:28] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:45:28] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:28] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:28] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:45:28] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:45:33] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:45:33] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"hello chatbot"}
+[2025-03-05 19:45:33] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:45:33] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:45:33] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:33] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:33] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:45:33] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:45:33] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:45:33] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 19:45:33] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 19:45:33] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 19:45:38] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:45:38] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"are you ai"}
+[2025-03-05 19:45:38] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:45:38] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:45:38] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:38] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:38] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:45:38] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:45:59] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:45:59] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"where is bestlink"}
+[2025-03-05 19:45:59] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:45:59] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:45:59] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:59] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:45:59] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:45:59] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:47:19] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:47:19] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"give me bestlink info"}
+[2025-03-05 19:47:19] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:47:19] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:47:19] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:47:19] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:47:19] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:47:19] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:50:28] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:50:35] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:50:35] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"hello"}
+[2025-03-05 19:50:35] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:50:35] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:50:35] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:50:35] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:50:35] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:50:35] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:50:35] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:50:35] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 19:50:35] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 19:50:35] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 19:50:40] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:50:40] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"hi"}
+[2025-03-05 19:50:40] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:50:41] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:50:41] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:50:41] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(118): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:50:41] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:50:41] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:50:41] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:50:41] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 19:50:41] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 19:50:41] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 19:50:59] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:51:10] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:51:10] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"how to go to bestlik"}
+[2025-03-05 19:51:10] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:51:10] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:51:10] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:51:10] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:51:10] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:51:10] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:51:19] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:51:19] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"how to go to bestlink"}
+[2025-03-05 19:51:19] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:51:19] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:51:19] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:51:19] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:51:19] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:51:19] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:51:26] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:51:26] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"how to go to bestlink"}
+[2025-03-05 19:51:26] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:51:26] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:51:26] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:51:26] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:51:26] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:51:26] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:51:47] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:51:47] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"how to go to bestlink"}
+[2025-03-05 19:51:47] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:51:47] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:51:47] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:51:47] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:51:47] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:51:47] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:51:57] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:51:57] [INFO] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat message received - {"user_id":1000000258,"message":"where is bestlink"}
+[2025-03-05 19:51:57] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":12}
+[2025-03-05 19:51:57] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:51:57] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:51:57] [ERROR] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:51:57] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Database connected successfully
+[2025-03-05 19:51:57] [DEBUG] [etsoltgn8pbrudc9j1qcn7oee3] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:52:06] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:52:10] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-05 19:52:10] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Email verification attempt - {"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:52:10] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:52:10] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:52:10] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT * FROM tblstudent WHERE EMAIL = ?","params":{"email":"ryanceniza11@gmail.com"}}
+[2025-03-05 19:52:10] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Student found by email - {"email":"ryanceniza11@gmail.com","studentId":1000000258}
+[2025-03-05 19:52:10] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Verification code generated - {"email":"ryanceniza11@gmail.com","code":625555,"studentId":1000000258}
+[2025-03-05 19:52:12] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Verification email sent successfully - {"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:52:13] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Code verification page accessed - {"page":"verify_code.php","ip":"::1"}
+[2025-03-05 19:52:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Code verification page accessed - {"page":"verify_code.php","ip":"::1"}
+[2025-03-05 19:52:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Code verification attempt - {"email":"ryanceniza11@gmail.com","submitted_code":"625555","expected_code":625555}
+[2025-03-05 19:52:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Successful verification - {"email":"ryanceniza11@gmail.com","studentId":1000000258}
+[2025-03-05 19:52:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:52:25] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:52:25] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"how to go to bestlik"}
+[2025-03-05 19:52:25] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - New conversation initialized for user - {"user_id":1000000258}
+[2025-03-05 19:52:25] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":2}
+[2025-03-05 19:52:26] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:52:26] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:52:26] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:52:26] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:52:26] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:52:36] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:52:36] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"how to go to bestlik"}
+[2025-03-05 19:52:36] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":4}
+[2025-03-05 19:52:36] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:52:36] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:52:36] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":87,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:52:36] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:52:36] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:55:38] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:55:43] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:55:49] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:55:49] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"where is camppus"}
+[2025-03-05 19:55:49] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":6}
+[2025-03-05 19:55:49] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:55:49] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":100,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:55:49] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":100,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:55:49] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:55:49] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:55:57] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:55:57] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"where is bestlinnk"}
+[2025-03-05 19:55:57] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/v1/chat/completions","model":"deepseek-chat","messages_count":8}
+[2025-03-05 19:55:57] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - API HTTP error - {"data":{"http_code":401,"response":"{\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}}
+[2025-03-05 19:55:57] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":100,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:55:57] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat processing error - {"exception_type":"Exception","exception_message":"API returned HTTP status 401: {\"error\":{\"message\":\"Authentication Fails (no such user)\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":100,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(119): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:55:57] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:55:57] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:57:06] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:57:10] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:57:10] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"hello"}
+[2025-03-05 19:57:10] [WARNING] [899s91kfs8269vt3uiq6p481qo] [::1] - API key not properly configured - {"key_status":"default"}
+[2025-03-05 19:57:10] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API key not properly configured","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":12,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(121): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:57:10] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - API error - falling back to rule-based responses - {"data":{"error":"API key not properly configured"}}
+[2025-03-05 19:57:10] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:57:10] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:57:10] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:57:10] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 19:57:10] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 19:57:10] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 19:57:10] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":179}
+[2025-03-05 19:57:16] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:57:16] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"where is campus"}
+[2025-03-05 19:57:16] [WARNING] [899s91kfs8269vt3uiq6p481qo] [::1] - API key not properly configured - {"key_status":"default"}
+[2025-03-05 19:57:16] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API key not properly configured","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":12,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(121): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:57:16] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - API error - falling back to rule-based responses - {"data":{"error":"API key not properly configured"}}
+[2025-03-05 19:57:16] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:57:16] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:57:16] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":229}
+[2025-03-05 19:57:38] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:57:38] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"are there other campuses?"}
+[2025-03-05 19:57:38] [WARNING] [899s91kfs8269vt3uiq6p481qo] [::1] - API key not properly configured - {"key_status":"default"}
+[2025-03-05 19:57:38] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API key not properly configured","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":12,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(121): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:57:38] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - API error - falling back to rule-based responses - {"data":{"error":"API key not properly configured"}}
+[2025-03-05 19:57:38] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:57:38] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:57:38] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":298}
+[2025-03-05 19:58:16] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:58:16] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"how long valenzuela to sm fairview"}
+[2025-03-05 19:58:16] [WARNING] [899s91kfs8269vt3uiq6p481qo] [::1] - API key not properly configured - {"key_status":"default"}
+[2025-03-05 19:58:16] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API key not properly configured","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":12,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(121): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 19:58:16] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - API error - falling back to rule-based responses - {"data":{"error":"API key not properly configured"}}
+[2025-03-05 19:58:16] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:58:16] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:58:16] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":298}
+[2025-03-05 19:59:23] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:59:28] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 19:59:28] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"where is bestlink"}
+[2025-03-05 19:59:28] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API not available - using rule-based responses - {"reason":"Development mode - using fallback responses"}
+[2025-03-05 19:59:28] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 19:59:28] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 19:59:28] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":229}
+[2025-03-05 20:08:30] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:08:46] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:08:58] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:08:58] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"where is camppus"}
+[2025-03-05 20:08:58] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API not available - using rule-based responses - {"reason":"Development mode - using fallback responses"}
+[2025-03-05 20:08:58] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:08:58] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:08:58] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":298}
+[2025-03-05 20:09:28] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:09:35] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:09:35] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"where is campus"}
+[2025-03-05 20:09:35] [WARNING] [899s91kfs8269vt3uiq6p481qo] [::1] - API key not properly configured - {"key_status":"default"}
+[2025-03-05 20:09:35] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API key not properly configured","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":13,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(127): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 20:09:35] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API not available - using rule-based responses - {"reason":"API key not properly configured"}
+[2025-03-05 20:09:35] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:09:35] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:09:35] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":229}
+[2025-03-05 20:09:39] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:09:40] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:09:44] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:09:44] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"where is campus"}
+[2025-03-05 20:09:44] [WARNING] [899s91kfs8269vt3uiq6p481qo] [::1] - API key not properly configured - {"key_status":"default"}
+[2025-03-05 20:09:44] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API key not properly configured","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":13,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(127): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 20:09:44] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API not available - using rule-based responses - {"reason":"API key not properly configured"}
+[2025-03-05 20:09:44] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:09:44] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:09:44] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":229}
+[2025-03-05 20:09:47] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:09:47] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"hello"}
+[2025-03-05 20:09:47] [WARNING] [899s91kfs8269vt3uiq6p481qo] [::1] - API key not properly configured - {"key_status":"default"}
+[2025-03-05 20:09:47] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API key not properly configured","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":13,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(127): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 20:09:47] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API not available - using rule-based responses - {"reason":"API key not properly configured"}
+[2025-03-05 20:09:47] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:09:47] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:09:47] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:09:47] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 20:09:47] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 20:09:47] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 20:09:47] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":179}
+[2025-03-05 20:09:53] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:09:53] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"address of school"}
+[2025-03-05 20:09:53] [WARNING] [899s91kfs8269vt3uiq6p481qo] [::1] - API key not properly configured - {"key_status":"default"}
+[2025-03-05 20:09:53] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API key not properly configured","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":13,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(127): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 20:09:53] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API not available - using rule-based responses - {"reason":"API key not properly configured"}
+[2025-03-05 20:09:53] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:09:53] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:09:53] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":245}
+[2025-03-05 20:10:13] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:10:13] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"how many camppus"}
+[2025-03-05 20:10:13] [WARNING] [899s91kfs8269vt3uiq6p481qo] [::1] - API key not properly configured - {"key_status":"default"}
+[2025-03-05 20:10:13] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API key not properly configured","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":13,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(127): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 20:10:13] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API not available - using rule-based responses - {"reason":"API key not properly configured"}
+[2025-03-05 20:10:13] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:10:13] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:10:13] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":298}
+[2025-03-05 20:10:19] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:10:19] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"okay"}
+[2025-03-05 20:10:19] [WARNING] [899s91kfs8269vt3uiq6p481qo] [::1] - API key not properly configured - {"key_status":"default"}
+[2025-03-05 20:10:19] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API key not properly configured","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":13,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(127): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 20:10:19] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API not available - using rule-based responses - {"reason":"API key not properly configured"}
+[2025-03-05 20:10:19] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:10:19] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:10:19] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":298}
+[2025-03-05 20:11:10] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:11:16] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:11:16] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"where is campus"}
+[2025-03-05 20:11:16] [WARNING] [899s91kfs8269vt3uiq6p481qo] [::1] - API key not properly configured - {"key_status":"default"}
+[2025-03-05 20:11:16] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API key not properly configured","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":13,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(127): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 20:11:16] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API not available - using rule-based responses - {"reason":"API key not properly configured"}
+[2025-03-05 20:11:16] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:11:16] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:11:16] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":229}
+[2025-03-05 20:11:43] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:11:55] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:12:08] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:12:08] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"hell;o brother"}
+[2025-03-05 20:12:08] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/","model":"deepseek-chat","messages_count":12}
+[2025-03-05 20:12:08] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - API HTTP error - {"data":{"http_code":404,"response":"{\n  \"error_msg\": \"Not Found. Please check the configuration.\"\n}"}}
+[2025-03-05 20:12:08] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 404: {\n  \"error_msg\": \"Not Found. Please check the configuration.\"\n}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(127): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 20:12:08] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API not available - using rule-based responses - {"reason":"API returned HTTP status 404: {\n  \"error_msg\": \"Not Found. Please check the configuration.\"\n}"}
+[2025-03-05 20:12:08] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:12:08] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:12:08] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":265}
+[2025-03-05 20:12:24] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:12:24] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"are you ai"}
+[2025-03-05 20:12:24] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Sending API request to DeepSeek - {"endpoint":"https://api.deepseek.com/","model":"deepseek-chat","messages_count":12}
+[2025-03-05 20:12:24] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - API HTTP error - {"data":{"http_code":404,"response":"{\n  \"error_msg\": \"Not Found. Please check the configuration.\"\n}"}}
+[2025-03-05 20:12:24] [ERROR] [899s91kfs8269vt3uiq6p481qo] [::1] - Exception in getAIResponse - {"exception_type":"Exception","exception_message":"API returned HTTP status 404: {\n  \"error_msg\": \"Not Found. Please check the configuration.\"\n}","exception_code":0,"file":"C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat_functions.php","line":56,"trace":"#0 C:\\wamp64\\www\\onlineenrolmentsystem\\chatbot\\chat.php(127): getAIResponse(Array)\n#1 {main}"}
+[2025-03-05 20:12:24] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API not available - using rule-based responses - {"reason":"API returned HTTP status 404: {\n  \"error_msg\": \"Not Found. Please check the configuration.\"\n}"}
+[2025-03-05 20:12:24] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:12:24] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:12:24] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using fallback rule-based response - {"response_length":265}
+[2025-03-05 20:16:59] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:17:03] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:17:03] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"hello?"}
+[2025-03-05 20:17:14] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API response received successfully - {"response_length":298}
+[2025-03-05 20:17:14] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using API response - {"response_length":298}
+[2025-03-05 20:17:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:17:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"where is campus"}
+[2025-03-05 20:17:33] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API response received successfully - {"response_length":229}
+[2025-03-05 20:17:33] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using API response - {"response_length":229}
+[2025-03-05 20:17:50] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:17:50] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"how can i get from there"}
+[2025-03-05 20:18:08] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API response received successfully - {"response_length":537}
+[2025-03-05 20:18:08] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using API response - {"response_length":537}
+[2025-03-05 20:18:17] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:18:17] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"give my schedule"}
+[2025-03-05 20:18:17] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:18:17] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:18:17] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:18:17] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 20:18:17] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 20:18:17] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 20:18:17] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:18:17] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000258}}
+[2025-03-05 20:18:17] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Schedule found for student - {"studentId":1000000258,"status":"has_schedule"}
+[2025-03-05 20:18:17] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Personal information requested - {"request_type":"personal_info","user_id":1000000258}
+[2025-03-05 20:18:17] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using database response - {"response_length":518}
+[2025-03-05 20:18:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:18:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"my status"}
+[2025-03-05 20:18:22] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:18:22] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Using verified user's ID - {"student_id":1000000258}
+[2025-03-05 20:18:22] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:18:22] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT s.*, sa.* FROM tblstudent s \r\n                LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id \r\n                WHERE s.IDNO = ?","params":{"studentId":1000000258}}
+[2025-03-05 20:18:22] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT * FROM course WHERE course_id = ?","params":{"courseId":16}}
+[2025-03-05 20:18:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Student information retrieved - {"studentId":1000000258,"found":true}
+[2025-03-05 20:18:22] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database connected successfully
+[2025-03-05 20:18:22] [DEBUG] [899s91kfs8269vt3uiq6p481qo] [::1] - Database Query - {"query":"SELECT SCHEDULE, STATUS FROM studentaccount WHERE user_id = ?","params":{"studentId":1000000258}}
+[2025-03-05 20:18:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Schedule found for student - {"studentId":1000000258,"status":"has_schedule"}
+[2025-03-05 20:18:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Personal information requested - {"request_type":"personal_info","user_id":1000000258}
+[2025-03-05 20:18:22] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using database response - {"response_length":505}
+[2025-03-05 20:18:26] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat page accessed - {"user_id":1000000258,"email":"ryanceniza11@gmail.com"}
+[2025-03-05 20:18:26] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Chat message received - {"user_id":1000000258,"message":"okay thanks"}
+[2025-03-05 20:18:35] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - API response received successfully - {"response_length":206}
+[2025-03-05 20:18:35] [INFO] [899s91kfs8269vt3uiq6p481qo] [::1] - Using API response - {"response_length":206}
