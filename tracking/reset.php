@@ -34,7 +34,7 @@
             </ul>
         </div>
         
-        <form id="resetPasswordForm" action="" class="mt-4">
+        <form id="resetPasswordForm" method="POST" action="Logic_reset.php" class="mt-4">
             
             <input type="hidden" name="token" id="token" value="<?php echo htmlspecialchars($_GET['token'] ?? ''); ?>">
 
@@ -50,7 +50,7 @@
                 <p id="password-match" class="mt-1 text-sm hidden"></p>
             </div>
 
-            <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700" disabled>Reset Password</button>
+            <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700">Reset Password</button>
         </form>
     </div>
 </div>
@@ -264,6 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 passwordMatch.textContent = 'Passwords match';
                 passwordMatch.classList.remove('text-red-500');
                 passwordMatch.classList.add('text-green-500');
+                submitBtn.disabled = false;
             } else {
                 passwordMatch.textContent = 'Passwords do not match';
                 passwordMatch.classList.remove('text-green-500');
