@@ -55,7 +55,7 @@ switch ($action) {
 	
 
 
-		function sendEmail($EMAIL, $FNAME, $LNAME, $MNAME, $IDNO, $COURSEID) {
+		function sendEmail($EMAIL, $FNAME, $LNAME, $status, $MNAME, $IDNO, $COURSEID) {
 		$mail = new PHPMailer(true);
 		try {
 			// Server settings
@@ -88,6 +88,7 @@ switch ($action) {
 			$courseName = $courseData ? $courseData['COURSE_NAME'] . ' - ' . $courseData['COURSE_DESC'] : 'Course #' . $COURSEID;
 			$stmt->close();
 	
+			if ($status == "approved") {
 			$mail->Subject = "Payment Confirmation - Bestlink College";
 			$mail->Body = "
 				<div style='font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto;'>
@@ -158,6 +159,42 @@ switch ($action) {
 					</div>
 				</div>
 			";
+		} else {
+				$mail->Subject = "Enrollment Application Status";
+				$mail->Body = "
+					<div style='font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto;'>
+						<!-- Header with Logo -->
+						<div style='background-color: #1a56db; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;'>
+							<img src='{$logo_url}' alt='Bestlink Logo' style='max-height: 80px; margin-bottom: 10px;'>
+							<h1 style='color: white; margin: 0; font-size: 24px;'>BESTLINK ENROLLMENT SYSTEM</h1>
+						</div>
+						
+						<!-- Email Content -->
+						<div style='background-color: #f9fafb; border-radius: 0 0 8px 8px; padding: 20px; border: 1px solid #e5e7eb; border-top: none;'>
+							<h3 style='color: #4A5568; margin-top: 0;'>Hello $FNAME,</h3>
+							<p>We have reviewed your enrollment application.</p>
+							
+							<div style='background-color: #fee2e2; border-left: 4px solid #EF4444; padding: 15px; margin: 20px 0; border-radius: 4px;'>
+								<p style='margin: 0;'>Unfortunately, after careful consideration, your enrollment application has not been approved at this time.</p>
+							</div>
+							
+							<p>Please contact the administration office for more information about your application status. We're here to help you understand the reason and explore your options moving forward.</p>
+							
+							<div style='background-color: #eff6ff; border-radius: 8px; padding: 15px; margin: 20px 0; border: 1px solid #dbeafe;'>
+								<p style='font-weight: bold; color: #1E40AF; margin-top: 0;'>Contact Information:</p>
+								<p style='margin-bottom: 5px;'><b>Phone:</b> (123) 456-7890</p>
+								<p style='margin-bottom: 5px;'><b>Email:</b> <a href='mailto:admissions@bestlink.edu.ph' style='color: #3182CE;'>admissions@bestlink.edu.ph</a></p>
+								<p style='margin-bottom: 0;'><b>Office Hours:</b> Monday-Friday, 8:00am - 5:00pm</p>
+							</div>
+							
+							<div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 14px;'>
+								<p style='margin-bottom: 5px;'>Thank you for your interest in Bestlink College of the Philippines.</p>
+								<p style='margin-top: 0; color: #6B7280;'>Bestlink Enrollment Team</p>
+							</div>
+						</div>
+					</div>
+				";
+			}
 	
 			$mail->send();
 		} catch (Exception $e) {
@@ -218,13 +255,42 @@ switch ($action) {
 			$stmt->close();
 		}
 	
-		sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], $student['MNAME'], $student['IDNO'], $student['COURSE_ID']);
+		sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], 'accepted', $student['MNAME'], $student['IDNO'], $student['COURSE_ID']);
 	
 		message("Student successfully confirmed!", "success");
 		redirect("index.php?view=success&IDNO={$IDNO}");
 	}
 	
+	function rejectStudent($IDNO, $db) {
+		// Update tblstudent status to 'rejected'
+		$updateStudent = "UPDATE tblstudent SET student_status = 'rejected' WHERE IDNO = ?";
+		$stmt = $db->conn->prepare($updateStudent);
+		$stmt->bind_param("i", $IDNO);
+		$stmt->execute();
+		$stmt->close();
+	
+		// Update studentaccount status to 'rejected' where user_id matches IDNO
+		$updateStudentAccount = "UPDATE studentaccount SET STATUS = 'rejected' WHERE user_id = ?";
+		$stmt2 = $db->conn->prepare($updateStudentAccount);
+		$stmt2->bind_param("i", $IDNO);
+		$stmt2->execute();
+		$stmt2->close();
 
+		$sql = "SELECT IDNO, LNAME, FNAME, MNAME, EMAIL, COURSE_ID FROM tblstudent WHERE IDNO = ?";
+		$stmt = $db->conn->prepare($sql);
+		$stmt->bind_param("i", $IDNO);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$student = $result->fetch_assoc();
+		$stmt->close();
+	
+
+		sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], 'rejected', $student['MNAME'], $student['IDNO'], $student['COURSE_ID']);
+
+		message("Student Rejected", "success");
+		redirect("index.php?view=success&IDNO=".$_GET['IDNO']);
+		exit();
+	}
 
 
 

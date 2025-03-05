@@ -270,7 +270,7 @@ $_SESSION['SY'] = $sy;
 			message("Regular loads has been added to the new enrollees!", "success");
 			redirect("index.php?view=success&IDNO=".$_GET['IDNO']);
 
-			
+}
 			function rejectStudent($IDNO, $db) {
 				$updateStatus = "UPDATE tblstudent SET student_status = 'rejected' WHERE IDNO = ?";
 				$stmt = $db->conn->prepare($updateStatus);
@@ -285,12 +285,6 @@ $_SESSION['SY'] = $sy;
 				$result = $stmt2->get_result();
 				$student = $result->fetch_assoc();
 				$stmt2->close();
-
-				$updateaccount = "UPDATE studentaccount SET STATUS = 'rejected', WHERE IDNO = ?";
-				$stmt = $db->conn->prepare($updateaccount);
-				$stmt->bind_param("i", $IDNO);
-				$stmt->execute();
-				$stmt->close();
 			
 
 				sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], "rejected", $IDNO,$db);
@@ -301,11 +295,9 @@ $_SESSION['SY'] = $sy;
 			}
 
 
-
 			
 			
 		 
-	}
 	 function doAddCreditSubject(){
 global $mydb;
  
@@ -511,125 +503,4 @@ global $mydb;
 		redirect(web_root."admin/enrollees/index.php?view=enrolledsubject&IDNO=".$_GET['IDNO']);
 	 }
 
-	 function doSubmitSubject(){
-		global $mydb;
-
-	 	 if (isset($_SESSION['admingvCart'])) {
-				 	# code...
-	 	 	$sql = "SELECT * FROM tblstudent WHERE IDNO=" .$_POST['IDNO'];
-	 	 	$strRes = mysqli_query($mydb->conn,$sql) or die(mysqli_error($mydb->conn));
-	 	 	$cid = mysqli_fetch_assoc($strRes);
-
-
-	 	 	$sql = "SELECT * FROM course WHERE COURSE_ID=" . $cid['COURSE_ID'];
-	 	 	$strRes = mysqli_query($mydb->conn,$sql) or die(mysqli_error($mydb->conn));
-	 	 	$courseLevel = mysqli_fetch_assoc($strRes);
-
-	 	 	$sem = new Semester();
-			$resSem = $sem->single_semester();
-			$_SESSION['SEMESTER'] = $resSem->SEMESTER; 
-
-
-			$currentyear = date('Y');
-			$nextyear =  date('Y') + 1;
-			$sy = $currentyear .'-'.$nextyear;
-			$_SESSION['SY'] = $sy;
-
-
-		  
-				
-					$count_cart = count($_SESSION['admingvCart']);
-
-			                for ($i=0; $i < $count_cart  ; $i++) {  
-
-			                    $query = "SELECT * FROM `subject` s, `course` c WHERE s.COURSE_ID=c.COURSE_ID AND SUBJ_ID=" . $_SESSION['admingvCart'][$i]['subjectid'];
-			                   	$resQuery = mysqli_query($mydb->conn,$query) or die(mysqli_error($mydb->conn));
-
-			                   	while ($row = mysqli_fetch_array($resQuery)) {
-			                   		# code...
-			                   
-
-			                     // $mydb->setQuery($query);
-			                     // $cur = $mydb->loadResultList(); 
-			                     //  foreach ($cur as $result) { 
-
-			                      	$sql = "SELECT * FROM `studentsubjects` WHERE  `IDNO`=". $_POST['IDNO']." AND `SUBJ_ID`=".$row['SUBJ_ID'];
-			                     	$resQuery = mysqli_query($mydb->conn,$query) or die(mysqli_error($mydb->conn));
-
-			                   	while ($rows = mysqli_fetch_array($resQuery)) {
-
-			                      // 	 $mydb->setQuery($query);
-				                     // $cur = $mydb->loadResultList(); 
-				                     //  foreach ($cur as $result) { 
-				                      	
-				                      	if (file_exists($rows['SUBJ_ID'])) {
-				                      		# code...
-				                      		$studentsubject = New StudentSubjects();
-											$studentsubject->ATTEMP 	= $studentsubject->ATTEMP + 1; 
-											$studentsubject->LEVEL 		= $courseLevel['COURSE_LEVEL'];
-											$studentsubject->SEMESTER 	= $_SESSION['SEMESTER'];
-											$studentsubject->SY 		= $_SESSION['SY'];
-											$studentsubject->updateSubject($result->SUBJ_ID,$_POST['IDNO']);
-				                      	}else{
-
-				                      		$studentsubject = New StudentSubjects();
-											$studentsubject->IDNO 		= $_POST['IDNO'];
-											$studentsubject->SUBJ_ID	= $rows['SUBJ_ID'];
-											$studentsubject->LEVEL 		= $courseLevel['COURSE_LEVEL'];
-											$studentsubject->SEMESTER 	= $_SESSION['SEMESTER'];
-											$studentsubject->SY 		= $_SESSION['SY'];
-											$studentsubject->create();
-
-											$grade = New Grade();
-											$grade->IDNO     = $_POST['IDNO'];
-											$grade->SUBJ_ID	 = $row['SUBJ_ID'];
-											$grade->SEMS     = $_SESSION['SEMESTER'];
-											$grade->create();
-
-				                      	}
-				                      }
- 
-									
-
-									$sql = "INSERT INTO `schoolyr`
-									(`AY`, `SEMESTER`, `COURSE_ID`, `IDNO`, `CATEGORY`, `DATE_RESERVED`, `DATE_ENROLLED`, `STATUS`)
-									VALUES ('".$_SESSION['SY']."','".$_SESSION['SEMESTER']."','".$row['COURSE_ID']."','".$_POST['IDNO']."','ENROLLED','".date('Y-m-d')."','".date('Y-m-d')."','New');";
-									$res = mysqli_query($mydb->conn,$sql) or die(mysqli_error($mydb->conn));
-			                      }      
-			                } 
-
-
-							$query = "SELECT * FROM `tblstudent` WHERE `COURSE_ID`=". $cid['COURSE_ID'];
-							$result = mysqli_query($mydb->conn,$query) or die(mysqli_error($mydb->conn));
-							$numrow = mysqli_num_rows($result);
-							// $maxrows = count($numrow);
-
-			                if ($numrow > 40) {
-								# code...
-								$student = New Student();  
-								$student->NewEnrollees =0;  
-								$student->YEARLEVEL =  $courseLevel['COURSE_LEVEL'];
-								$student->STUDSECTION = 2;
-								$student->update($_POST['IDNO']);
-							}else{
-								$student = New Student();  
-								$student->NewEnrollees =0;  
-								$student->YEARLEVEL =  $courseLevel['COURSE_LEVEL'];
-								$student->STUDSECTION = 1;
-								$student->update($_POST['IDNO']);
-							}
-
-				  	// 		$student = New Student();  
-							// $student->NewEnrollees =0;  
-							// $student->YEARLEVEL = $courseLevel['COURSE_LEVEL'];
-							// $student->update($_POST['IDNO']);
-			              
-
-			              
-
-							message("Load has been added to the transferee enrollees!", "success");
-							redirect("index.php?view=success&IDNO=".$_POST['IDNO']);
-			
-			              }
-	 }
-?>
+	 
