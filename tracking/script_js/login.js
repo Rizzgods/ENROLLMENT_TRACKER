@@ -105,12 +105,17 @@ $(document).ready(function () {
     $("#forgotPasswordForm").submit(function (event) {
         event.preventDefault(); // Prevent default form submission
 
+        // Show the loading modal
+        $("#loadingModal").removeClass("hidden");
+
         $.ajax({
             url: "Logic_forgot.php",
             type: "POST",
             data: $(this).serialize(),
             dataType: "json",
             success: function (response) {
+                $("#loadingModal").addClass("hidden"); // Hide loading modal when done
+
                 if (response.status === "success") {
                     $("#forgotPasswordModal").addClass("hidden"); // Hide forgot password modal
                     $("#successModal").removeClass("hidden"); // Show success modal
@@ -119,17 +124,19 @@ $(document).ready(function () {
                 }
             },
             error: function () {
+                $("#loadingModal").addClass("hidden"); // Hide loading modal on error
                 alert("Something went wrong. Please try again.");
             }
         });
     });
 
-    // Close modals when clicking the close buttons
-    $("#closeModal").click(function () {
-        $("#forgotPasswordModal").addClass("hidden");
-    });
-
+    // Close Success Modal
     $("#closeSuccessModal").click(function () {
         $("#successModal").addClass("hidden");
+    });
+
+    // Close Forgot Password Modal
+    $("#closeModal").click(function () {
+        $("#forgotPasswordModal").addClass("hidden");
     });
 });
