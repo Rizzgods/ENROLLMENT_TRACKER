@@ -11,8 +11,23 @@ include 'Logic_forgot.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Student Login | Bestlink Enrollment Tracker</title>
+    <title>Bestlink Enrollment System</title>
 </head>
+
+<style>
+    .loader {
+        border: 4px solid transparent;
+        border-top-color: blue;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+</style>
 <body class="bg-[url('assets/bestlink.jpg')] bg-cover relative">
 
     <!-- Grey Overlay -->
@@ -40,6 +55,14 @@ include 'Logic_forgot.php';
         <button id="closeModal" class="mt-4 text-sm text-gray-600 hover:underline">Close</button>
     </div>
 </div>       
+
+<div id="loadingModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-80 text-center">
+        <h2 class="text-lg font-semibold mb-2">Processing...</h2>
+        <div class="loader border-t-4 border-blue-600 border-solid rounded-full w-12 h-12 mx-auto animate-spin"></div>
+        <p class="text-gray-600 mt-2">Please wait...</p>
+    </div>
+</div>
 
 
 <div id="successModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">

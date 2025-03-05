@@ -34,7 +34,7 @@
             </ul>
         </div>
         
-        <form id="resetPasswordForm" class="mt-4">
+        <form id="resetPasswordForm" action="" class="mt-4">
             
             <input type="hidden" name="token" id="token" value="<?php echo htmlspecialchars($_GET['token'] ?? ''); ?>">
 

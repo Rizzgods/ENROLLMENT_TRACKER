@@ -64,10 +64,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST
         $mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
         $mail->addAddress($email, "$fname $lname"); 
 
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+
+        // Get the current host (e.g., localhost or your domain)
+        $host = $_SERVER['HTTP_HOST'];
+        
+        // Construct the absolute URL for the reset link
+        $reset_link = $protocol . $host . '/onlineenrolmentsystem/tracking/passwordreset.php?token=' . $token;
+        
+        // Construct the absolute URL for the logo
+        $logo_url = $protocol . $host . '/onlineenrolmentsystem/assets/logo.png';
+        
         $mail->isHTML(true);
         $mail->Subject = "Bestlink Account Password Reset";
-        $reset_link = "http://localhost/onlineenrolmentsystem/tracking/passwordreset.php?token=" . $token;
-        $mail->Body = "Hello <b>$fname $lname</b>,<br><br>Click the link below to reset your password:<br><a href='$reset_link'>$reset_link</a><br><br>If you didn't request this, please ignore this email.";
+        $mail->Body = "
+            <p>Hello <b>$fname $lname</b>,</p>
+            <p>Click the link below to reset your password:</p>
+            <p><a href='$reset_link'>$reset_link</a></p>
+            <p>If you didn't request this, please ignore this email.</p>
+        ";
 
         $mail->send();
         echo json_encode(["status" => "success", "message" => "Password reset link has been sent to your email."]);
