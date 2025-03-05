@@ -83,3 +83,53 @@ $(document).ready(function() {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+    const forgotPasswordModal = document.getElementById("forgotPasswordModal");
+    const closeModal = document.getElementById("closeModal");
+
+    // Show modal when "Forgot Password?" is clicked
+    forgotPasswordLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        forgotPasswordModal.classList.remove("hidden");
+    });
+
+    // Hide modal when "Close" is clicked
+    closeModal.addEventListener("click", function() {
+        forgotPasswordModal.classList.add("hidden");
+    });
+});
+
+$(document).ready(function () {
+    $("#forgotPasswordForm").submit(function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        $.ajax({
+            url: "Logic_forgot.php",
+            type: "POST",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function (response) {
+                if (response.status === "success") {
+                    $("#forgotPasswordModal").addClass("hidden"); // Hide forgot password modal
+                    $("#successModal").removeClass("hidden"); // Show success modal
+                } else {
+                    alert(response.message); // Show error message if email is not found
+                }
+            },
+            error: function () {
+                alert("Something went wrong. Please try again.");
+            }
+        });
+    });
+
+    // Close modals when clicking the close buttons
+    $("#closeModal").click(function () {
+        $("#forgotPasswordModal").addClass("hidden");
+    });
+
+    $("#closeSuccessModal").click(function () {
+        $("#successModal").addClass("hidden");
+    });
+});

@@ -110,3 +110,11 @@ Stack trace:
 #0 C:\wamp64\www\onlineenrolmentsystem\tracking\Logic_login.php(28): mysqli->prepare('\r\n        SELEC...')
 #1 {main}
   thrown in C:\wamp64\www\onlineenrolmentsystem\tracking\Logic_login.php on line 28
+[05-Mar-2025 05:23:11 UTC] PHP Warning:  Undefined array key "username" in C:\wamp64\www\onlineenrolmentsystem\tracking\Logic_login.php on line 24
+[05-Mar-2025 05:23:11 UTC] PHP Stack trace:
+[05-Mar-2025 05:23:11 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\student_login.php:0
+[05-Mar-2025 05:23:11 UTC] PHP   2. include() C:\wamp64\www\onlineenrolmentsystem\tracking\student_login.php:3
+[05-Mar-2025 05:23:11 UTC] PHP Warning:  Undefined array key "password" in C:\wamp64\www\onlineenrolmentsystem\tracking\Logic_login.php on line 25
+[05-Mar-2025 05:23:11 UTC] PHP Stack trace:
+[05-Mar-2025 05:23:11 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\tracking\student_login.php:0
+[05-Mar-2025 05:23:11 UTC] PHP   2. include() C:\wamp64\www\onlineenrolmentsystem\tracking\student_login.php:3

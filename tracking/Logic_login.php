@@ -19,8 +19,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+ 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST['form_type'] == "login") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
