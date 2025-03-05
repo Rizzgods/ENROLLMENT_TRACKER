@@ -32,23 +32,23 @@ require_once __DIR__ .  "/Logic_validate.php";
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-4">
-                            <label for="FNAME" class="block text-sm font-medium text-gray-700">First Name</label>
+                            <label for="FNAME" class="block text-sm font-medium text-gray-700">First Name <span class="text-red-500">*</span></label>
                             <input required id="FNAME" name="FNAME" placeholder="Enter your first name" type="text" value="<?php echo isset($_SESSION['FNAME']) ? $_SESSION['FNAME'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
                         <div class="space-y-4">
-                            <label for="LNAME" class="block text-sm font-medium text-gray-700">Last Name</label>
+                            <label for="LNAME" class="block text-sm font-medium text-gray-700">Last Name <span class="text-red-500">*</span></label>
                             <input required id="LNAME" name="LNAME" placeholder="Last Name" type="text" value="<?php echo isset($_SESSION['LNAME']) ? $_SESSION['LNAME'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
                         <div class="space-y-4">
-                            <label for="MI" class="block text-sm font-medium text-gray-700">Middle Name</label>
+                            <label for="MI" class="block text-sm font-medium text-gray-700">Middle Name <span class="text-red-500">*</span></label>
                             <input required id="MI" name="MI" placeholder="Middle Name" type="text" value="<?php echo isset($_SESSION['MI']) ? $_SESSION['MI'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
                         <div class="space-y-4">
-                            <label for="PADDRESS" class="block text-sm font-medium text-gray-700">Address</label>
+                            <label for="PADDRESS" class="block text-sm font-medium text-gray-700">Address <span class="text-red-500">*</span></label>
                             <input required id="PADDRESS" name="PADDRESS" placeholder="Permanent Address" type="text" value="<?php echo isset($_SESSION['PADDRESS']) ? $_SESSION['PADDRESS'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
                         <div class="space-y-4">
-                            <label for="EMAIL" class="block text-sm font-medium text-gray-700">Email</label>
+                            <label for="EMAIL" class="block text-sm font-medium text-gray-700">Email <span class="text-red-500">*</span></label>
                             <input type="email" name="EMAIL" id="email" required 
                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                    value="<?php echo isset($_SESSION['verifiedEmail']) ? $_SESSION['verifiedEmail'] : ''; ?>" readonly>
@@ -60,7 +60,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                 <div class="step hidden" id="step2">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-4">
-                            <label class="block text-sm font-medium text-gray-700">Sex</label>
+                            <label class="block text-sm font-medium text-gray-700">Sex <span class="text-red-500">*</span></label>
                             <div class="flex space-x-4">
                                 <label class="inline-flex items-center">
                                     <input checked id="optionsRadios1" name="optionsRadios" type="radio" value="Female" class="w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-500">
@@ -73,11 +73,11 @@ require_once __DIR__ .  "/Logic_validate.php";
                             </div>
                         </div>
                         <div class="space-y-4">
-                            <label for="BIRTHDATE" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                            <label for="BIRTHDATE" class="block text-sm font-medium text-gray-700">Date of Birth <span class="text-red-500">*</span></label>
                             <input required id="BIRTHDATE" name="BIRTHDATE" type="date" placeholder="mm/dd/yyyy" value="<?php echo isset($_SESSION['BIRTHDATE']) ? $_SESSION['BIRTHDATE'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
                         <div class="space-y-4">
-                            <label for="BIRTHPLACE" class="block text-sm font-medium text-gray-700">Place of Birth</label>
+                            <label for="BIRTHPLACE" class="block text-sm font-medium text-gray-700">Place of Birth <span class="text-red-500">*</span></label>
                             <input required id="BIRTHPLACE" name="BIRTHPLACE" placeholder="Place of Birth" type="text" value="<?php echo isset($_SESSION['BIRTHPLACE']) ? $_SESSION['BIRTHPLACE'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
                     </div>
@@ -87,19 +87,19 @@ require_once __DIR__ .  "/Logic_validate.php";
                 <div class="step hidden" id="step3">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-4">
-                            <label for="NATIONALITY" class="block text-sm font-medium text-gray-700">Nationality</label>
+                            <label for="NATIONALITY" class="block text-sm font-medium text-gray-700">Nationality <span class="text-red-500">*</span></label>
                             <input required id="NATIONALITY" name="NATIONALITY" placeholder="Nationality" type="text" value="<?php echo isset($_SESSION['NATIONALITY']) ? $_SESSION['NATIONALITY'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
                         <div class="space-y-4">
-                            <label for="RELIGION" class="block text-sm font-medium text-gray-700">Religion</label>
+                            <label for="RELIGION" class="block text-sm font-medium text-gray-700">Religion <span class="text-red-500">*</span></label>
                             <input required id="RELIGION" name="RELIGION" placeholder="Religion" type="text" value="<?php echo isset($_SESSION['RELIGION']) ? $_SESSION['RELIGION'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
                         <div class="space-y-4">
-                            <label for="CONTACT" class="block text-sm font-medium text-gray-700">Contact No.</label>
+                            <label for="CONTACT" class="block text-sm font-medium text-gray-700">Contact No. <span class="text-red-500">*</span></label>
                             <input required id="CONTACT" name="CONTACT" placeholder="Contact Number" type="number" maxlength="11" value="<?php echo isset($_SESSION['CONTACT']) ? $_SESSION['CONTACT'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
                         <div class="space-y-4">
-                            <label for="COURSE" class="block text-sm font-medium text-gray-700">Course/Year</label>
+                            <label for="COURSE" class="block text-sm font-medium text-gray-700">Course/Year <span class="text-red-500">*</span></label>
                             <select name="COURSE" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                 <?php
                                 if(isset($_SESSION['COURSEID'])){
@@ -120,7 +120,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                             </select>
                         </div>
                         <div class="space-y-4">
-                            <label for="SEMESTER" class="block text-sm font-medium text-gray-700">Semester to Enroll</label>
+                            <label for="SEMESTER" class="block text-sm font-medium text-gray-700">Semester to Enroll <span class="text-red-500">*</span></label>
                             <select required id="SEMESTER" name="SEMESTER" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                 <option value="">Select Semester</option>
                                 <option value="1">1st Semester</option>
@@ -134,7 +134,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                 <div class="step hidden" id="step4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-4">
-                            <label for="CIVILSTATUS" class="block text-sm font-medium text-gray-700">Civil Status</label>
+                            <label for="CIVILSTATUS" class="block text-sm font-medium text-gray-700">Civil Status <span class="text-red-500">*</span></label>
                             <select name="CIVILSTATUS" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                 <option value="Select">Select Status</option>
                                 <option value="Single">Single</option>
@@ -143,11 +143,11 @@ require_once __DIR__ .  "/Logic_validate.php";
                             </select>
                         </div>
                         <div class="space-y-4">
-                            <label for="GUARDIAN" class="block text-sm font-medium text-gray-700">Guardian</label>
+                            <label for="GUARDIAN" class="block text-sm font-medium text-gray-700">Guardian <span class="text-red-500">*</span></label>
                             <input required id="GUARDIAN" name="GUARDIAN" placeholder="Guardian Name" type="text" value="<?php echo isset($_SESSION['GUARDIAN']) ? $_SESSION['GUARDIAN'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
                         <div class="space-y-4">
-                            <label for="GCONTACT" class="block text-sm font-medium text-gray-700">Guardian Contact</label>
+                            <label for="GCONTACT" class="block text-sm font-medium text-gray-700">Guardian Contact <span class="text-red-500">*</span></label>
                             <input required id="GCONTACT" name="GCONTACT" placeholder="Contact Number" type="text" value="<?php echo isset($_SESSION['GCONTACT']) ? $_SESSION['GCONTACT'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
                     </div>
@@ -158,7 +158,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                     <div class="space-y-6">
                         <!-- Student Type Dropdown -->
                         <div class="space-y-4">
-                            <label for="stud_type" class="block text-sm font-medium text-gray-700">Student Type</label>
+                            <label for="stud_type" class="block text-sm font-medium text-gray-700">Student Type <span class="text-red-500">*</span></label>
                             <select required id="stud_type" name="stud_type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                 <option value="">Select Student Type</option>
                                 <option value="senior high">Senior High</option>
@@ -166,7 +166,21 @@ require_once __DIR__ .  "/Logic_validate.php";
                                 <option value="freshmen college">Freshmen College</option>
                             </select>
                         </div>
-
+                         <!-- Warning Banner for Requirements -->
+                         <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-yellow-700 font-medium">
+                                        All missing requirements will be treated as "TO-FOLLOW" and must be present during the enrollment/submission day.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Required Documents -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Form 138 -->

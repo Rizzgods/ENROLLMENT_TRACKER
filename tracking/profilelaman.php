@@ -7,6 +7,9 @@ if(isset($_SESSION['id_pic'])) {
     error_log('Session id_pic length: ' . strlen($_SESSION['id_pic']));
 }
 
+// Debug payment status specifically
+error_log('Payment status in session: ' . ($_SESSION['payment'] ?? 'Not set'));
+
 // Add this debug line temporarily to check the session data
 error_log(print_r($_SESSION, true));
 
@@ -71,16 +74,38 @@ function displaySessionData($key, $default = 'N/A') {
                     </div>
 
                     <!-- Payment Status -->
-                    <?php $payment = $_SESSION['payment'] ?? 'UNPAID'; ?>
-                    <div class="flex items-center p-4 <?php echo $payment === 'PAID' ? 'bg-green-50' : 'bg-red-50'; ?> rounded-lg">
-                        <svg class="w-6 h-6 <?php echo $payment === 'PAID' ? 'text-green-600' : 'text-red-600'; ?> mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <?php 
+                    // Make sure we use case-insensitive comparison since database might return 'Paid' or 'PAID'
+                    $payment = strtoupper($_SESSION['payment'] ?? 'UNPAID'); 
+                    ?>
+                    
+                    <!-- PAID Status Element -->
+                    <div id="paid-status" class="flex items-center p-4 bg-green-50 rounded-lg" style="display: none;">
+                        <svg class="w-6 h-6 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                         <div>
                             <p class="text-sm text-gray-600">Payment Status</p>
-                            <p class="font-semibold <?php echo $payment === 'PAID' ? 'text-green-800' : 'text-red-800'; ?>">
-                                <?php echo htmlspecialchars($payment); ?>
-                            </p>
+                            <p class="font-semibold text-green-800">PAID</p>
+                        </div>
+                        <div class="ml-auto">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Verified
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- UNPAID Status Element -->
+                    <div id="unpaid-status" class="flex items-center p-4 bg-red-50 rounded-lg" style="display: none;">
+                        <svg class="w-6 h-6 text-red-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <div>
+                            <p class="text-sm text-gray-600">Payment Status</p>
+                            <p class="font-semibold text-red-800">UNPAID</p>
                         </div>
                     </div>
                 </div>
@@ -98,5 +123,25 @@ function displaySessionData($key, $default = 'N/A') {
         </div>
     </div>
 
-    
+    <!-- JavaScript to toggle payment status visibility with debugging -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentStatus = "<?php echo htmlspecialchars($payment); ?>";
+            const paidElement = document.getElementById('paid-status');
+            const unpaidElement = document.getElementById('unpaid-status');
+            
+            console.log('Payment status:', paymentStatus);
+            
+            // Use case-insensitive comparison
+            if (paymentStatus.toUpperCase() === 'PAID') {
+                paidElement.style.display = 'flex';
+                unpaidElement.style.display = 'none';
+                console.log('Showing PAID status');
+            } else {
+                paidElement.style.display = 'none';
+                unpaidElement.style.display = 'flex';
+                console.log('Showing UNPAID status');
+            }
+        });
+    </script>
 </body>

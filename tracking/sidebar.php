@@ -35,22 +35,7 @@
                         <span class="absolute left-full ml-4 bg-gray-900 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200">Requirements</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#" class="flex justify-center text-white hover:text-blue-200 transition duration-150 group relative">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span class="absolute left-full ml-4 bg-gray-900 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200">About</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex justify-center text-white hover:text-blue-200 transition duration-150 group relative">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                        <span class="absolute left-full ml-4 bg-gray-900 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200">Contact</span>
-                    </a>
-                </li>
+
               
             </ul>
         </nav>

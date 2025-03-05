@@ -74,51 +74,124 @@ function assignSchedule($db) {
 }
 
 function sendEmail($EMAIL, $FNAME, $LNAME, $status, $IDNO, $db) {
-	$mail = new PHPMailer(true);
-	try {
-		// Server settings
-		$mail->isSMTP();
-		$mail->Host       = 'smtp.gmail.com'; // Your SMTP server
-		$mail->SMTPAuth   = true;
-		$mail->Username   = 'taranavalvista@gmail.com'; // Your email
-		$mail->Password   = 'kdiq oeqm cuyr yhuz'; // Your email password
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-		$mail->Port       = 587;
-		$mail->isHTML(true);
+    $mail = new PHPMailer(true);
+    try {
+        // Server settings
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com'; // Your SMTP server
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'taranavalvista@gmail.com'; // Your email
+        $mail->Password   = 'kdiq oeqm cuyr yhuz'; // Your email password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+        $mail->isHTML(true);
 
-		// Recipients
-		$mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
-		$mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
+        // Recipients
+        $mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
+        $mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
 
+        // Get the absolute URL for the logo
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+        $host = $_SERVER['HTTP_HOST'];
+        $logo_url = $protocol . $host . '/onlineenrolmentsystem/assets/logo.png';
 
-		$scheduleQuery = "SELECT SCHEDULE FROM studentaccount WHERE user_id = ?";
-		$stmt = $db->conn->prepare($scheduleQuery);
-		$stmt->bind_param("i", $IDNO);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		$row = $result->fetch_assoc();
-		$schedule = $row['SCHEDULE'];
-		$stmt->close();
+        // Get schedule information
+        $scheduleQuery = "SELECT SCHEDULE FROM studentaccount WHERE user_id = ?";
+        $stmt = $db->conn->prepare($scheduleQuery);
+        $stmt->bind_param("i", $IDNO);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $schedule = $row['SCHEDULE'] ?? 'Not Assigned';
+        $stmt->close();
 
-		if ($status == "approved") {
-			$mail->Subject = "Enrollment Confirmation";
-			$mail->Body = "<p>Hello $FNAME,</p>
-				<p>Your enrollment has been successfully processed.</p>
-				<p><b>Student ID:</b> $IDNO</p>
-				<p><b>Schedule:</b> $schedule</p>
-				<p>Welcome aboard!</p>";
+        if ($status == "approved") {
+            $mail->Subject = "Enrollment Confirmation";
+            $mail->Body = "
+                <div style='font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto;'>
+                    <!-- Header with Logo -->
+                    <div style='background-color: #1a56db; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;'>
+                        <img src='{$logo_url}' alt='Bestlink Logo' style='max-height: 80px; margin-bottom: 10px;'>
+                        <h1 style='color: white; margin: 0; font-size: 24px;'>BESTLINK ENROLLMENT SYSTEM</h1>
+                    </div>
+                    
+                    <!-- Email Content -->
+                    <div style='background-color: #f9fafb; border-radius: 0 0 8px 8px; padding: 20px; border: 1px solid #e5e7eb; border-top: none;'>
+                        <h3 style='color: #4A5568; margin-top: 0;'>Hello $FNAME,</h3>
+                        <p>Your enrollment has been <strong style='color: #10B981;'>APPROVED</strong>!</p>
+                        
+                        <div style='background-color: white; border-radius: 8px; padding: 15px; margin: 20px 0; border: 1px solid #e5e7eb;'>
+                            <p style='font-weight: bold; color: #4A5568; margin-top: 0;'>Student Information:</p>
+                            <table style='width: 100%; border-collapse: collapse;'>
+                                <tr>
+                                    <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb; width: 40%;'><b>Student ID:</b></td>
+                                    <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$IDNO</td>
+                                </tr>
+                                <tr>
+                                    <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Full Name:</b></td>
+                                    <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$FNAME $LNAME</td>
+                                </tr>
+                                <tr>
+                                    <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Schedule:</b></td>
+                                    <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$schedule</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div style='background-color: #d1fae5; border-left: 4px solid #10B981; padding: 15px; margin: 20px 0; border-radius: 4px;'>
+                            <p style='margin: 0;'><strong>Welcome to Bestlink College of the Philippines!</strong> Your enrollment has been successfully processed. Please log in to your student account to view your complete schedule and course details.</p>
+                        </div>
+                        
+                        <p>If you have any questions, please contact us at <a href='mailto:support@bestlink.edu.ph' style='color: #3182CE;'>support@bestlink.edu.ph</a>.</p>
+                        
+                        <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 14px;'>
+                            <p style='margin-bottom: 5px;'><b>Thank you for enrolling!</b></p>
+                            <p style='margin-top: 0; color: #6B7280;'>Bestlink Enrollment Team</p>
+                        </div>
+                    </div>
+                </div>
+            ";
+        } else {
+            $mail->Subject = "Enrollment Application Status";
+            $mail->Body = "
+                <div style='font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto;'>
+                    <!-- Header with Logo -->
+                    <div style='background-color: #1a56db; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;'>
+                        <img src='{$logo_url}' alt='Bestlink Logo' style='max-height: 80px; margin-bottom: 10px;'>
+                        <h1 style='color: white; margin: 0; font-size: 24px;'>BESTLINK ENROLLMENT SYSTEM</h1>
+                    </div>
+                    
+                    <!-- Email Content -->
+                    <div style='background-color: #f9fafb; border-radius: 0 0 8px 8px; padding: 20px; border: 1px solid #e5e7eb; border-top: none;'>
+                        <h3 style='color: #4A5568; margin-top: 0;'>Hello $FNAME,</h3>
+                        <p>We have reviewed your enrollment application.</p>
+                        
+                        <div style='background-color: #fee2e2; border-left: 4px solid #EF4444; padding: 15px; margin: 20px 0; border-radius: 4px;'>
+                            <p style='margin: 0;'>Unfortunately, after careful consideration, your enrollment application has not been approved at this time.</p>
+                        </div>
+                        
+                        <p>Please contact the administration office for more information about your application status. We're here to help you understand the reason and explore your options moving forward.</p>
+                        
+                        <div style='background-color: #eff6ff; border-radius: 8px; padding: 15px; margin: 20px 0; border: 1px solid #dbeafe;'>
+                            <p style='font-weight: bold; color: #1E40AF; margin-top: 0;'>Contact Information:</p>
+                            <p style='margin-bottom: 5px;'><b>Phone:</b> (123) 456-7890</p>
+                            <p style='margin-bottom: 5px;'><b>Email:</b> <a href='mailto:admissions@bestlink.edu.ph' style='color: #3182CE;'>admissions@bestlink.edu.ph</a></p>
+                            <p style='margin-bottom: 0;'><b>Office Hours:</b> Monday-Friday, 8:00am - 5:00pm</p>
+                        </div>
+                        
+                        <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 14px;'>
+                            <p style='margin-bottom: 5px;'>Thank you for your interest in Bestlink College of the Philippines.</p>
+                            <p style='margin-top: 0; color: #6B7280;'>Bestlink Enrollment Team</p>
+                        </div>
+                    </div>
+                </div>
+            ";
+        }
 
-		} else {
-			$mail->Subject = "Enrollment Rejection";
-			$mail->Body = "<p>Hello $FNAME,</p>
-				<p>Unfortunately, your enrollment application has been rejected.</p>
-				<p>Please contact the administration for further details.</p>";
-		}
-
-		$mail->send();
-	} catch (Exception $e) {
-		error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
-	}
+        $mail->send();
+    } catch (Exception $e) {
+        error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
+    }
 }
 
 function doConfirm($IDNO, $db){

@@ -123,12 +123,40 @@ if (isset($_POST['regsubmit'])) {
         }
 
         // Generate username and password
-        $username = strtolower($FNAME . $LNAME); // firstnamelastname
+        // Generate username and password
+        // Fix the username generation to remove spaces
+        $username = strtolower(str_replace(' ', '', $FNAME) . $LNAME); // firstnamelastname (spaces removed)
         error_log("Generated username: " . $username);
 
-        $birthdate = new DateTime($BIRTHDATE);
-        $password = $birthdate->format('mdy'); // mmddyy format
-        error_log("Password generated from birthdate: " . $BIRTHDATE);
+        // Generate a secure password meeting the criteria
+        function generateSecurePassword($length = 12) {
+            $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $lowercase = 'abcdefghijklmnopqrstuvwxyz';
+            $numbers = '0123456789';
+            $special = '@#$%^&*()_-+=<>?';
+            
+            // Ensure we have at least one of each character type
+            $password = [
+                $uppercase[rand(0, strlen($uppercase) - 1)],
+                $lowercase[rand(0, strlen($lowercase) - 1)],
+                $numbers[rand(0, strlen($numbers) - 1)],
+                $special[rand(0, strlen($special) - 1)]
+            ];
+            
+            // Fill the rest of the password
+            $allChars = $uppercase . $lowercase . $numbers . $special;
+            for ($i = 4; $i < $length; $i++) {
+                $password[] = $allChars[rand(0, strlen($allChars) - 1)];
+            }
+            
+            // Shuffle to avoid predictable pattern (first uppercase, then lowercase, etc.)
+            shuffle($password);
+            
+            return implode('', $password);
+        }
+        
+        $password = generateSecurePassword();
+        error_log("Generated secure password: [REDACTED FOR SECURITY]");
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -185,26 +213,68 @@ if (isset($_POST['regsubmit'])) {
                         $mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
                         $mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
 
+                        // Get the absolute URL for the logo
+                        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+                        $host = $_SERVER['HTTP_HOST'];
+                        $logo_url = $protocol . $host . '/onlineenrolmentsystem/assets/logo.png';
+
                         // Email content
                         $mail->isHTML(true);
                         $mail->Subject = "Enrollment Confirmation";
                         $mail->Body    = "
-                            <div style='font-family: Arial, sans-serif; color: #333;'>
-                            <h3 style='color: #4A5568;'>Hello $FNAME,</h3>
-                            <p>Your enrollment has been successfully processed.</p>
-                            <p><strong>Enrollment Details:</strong></p>
-                            <ul style='list-style-type: none; padding: 0;'>
-                                <li style='margin-bottom: 10px;'><b>Student ID:</b> $IDNO</li>
-                                <li style='margin-bottom: 10px;'><b>Full Name:</b> $FNAME $MI $LNAME</li>
-                                <li style='margin-bottom: 10px;'><b>Course:</b> $COURSEID</li>
-                                <li style='margin-bottom: 10px;'><b>Semester:</b> $SEMESTER</li>
-                                <li style='margin-bottom: 10px;'><b>Student Type:</b> $stud_type</li>
-                                <li style='margin-bottom: 10px;'><b>Username:</b> $username</li>
-                                <li style='margin-bottom: 10px;'><b>Password:</b> $password</li>
-                            </ul>
-                            <p>Your documents have been received and are being processed.</p>
-                            <p>Thank you for enrolling. If you have any questions, contact us at <a href='mailto:support@yourdomain.com' style='color: #3182CE;'>support@yourdomain.com</a>.</p>
-                            <p><b>- Enrollment Team</b></p>
+                            <div style='font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto;'>
+                                <!-- Header with Logo -->
+                                <div style='background-color: #1a56db; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;'>
+                                    <img src='{$logo_url}' alt='Bestlink Logo' style='max-height: 80px; margin-bottom: 10px;'>
+                                    <h1 style='color: white; margin: 0; font-size: 24px;'>BESTLINK ENROLLMENT SYSTEM</h1>
+                                </div>
+                                
+                                <!-- Email Content -->
+                                <div style='background-color: #f9fafb; border-radius: 0 0 8px 8px; padding: 20px; border: 1px solid #e5e7eb; border-top: none;'>
+                                    <h3 style='color: #4A5568; margin-top: 0;'>Hello $FNAME,</h3>
+                                    <p>Your enrollment has been successfully processed.</p>
+                                    
+                                    <div style='background-color: white; border-radius: 8px; padding: 15px; margin: 20px 0; border: 1px solid #e5e7eb;'>
+                                        <p style='font-weight: bold; color: #4A5568; margin-top: 0;'>Enrollment Details:</p>
+                                        <table style='width: 100%; border-collapse: collapse;'>
+                                            <tr>
+                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb; width: 40%;'><b>Student ID:</b></td>
+                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$IDNO</td>
+                                            </tr>
+                                            <tr>
+                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Full Name:</b></td>
+                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$FNAME $MI $LNAME</td>
+                                            </tr>
+                                            <tr>
+                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Course:</b></td>
+                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$COURSEID</td>
+                                            </tr>
+                                            <tr>
+                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Semester:</b></td>
+                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$SEMESTER</td>
+                                            </tr>
+                                            <tr>
+                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Student Type:</b></td>
+                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$stud_type</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                                    <div style='background-color: #ebf5ff; border-left: 4px solid #3182ce; padding: 15px; margin: 20px 0; border-radius: 4px;'>
+                                        <p style='margin-top: 0; font-weight: bold;'>Login Credentials</p>
+                                        <p><b>Username:</b> $username</p>
+                                        <p style='margin-bottom: 0;'><b>Password:</b> $password</p>
+                                        <p>Use these credentials to check on your progress at <a href='http://localhost/onlineenrolmentsystem/tracking/student_login.php' style='color: #3182CE;'>http://localhost/onlineenrolmentsystem/tracking/student_login.php</a></p>
+                                    </div>
+                                    
+                                    <p>Your documents have been received and are being processed.</p>
+                                    <p>If you have any questions, please contact us at <a href='mailto:support@yourdomain.com' style='color: #3182CE;'>support@yourdomain.com</a>.</p>
+                                    
+                                    <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 14px;'>
+                                        <p style='margin-bottom: 5px;'><b>Thank you for enrolling!</b></p>
+                                        <p style='margin-top: 0; color: #6B7280;'>Bestlink Enrollment Team</p>
+                                    </div>
+                                </div>
                             </div>
                         ";
 

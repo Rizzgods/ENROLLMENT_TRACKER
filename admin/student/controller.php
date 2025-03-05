@@ -55,7 +55,7 @@ switch ($action) {
 	
 
 
-	function sendEmail($EMAIL, $FNAME, $LNAME, $MNAME, $IDNO,$COURSEID) {
+		function sendEmail($EMAIL, $FNAME, $LNAME, $MNAME, $IDNO, $COURSEID) {
 		$mail = new PHPMailer(true);
 		try {
 			// Server settings
@@ -72,15 +72,92 @@ switch ($action) {
 			$mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
 			$mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
 	
-			$mail->Subject = "Enrollment Confirmation";
-			$mail->Body = "<p>Hello $FNAME,</p>
-				<p>You are officially enrolled in BestLink.</p>
-				<p><b>Student ID:</b> $IDNO</p>
-				<p><b>Last Name:</b> $LNAME</p>
-				<p><b>First Name:</b> $FNAME</p>
-				<p><b>Middle Name:</b> $MNAME</p>
-				<p><b>Course ID:</b> $COURSEID</p>
-				<p>Welcome aboard!</p>";
+			// Get the absolute URL for the logo
+			$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+			$host = $_SERVER['HTTP_HOST'];
+			$logo_url = $protocol . $host . '/onlineenrolmentsystem/assets/logo.png';
+	
+			// Fetch course name from COURSE_ID
+			global $mydb;
+			$courseQuery = "SELECT COURSE_NAME, COURSE_DESC FROM course WHERE COURSE_ID = ?";
+			$stmt = $mydb->conn->prepare($courseQuery);
+			$stmt->bind_param("i", $COURSEID);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$courseData = $result->fetch_assoc();
+			$courseName = $courseData ? $courseData['COURSE_NAME'] . ' - ' . $courseData['COURSE_DESC'] : 'Course #' . $COURSEID;
+			$stmt->close();
+	
+			$mail->Subject = "Payment Confirmation - Bestlink College";
+			$mail->Body = "
+				<div style='font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto;'>
+					<!-- Header with Logo -->
+					<div style='background-color: #1a56db; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;'>
+						<img src='{$logo_url}' alt='Bestlink Logo' style='max-height: 80px; margin-bottom: 10px;'>
+						<h1 style='color: white; margin: 0; font-size: 24px;'>BESTLINK ENROLLMENT SYSTEM</h1>
+					</div>
+					
+					<!-- Email Content -->
+					<div style='background-color: #f9fafb; border-radius: 0 0 8px 8px; padding: 20px; border: 1px solid #e5e7eb; border-top: none;'>
+						<h3 style='color: #4A5568; margin-top: 0;'>Hello $FNAME,</h3>
+						
+						<div style='background-color: #d1fae5; border-left: 4px solid #10B981; padding: 15px; margin: 20px 0; border-radius: 4px;'>
+							<p style='margin: 0; font-weight: bold;'>Your payment has been confirmed and you are now officially enrolled at Bestlink College of the Philippines!</p>
+						</div>
+						
+						<div style='background-color: white; border-radius: 8px; padding: 15px; margin: 20px 0; border: 1px solid #e5e7eb;'>
+							<p style='font-weight: bold; color: #4A5568; margin-top: 0;'>Student Information:</p>
+							<table style='width: 100%; border-collapse: collapse;'>
+								<tr>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb; width: 40%;'><b>Student ID:</b></td>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$IDNO</td>
+								</tr>
+								<tr>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Last Name:</b></td>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$LNAME</td>
+								</tr>
+								<tr>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>First Name:</b></td>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$FNAME</td>
+								</tr>
+								<tr>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Middle Name:</b></td>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$MNAME</td>
+								</tr>
+								<tr>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Program:</b></td>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$courseName</td>
+								</tr>
+								<tr>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Payment Status:</b></td>
+									<td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>
+										<span style='background-color: #d1fae5; color: #065f46; padding: 3px 8px; border-radius: 12px; font-size: 14px; font-weight: 500;'>PAID</span>
+									</td>
+								</tr>
+							</table>
+						</div>
+						
+						<div style='background-color: #eff6ff; border-radius: 8px; padding: 15px; margin: 20px 0; border: 1px solid #dbeafe;'>
+							<p style='font-weight: bold; color: #1E40AF; margin-top: 0;'>Next Steps:</p>
+							<ol style='margin-bottom: 0; padding-left: 20px;'>
+								<li>Log in to your student portal to view your class schedule</li>
+								<li>Download and review your course materials</li>
+								<li>Familiarize yourself with our campus facilities and resources</li>
+								<li>Attend the orientation session (details will be provided separately)</li>
+							</ol>
+						</div>
+						
+						<p>If you have any questions or need assistance, please contact our student services department:</p>
+						<p style='margin-bottom: 5px;'><b>Email:</b> <a href='mailto:studentservices@bestlink.edu.ph' style='color: #3182CE;'>studentservices@bestlink.edu.ph</a></p>
+						<p><b>Phone:</b> (02) 8-123-4567</p>
+						
+						<div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 14px;'>
+							<p style='margin-bottom: 5px;'><b>Welcome to Bestlink College of the Philippines!</b></p>
+							<p style='margin-top: 0; color: #6B7280;'>Bestlink Enrollment Team</p>
+						</div>
+					</div>
+				</div>
+			";
 	
 			$mail->send();
 		} catch (Exception $e) {

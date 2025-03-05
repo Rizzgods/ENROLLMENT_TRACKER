@@ -14,7 +14,7 @@ require_once __DIR__ .  "/Logic_reset.php";
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Swiper CSS CDN -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="css_files/cards.css" />
+
 </head>
 
 <body class="overflow-x-hidden"> <!-- Prevent horizontal scrolling -->
@@ -36,7 +36,5 @@ require_once __DIR__ .  "/Logic_reset.php";
 
     <!-- Swiper JS CDN -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="scripts_js/script.js"></script>
-    <script src = "script_js/reset.js"></script>
 </body>
 </html>
