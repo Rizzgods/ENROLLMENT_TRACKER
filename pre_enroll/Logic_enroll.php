@@ -50,6 +50,8 @@ function handleFileUpload($file) {
 }
 
 if (isset($_POST['regsubmit'])) {
+    // Buffer all output to prevent headers already sent issues
+    ob_start();
     require_once "../include/database.php"; 
 
     // Generate new IDNO using Autonumber class
@@ -209,8 +211,15 @@ if (isset($_POST['regsubmit'])) {
 
                     // ✅ Send Confirmation Email
                     $mail = new PHPMailer(true);
+                    
+                    // Clean any output buffers to avoid interfering with JSON response
+                    while (ob_get_level()) {
+                        ob_end_clean();
+                    }
+                    
                     try {
                         // Server settings
+                        $mail->SMTPDebug = 0; // Disable debug output in the response
                         $mail->isSMTP();
                         $mail->Host       = 'smtp.gmail.com'; // Your SMTP server
                         $mail->SMTPAuth   = true;
@@ -287,48 +296,44 @@ if (isset($_POST['regsubmit'])) {
                                 </div>
                             </div>
                         ";
-
-                        // Add this to your email sending section in Logic_enroll.php:
-                        try {
-                            // Server settings
-                            $mail->SMTPDebug = 2; // Enable verbose debug output
-                            ob_start(); // Start output buffering
-                            $mail->isSMTP();
-                            // ... rest of your email configuration ...
-                            
-                            $mail->send();
-                            $debug_output = ob_get_clean(); // Get the debug output
-                            error_log("Email debug: " . $debug_output); // Log it
-                            
+                        
+                        // Log email attempt
+                        error_log("Attempting to send email to: {$EMAIL}");
+                        
+                        // Send email and log result
+                        if($mail->send()) {
+                            error_log("Email successfully sent to: {$EMAIL}");
+                            // Return JSON success response (end execution)
                             header('Content-Type: application/json');
                             echo json_encode(['status' => 'success', 'message' => 'Enrollment successful']);
                             exit;
-                        } catch (Exception $e) {
-                            $debug_output = ob_get_clean(); // Get any debug output
-                            error_log("Email debug: " . $debug_output); // Log it
-                            error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
-                            header('Content-Type: application/json');
-                            echo json_encode(['status' => 'error', 'message' => 'Email sending failed: ' . $mail->ErrorInfo]);
-                            exit;
+                        } else {
+                            throw new Exception("Email could not be sent. Mailer Error: {$mail->ErrorInfo}");
                         }
+                        
                     } catch (Exception $e) {
-                        error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
+                        error_log("Email sending failed: " . $e->getMessage());
+                        // Return JSON error response (end execution)
                         header('Content-Type: application/json');
-                        echo json_encode(['status' => 'error', 'message' => 'Email sending failed']);
+                        echo json_encode(['status' => 'error', 'message' => 'Email sending failed: ' . $e->getMessage()]);
                         exit;
                     }
+                } else {
+                    throw new Exception("Failed to create student account");
                 }
             } else {
                 throw new Exception("Failed to create student record: " . $stmt->error);
             }
         } catch (Exception $e) {
-            error_log("Error: " . $e->getMessage());
-            message("Error: " . $e->getMessage(), "error");
-            redirect("pre_enroll/home.php");
-            exit();
+            error_log("Database error: " . $e->getMessage());
+            // Return JSON error response (end execution)
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);
+            exit;
         }
     } catch (Exception $e) {
         error_log("Error: " . $e->getMessage());
+        // Return JSON error response (end execution)
         header('Content-Type: application/json');
         echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
         exit;

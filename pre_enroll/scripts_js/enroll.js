@@ -168,35 +168,51 @@ function showSuccessPopup() {
 document.querySelector('form').addEventListener('submit', async (e) => {
     e.preventDefault();
     
+    if (!validateStep(currentStep)) {
+        showErrorBubble(true);
+        return;
+    }
+    
     try {
         showLoadingScreen();
         const form = e.target;
         const formData = new FormData(form);
-        formData.append('regsubmit', 'true');
-
+        
+        // Debug form data
+        console.log('Submitting form with data:');
+        for (let [key, value] of formData.entries()) {
+            if (key === 'password') {
+                console.log(key + ': [REDACTED]');
+            } else {
+                console.log(key + ': ' + (value instanceof File ? value.name : value));
+            }
+        }
+        
         const response = await fetch('Logic_enroll.php', {
             method: 'POST',
             body: formData
         });
 
+        // Get the raw text response
+        const responseText = await response.text();
+        console.log('Raw server response:', responseText);
+        
         let result;
         try {
             // Try to parse the response as JSON
-            result = await response.json();
-            console.log('Server response:', result);
+            result = JSON.parse(responseText);
+            console.log('Parsed JSON response:', result);
         } catch (jsonError) {
             console.error('JSON parsing error:', jsonError);
-            // Get the raw text if JSON parsing fails
-            const text = await response.text();
-            console.error('Raw response:', text);
-            throw new Error('Invalid server response format');
+            throw new Error('Server returned invalid JSON. Raw response: ' + 
+                (responseText.length > 100 ? responseText.substring(0, 100) + '...' : responseText));
         }
 
-        if (response.ok && result && result.status === 'success') {
+        if (result && result.status === 'success') {
             hideLoadingScreen();
             showSuccessPopup();
         } else {
-            throw new Error((result && result.message) || 'Submission failed');
+            throw new Error((result && result.message) || 'Submission failed with unknown error');
         }
     } catch (error) {
         console.error('Form submission error:', error);
