@@ -1,16 +1,23 @@
 <?php
-
+session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     exit('Please log in to view this content');
 }
 
-// Database connection
-$conn = new mysqli('localhost', 'root', '', 'dbgreenvalley');
+// Updated database connection with correct credentials for production server
+$servername = "localhost";
+$username = "admi_greenvalley";
+$password = "xr9%kxu%*my^+kf2";
+$dbname = "admi_dbgreenvalley";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
+    error_log("Connection failed in requirements.php: " . $conn->connect_error);
     exit("Connection failed: " . $conn->connect_error);
 }
 
