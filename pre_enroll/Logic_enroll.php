@@ -161,6 +161,7 @@ if (isset($_POST['regsubmit'])) {
             // Shuffle to avoid predictable pattern (first uppercase, then lowercase, etc.)
             shuffle($password);
             
+            // Return the password as a string
             return implode('', $password);
         }
         
@@ -287,12 +288,29 @@ if (isset($_POST['regsubmit'])) {
                             </div>
                         ";
 
-                        $mail->send();
-                        
-                        // Return JSON response instead of redirect
-                        header('Content-Type: application/json');
-                        echo json_encode(['status' => 'success', 'message' => 'Enrollment successful']);
-                        exit;
+                        // Add this to your email sending section in Logic_enroll.php:
+                        try {
+                            // Server settings
+                            $mail->SMTPDebug = 2; // Enable verbose debug output
+                            ob_start(); // Start output buffering
+                            $mail->isSMTP();
+                            // ... rest of your email configuration ...
+                            
+                            $mail->send();
+                            $debug_output = ob_get_clean(); // Get the debug output
+                            error_log("Email debug: " . $debug_output); // Log it
+                            
+                            header('Content-Type: application/json');
+                            echo json_encode(['status' => 'success', 'message' => 'Enrollment successful']);
+                            exit;
+                        } catch (Exception $e) {
+                            $debug_output = ob_get_clean(); // Get any debug output
+                            error_log("Email debug: " . $debug_output); // Log it
+                            error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
+                            header('Content-Type: application/json');
+                            echo json_encode(['status' => 'error', 'message' => 'Email sending failed: ' . $mail->ErrorInfo]);
+                            exit;
+                        }
                     } catch (Exception $e) {
                         error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
                         header('Content-Type: application/json');
@@ -325,3 +343,11 @@ $sy = $currentyear . '-' . $nextyear;
 $studAuto = new Autonumber();
 $autonum = $studAuto->stud_autonumber();
 ?>
+
+<?php
+// At the very end of your processing in Logic_enroll.php, add this as a fallback:
+if (!headers_sent()) {
+    header('Content-Type: application/json');
+    echo json_encode(['status' => 'error', 'message' => 'Unknown error occurred']);
+}
+exit;

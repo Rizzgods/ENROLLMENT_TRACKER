@@ -179,15 +179,24 @@ document.querySelector('form').addEventListener('submit', async (e) => {
             body: formData
         });
 
-        const result = await response.json(); // Change to parse JSON
-        console.log('Server response:', result); // Debug log
+        let result;
+        try {
+            // Try to parse the response as JSON
+            result = await response.json();
+            console.log('Server response:', result);
+        } catch (jsonError) {
+            console.error('JSON parsing error:', jsonError);
+            // Get the raw text if JSON parsing fails
+            const text = await response.text();
+            console.error('Raw response:', text);
+            throw new Error('Invalid server response format');
+        }
 
-        if (response.ok && result.status === 'success') {
+        if (response.ok && result && result.status === 'success') {
             hideLoadingScreen();
             showSuccessPopup();
-            // The redirect is now handled by showSuccessPopup()
         } else {
-            throw new Error(result.message || 'Submission failed');
+            throw new Error((result && result.message) || 'Submission failed');
         }
     } catch (error) {
         console.error('Form submission error:', error);
