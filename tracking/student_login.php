@@ -1,7 +1,28 @@
 <?php
+// Enable error display for debugging (remove in production)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
-include 'Logic_login.php';
-include 'Logic_forgot.php';
+
+// Check if include files exist before including them
+$logic_login_path = 'Logic_login.php';
+$logic_forgot_path = 'Logic_forgot.php';
+
+if (file_exists($logic_login_path)) {
+    include $logic_login_path;
+} else {
+    error_log("Missing file: $logic_login_path");
+}
+
+if (file_exists($logic_forgot_path)) {
+    include $logic_forgot_path;
+} else {
+    error_log("Missing file: $logic_forgot_path");
+}
+
+// Rest of your code...
 ?>
 <!DOCTYPE html>
 <html lang="en">
