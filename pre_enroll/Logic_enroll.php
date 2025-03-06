@@ -345,9 +345,3 @@ $autonum = $studAuto->stud_autonumber();
 ?>
 
 <?php
-// At the very end of your processing in Logic_enroll.php, add this as a fallback:
-if (!headers_sent()) {
-    header('Content-Type: application/json');
-    echo json_encode(['status' => 'error', 'message' => 'Unknown error occurred']);
-}
-exit;
