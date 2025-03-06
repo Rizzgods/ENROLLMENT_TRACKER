@@ -8,17 +8,25 @@
     $course = New Course();
     $resCourse = $course->single_course($res->COURSE_ID);
 
-    $conn = new mysqli('localhost', 'root', '', 'dbgreenvalley');
+    // Updated database connection with correct credentials for production server
+    $servername = "localhost";
+    $username = "admi_greenvalley";
+    $password = "xr9%kxu%*my^+kf2";
+    $dbname = "admi_dbgreenvalley";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Check connection
     if ($conn->connect_error) {
+        error_log("Connection failed: " . $conn->connect_error);
         exit("Connection failed: " . $conn->connect_error);
     }
 
     $stmt = $conn->prepare("SELECT * FROM tblstudent WHERE IDNO = ?");
-$stmt->bind_param("s", $_SESSION['user_id']);
-$stmt->execute();
-$result = $stmt->get_result();
+    $stmt->bind_param("s", $_GET['id']); // Using the ID from the URL rather than session
+    $stmt->execute();
+    $result = $stmt->get_result();
 ?>
 
 
