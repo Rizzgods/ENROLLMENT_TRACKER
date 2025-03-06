@@ -9,12 +9,22 @@ use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+// Update database credentials for the production server
 $servername = "localhost";
-$username = "root";
-$password = "OH3nb3jPdGnCM8gK";
-$dbname = "dbgreenvalley";
+$username = "admi_greenvalley";
+$password = "xr9%kxu%*my^+kf2";
+$dbname = "admi_dbgreenvalley";
 
+// Create connection - using standard parameter order for compatibility
 $conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    error_log("Database connection failed: " . $conn->connect_error);
+    header('Content-Type: application/json');
+    echo json_encode(['status' => 'error', 'message' => 'Database connection failed']);
+    exit;
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["sendOTP"])) {
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
@@ -35,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["sendOTP"])) {
     // Get the absolute URL for the logo
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
     $host = $_SERVER['HTTP_HOST'];
-    $logo_url = $protocol . $host . '/onlineenrolmentsystem/assets/logo.png';
+    $logo_url = $protocol . $host . '/assets/logo.png'; // Updated path for production server
 
     // Send OTP via email
     $mail = new PHPMailer(true);
