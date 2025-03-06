@@ -3,7 +3,7 @@
     <div class="container mx-auto max-w-[1920px] px-4 h-full flex flex-col justify-between">
         <div class="flex flex-col items-center space-y-4">
             <a href="#" class="text-white hover:text-blue-200 transition duration-150">
-                <img src="assets/logo" alt="Logo" class="h-10 w-10">
+                <img src="https://admission.bcpsms4.com/superadmin/assets/logo.png" alt="Logo" class="h-10 w-10">
             </a>
         </div>
         <div class="flex flex-col space-y-4 mt-8 flex-grow">
