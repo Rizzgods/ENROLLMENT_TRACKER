@@ -3,7 +3,7 @@
 session_start();
 // Database credentials
 $servername = "localhost";
-$username = "root";
+$username = "admi_greenvalley";
 $password = "OH3nb3jPdGnCM8gK";
 $dbname = "admi_dbgreenvalley";
 
