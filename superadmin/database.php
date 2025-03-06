@@ -5,7 +5,7 @@ $password = "xr9%kxu%*my^+kf2";
 $dbname = "admi_dbgreenvalley";
 
 // Create connection
-$mydb = new mysqli(hostname: $servername, username: $username, password: $password, database: $dbname);
+$mydb = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($mydb->connect_error) {
