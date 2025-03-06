@@ -12,7 +12,7 @@ require_once __DIR__ .  "/../include/function.php";
 // Database credentials
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "OH3nb3jPdGnCM8gK";
 $dbname = "dbgreenvalley";
 
 // Create connection

@@ -11,7 +11,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "OH3nb3jPdGnCM8gK";
 $dbname = "dbgreenvalley";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
