@@ -11,8 +11,8 @@ $username = "admi_greenvalley";
 $password = "xr9%kxu%*my^+kf2";
 $dbname = "admi_dbgreenvalley";
 
-// Create connection
-$conn = new mysqli(hostname: $servername, username: $username, password: $password, database: $dbname);
+// Create connection - modified to work with older PHP versions
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
