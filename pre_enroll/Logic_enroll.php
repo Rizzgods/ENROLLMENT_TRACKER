@@ -81,8 +81,8 @@ if (isset($_POST['regsubmit'])) {
     
     // Set default values
     $student_status = "New";  // Set student_status to "New"
-    $YEARLEVEL = "1st";      // Optionally set YEARLEVEL for new students
-    $NewEnrollees = 1;    // Set NewEnrollees flag to 1
+    $YEARLEVEL = "1";        // Change from "1st" to "1" - this is likely the issue
+    $NewEnrollees = 1;       // Set NewEnrollees flag to 1
     
     // Calculate age based on birthdate
     $BIRTHDATE = date_format(date_create($_POST['BIRTHDATE']), 'Y-m-d');
