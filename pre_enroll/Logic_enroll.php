@@ -9,10 +9,10 @@ require_once __DIR__ .  "/../include/students.php";
 require_once __DIR__ .  "/../include/session.php";
 require_once __DIR__ .  "/../include/function.php";
 
-// Database credentials
+// Database credentials - Update with correct server credentials
 $servername = "localhost";
-$username = "root";
-$password = "OH3nb3jPdGnCM8gK";
+$username = "admi_greenvalley";
+$password = "xr9%kxu%*my^+kf2";
 $dbname = "admi_dbgreenvalley";
 
 // Create connection
@@ -20,9 +20,11 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
+    error_log("Connection failed: " . $conn->connect_error);
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Rest of your code remains unchanged
 $sql = "SELECT * FROM tbl_bcpdepts";
 $result = $conn->query($sql);
 
