@@ -250,7 +250,7 @@ if (isset($_POST['regsubmit'])) {
                     // Get the absolute URL for the logo
                     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
                     $host = $_SERVER['HTTP_HOST'];
-                    $logo_url = $protocol . $host . 'https://admission.bcpsms4.com/pre_enroll/assets/logo.png';
+                    $logo_url = 'https://admission.bcpsms4.com/pre_enroll/assets/logo.png';
 
                     // Email content
                     $mail->isHTML(true);

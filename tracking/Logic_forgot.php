@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST
         $reset_link = $protocol . $host . '/tracking/passwordreset.php?token=' . $token;
         
         // Construct the absolute URL for the logo
-        $logo_url = $protocol . $host . 'https://admission.bcpsms4.com/pre_enroll/assets/logo.png';
+        $logo_url = 'https://admission.bcpsms4.com/pre_enroll/assets/logo.png';
         
         $mail->isHTML(true);
         $mail->Subject = "Bestlink Account Password Reset";
