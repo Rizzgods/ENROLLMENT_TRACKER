@@ -84,9 +84,16 @@ if (isset($_POST['regsubmit'])) {
     $YEARLEVEL = "1st";      // Optionally set YEARLEVEL for new students
     $NewEnrollees = 1;    // Set NewEnrollees flag to 1
     
+    // Calculate age based on birthdate
+    $BIRTHDATE = date_format(date_create($_POST['BIRTHDATE']), 'Y-m-d');
+    $birthDate = new DateTime($BIRTHDATE);
+    $today = new DateTime('today');
+    $AGE = $birthDate->diff($today)->y;  // This extracts just the year difference as an integer
+
     // Add logging after we have the variables
     error_log("Generated IDNO: " . $IDNO);
     error_log("Processing enrollment for: " . $EMAIL . " (Status: " . $student_status . ")");
+    error_log("Calculated age: " . $AGE);
 
     // Then in your form processing
     try {
@@ -179,11 +186,11 @@ if (isset($_POST['regsubmit'])) {
             }
 
             // Proceed with insertion if no duplicate found
-            $sql = "INSERT INTO tblstudent (IDNO, FNAME, LNAME, MNAME, SEX, BDAY, BPLACE, STATUS, NATIONALITY, RELIGION, CONTACT_NO, HOME_ADD, COURSE_ID, SEMESTER, EMAIL, student_status, YEARLEVEL, NewEnrollees, stud_type, form_138, good_moral, psa_birthCert, id_pic, Brgy_clearance, tor, honor_dismissal) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO tblstudent (IDNO, FNAME, LNAME, MNAME, SEX, BDAY, AGE, BPLACE, STATUS, NATIONALITY, RELIGION, CONTACT_NO, HOME_ADD, COURSE_ID, SEMESTER, EMAIL, student_status, YEARLEVEL, NewEnrollees, stud_type, form_138, good_moral, psa_birthCert, id_pic, Brgy_clearance, tor, honor_dismissal) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssssssssssssssssssssssssss", $IDNO, $FNAME, $LNAME, $MI, $SEX, $BIRTHDATE, $BIRTHPLACE, $CIVILSTATUS, $NATIONALITY, $RELIGION, $CONTACT, $PADDRESS, $COURSEID, $SEMESTER, $EMAIL, $student_status, $YEARLEVEL, $NewEnrollees, $stud_type, $form_138, $good_moral, $psa_birthCert, $id_pic, $Brgy_clearance, $tor, $honor_dismissal);
+            $stmt->bind_param("ssssssissssssssssssssssssss", $IDNO, $FNAME, $LNAME, $MI, $SEX, $BIRTHDATE, $AGE, $BIRTHPLACE, $CIVILSTATUS, $NATIONALITY, $RELIGION, $CONTACT, $PADDRESS, $COURSEID, $SEMESTER, $EMAIL, $student_status, $YEARLEVEL, $NewEnrollees, $stud_type, $form_138, $good_moral, $psa_birthCert, $id_pic, $Brgy_clearance, $tor, $honor_dismissal);
 
             if ($stmt->execute()) {
                 // Insert into studentaccount with generated credentials
