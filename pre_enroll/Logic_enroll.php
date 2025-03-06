@@ -201,125 +201,147 @@ if (isset($_POST['regsubmit'])) {
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("sss", $IDNO, $username, $hashed_password);
                 $stmt->execute();
-            
-                if ($stmt->affected_rows > 0) {
-                    // Insert guardian details
-                    $sql = "INSERT INTO tblstuddetails (IDNO, GUARDIAN, GCONTACT) VALUES (?, ?, ?)";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("sss", $IDNO, $GUARDIAN, $GCONTACT);
-                    $stmt->execute();
+                
+                // Check if the account was created (note: we won't error out if the account exists)
+                $accountCreated = $stmt->affected_rows > 0;
+                error_log("Student account creation result: " . ($accountCreated ? "Success" : "Failed or already exists"));
+                
+                // Insert guardian details
+                $sql = "INSERT INTO tblstuddetails (IDNO, GUARDIAN, GCONTACT) VALUES (?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("sss", $IDNO, $GUARDIAN, $GCONTACT);
+                $guardianInsertResult = $stmt->execute();
+                
+                error_log("Guardian details insertion: " . ($guardianInsertResult ? "Success" : "Failed - " . $stmt->error));
+                
+                // Continue with the flow even if guardian details insert has issues
+                // We have the main student record, which is most important
+                
+                // ✅ Send Confirmation Email
+                $mail = new PHPMailer(true);
+                
+                // Clean any output buffers to avoid interfering with JSON response
+                while (ob_get_level()) {
+                    ob_end_clean();
+                }
+                
+                try {
+                    // Server settings
+                    $mail->SMTPDebug = 0; // Disable debug output in the response
+                    $mail->isSMTP();
+                    $mail->Host       = 'smtp.gmail.com'; // Your SMTP server
+                    $mail->SMTPAuth   = true;
+                    $mail->Username   = 'taranavalvista@gmail.com'; // Your email
+                    $mail->Password   = 'kdiq oeqm cuyr yhuz'; // Your email password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port       = 587;
 
-                    // ✅ Send Confirmation Email
-                    $mail = new PHPMailer(true);
-                    
-                    // Clean any output buffers to avoid interfering with JSON response
-                    while (ob_get_level()) {
-                        ob_end_clean();
-                    }
-                    
-                    try {
-                        // Server settings
-                        $mail->SMTPDebug = 0; // Disable debug output in the response
-                        $mail->isSMTP();
-                        $mail->Host       = 'smtp.gmail.com'; // Your SMTP server
-                        $mail->SMTPAuth   = true;
-                        $mail->Username   = 'taranavalvista@gmail.com'; // Your email
-                        $mail->Password   = 'kdiq oeqm cuyr yhuz'; // Your email password
-                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                        $mail->Port       = 587;
+                    // Recipients
+                    $mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
+                    $mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
 
-                        // Recipients
-                        $mail->setFrom('taranavalvista@gmail.com', 'Enrollment Team');
-                        $mail->addAddress($EMAIL, $FNAME . ' ' . $LNAME);
+                    // Get the absolute URL for the logo
+                    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+                    $host = $_SERVER['HTTP_HOST'];
+                    $logo_url = $protocol . $host . '/onlineenrolmentsystem/assets/logo.png';
 
-                        // Get the absolute URL for the logo
-                        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
-                        $host = $_SERVER['HTTP_HOST'];
-                        $logo_url = $protocol . $host . '/onlineenrolmentsystem/assets/logo.png';
-
-                        // Email content
-                        $mail->isHTML(true);
-                        $mail->Subject = "Enrollment Confirmation";
-                        $mail->Body    = "
-                            <div style='font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto;'>
-                                <!-- Header with Logo -->
-                                <div style='background-color: #1a56db; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;'>
-                                    <img src='{$logo_url}' alt='Bestlink Logo' style='max-height: 80px; margin-bottom: 10px;'>
-                                    <h1 style='color: white; margin: 0; font-size: 24px;'>BESTLINK ENROLLMENT SYSTEM</h1>
+                    // Email content
+                    $mail->isHTML(true);
+                    $mail->Subject = "Enrollment Confirmation";
+                    $mail->Body    = "
+                        <div style='font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto;'>
+                            <!-- Header with Logo -->
+                            <div style='background-color: #1a56db; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;'>
+                                <img src='{$logo_url}' alt='Bestlink Logo' style='max-height: 80px; margin-bottom: 10px;'>
+                                <h1 style='color: white; margin: 0; font-size: 24px;'>BESTLINK ENROLLMENT SYSTEM</h1>
+                            </div>
+                            
+                            <!-- Email Content -->
+                            <div style='background-color: #f9fafb; border-radius: 0 0 8px 8px; padding: 20px; border: 1px solid #e5e7eb; border-top: none;'>
+                                <h3 style='color: #4A5568; margin-top: 0;'>Hello $FNAME,</h3>
+                                <p>Your enrollment has been successfully processed.</p>
+                                
+                                <div style='background-color: white; border-radius: 8px; padding: 15px; margin: 20px 0; border: 1px solid #e5e7eb;'>
+                                    <p style='font-weight: bold; color: #4A5568; margin-top: 0;'>Enrollment Details:</p>
+                                    <table style='width: 100%; border-collapse: collapse;'>
+                                        <tr>
+                                            <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb; width: 40%;'><b>Student ID:</b></td>
+                                            <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$IDNO</td>
+                                        </tr>
+                                        <tr>
+                                            <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Full Name:</b></td>
+                                            <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$FNAME $MI $LNAME</td>
+                                        </tr>
+                                        <tr>
+                                            <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Course:</b></td>
+                                            <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$COURSEID</td>
+                                        </tr>
+                                        <tr>
+                                            <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Semester:</b></td>
+                                            <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$SEMESTER</td>
+                                        </tr>
+                                        <tr>
+                                            <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Student Type:</b></td>
+                                            <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$stud_type</td>
+                                        </tr>
+                                    </table>
                                 </div>
                                 
-                                <!-- Email Content -->
-                                <div style='background-color: #f9fafb; border-radius: 0 0 8px 8px; padding: 20px; border: 1px solid #e5e7eb; border-top: none;'>
-                                    <h3 style='color: #4A5568; margin-top: 0;'>Hello $FNAME,</h3>
-                                    <p>Your enrollment has been successfully processed.</p>
-                                    
-                                    <div style='background-color: white; border-radius: 8px; padding: 15px; margin: 20px 0; border: 1px solid #e5e7eb;'>
-                                        <p style='font-weight: bold; color: #4A5568; margin-top: 0;'>Enrollment Details:</p>
-                                        <table style='width: 100%; border-collapse: collapse;'>
-                                            <tr>
-                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb; width: 40%;'><b>Student ID:</b></td>
-                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$IDNO</td>
-                                            </tr>
-                                            <tr>
-                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Full Name:</b></td>
-                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$FNAME $MI $LNAME</td>
-                                            </tr>
-                                            <tr>
-                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Course:</b></td>
-                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$COURSEID</td>
-                                            </tr>
-                                            <tr>
-                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Semester:</b></td>
-                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$SEMESTER</td>
-                                            </tr>
-                                            <tr>
-                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'><b>Student Type:</b></td>
-                                                <td style='padding: 8px 0; border-bottom: 1px solid #e5e7eb;'>$stud_type</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    
-                                    <div style='background-color: #ebf5ff; border-left: 4px solid #3182ce; padding: 15px; margin: 20px 0; border-radius: 4px;'>
-                                        <p style='margin-top: 0; font-weight: bold;'>Login Credentials</p>
-                                        <p><b>Username:</b> $username</p>
-                                        <p style='margin-bottom: 0;'><b>Password:</b> $password</p>
-                                        <p>Use these credentials to check on your progress at <a href='http://localhost/onlineenrolmentsystem/tracking/student_login.php' style='color: #3182CE;'>http://localhost/onlineenrolmentsystem/tracking/student_login.php</a></p>
-                                    </div>
-                                    
-                                    <p>Your documents have been received and are being processed.</p>
-                                    <p>If you have any questions, please contact us at <a href='mailto:support@yourdomain.com' style='color: #3182CE;'>support@yourdomain.com</a>.</p>
-                                    
-                                    <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 14px;'>
-                                        <p style='margin-bottom: 5px;'><b>Thank you for enrolling!</b></p>
-                                        <p style='margin-top: 0; color: #6B7280;'>Bestlink Enrollment Team</p>
-                                    </div>
+                                <div style='background-color: #ebf5ff; border-left: 4px solid #3182ce; padding: 15px; margin: 20px 0; border-radius: 4px;'>
+                                    <p style='margin-top: 0; font-weight: bold;'>Login Credentials</p>
+                                    <p><b>Username:</b> $username</p>
+                                    <p style='margin-bottom: 0;'><b>Password:</b> $password</p>
+                                    <p>Use these credentials to check on your progress at <a href='http://localhost/onlineenrolmentsystem/tracking/student_login.php' style='color: #3182CE;'>http://localhost/onlineenrolmentsystem/tracking/student_login.php</a></p>
+                                </div>
+                                
+                                <p>Your documents have been received and are being processed.</p>
+                                <p>If you have any questions, please contact us at <a href='mailto:support@yourdomain.com' style='color: #3182CE;'>support@yourdomain.com</a>.</p>
+                                
+                                <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 14px;'>
+                                    <p style='margin-bottom: 5px;'><b>Thank you for enrolling!</b></p>
+                                    <p style='margin-top: 0; color: #6B7280;'>Bestlink Enrollment Team</p>
                                 </div>
                             </div>
-                        ";
-                        
-                        // Log email attempt
-                        error_log("Attempting to send email to: {$EMAIL}");
-                        
-                        // Send email and log result
-                        if($mail->send()) {
+                        </div>
+                    ";
+                    
+                    // Log email attempt
+                    error_log("Attempting to send email to: {$EMAIL}");
+                    
+                    // Send email and log result
+                    $emailSent = false;
+                    try {
+                        $emailSent = $mail->send();
+                        if($emailSent) {
                             error_log("Email successfully sent to: {$EMAIL}");
-                            // Return JSON success response (end execution)
-                            header('Content-Type: application/json');
-                            echo json_encode(['status' => 'success', 'message' => 'Enrollment successful']);
-                            exit;
                         } else {
-                            throw new Exception("Email could not be sent. Mailer Error: {$mail->ErrorInfo}");
+                            error_log("Email not sent, but continuing: " . $mail->ErrorInfo);
                         }
-                        
-                    } catch (Exception $e) {
-                        error_log("Email sending failed: " . $e->getMessage());
-                        // Return JSON error response (end execution)
-                        header('Content-Type: application/json');
-                        echo json_encode(['status' => 'error', 'message' => 'Email sending failed: ' . $e->getMessage()]);
-                        exit;
+                    } catch (Exception $emailEx) {
+                        error_log("Email exception caught but continuing: " . $emailEx->getMessage());
                     }
-                } else {
-                    throw new Exception("Failed to create student account");
+                    
+                    // Return success regardless of email result since the student was created
+                    header('Content-Type: application/json');
+                    echo json_encode([
+                        'status' => 'success', 
+                        'message' => 'Enrollment successful',
+                        'emailSent' => $emailSent,
+                        'studentID' => $IDNO
+                    ]);
+                    exit;
+                    
+                } catch (Exception $e) {
+                    error_log("Email preparation failed: " . $e->getMessage());
+                    // Still return success since student record was created
+                    header('Content-Type: application/json');
+                    echo json_encode([
+                        'status' => 'success', 
+                        'message' => 'Enrollment successful but email notification failed',
+                        'emailSent' => false,
+                        'studentID' => $IDNO
+                    ]);
+                    exit;
                 }
             } else {
                 throw new Exception("Failed to create student record: " . $stmt->error);

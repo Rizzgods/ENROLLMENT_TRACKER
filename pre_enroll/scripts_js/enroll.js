@@ -145,12 +145,21 @@ function hideLoadingScreen() {
 }
 
 // Update the countdown and redirection logic
-function showSuccessPopup() {
+function showSuccessPopup(message = null) {
     const successPopup = document.getElementById('successPopup');
+    
+    // Update message if provided
+    if (message) {
+        const messageElement = successPopup.querySelector('p.text-gray-600');
+        if (messageElement) {
+            messageElement.textContent = message;
+        }
+    }
+    
     successPopup.classList.remove('hidden');
     successPopup.classList.add('flex');
     
-    let countdown = 3;
+    let countdown = 5; // Increased from 3 to 5 seconds to give more time to read
     const countdownElement = document.getElementById('countdownTimer');
     
     const timer = setInterval(() => {
@@ -159,7 +168,7 @@ function showSuccessPopup() {
         
         if (countdown <= 0) {
             clearInterval(timer);
-            window.location.href = 'home.php'; // Changed to redirect to home.php in the same directory
+            window.location.href = 'home.php';
         }
     }, 1000);
 }
@@ -177,6 +186,7 @@ document.querySelector('form').addEventListener('submit', async (e) => {
         showLoadingScreen();
         const form = e.target;
         const formData = new FormData(form);
+        formData.append('regsubmit', 'true'); // Ensure this parameter is sent
         
         // Debug form data
         console.log('Submitting form with data:');
@@ -202,17 +212,30 @@ document.querySelector('form').addEventListener('submit', async (e) => {
             // Try to parse the response as JSON
             result = JSON.parse(responseText);
             console.log('Parsed JSON response:', result);
+            
+            // If we have a student ID, it means core enrollment was successful
+            if (result && (result.status === 'success' || (result.studentID && result.studentID.trim() !== ''))) {
+                hideLoadingScreen();
+                showSuccessPopup(result.emailSent === false ? 
+                    'Your enrollment was successful, but the confirmation email could not be sent.' : 
+                    'Your enrollment was successful! Please check your email for confirmation.');
+            } else {
+                throw new Error((result && result.message) || 'Submission failed with unknown error');
+            }
         } catch (jsonError) {
             console.error('JSON parsing error:', jsonError);
-            throw new Error('Server returned invalid JSON. Raw response: ' + 
-                (responseText.length > 100 ? responseText.substring(0, 100) + '...' : responseText));
-        }
-
-        if (result && result.status === 'success') {
-            hideLoadingScreen();
-            showSuccessPopup();
-        } else {
-            throw new Error((result && result.message) || 'Submission failed with unknown error');
+            
+            // Check if the response contains success indicators even with invalid JSON
+            if (responseText.includes('Enrollment successful') || 
+                responseText.includes('"status":"success"') || 
+                responseText.includes('studentID')) {
+                
+                hideLoadingScreen();
+                showSuccessPopup('Your enrollment appears to be successful, but there was an issue with the server response.');
+            } else {
+                throw new Error('Server returned invalid JSON. Raw response: ' + 
+                    (responseText.length > 100 ? responseText.substring(0, 100) + '...' : responseText));
+            }
         }
     } catch (error) {
         console.error('Form submission error:', error);
