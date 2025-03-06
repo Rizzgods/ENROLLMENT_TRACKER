@@ -2,9 +2,9 @@
 ob_start(); // Start output buffering
 
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "dbgreenvalley";
+$username = "admi_greenvalley";
+$password = "xr9%kxu%*my^+kf2";
+$dbname = "admi_dbgreenvalley";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

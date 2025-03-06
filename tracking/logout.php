@@ -7,9 +7,9 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 // Log the logout activity if user_id exists
 if ($user_id) {
     $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "dbgreenvalley";
+    $username = "admi_greenvalley";
+    $password = "xr9%kxu%*my^+kf2";
+    $dbname = "admi_dbgreenvalley";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
