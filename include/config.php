@@ -4,12 +4,23 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Detect environment
+// Missing if statement - adding it back
+$is_local = (strpos($_SERVER['SERVER_NAME'], 'localhost') !== false || 
+             strpos($_SERVER['SERVER_NAME'], '127.0.0.1') !== false);
 
-    define("server", "localhost"); // Check if this should be a different host
-    define("user", "admi_greenvalley"); // Check if this is correct
-    define("pass", "xr9%kxu%*my^+kf2"); // Check if password is correct
+// Define database credentials based on environment
+if ($is_local) {
+    define("server", "localhost");
+    define("user", "root");
+    define("pass", ""); 
+    define("database_name", "admi_dbgreenvalley");
+} else {
+    define("server", "localhost"); 
+    define("user", "admi_greenvalley"); 
+    define("pass", "xr9%kxu%*my^+kf2"); 
     define("database_name", "admi_dbgreenvalley");
 }
+
 // Test database connection
 try {
     $test_connection = mysqli_connect(
@@ -30,8 +41,6 @@ try {
     error_log("Exception during database connection test: " . $e->getMessage());
     die("An error occurred: " . $e->getMessage());
 }
-
-
 
 // Path configurations
 $this_file = str_replace('\\', '/', __FILE__); // Fixed: _File_ to __FILE__ (double underscore)
