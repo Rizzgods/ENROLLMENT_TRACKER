@@ -196,20 +196,27 @@ if (isset($_POST['regsubmit'])) {
             $stmt->bind_param("ssssssissssssssssssssssssss", $IDNO, $FNAME, $LNAME, $MI, $SEX, $BIRTHDATE, $AGE, $BIRTHPLACE, $CIVILSTATUS, $NATIONALITY, $RELIGION, $CONTACT, $PADDRESS, $COURSEID, $SEMESTER, $EMAIL, $student_status, $YEARLEVEL, $NewEnrollees, $stud_type, $form_138, $good_moral, $psa_birthCert, $id_pic, $Brgy_clearance, $tor, $honor_dismissal);
 
             if ($stmt->execute()) {
-                // Insert into studentaccount with generated credentials
-                $sql = "INSERT INTO studentaccount (user_id, username, password) VALUES (?, ?, ?)";
+                // Insert into studentaccount with generated credentials and required fields
+                $sql = "INSERT INTO studentaccount (user_id, username, password, STATUS, PAYMENT, SCHEDULE, test, enrollment_date) 
+                        VALUES (?, ?, ?, 'pending', 'Unpaid', NULL, '', CURDATE())";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("sss", $IDNO, $username, $hashed_password);
-                $stmt->execute();
                 
-                // Check if the account was created (note: we won't error out if the account exists)
+                error_log("Inserting student account for ID: " . $IDNO);
+                $accountInserted = $stmt->execute();
+                
+                // Check if the account was created
                 $accountCreated = $stmt->affected_rows > 0;
                 error_log("Student account creation result: " . ($accountCreated ? "Success" : "Failed or already exists"));
                 
-                // Insert guardian details
-                $sql = "INSERT INTO tblstuddetails (IDNO, GUARDIAN, GCONTACT) VALUES (?, ?, ?)";
+                // Insert guardian details - add empty string for GUARDIAN_ADDRESS field
+                $guardian_address = ""; // This field is required but not present in the form
+                $sql = "INSERT INTO tblstuddetails (IDNO, GUARDIAN, GUARDIAN_ADDRESS, GCONTACT) 
+                        VALUES (?, ?, ?, ?)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("sss", $IDNO, $GUARDIAN, $GCONTACT);
+                $stmt->bind_param("ssss", $IDNO, $GUARDIAN, $guardian_address, $GCONTACT);
+                
+                error_log("Inserting guardian details for ID: " . $IDNO);
                 $guardianInsertResult = $stmt->execute();
                 
                 error_log("Guardian details insertion: " . ($guardianInsertResult ? "Success" : "Failed - " . $stmt->error));
