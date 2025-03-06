@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_type']) && $_POST
         $host = $_SERVER['HTTP_HOST'];
         
         // Construct the absolute URL for the reset link
-        $reset_link = $protocol . $host . '/onlineenrolmentsystem/tracking/passwordreset.php?token=' . $token;
+        $reset_link = $protocol . $host . '/tracking/passwordreset.php?token=' . $token;
         
         // Construct the absolute URL for the logo
         $logo_url = $protocol . $host . 'https://admission.bcpsms4.com/pre_enroll/assets/logo.png';
