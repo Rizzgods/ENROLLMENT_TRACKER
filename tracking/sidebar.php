@@ -11,7 +11,7 @@
         <!-- Logo Section -->
         <div class="p-3 border-b border-blue-500">
             <a href="profile.php" class="flex justify-center text-white hover:text-blue-200 transition duration-150">
-                <img src="assets/logo" alt="Logo" class="h-10 w-10">
+                <img src="https://admission.bcpsms4.com/tracking/assets/logo" alt="Logo" class="h-10 w-10">
             </a>
         </div>
 
