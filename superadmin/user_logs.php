@@ -5,7 +5,7 @@
 // Check if we already have a connection
 if (!isset($conn)) {
     // Set up database connection directly
-    $conn = new mysqli("localhost", "root", "", "dbgreenvalley");
+    $conn = new mysqli("localhost", "admi_greenvalley", "xr9%kxu%*my^+kf2", "admi_dbgreenvalley");
 
     // Check connection
     if ($conn->connect_error) {
