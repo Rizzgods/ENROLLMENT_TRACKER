@@ -6,7 +6,14 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Database connection
-$conn = new mysqli('localhost', 'root', '', 'dbgreenvalley');
+// Updated database connection with correct credentials for production server
+$servername = "localhost";
+$username = "admi_greenvalley";
+$password = "xr9%kxu%*my^+kf2";
+$dbname = "admi_dbgreenvalley";
+
+// Create connection with the updated credentials
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
