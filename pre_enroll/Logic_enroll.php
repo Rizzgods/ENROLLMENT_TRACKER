@@ -13,7 +13,7 @@ require_once __DIR__ .  "/../include/function.php";
 $servername = "localhost";
 $username = "root";
 $password = "OH3nb3jPdGnCM8gK";
-$dbname = "dbgreenvalley";
+$dbname = "admi_dbgreenvalley";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
