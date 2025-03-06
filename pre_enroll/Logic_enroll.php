@@ -250,17 +250,17 @@ if (isset($_POST['regsubmit'])) {
                     // Get the absolute URL for the logo
                     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
                     $host = $_SERVER['HTTP_HOST'];
-                    $logo_url = $protocol . $host . '/onlineenrolmentsystem/assets/logo.png';
+                    $logo_url = $protocol . $host . 'https://admission.bcpsms4.com/pre_enroll/assets/logo.png';
 
                     // Email content
                     $mail->isHTML(true);
                     $mail->Subject = "Enrollment Confirmation";
                     $mail->Body    = "
-                        <div style='font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto;'>
-                            <!-- Header with Logo -->
-                            <div style='background-color: #1a56db; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;'>
-                                <img src='{$logo_url}' alt='Bestlink Logo' style='max-height: 80px; margin-bottom: 10px;'>
-                                <h1 style='color: white; margin: 0; font-size: 24px;'>BESTLINK ENROLLMENT SYSTEM</h1>
+                    <div style='font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto;'>
+                            <!-- Header with Logo and Title on same row -->
+                            <div style='background-color: #1a56db; padding: 15px 20px; text-align: left; border-radius: 8px 8px 0 0; display: flex; align-items: center;'>
+                                <img src='{$logo_url}' alt='Bestlink Logo' style='max-height: 60px; margin-right: 15px;'>
+                                <h1 style='color: white; margin: 0; font-size: 20px;'>BESTLINK ENROLLMENT SYSTEM</h1>
                             </div>
                             
                             <!-- Email Content -->
@@ -294,15 +294,21 @@ if (isset($_POST['regsubmit'])) {
                                     </table>
                                 </div>
                                 
+                                <div style='background-color: #fff8e1; border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0; border-radius: 4px;'>
+                                    <p style='margin-top: 0; font-weight: bold; color: #b45309;'>Payment Information</p>
+                                    <p style='margin-bottom: 5px;'>Please bring <b>₱1,000.00</b> as a downpayment when you visit our campus.</p>
+                                    <p style='margin-top: 0;'>This downpayment is required to complete your enrollment process.</p>
+                                </div>
+                                
                                 <div style='background-color: #ebf5ff; border-left: 4px solid #3182ce; padding: 15px; margin: 20px 0; border-radius: 4px;'>
                                     <p style='margin-top: 0; font-weight: bold;'>Login Credentials</p>
                                     <p><b>Username:</b> $username</p>
                                     <p style='margin-bottom: 0;'><b>Password:</b> $password</p>
-                                    <p>Use these credentials to check on your progress at <a href='http://localhost/onlineenrolmentsystem/tracking/student_login.php' style='color: #3182CE;'>http://localhost/onlineenrolmentsystem/tracking/student_login.php</a></p>
+                                    <p>Use these credentials to check on your progress at <a href='https://admission.bcpsms4.com/tracking/student_login.php' style='color: #3182CE;'>https://admission.bcpsms4.com/tracking/student_login.php</a></p>
                                 </div>
                                 
                                 <p>Your documents have been received and are being processed.</p>
-                                <p>If you have any questions, please contact us at <a href='mailto:support@yourdomain.com' style='color: #3182CE;'>support@yourdomain.com</a>.</p>
+                                <p>If you have any questions, please contact us at <a href='mailto:bcp-inquiry@bcp.edu.ph' style='color: #3182CE;'>bcp-inquiry@bcp.edu.ph</a>.</p>
                                 
                                 <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 14px;'>
                                     <p style='margin-bottom: 5px;'><b>Thank you for enrolling!</b></p>

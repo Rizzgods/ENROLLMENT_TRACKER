@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["sendOTP"])) {
     // Get the absolute URL for the logo
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
     $host = $_SERVER['HTTP_HOST'];
-    $logo_url = $protocol . $host . '/assets/logo.png'; // Updated path for production server
+    $logo_url = $protocol . $host . 'https://admission.bcpsms4.com/pre_enroll/assets/logo.png';
 
     // Send OTP via email
     $mail = new PHPMailer(true);
@@ -75,10 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["sendOTP"])) {
         // Improved HTML email template with the OTP code
         $mail->Body = "
             <div style='font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto;'>
-                <!-- Header with Logo -->
-                <div style='background-color: #1a56db; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;'>
-                    <img src='{$logo_url}' alt='Bestlink Logo' style='max-height: 80px; margin-bottom: 10px;'>
-                    <h1 style='color: white; margin: 0; font-size: 24px;'>BESTLINK ENROLLMENT SYSTEM</h1>
+                <!-- Header with Logo and Title on same row -->
+                <div style='background-color: #1a56db; padding: 15px 20px; text-align: left; border-radius: 8px 8px 0 0; display: flex; align-items: center;'>
+                    <img src='{$logo_url}' alt='Bestlink Logo' style='max-height: 60px; margin-right: 15px;'>
+                    <h1 style='color: white; margin: 0; font-size: 20px;'>BESTLINK ENROLLMENT SYSTEM</h1>
                 </div>
                 
                 <!-- Email Content -->
