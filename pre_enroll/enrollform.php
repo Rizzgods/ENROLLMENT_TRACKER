@@ -120,6 +120,14 @@ require_once __DIR__ .  "/Logic_validate.php";
                             </select>
                         </div>
                         <div class="space-y-4">
+                            <label for="SYEAR" class="block text-sm font-medium text-gray-700">School Year <span class="text-red-500">*</span></label>
+                            <select required id="SYEAR" name="SYEAR" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                                <option value="">Select School Year</option>
+                                <option value="2025-2026" selected>2025-2026</option>
+                                <option value="2026-2027">2026-2027</option>
+                            </select>
+                        </div>
+                        <div class="space-y-4">
                             <label for="SEMESTER" class="block text-sm font-medium text-gray-700">Semester to Enroll <span class="text-red-500">*</span></label>
                             <select required id="SEMESTER" name="SEMESTER" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                 <option value="">Select Semester</option>
