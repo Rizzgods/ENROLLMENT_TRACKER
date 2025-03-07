@@ -255,7 +255,7 @@ switch ($action) {
 			$stmt->close();
 		}
 	
-		sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], 'accepted', $student['MNAME'], $student['IDNO'], $student['COURSE_ID']);
+		sendEmail($student['EMAIL'], $student['FNAME'], $student['LNAME'], 'approved', $student['MNAME'], $student['IDNO'], $student['COURSE_ID']);
 	
 		message("Student successfully confirmed!", "success");
 		redirect("index.php?view=success&IDNO={$IDNO}");
