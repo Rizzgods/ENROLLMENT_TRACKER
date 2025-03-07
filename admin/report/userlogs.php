@@ -1,5 +1,4 @@
- 
- <form action="" method="POST" >
+<form action="" method="POST" >
     <!-- Main content --> 
         <!-- title row -->
       <div class="row">
@@ -27,8 +26,9 @@
           <address> 
 		         <select name="Users" class="form-control">
              <option>All</option>
-              <option value="Head Administrator">Head Administrator</option>
-              <option value="Staff">Admin Staff</option>
+              <option value="Administrator">Administrator</option>
+              <option value="Registrar">Registrar</option>
+              <option value="Student">Student</option>
             </select>
           </address>
         </div>
@@ -125,60 +125,55 @@
 
                       }
                 }else{
-
-                   if ($_POST['Users']=='Head Administrator' ||  $_POST['Users']=='Staff' ) {
-                # code...
-                  $sql ="SELECT * FROM `tbllogs`  l ,`useraccounts` u
-                      WHERE l.`USERID`=u.`ACCOUNT_ID` AND  LOGROLE LIKE '%" . $_POST['Users'] ."%'" ;
+                   # Use exact match for the role type
+                   if ($_POST['Users']=='Administrator' || $_POST['Users']=='Registrar') {
+                      # For admin users
+                      $sql ="SELECT * FROM `tbllogs` l, `useraccounts` u
+                            WHERE l.`USERID`=u.`ACCOUNT_ID` AND l.`LOGROLE` = '" . $_POST['Users'] . "'";
                      
 
-                  $mydb->setQuery($sql);
-                  $res = $mydb->executeQuery();
-                  $row_count = $mydb->num_rows($res);
-                  $cur = $mydb->loadResultList();
-                 
-                    if ($row_count > 0){
-                            foreach ($cur as $result) {
-                                   ?>
-                                  <tr> 
-                                   <td><?php echo $result->ACCOUNT_NAME;?></td>
-                                     <td><?php echo $result->LOGDATETIME;?></td>
-                                    <td><?php echo $result->LOGROLE;?></td>
-                                    <td><?php echo $result->LOGMODE;?></td> 
-                                  </tr>
-                                  <?php 
-                                    
-                      } 
-
+                      $mydb->setQuery($sql);
+                      $res = $mydb->executeQuery();
+                      $row_count = $mydb->num_rows($res);
+                      $cur = $mydb->loadResultList();
+                     
+                      if ($row_count > 0){
+                        foreach ($cur as $result) {
+                          ?>
+                          <tr> 
+                            <td><?php echo $result->ACCOUNT_NAME;?></td>
+                            <td><?php echo $result->LOGDATETIME;?></td>
+                            <td><?php echo $result->LOGROLE;?></td>
+                            <td><?php echo $result->LOGMODE;?></td> 
+                          </tr>
+                          <?php 
+                        } 
                       }
-                  }else{
-                     # code...
-                      $sql ="SELECT * FROM `tbllogs`  l ,`tblstudent` u
-                          WHERE l.`USERID`=u.`IDNO` AND  LOGROLE LIKE '%" . $_POST['Users'] ."%'" ;
-                         
+                   } else if ($_POST['Users']=='Student') {
+                     # For student users
+                     $sql ="SELECT * FROM `tbllogs` l, `tblstudent` u
+                          WHERE l.`USERID`=u.`IDNO` AND l.`LOGROLE` = 'Student'";
+                     
 
-                  $mydb->setQuery($sql);
-                  $res = $mydb->executeQuery();
-                  $row_count = $mydb->num_rows($res);
-                  $cur = $mydb->loadResultList();
-                 
-                    if ($row_count > 0){
-                            foreach ($cur as $result) {
-                                   ?>
-                                  <tr> 
-                                   <td><?php echo $result->FNAME . ' '. $result->LNAME;?></td>
-                                     <td><?php echo $result->LOGDATETIME;?></td>
-                                    <td><?php echo $result->LOGROLE;?></td>
-                                    <td><?php echo $result->LOGMODE;?></td> 
-                                  </tr>
-                                  <?php 
-                                    
-                      } 
-
+                      $mydb->setQuery($sql);
+                      $res = $mydb->executeQuery();
+                      $row_count = $mydb->num_rows($res);
+                      $cur = $mydb->loadResultList();
+                     
+                      if ($row_count > 0){
+                        foreach ($cur as $result) {
+                          ?>
+                          <tr> 
+                            <td><?php echo $result->FNAME . ' '. $result->LNAME;?></td>
+                            <td><?php echo $result->LOGDATETIME;?></td>
+                            <td><?php echo $result->LOGROLE;?></td>
+                            <td><?php echo $result->LOGMODE;?></td> 
+                          </tr>
+                          <?php 
+                        } 
                       }
-                  } 
-
-                } 
+                   } 
+                }
               } 
             ?>
             </tbody>
@@ -191,7 +186,6 @@
 </form>
 <form action="printlogs.php" method="POST" target="_blank">
 <input type="hidden" name="Users" value="<?php echo (isset($_POST['Users'])) ? $_POST['Users'] : ''; ?>">
- <!-- <input type="hidden" name="Semester" value="<?php echo (isset($_POST['Semester'])) ? $_POST['Semester'] : ''; ?> ">  -->
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-xs-12">
@@ -205,4 +199,3 @@
  
 </div>
 <!-- ./wrapper -->
- 
