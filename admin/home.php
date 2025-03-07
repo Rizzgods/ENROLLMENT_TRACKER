@@ -21,7 +21,7 @@
                         <div class="card text-center">
                             <div class="card-body" style="padding: 15px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 20px;">
                                 <div style="font-size: 40px; margin-bottom: 10px;">
-                                    <i class="fa fa-user-circle text-primary"></i>
+                                    <i class="fa fa-graduation-cap text-primary"></i>
                                 </div>
                                 <h4 style="margin-top: 0;">Admission</h4>
                                 <p class="text-muted">Manage student admissions and enrollment details.</p>
