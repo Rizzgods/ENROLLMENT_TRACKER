@@ -12,7 +12,7 @@ require_once("../../include/initialize.php");
 <div class="row">
     <div class="col-lg-12">
         <div class="col-lg-6">
-            <h1 class="page-header">New Enrollees</h1>
+            <h1 class="page-header">Pre-Enrolled Students</h1>
         </div>
         <div class="col-lg-6">
             <img width="15%" style="float:right;" src="<?php echo web_root; ?>img/bcp_logo.png">

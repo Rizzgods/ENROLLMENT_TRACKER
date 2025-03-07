@@ -150,7 +150,7 @@ $singleuser = $user->single_user($_SESSION['ACCOUNT_ID']);
                             <a href="<?php echo web_root; ?>admin/index.php"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                         </li>
                          <li>
-                             <a href="<?php echo web_root; ?>admin/enrollees/index.php" ><i class="fa fa-calendar fa-fw"></i>  New Enrollees 
+                             <a href="<?php echo web_root; ?>admin/enrollees/index.php" ><i class="fa fa-calendar fa-fw"></i>  Pre-Enrolled 
                              <label class="label pull-right label-primary"><?php echo isset($enrollees->enrollees) ? $enrollees->enrollees : 0; ?></label> </a>
                               
                         </li>
