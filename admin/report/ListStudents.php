@@ -64,6 +64,17 @@
             </select>
           </address>
         </div>
+        <div class="col-sm-2 invoice-col">
+          Student Status
+          <address> 
+            <select name="Status" class="form-control">
+              <option value="All">All</option>
+              <option value="accepted">Accepted</option>
+              <option value="pending">Pending</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </address>
+        </div>
       
         <!-- /.col -->
            <!-- /.col -->
@@ -86,10 +97,12 @@
         <div class="col-xs-12">
           <h2 class="page-header">
             <i  class="">List Of Students</i>
-              <small class="pull-right"> <?php echo (isset($_POST['Course'])) ? 'Course/Year :' .$_POST['Course'] .' ||': ''; ?>
+              <small class="pull-right"> 
+                <?php echo (isset($_POST['Course'])) ? 'Course/Year :' .$_POST['Course'] .' ||': ''; ?>
                 <?php echo (isset($_POST['Semester'])) ? ' Semester :' .$_POST['Semester'] .' ||': ''; ?>
-                 <?php echo (isset($_POST['SY'])) ? ' SY :' .$_POST['SY'] : ''; ?> 
-                  </small>
+                <?php echo (isset($_POST['SY'])) ? ' SY :' .$_POST['SY'] .' ||': ''; ?>
+                <?php echo (isset($_POST['Status']) && $_POST['Status'] != 'All') ? ' Status :' .$_POST['Status'] : ''; ?>
+              </small>
           </h2>
         </div> 
       </div> 
@@ -126,6 +139,11 @@
                   if (isset($_POST['SY']) && !empty($_POST['SY'])) {
                     $sql .= " AND s.SYEAR = '" . $_POST['SY'] . "'";
                   }
+                  
+                  // Add Status filter
+                  if (isset($_POST['Status']) && $_POST['Status'] != 'All') {
+                    $sql .= " AND s.STATUS = '" . $_POST['Status'] . "'";
+                  }
 
                 $mydb->setQuery($sql);
                 $res = $mydb->executeQuery();
@@ -160,6 +178,11 @@
                   
                   if (isset($_POST['SY']) && !empty($_POST['SY'])) {
                     $sql .= " AND s.SYEAR = '" . $_POST['SY'] . "'";
+                  }
+                  
+                  // Add Status filter
+                  if (isset($_POST['Status']) && $_POST['Status'] != 'All') {
+                    $sql .= " AND s.STATUS = '" . $_POST['Status'] . "'";
                   }
 
                 $mydb->setQuery($sql);
@@ -209,6 +232,7 @@
     <input type="hidden" name="Course" value="<?php echo (isset($_POST['Course'])) ? $_POST['Course'] : ''; ?>">
      <input type="hidden" name="Semester" value="<?php echo (isset($_POST['Semester'])) ? $_POST['Semester'] : ''; ?> "> 
      <input type="hidden" name="SY" value="<?php echo (isset($_POST['SY'])) ? $_POST['SY'] : ''; ?> "> 
+     <input type="hidden" name="Status" value="<?php echo (isset($_POST['Status'])) ? $_POST['Status'] : 'All'; ?> ">
           <!-- this row will not appear when printing -->
           <div class="row no-print">
             <div class="col-xs-12">
