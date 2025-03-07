@@ -30,91 +30,6 @@
     $result = $stmt->get_result();
 ?>
 
-<!-- Course Filter Section -->
-<div class="row mb-4">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Filter Students</h4>
-            </div>
-            <div class="card-body">
-                <form action="" method="GET" class="form-horizontal">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Course:</label>
-                                <select name="course_filter" class="form-control">
-                                    <option value="">All Courses</option>
-                                    <?php
-                                    // Get all courses from the database
-                                    $course_query = "SELECT DISTINCT COURSE_NAME, COURSE_ID FROM course ORDER BY COURSE_NAME";
-                                    $course_result = $conn->query($course_query);
-                                    
-                                    while ($course_row = $course_result->fetch_assoc()) {
-                                        $selected = (isset($_GET['course_filter']) && $_GET['course_filter'] == $course_row['COURSE_ID']) ? 'selected' : '';
-                                        echo "<option value='{$course_row['COURSE_ID']}' {$selected}>{$course_row['COURSE_NAME']}</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Status:</label>
-                                <select name="status_filter" class="form-control">
-                                    <option value="">All Status</option>
-                                    <option value="New" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] == 'New') ? 'selected' : ''; ?>>New</option>
-                                    <option value="Continuing" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] == 'Continuing') ? 'selected' : ''; ?>>Continuing</option>
-                                    <option value="Transferee" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] == 'Transferee') ? 'selected' : ''; ?>>Transferee</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>&nbsp;</label>
-                                <button type="submit" class="btn btn-primary btn-block">Apply Filter</button>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>&nbsp;</label>
-                                <a href="view.php?id=<?php echo $_GET['id']; ?>" class="btn btn-secondary btn-block">Reset</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Then modify the student query to apply the filters -->
-<?php
-// If course filter is set, add it to query
-$filter_condition = "";
-if (isset($_GET['course_filter']) && !empty($_GET['course_filter'])) {
-    $course_filter = $_GET['course_filter'];
-    $filter_condition .= " AND s.COURSE_ID = '$course_filter'";
-}
-
-// If status filter is set, add it to query
-if (isset($_GET['status_filter']) && !empty($_GET['status_filter'])) {
-    $status_filter = $_GET['status_filter'];
-    $filter_condition .= " AND s.student_status = '$status_filter'";
-}
-
-// Modify your existing query to include the filter
-$sql = "SELECT s.*, c.COURSE_NAME 
-        FROM tblstudent s 
-        JOIN course c ON s.COURSE_ID = c.COURSE_ID 
-        WHERE s.IDNO = ? $filter_condition";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $_GET['id']);
-$stmt->execute();
-$result = $stmt->get_result();
-?>
-
 
 
 <div class="row">
@@ -322,86 +237,15 @@ $result = $stmt->get_result();
 <script src="js/modal.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Add this after the student info form section -->
 
-<!-- Student List Section -->
-<div class="row mt-4">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">
-                    Student List 
-                    <?php 
-                    if(isset($_GET['course_filter']) && !empty($_GET['course_filter'])) {
-                        $course_name_query = "SELECT COURSE_NAME FROM course WHERE COURSE_ID = ?";
-                        $stmt = $conn->prepare($course_name_query);
-                        $stmt->bind_param("s", $_GET['course_filter']);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-                        if($row = $result->fetch_assoc()) {
-                            echo "- " . $row['COURSE_NAME'];
-                        }
-                    }
-                    
-                    if(isset($_GET['status_filter']) && !empty($_GET['status_filter'])) {
-                        echo " (" . $_GET['status_filter'] . ")";
-                    }
-                    ?>
-                </h4>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Course</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            // Query to get filtered students
-                            $list_sql = "SELECT s.*, c.COURSE_NAME 
-                                        FROM tblstudent s 
-                                        JOIN course c ON s.COURSE_ID = c.COURSE_ID 
-                                        WHERE 1=1 $filter_condition 
-                                        ORDER BY s.LNAME";
-                            
-                            $list_result = $conn->query($list_sql);
-                            
-                            if ($list_result->num_rows > 0) {
-                                while ($row = $list_result->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td>{$row['IDNO']}</td>";
-                                    echo "<td>{$row['LNAME']}, {$row['FNAME']} {$row['MNAME']}</td>";
-                                    echo "<td>{$row['COURSE_NAME']}</td>";
-                                    echo "<td>{$row['student_status']}</td>";
-                                    echo "<td>
-                                          <a title='View Information' href='index.php?view=view&id={$row['IDNO']}' class='btn btn-info btn-xs'>View <span class='fa fa-info-circle fw-fa'></span></a>
-                                          <a title='Confirm' href='controller.php?action=confirm&IDNO={$row['IDNO']}' class='btn btn-success btn-xs'>Confirm <span class='fa fa-check-circle fw-fa'></span></a>
-                                          <a title='Reject' href='controller.php?action=reject&IDNO={$row['IDNO']}' class='btn btn-danger btn-xs'>Reject <span class='fa fa-times-circle fw-fa'></span></a>
-                                          </td>";
-                                    echo "</tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='5' class='text-center'>No students found matching the criteria</td></tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Total students: <?php echo $list_result->num_rows; ?></small>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
 
 <a title="Confirm" href="controller.php?action=confirm&IDNO=' . $result->IDNO . '" class="btn btn-success btn-xs">Confirm <span class="fa fa-info-circle fw-fa"></span></a>
                                 <a title="Reject" href="controller.php?action=reject&IDNO=' . $result->IDNO . '" class="btn btn-danger btn-xs">Reject <span class="fa fa-info-circle fw-fa"></span></a>
                               <a title="View Information" href="index.php?view=view&id='.$result->IDNO.'"  class="btn btn-info btn-xs  ">View <span class="fa fa-info-circle fw-fa"></span></a>
 
+ 
