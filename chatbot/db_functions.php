@@ -82,9 +82,10 @@ function getStudentInfo($studentId) {
                     
                     if ($courseResult && $courseResult->num_rows > 0) {
                         $courseInfo = $courseResult->fetch_assoc();
-                        $studentInfo['course_name'] = isset($courseInfo['coursename']) ? 
-                            $courseInfo['coursename'] : 
-                            (isset($courseInfo['course_name']) ? $courseInfo['course_name'] : 'Not specified');
+                        $studentInfo['course_name'] = isset($courseInfo['COURSE_NAME']) ? 
+                            $courseInfo['COURSE_NAME'] : 
+                            (isset($courseInfo['coursename']) ? $courseInfo['coursename'] : 
+                             (isset($courseInfo['course_name']) ? $courseInfo['course_name'] : 'Not specified'));
                     }
                     $courseStmt->close();
                 } else {
