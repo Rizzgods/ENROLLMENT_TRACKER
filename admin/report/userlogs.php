@@ -75,106 +75,100 @@
             </thead>
             <tbody>
              <?php
-             if(isset($_POST['submit'])){ 
-                if ($_POST['Users']=="All") {
-                  # code...
-                    $sql ="SELECT * FROM `tbllogs`  l ,`useraccounts` u
-                      WHERE l.`USERID`=u.`ACCOUNT_ID`" ;
-                     
-
-                  $mydb->setQuery($sql);
-                  $res = $mydb->executeQuery();
-                  $row_count = $mydb->num_rows($res);
-                  $cur = $mydb->loadResultList();
+             // Show all logs by default on initial page load or when "All" is selected
+             if(!isset($_POST['submit']) || (isset($_POST['submit']) && $_POST['Users'] == "All")) {
+                 // Get admin/staff users logs
+                 $sql = "SELECT * FROM `tbllogs` l, `useraccounts` u 
+                        WHERE l.`USERID`=u.`ACCOUNT_ID`";
                  
-                    if ($row_count > 0){
-                            foreach ($cur as $result) {
-                                   ?>
-                                  <tr> 
-                                   <td><?php echo $result->ACCOUNT_NAME;?></td>
-                                     <td><?php echo $result->LOGDATETIME;?></td>
-                                    <td><?php echo $result->LOGROLE;?></td>
-                                    <td><?php echo $result->LOGMODE;?></td> 
-                                  </tr>
-                                  <?php 
-                                    
-                      } 
-
-                      }
-                         $sql ="SELECT * FROM `tbllogs`  l ,`tblstudent` u
-                          WHERE l.`USERID`=u.`IDNO`" ;
-                         
-
-                  $mydb->setQuery($sql);
-                  $res = $mydb->executeQuery();
-                  $row_count = $mydb->num_rows($res);
-                  $cur = $mydb->loadResultList();
+                 $mydb->setQuery($sql);
+                 $res = $mydb->executeQuery();
+                 $row_count = $mydb->num_rows($res);
+                 $cur = $mydb->loadResultList();
+                
+                 if ($row_count > 0){
+                     foreach ($cur as $result) {
+                         ?>
+                         <tr> 
+                          <td><?php echo $result->ACCOUNT_NAME;?></td>
+                          <td><?php echo $result->LOGDATETIME;?></td>
+                          <td><?php echo $result->LOGROLE;?></td>
+                          <td><?php echo $result->LOGMODE;?></td> 
+                         </tr>
+                         <?php 
+                     }
+                 }
                  
-                    if ($row_count > 0){
-                            foreach ($cur as $result) {
-                                   ?>
-                                  <tr> 
-                                   <td><?php echo $result->FNAME . ' '. $result->LNAME;?></td>
-                                     <td><?php echo $result->LOGDATETIME;?></td>
-                                    <td><?php echo $result->LOGROLE;?></td>
-                                    <td><?php echo $result->LOGMODE;?></td> 
-                                  </tr>
-                                  <?php 
-                                    
-                      } 
-
-                      }
-                }else{
-                   # Use exact match for the role type
-                   if ($_POST['Users']=='Administrator' || $_POST['Users']=='Registrar') {
-                      # For admin users
-                      $sql ="SELECT * FROM `tbllogs` l, `useraccounts` u
-                            WHERE l.`USERID`=u.`ACCOUNT_ID` AND l.`LOGROLE` = '" . $_POST['Users'] . "'";
-                     
-
-                      $mydb->setQuery($sql);
-                      $res = $mydb->executeQuery();
-                      $row_count = $mydb->num_rows($res);
-                      $cur = $mydb->loadResultList();
-                     
-                      if ($row_count > 0){
-                        foreach ($cur as $result) {
-                          ?>
-                          <tr> 
-                            <td><?php echo $result->ACCOUNT_NAME;?></td>
-                            <td><?php echo $result->LOGDATETIME;?></td>
-                            <td><?php echo $result->LOGROLE;?></td>
-                            <td><?php echo $result->LOGMODE;?></td> 
-                          </tr>
-                          <?php 
-                        } 
-                      }
-                   } else if ($_POST['Users']=='Student') {
-                     # For student users
-                     $sql ="SELECT * FROM `tbllogs` l, `tblstudent` u
-                          WHERE l.`USERID`=u.`IDNO` AND l.`LOGROLE` = 'Student'";
-                     
-
-                      $mydb->setQuery($sql);
-                      $res = $mydb->executeQuery();
-                      $row_count = $mydb->num_rows($res);
-                      $cur = $mydb->loadResultList();
-                     
-                      if ($row_count > 0){
-                        foreach ($cur as $result) {
-                          ?>
-                          <tr> 
-                            <td><?php echo $result->FNAME . ' '. $result->LNAME;?></td>
-                            <td><?php echo $result->LOGDATETIME;?></td>
-                            <td><?php echo $result->LOGROLE;?></td>
-                            <td><?php echo $result->LOGMODE;?></td> 
-                          </tr>
-                          <?php 
-                        } 
-                      }
-                   } 
-                }
-              } 
+                 // Get student logs
+                 $sql = "SELECT * FROM `tbllogs` l, `tblstudent` u 
+                        WHERE l.`USERID`=u.`IDNO`";
+                        
+                 $mydb->setQuery($sql);
+                 $res = $mydb->executeQuery();
+                 $row_count = $mydb->num_rows($res);
+                 $cur = $mydb->loadResultList();
+                
+                 if ($row_count > 0){
+                     foreach ($cur as $result) {
+                         ?>
+                         <tr> 
+                          <td><?php echo $result->FNAME . ' '. $result->LNAME;?></td>
+                          <td><?php echo $result->LOGDATETIME;?></td>
+                          <td><?php echo $result->LOGROLE;?></td>
+                          <td><?php echo $result->LOGMODE;?></td> 
+                         </tr>
+                         <?php 
+                     }
+                 }
+             } 
+             // Handle specific user role selection
+             else if(isset($_POST['submit']) && $_POST['Users'] != "All") {
+                if ($_POST['Users']=='Administrator' || $_POST['Users']=='Registrar') {
+                   # For admin users
+                   $sql ="SELECT * FROM `tbllogs` l, `useraccounts` u
+                         WHERE l.`USERID`=u.`ACCOUNT_ID` AND l.`LOGROLE` = '" . $_POST['Users'] . "'";
+                  
+                   $mydb->setQuery($sql);
+                   $res = $mydb->executeQuery();
+                   $row_count = $mydb->num_rows($res);
+                   $cur = $mydb->loadResultList();
+                  
+                   if ($row_count > 0){
+                     foreach ($cur as $result) {
+                       ?>
+                       <tr> 
+                         <td><?php echo $result->ACCOUNT_NAME;?></td>
+                         <td><?php echo $result->LOGDATETIME;?></td>
+                         <td><?php echo $result->LOGROLE;?></td>
+                         <td><?php echo $result->LOGMODE;?></td> 
+                       </tr>
+                       <?php 
+                     } 
+                   }
+                } else if ($_POST['Users']=='Student') {
+                  # For student users
+                  $sql ="SELECT * FROM `tbllogs` l, `tblstudent` u
+                       WHERE l.`USERID`=u.`IDNO` AND l.`LOGROLE` = 'Student'";
+                  
+                   $mydb->setQuery($sql);
+                   $res = $mydb->executeQuery();
+                   $row_count = $mydb->num_rows($res);
+                   $cur = $mydb->loadResultList();
+                  
+                   if ($row_count > 0){
+                     foreach ($cur as $result) {
+                       ?>
+                       <tr> 
+                         <td><?php echo $result->FNAME . ' '. $result->LNAME;?></td>
+                         <td><?php echo $result->LOGDATETIME;?></td>
+                         <td><?php echo $result->LOGROLE;?></td>
+                         <td><?php echo $result->LOGMODE;?></td> 
+                       </tr>
+                       <?php 
+                     } 
+                   }
+                } 
+             }
             ?>
             </tbody>
           </table>
