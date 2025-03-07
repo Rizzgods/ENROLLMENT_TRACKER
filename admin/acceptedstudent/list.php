@@ -356,7 +356,7 @@ function exportToPDF() {
 // Export as CSV
 function exportToCSV() {
     // Get the table
-    const table = document.getElement.getElementById('dash-table');
+    const table = document.getElementById('dash-table');
     
     // Extract table data
     let headers = [];
