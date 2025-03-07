@@ -84,7 +84,7 @@
                     <span class="bg-gray-300 h-px flex-grow t-2 relative top-2"></span>
                 </div>
                 <p class="mt-4">
-                    Return to <a href="/onlineenrolmentsystem/pre_enroll/home.php" class="text-blue-600 hover:text-blue-700 font-medium">Main Site</a>
+                    Return to <a href="https://admission.bcpsms4.com/pre_enroll/home.php" class="text-blue-600 hover:text-blue-700 font-medium">Main Site</a>
                 </p>
             </div>
         </div>
