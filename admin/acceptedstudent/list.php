@@ -207,9 +207,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
 
 <script>
-// Print table
+// Print table - modified to remove action column
 function printTable() {
-    let printContents = document.getElementById('dash-table').outerHTML;
+    // Get the original table
+    const originalTable = document.getElementById('dash-table');
+    
+    // Create a clone of the table to modify
+    const tableToPrint = originalTable.cloneNode(true);
+    
+    // Remove the action column from header and all rows
+    const headerRow = tableToPrint.querySelector('thead tr');
+    const actionColumnIndex = headerRow.cells.length - 1; // Last column is Action
+    
+    // Remove Action header
+    headerRow.deleteCell(actionColumnIndex);
+    
+    // Remove Action column from all rows
+    const rows = tableToPrint.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+        row.deleteCell(actionColumnIndex);
+    });
+    
     let filters = '';
     
     // Include active filters in the print
@@ -219,13 +237,43 @@ function printTable() {
     
     let title = '<h2>Accepted Students List</h2>';
     let date = '<p>Date: ' + new Date().toLocaleDateString() + '</p>';
+    let institution = '<p>Bicol College Polangui</p>';
     
+    // Create print content with the modified table
+    let printContent = '<div style="padding: 20px;">' + 
+                       title + 
+                       institution + 
+                       date + 
+                       filters + 
+                       tableToPrint.outerHTML + 
+                       '</div>';
+    
+    // Save original body content
     let originalContents = document.body.innerHTML;
     
-    document.body.innerHTML = '<div style="padding: 20px;">' + title + date + filters + printContents + '</div>';
+    // Replace body content with print content
+    document.body.innerHTML = printContent;
     
+    // Add a print stylesheet
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @media print {
+            body { font-family: Arial, sans-serif; }
+            h2 { text-align: center; }
+            p { text-align: center; margin: 5px 0; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th { background-color: #f2f2f2; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            tr:nth-child(even) { background-color: #f9f9f9; }
+            .alert-info { background-color: #d1ecf1; border: 1px solid #bee5eb; border-radius: 4px; padding: 12px; margin-bottom: 16px; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Print the document
     window.print();
     
+    // Restore original content
     document.body.innerHTML = originalContents;
     
     // Reload page after printing to restore functionality
