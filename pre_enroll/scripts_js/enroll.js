@@ -48,7 +48,9 @@ function validateStep(step) {
             return;
         }
 
-        if (!field.value) {
+        // For select elements, check if value is empty string
+        if ((field.tagName === 'SELECT' && field.value === '') || 
+            (field.tagName !== 'SELECT' && !field.value)) {
             isValid = false;
             field.classList.add('border-red-500');
         } else {
