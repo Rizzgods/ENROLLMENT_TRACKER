@@ -98,16 +98,17 @@ require_once __DIR__ .  "/Logic_validate.php";
                             <label for="CONTACT" class="block text-sm font-medium text-gray-700">Contact No. <span class="text-red-500">*</span></label>
                             <input required id="CONTACT" name="CONTACT" placeholder="Contact Number" type="number" maxlength="11" value="<?php echo isset($_SESSION['CONTACT']) ? $_SESSION['CONTACT'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                         </div>
+                        <!-- Course/Year select -->
                         <div class="space-y-4">
                             <label for="COURSE" class="block text-sm font-medium text-gray-700">Course/Year <span class="text-red-500">*</span></label>
-                            <select name="COURSE" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <select required name="COURSE" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                 <?php
                                 if(isset($_SESSION['COURSEID'])){
                                     $course = New Course();
                                     $singlecourse = $course->single_course($_SESSION['COURSEID']);
                                     echo '<option value='.$singlecourse->COURSE_ID.' >'.$singlecourse->COURSE_NAME.'-'.$singlecourse->COURSE_DESC.' </option>';
                                 }else{
-                                    echo '<option value="Select">Select</option>';
+                                    echo '<option value="">Select</option>';
                                 }
                                 ?>
                                 <?php 
@@ -119,24 +120,18 @@ require_once __DIR__ .  "/Logic_validate.php";
                                 ?>
                             </select>
                         </div>
-                        <div class="space-y-4">
-                            <label for="SEMESTER" class="block text-sm font-medium text-gray-700">Semester to Enroll <span class="text-red-500">*</span></label>
-                            <select required id="SEMESTER" name="SEMESTER" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
-                                <option value="">Select Semester</option>
-                                <option value="1">1st Semester</option>
-                                <option value="2">2nd Semester</option>
-                            </select>
-                        </div>
-                    </div>
+                        
+                       
                 </div>
 
                 <!-- Step 4 -->
                 <div class="step hidden" id="step4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Civil Status select -->
                         <div class="space-y-4">
                             <label for="CIVILSTATUS" class="block text-sm font-medium text-gray-700">Civil Status <span class="text-red-500">*</span></label>
-                            <select name="CIVILSTATUS" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
-                                <option value="Select">Select Status</option>
+                            <select required name="CIVILSTATUS" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                                <option value="">Select Status</option>
                                 <option value="Single">Single</option>
                                 <option value="Married">Married</option>
                                 <option value="Widow">Widow</option>
