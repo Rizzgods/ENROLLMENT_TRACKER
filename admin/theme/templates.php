@@ -186,12 +186,6 @@ $singleuser = $user->single_user($_SESSION['ACCOUNT_ID']);
                             <!-- <a href="<?php echo web_root; ?>admin/report/index.php" ><i class="fa  fa-file-text fa-fw"></i> Report </a> -->
                             <a href="#"><i class="fa  fa-file-text fa-fw"></i> Report <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?php echo web_root; ?>admin/report/index.php?view=studentlist">Students</a>
-                                    <!-- <ul  class="nav nav-third-level">
-                                        <li>List of Student</li>
-                                    </ul> -->
-                                </li>
                                 
                            <!--   <li>
                                     <a href="<?php echo web_root; ?>admin/report/index.php?view=classrecord">Class List</a>
