@@ -144,7 +144,7 @@ if (isset($_POST['regsubmit'])) {
             $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $lowercase = 'abcdefghijklmnopqrstuvwxyz';
             $numbers = '0123456789';
-            $special = '@#$%^&*()_-+=<>?';
+            $special = '@#$%^&*()_-+=';  // Removed problematic characters: <>?
             
             // Ensure we have at least one of each character type
             $password = [
@@ -160,7 +160,7 @@ if (isset($_POST['regsubmit'])) {
                 $password[] = $allChars[rand(0, strlen($allChars) - 1)];
             }
             
-            // Shuffle to avoid predictable pattern (first uppercase, then lowercase, etc.)
+            // Shuffle to avoid predictable pattern
             shuffle($password);
             
             // Return the password as a string
@@ -168,6 +168,13 @@ if (isset($_POST['regsubmit'])) {
         }
         
         $password = generateSecurePassword();
+        error_log("Raw password generated: " . $password);
+        error_log("Password length: " . strlen($password));
+        error_log("Password character codes: " . implode(',', array_map(function($char) { 
+            return ord($char); 
+        }, str_split($password))));
+        $displayPassword = htmlspecialchars($password); // Ensure special characters are properly encoded for HTML display
+        error_log("Generated secure password length: " . strlen($password) . " characters");
         error_log("Generated secure password: [REDACTED FOR SECURITY]");
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -303,7 +310,7 @@ if (isset($_POST['regsubmit'])) {
                                 <div style='background-color: #ebf5ff; border-left: 4px solid #3182ce; padding: 15px; margin: 20px 0; border-radius: 4px;'>
                                     <p style='margin-top: 0; font-weight: bold;'>Login Credentials</p>
                                     <p><b>Username:</b> $username</p>
-                                    <p style='margin-bottom: 0;'><b>Password:</b> $password</p>
+                                    <p style='margin-bottom: 0;'><b>Password:</b> $displayPassword</p>
                                     <p>Use these credentials to check on your progress at <a href='https://admission.bcpsms4.com/tracking/student_login.php' style='color: #3182CE;'>https://admission.bcpsms4.com/tracking/student_login.php</a></p>
                                 </div>
                                 
