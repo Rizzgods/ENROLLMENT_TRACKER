@@ -237,7 +237,7 @@ function printTable() {
     
     let title = '<h2>Accepted Students List</h2>';
     let date = '<p>Date: ' + new Date().toLocaleDateString() + '</p>';
-    let institution = '<p>Bicol College Polangui</p>';
+    let institution = '<p>Bestlink College of the Philippines</p>';
     
     // Create print content with the modified table
     let printContent = '<div style="padding: 20px;">' + 
@@ -288,21 +288,27 @@ function exportToPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     
+    // Add institution name at the top
+    doc.setFontSize(16);
+    doc.setFont(undefined, 'bold');
+    doc.text('BESTLINK COLLEGE OF THE PHILIPPINES', doc.internal.pageSize.width / 2, 15, { align: 'center' });
+    
     // Add title
-    doc.setFontSize(18);
-    doc.text('Accepted Students List', 14, 20);
+    doc.setFontSize(14);
+    doc.setFont(undefined, 'normal');
+    doc.text('Accepted Students List', doc.internal.pageSize.width / 2, 25, { align: 'center' });
     
     // Add filters info if present
-    let yPos = 30;
+    let yPos = 35;
     if (document.querySelector('.alert-info')) {
         let filterText = document.querySelector('.alert-info').innerText.replace('Active Filters:', '').trim();
-        doc.setFontSize(12);
+        doc.setFontSize(11);
         doc.text('Filters: ' + filterText, 14, yPos);
-        yPos += 10;
+        yPos += 8;
     }
     
     // Add date
-    doc.setFontSize(12);
+    doc.setFontSize(11);
     doc.text('Date: ' + new Date().toLocaleDateString(), 14, yPos);
     
     // Add the table
@@ -340,25 +346,38 @@ function exportToPDF() {
     
     // Add total records count
     const finalY = doc.lastAutoTable.finalY || 70;
-    doc.setFontSize(12);
+    doc.setFontSize(11);
     doc.text(`Total Records: ${data.length}`, 14, finalY + 10);
     
     // Save the PDF
-    doc.save('accepted_students_list.pdf');
+    doc.save('bcp_accepted_students_list.pdf');
 }
 
 // Export as CSV
 function exportToCSV() {
     // Get the table
-    const table = document.getElementById('dash-table');
+    const table = document.getElement.getElementById('dash-table');
     
     // Extract table data
     let headers = [];
     let data = [];
     
+    // Add institution name as first row in CSV
+    let institutionRow = '"BESTLINK COLLEGE OF THE PHILIPPINES"';
+    let titleRow = '"Accepted Students List"';
+    let dateRow = '"Date: ' + new Date().toLocaleDateString() + '"';
+    let spacerRow = '';
+    
+    // Get filters if present
+    let filterRow = '';
+    if (document.querySelector('.alert-info')) {
+        let filterText = document.querySelector('.alert-info').innerText.replace('Active Filters:', '').trim();
+        filterRow = '"Filters: ' + filterText + '"';
+    }
+    
     // Get headers (excluding the Action column)
     for (let i = 0; i < table.tHead.rows[0].cells.length - 1; i++) {
-        headers.push(table.tHead.rows[0].cells[i].textContent);
+        headers.push('"' + table.tHead.rows[0].cells[i].textContent + '"');
     }
     
     // Get data (excluding the Action column)
@@ -371,8 +390,19 @@ function exportToCSV() {
         data.push(row.join(','));
     }
     
-    // Combine headers and data
-    let csv = headers.join(',') + '\n' + data.join('\n');
+    // Add total records row
+    let totalRow = '"Total Records: ' + data.length + '"';
+    
+    // Combine all components
+    let csv = institutionRow + '\n' + titleRow + '\n' + dateRow + '\n';
+    
+    // Add filter row if present
+    if (filterRow) {
+        csv += filterRow + '\n';
+    }
+    
+    // Add spacer and then the actual data
+    csv += spacerRow + '\n' + headers.join(',') + '\n' + data.join('\n') + '\n\n' + totalRow;
     
     // Create a download link
     let blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -384,13 +414,12 @@ function exportToCSV() {
     // Add filters to filename if present
     let filenameExtra = '';
     if (document.querySelector('.alert-info')) {
-        let filterText = document.querySelector('.alert-info').innerText.replace('Active Filters:', '').trim();
         filenameExtra = '_filtered';
     }
     
     // Set link properties
     link.setAttribute("href", url);
-    link.setAttribute("download", `accepted_students${filenameExtra}_${new Date().toISOString().slice(0,10)}.csv`);
+    link.setAttribute("download", `bcp_accepted_students${filenameExtra}_${new Date().toISOString().slice(0,10)}.csv`);
     link.style.visibility = 'hidden';
     
     // Append link to document
