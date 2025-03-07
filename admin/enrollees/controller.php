@@ -93,7 +93,7 @@ function sendEmail($EMAIL, $FNAME, $LNAME, $status, $IDNO, $db) {
         // Get the absolute URL for the logo
         $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
         $host = $_SERVER['HTTP_HOST'];
-        $logo_url = $protocol . $host . '/onlineenrolmentsystem/assets/logo.png';
+        $logo_url = 'https://admission.bcpsms4.com/pre_enroll/assets/logo.png';
 
         // Get schedule information
         $scheduleQuery = "SELECT SCHEDULE FROM studentaccount WHERE user_id = ?";
