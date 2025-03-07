@@ -86,22 +86,7 @@ if (isset($_SESSION['admingvCart'])){
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right"> 
-                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-plus fa-fw"></i> New  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                    <li><a href="<?php echo web_root; ?>admin/user/index.php?view=add"><i class="fa fa-user  fa-fw"></i> User</a>
-                    </li>
-                            <?php if ($_SESSION['ACCOUNT_TYPE']=='Administrator') {
-                            # code...
-                        ?>
-
-                        <?php }?>
-                        
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
+                 
 <?php
  $user = New User();
 $singleuser = $user->single_user($_SESSION['ACCOUNT_ID']);
