@@ -1,5 +1,4 @@
- 
- <form action="" method="POST" >
+<form action="" method="POST" >
     <!-- Main content --> 
         <!-- title row -->
       <div class="row">
@@ -54,27 +53,14 @@
              <!--  <option value="First">First</option>
               <option value="Second">Second</option>  -->
       <?php 
-        $mydb->setQuery("SELECT distinct(`AY`) FROM `schoolyr`");
+        $mydb->setQuery("SELECT distinct(`SYEAR`) FROM `tblstudent` WHERE SYEAR != ''");
         $cur = $mydb->loadResultList();
 
         foreach ($cur as $result) {
-          echo '<option >'.$result->AY.'</option>';
+          echo '<option >'.$result->SYEAR.'</option>';
 
         }
-       ?><!--        <option>2010-2011</option>
-              <option>2011-2012</option>
-              <option>2012-2013</option>
-              <option>2010-2011</option>
-              <option>2010-2011</option>
-              <option>2010-2011</option>
-              <option>2010-2011</option>
-              <option>2010-2011</option>
-              <option>2010-2011</option>
-              <option>2010-2011</option>
-              <option>2010-2011</option> 
-              <option>2010-2011</option>
-              <option>2010-2011</option>
-              <option>2010-2011</option> -->
+       ?>
             </select>
           </address>
         </div>
@@ -133,12 +119,13 @@
           
             if ($_POST['Course']=='All') {
               # code...
-                  // $sql ="SELECT * FROM `tblstudent`  s ,`course` c 
-                  //       WHERE s.`COURSE_ID`=c.`COURSE_ID`";
-                
-                  $sql ="SELECT * FROM schoolyr sy, `tblstudent`  s ,`course` c 
-                        WHERE sy.IDNO=s.IDNO AND s.`COURSE_ID`=c.`COURSE_ID`
-                        AND s.SEMESTER  LIKE '%" . $_POST['Semester'] ."%'  AND sy.AY = '" .$_POST['SY']. "'";
+                  $sql ="SELECT * FROM `tblstudent` s, `course` c 
+                        WHERE s.`COURSE_ID`=c.`COURSE_ID`
+                        AND s.SEMESTER LIKE '%" . $_POST['Semester'] ."%'";
+
+                  if (isset($_POST['SY']) && !empty($_POST['SY'])) {
+                    $sql .= " AND s.SYEAR = '" . $_POST['SY'] . "'";
+                  }
 
                 $mydb->setQuery($sql);
                 $res = $mydb->executeQuery();
@@ -165,15 +152,15 @@
                          $tot =  count($cur);
                         
                     } 
-                       // $_SESSION['tot'] = $tot;
                   } 
-            }else{
-                  // $sql ="SELECT * FROM `tblstudent`  s ,`course` c 
-                  //       WHERE s.`COURSE_ID`=c.`COURSE_ID` AND CONCAT(COURSE_NAME,'-',COURSE_LEVEL) LIKE '%" . $_POST['Course'] ."%' 
-                  //       AND SEMESTER  LIKE '%" . $_POST['Semester'] ."%'";
-                 $sql ="SELECT * FROM `schoolyr` sy, `tblstudent`  s ,`course` c 
-                        WHERE sy.`IDNO`=s.`IDNO` AND s.`COURSE_ID`=c.`COURSE_ID` AND CONCAT(COURSE_NAME,'-',COURSE_LEVEL) LIKE '%" . $_POST['Course'] ."%' 
-                        AND sy.SEMESTER  LIKE '%" . $_POST['Semester'] ."%'  AND sy.AY = '" .$_POST['SY']. "'";
+            } else {
+                 $sql ="SELECT * FROM `tblstudent` s, `course` c 
+                        WHERE s.`COURSE_ID`=c.`COURSE_ID` AND CONCAT(COURSE_NAME,'-',COURSE_LEVEL) LIKE '%" . $_POST['Course'] ."%' 
+                        AND s.SEMESTER LIKE '%" . $_POST['Semester'] ."%'";
+                  
+                  if (isset($_POST['SY']) && !empty($_POST['SY'])) {
+                    $sql .= " AND s.SYEAR = '" . $_POST['SY'] . "'";
+                  }
 
                 $mydb->setQuery($sql);
                 $res = $mydb->executeQuery();
@@ -200,9 +187,7 @@
                          $tot =  count($cur);
                         
                     } 
-                       // $_SESSION['tot'] = $tot;
                   } 
-
             }
            
              }
@@ -236,4 +221,3 @@
  
 </div>
 <!-- ./wrapper -->
-  
