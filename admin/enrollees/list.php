@@ -49,15 +49,7 @@ require_once("../../include/initialize.php");
                         </select>
                     </div>
                     
-                    <div class="form-group" style="margin-right: 10px;">
-                        <label for="status_filter" style="margin-right: 5px;">Status:</label>
-                        <select name="status_filter" id="status_filter" class="form-control">
-                            <option value="">All Statuses</option>
-                            <option value="New" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] == 'New') ? 'selected' : ''; ?>>New</option>
-                            <option value="Continuing" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] == 'Continuing') ? 'selected' : ''; ?>>Continuing</option>
-                            <option value="Transferee" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] == 'Transferee') ? 'selected' : ''; ?>>Transferee</option>
-                        </select>
-                    </div>
+                    <!-- Status filter has been removed -->
                     
                     <div class="form-group" style="margin-right: 10px;">
                         <label for="gender_filter" style="margin-right: 5px;">Gender:</label>
@@ -77,7 +69,7 @@ require_once("../../include/initialize.php");
 </div>
 
 <!-- Active Filters Display -->
-<?php if (isset($_GET['course_filter']) || isset($_GET['status_filter']) || isset($_GET['gender_filter'])): ?>
+<?php if (isset($_GET['course_filter']) || isset($_GET['gender_filter'])): ?>
 <div class="row">
     <div class="col-lg-12">
         <div class="alert alert-info">
@@ -95,14 +87,12 @@ require_once("../../include/initialize.php");
                 echo " Course: " . $courseName;
             }
             
-            // Display status filter
-            if (isset($_GET['status_filter']) && !empty($_GET['status_filter'])) {
-                echo " | Status: " . $_GET['status_filter'];
-            }
+            // Status filter display removed
             
             // Display gender filter
             if (isset($_GET['gender_filter']) && !empty($_GET['gender_filter'])) {
-                echo " | Gender: " . $_GET['gender_filter'];
+                echo (isset($_GET['course_filter']) && !empty($_GET['course_filter'])) ? " | " : "";
+                echo " Gender: " . $_GET['gender_filter'];
             }
             ?>
         </div>
@@ -136,12 +126,8 @@ require_once("../../include/initialize.php");
                     $query .= " AND s.COURSE_ID = '".$_GET['course_filter']."'";
                 }
                 
-                // Apply status filter
-                if (isset($_GET['status_filter']) && !empty($_GET['status_filter'])) {
-                    $query .= " AND s.student_status = '".$_GET['status_filter']."'";
-                } else {
-                    $query .= " AND s.student_status = 'New'"; // Default filter
-                }
+                // Status filter removed - but keeping the default filter for 'New' students
+                $query .= " AND s.student_status = 'New'"; // Default filter
                 
                 // Apply gender filter
                 if (isset($_GET['gender_filter']) && !empty($_GET['gender_filter'])) {
@@ -162,17 +148,11 @@ require_once("../../include/initialize.php");
                     echo '<td>' . $result->CONTACT_NO . '</td>';
                     echo '<td>' . $result->student_status . '</td>';
                     echo '<td>' . $result->COURSE_NAME . '</td>';
-                    if ($result->student_status == 'New') {
-                        echo '<td align="center">
-                                <a title="Confirm" href="controller.php?action=confirm&IDNO=' . $result->IDNO . '" class="btn btn-success btn-xs">Confirm <span class="fa fa-info-circle fw-fa"></span></a>
-                                <a title="Reject" href="controller.php?action=reject&IDNO=' . $result->IDNO . '" class="btn btn-danger btn-xs">Reject <span class="fa fa-info-circle fw-fa"></span></a>
-                                <a title="View Information" href="index.php?view=view&id='.$result->IDNO.'"  class="btn btn-info btn-xs  ">View <span class="fa fa-info-circle fw-fa"></span></a>
-                                </td>';
-                    } else {
-                        echo '<td align="center">
-                                <a title="Add Subject" href="index.php?view=addCredit&IDNO=' . $result->IDNO . '" class="btn btn-info btn-xs">Add Subject <span class="fa fa-info-circle fw-fa"></span></a>
-                              </td>';
-                    }
+                    echo '<td align="center">
+                            <a title="Confirm" href="controller.php?action=confirm&IDNO=' . $result->IDNO . '" class="btn btn-success btn-xs">Confirm <span class="fa fa-info-circle fw-fa"></span></a>
+                            <a title="Reject" href="controller.php?action=reject&IDNO=' . $result->IDNO . '" class="btn btn-danger btn-xs">Reject <span class="fa fa-info-circle fw-fa"></span></a>
+                            <a title="View Information" href="index.php?view=view&id='.$result->IDNO.'"  class="btn btn-info btn-xs  ">View <span class="fa fa-info-circle fw-fa"></span></a>
+                            </td>';
                     echo '</tr>';
                 }
                 ?>
