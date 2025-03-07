@@ -46,8 +46,8 @@ switch ($view) {
 		$content    = 'ListStudents.php';		
 }
   // include '../modal.php';
-require_once '../theme/Templates.php';
+require_once '../theme/templates.php';
 ?>
 
 
-  
+
