@@ -61,6 +61,33 @@
     </div>
 </div>
 
+<!-- Add this right after the filter panel -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Export Options</h3>
+            </div>
+            <div class="panel-body">
+                <!-- Print Button -->
+                <button onclick="printTable()" class="btn btn-primary" style="margin-right: 10px;">
+                    <i class="fa fa-print"></i> Print
+                </button>
+                
+                <!-- Export as PDF Button -->
+                <button onclick="exportToPDF()" class="btn btn-danger" style="margin-right: 10px;">
+                    <i class="fa fa-file-pdf-o"></i> Export as PDF
+                </button>
+                
+                <!-- Export as CSV Button -->
+                <button onclick="exportToCSV()" class="btn btn-success" style="margin-right: 10px;">
+                    <i class="fa fa-file-excel-o"></i> Export as CSV
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Active Filters Display -->
 <?php if (isset($_GET['course_filter']) || isset($_GET['sex_filter'])): ?>
 <div class="row">
@@ -175,5 +202,158 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+
+<script>
+// Print table
+function printTable() {
+    let printContents = document.getElementById('dash-table').outerHTML;
+    let filters = '';
+    
+    // Include active filters in the print
+    if (document.querySelector('.alert-info')) {
+        filters = document.querySelector('.alert-info').outerHTML;
+    }
+    
+    let title = '<h2>Accepted Students List</h2>';
+    let date = '<p>Date: ' + new Date().toLocaleDateString() + '</p>';
+    
+    let originalContents = document.body.innerHTML;
+    
+    document.body.innerHTML = '<div style="padding: 20px;">' + title + date + filters + printContents + '</div>';
+    
+    window.print();
+    
+    document.body.innerHTML = originalContents;
+    
+    // Reload page after printing to restore functionality
+    setTimeout(function() {
+        location.reload();
+    }, 1000);
+}
+
+// Export as PDF
+function exportToPDF() {
+    // Initialize jsPDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Add title
+    doc.setFontSize(18);
+    doc.text('Accepted Students List', 14, 20);
+    
+    // Add filters info if present
+    let yPos = 30;
+    if (document.querySelector('.alert-info')) {
+        let filterText = document.querySelector('.alert-info').innerText.replace('Active Filters:', '').trim();
+        doc.setFontSize(12);
+        doc.text('Filters: ' + filterText, 14, yPos);
+        yPos += 10;
+    }
+    
+    // Add date
+    doc.setFontSize(12);
+    doc.text('Date: ' + new Date().toLocaleDateString(), 14, yPos);
+    
+    // Add the table
+    const table = document.getElementById('dash-table');
+    window.jspdf.jsPDF = jsPDF;
+    
+    // Extract table data
+    let headers = [];
+    let data = [];
+    
+    // Get headers (excluding the Action column)
+    for (let i = 0; i < table.tHead.rows[0].cells.length - 1; i++) {
+        headers.push(table.tHead.rows[0].cells[i].textContent);
+    }
+    
+    // Get data (excluding the Action column)
+    for (let i = 0; i < table.tBodies[0].rows.length; i++) {
+        let row = [];
+        for (let j = 0; j < table.tBodies[0].rows[i].cells.length - 1; j++) {
+            row.push(table.tBodies[0].rows[i].cells[j].textContent.trim());
+        }
+        data.push(row);
+    }
+    
+    // Add the table to the PDF
+    doc.autoTable({
+        head: [headers],
+        body: data,
+        startY: yPos + 5,
+        margin: { top: 20 },
+        styles: { overflow: 'linebreak' },
+        headStyles: { fillColor: [41, 128, 185], textColor: 255 },
+        theme: 'striped'
+    });
+    
+    // Add total records count
+    const finalY = doc.lastAutoTable.finalY || 70;
+    doc.setFontSize(12);
+    doc.text(`Total Records: ${data.length}`, 14, finalY + 10);
+    
+    // Save the PDF
+    doc.save('accepted_students_list.pdf');
+}
+
+// Export as CSV
+function exportToCSV() {
+    // Get the table
+    const table = document.getElementById('dash-table');
+    
+    // Extract table data
+    let headers = [];
+    let data = [];
+    
+    // Get headers (excluding the Action column)
+    for (let i = 0; i < table.tHead.rows[0].cells.length - 1; i++) {
+        headers.push(table.tHead.rows[0].cells[i].textContent);
+    }
+    
+    // Get data (excluding the Action column)
+    for (let i = 0; i < table.tBodies[0].rows.length; i++) {
+        let row = [];
+        for (let j = 0; j < table.tBodies[0].rows[i].cells.length - 1; j++) {
+            // Wrap text in quotes to handle commas in the data
+            row.push('"' + table.tBodies[0].rows[i].cells[j].textContent.trim().replace(/"/g, '""') + '"');
+        }
+        data.push(row.join(','));
+    }
+    
+    // Combine headers and data
+    let csv = headers.join(',') + '\n' + data.join('\n');
+    
+    // Create a download link
+    let blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    let link = document.createElement("a");
+    
+    // Create a URL for the blob
+    let url = URL.createObjectURL(blob);
+    
+    // Add filters to filename if present
+    let filenameExtra = '';
+    if (document.querySelector('.alert-info')) {
+        let filterText = document.querySelector('.alert-info').innerText.replace('Active Filters:', '').trim();
+        filenameExtra = '_filtered';
+    }
+    
+    // Set link properties
+    link.setAttribute("href", url);
+    link.setAttribute("download", `accepted_students${filenameExtra}_${new Date().toISOString().slice(0,10)}.csv`);
+    link.style.visibility = 'hidden';
+    
+    // Append link to document
+    document.body.appendChild(link);
+    
+    // Click the link to start download
+    link.click();
+    
+    // Remove the link
+    document.body.removeChild(link);
+}
+</script>
 
 </div> <!---End of container-->
