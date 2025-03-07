@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
+<!-- Font Awesome 4.7 -->
+<link rel="stylesheet" href="path/to/font-awesome.min.css">
 <title><?php echo $title;?></title>
 
      <!-- Bootstrap Core CSS -->

@@ -16,12 +16,12 @@
                 <p>Access other integrated campus management systems below:</p>
                 
                 <div class="row" style="margin-top: 20px;">
-                    <!-- Admission System Button - Fixed icon -->
+                    <!-- Admission System Button - Updated icon -->
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="card text-center">
                             <div class="card-body" style="padding: 15px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 20px;">
                                 <div style="font-size: 40px; margin-bottom: 10px;">
-                                    <i class="fa fa-user-plus text-primary"></i>
+                                    <i class="fa fa-user-circle text-primary"></i>
                                 </div>
                                 <h4 style="margin-top: 0;">Admission</h4>
                                 <p class="text-muted">Manage student admissions and enrollment details.</p>
@@ -148,12 +148,12 @@
                 </div>
 
                 <div class="row">
-                    <!-- Financial Assistance System Button - Fixed icon -->
+                    <!-- Financial Assistance System Button - Updated icon -->
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="card text-center">
                             <div class="card-body" style="padding: 15px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 20px;">
                                 <div style="font-size: 40px; margin-bottom: 10px;">
-                                    <i class="fa fa-money-bill-alt text-info"></i>
+                                    <i class="fa fa-dollar text-info"></i>
                                 </div>
                                 <h4 style="margin-top: 0;">Financial Assistance</h4>
                                 <p class="text-muted">Manage scholarships and financial aid.</p>
