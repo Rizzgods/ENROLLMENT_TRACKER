@@ -20,6 +20,96 @@ require_once("../../include/initialize.php");
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
+<!-- Add Filter Panel -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Filter Enrollees</h3>
+            </div>
+            <div class="panel-body">
+                <form method="GET" action="" class="form-inline">
+                    <input type="hidden" name="view" value="list">
+                    
+                    <div class="form-group" style="margin-right: 10px;">
+                        <label for="course_filter" style="margin-right: 5px;">Course:</label>
+                        <select name="course_filter" id="course_filter" class="form-control">
+                            <option value="">All Courses</option>
+                            <?php
+                            $courseQuery = "SELECT COURSE_ID, COURSE_NAME FROM course ORDER BY COURSE_NAME";
+                            $courseResult = $mydb->setQuery($courseQuery);
+                            $courses = $mydb->loadResultList();
+                            
+                            foreach ($courses as $course) {
+                                $selected = (isset($_GET['course_filter']) && $_GET['course_filter'] == $course->COURSE_ID) ? 'selected' : '';
+                                echo '<option value="'.$course->COURSE_ID.'" '.$selected.'>'.$course->COURSE_NAME.'</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="margin-right: 10px;">
+                        <label for="status_filter" style="margin-right: 5px;">Status:</label>
+                        <select name="status_filter" id="status_filter" class="form-control">
+                            <option value="">All Statuses</option>
+                            <option value="New" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] == 'New') ? 'selected' : ''; ?>>New</option>
+                            <option value="Continuing" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] == 'Continuing') ? 'selected' : ''; ?>>Continuing</option>
+                            <option value="Transferee" <?php echo (isset($_GET['status_filter']) && $_GET['status_filter'] == 'Transferee') ? 'selected' : ''; ?>>Transferee</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="margin-right: 10px;">
+                        <label for="gender_filter" style="margin-right: 5px;">Gender:</label>
+                        <select name="gender_filter" id="gender_filter" class="form-control">
+                            <option value="">All</option>
+                            <option value="Male" <?php echo (isset($_GET['gender_filter']) && $_GET['gender_filter'] == 'Male') ? 'selected' : ''; ?>>Male</option>
+                            <option value="Female" <?php echo (isset($_GET['gender_filter']) && $_GET['gender_filter'] == 'Female') ? 'selected' : ''; ?>>Female</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    <a href="index.php?view=list" class="btn btn-default">Reset</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Active Filters Display -->
+<?php if (isset($_GET['course_filter']) || isset($_GET['status_filter']) || isset($_GET['gender_filter'])): ?>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-info">
+            <strong>Active Filters:</strong>
+            <?php
+            // Display course filter
+            if (isset($_GET['course_filter']) && !empty($_GET['course_filter'])) {
+                $courseName = '';
+                foreach ($courses as $course) {
+                    if ($course->COURSE_ID == $_GET['course_filter']) {
+                        $courseName = $course->COURSE_NAME;
+                        break;
+                    }
+                }
+                echo " Course: " . $courseName;
+            }
+            
+            // Display status filter
+            if (isset($_GET['status_filter']) && !empty($_GET['status_filter'])) {
+                echo " | Status: " . $_GET['status_filter'];
+            }
+            
+            // Display gender filter
+            if (isset($_GET['gender_filter']) && !empty($_GET['gender_filter'])) {
+                echo " | Gender: " . $_GET['gender_filter'];
+            }
+            ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
 <form action="controller.php?action=delete" method="POST">
     <div class="table-responsive">
         <table id="dash-table" class="table table-striped table-bordered table-hover table-responsive" style="font-size:12px" cellspacing="0">
@@ -38,8 +128,27 @@ require_once("../../include/initialize.php");
             </thead>
             <tbody>
                 <?php
-                // Fetch latest data from the database
-                $mydb->setQuery("SELECT * FROM `tblstudent` s, `course` c WHERE s.COURSE_ID = c.COURSE_ID AND NewEnrollees = 1 AND student_status = 'New'");
+                // Fetch latest data from the database with filters
+                $query = "SELECT * FROM `tblstudent` s, `course` c WHERE s.COURSE_ID = c.COURSE_ID AND NewEnrollees = 1";
+
+                // Apply course filter
+                if (isset($_GET['course_filter']) && !empty($_GET['course_filter'])) {
+                    $query .= " AND s.COURSE_ID = '".$_GET['course_filter']."'";
+                }
+                
+                // Apply status filter
+                if (isset($_GET['status_filter']) && !empty($_GET['status_filter'])) {
+                    $query .= " AND s.student_status = '".$_GET['status_filter']."'";
+                } else {
+                    $query .= " AND s.student_status = 'New'"; // Default filter
+                }
+                
+                // Apply gender filter
+                if (isset($_GET['gender_filter']) && !empty($_GET['gender_filter'])) {
+                    $query .= " AND s.SEX = '".$_GET['gender_filter']."'";
+                }
+
+                $mydb->setQuery($query);
                 $cur = $mydb->loadResultList();
 
                 foreach ($cur as $result) {
@@ -71,4 +180,13 @@ require_once("../../include/initialize.php");
         </table>
     </div>
 </form>
+
+<!-- Display count of filtered results -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <strong>Total Records Found:</strong> <?php echo count($cur); ?>
+        </div>
+    </div>
+</div>
 </div> <!---End of container-->
