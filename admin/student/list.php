@@ -53,14 +53,7 @@
                         </select>
                     </div>
                     
-                    <div class="form-group" style="margin-right: 10px;">
-                        <label for="payment_filter" style="margin-right: 5px;">Payment:</label>
-                        <select name="payment_filter" id="payment_filter" class="form-control">
-                            <option value="">All Payments</option>
-                            <option value="Paid" <?php echo (isset($_GET['payment_filter']) && $_GET['payment_filter'] == 'Paid') ? 'selected' : ''; ?>>Paid</option>
-                            <option value="Unpaid" <?php echo (isset($_GET['payment_filter']) && $_GET['payment_filter'] == 'Unpaid') ? 'selected' : ''; ?>>Unpaid</option>
-                        </select>
-                    </div>
+                    <!-- Payment filter has been removed -->
                     
                     <button type="submit" class="btn btn-primary">Apply Filters</button>
                     <a href="index.php?view=list" class="btn btn-default">Reset</a>
@@ -101,10 +94,7 @@ if (isset($_GET['sex_filter']) && !empty($_GET['sex_filter'])) {
     $sql .= " AND s.SEX = '" . $_GET['sex_filter'] . "'";
 }
 
-// Add condition for payment filter if selected
-if (isset($_GET['payment_filter']) && !empty($_GET['payment_filter'])) {
-    $sql .= " AND sa.PAYMENT = '" . $_GET['payment_filter'] . "'";
-}
+// Payment filter condition removed
 
 // Using the original status condition to show only accepted students
 $sql .= " AND sa.STATUS = 'accepted'";
@@ -118,7 +108,7 @@ $mydb->setQuery($sql);
 ?>
 
 <!-- Active Filters Display -->
-<?php if (isset($_GET['course_filter']) || isset($_GET['sex_filter']) || isset($_GET['payment_filter'])): ?>
+<?php if (isset($_GET['course_filter']) || isset($_GET['sex_filter'])): ?>
 <div class="row">
     <div class="col-lg-12">
         <div class="alert alert-info">
@@ -142,12 +132,7 @@ $mydb->setQuery($sql);
                 echo " Gender: " . $_GET['sex_filter'];
             }
             
-            // Display payment filter
-            if (isset($_GET['payment_filter']) && !empty($_GET['payment_filter'])) {
-                echo ((isset($_GET['course_filter']) && !empty($_GET['course_filter'])) || 
-                     (isset($_GET['sex_filter']) && !empty($_GET['sex_filter']))) ? " | " : "";
-                echo " Payment: " . $_GET['payment_filter'];
-            }
+            // Payment filter display removed
             ?>
         </div>
     </div>
