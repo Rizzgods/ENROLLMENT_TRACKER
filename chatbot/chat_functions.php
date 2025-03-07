@@ -232,7 +232,16 @@ function getFallbackResponse($userMessage, $studentId = null) {
                            ($studentInfo['MNAME'] ? $studentInfo['MNAME'] . ' ' : '') . 
                            $studentInfo['LNAME'];
                            
-                $course = isset($studentInfo['course_name']) ? $studentInfo['course_name'] : 'Not specified';
+                // Improve course information display with name and description
+                $courseName = isset($studentInfo['course_name']) ? $studentInfo['course_name'] : 'Not specified';
+                $courseDesc = isset($studentInfo['COURSE_DESC']) ? $studentInfo['COURSE_DESC'] : '';
+                
+                // Format course display with description if available
+                $courseDisplay = $courseName;
+                if (!empty($courseDesc)) {
+                    $courseDisplay .= " ($courseDesc)";
+                }
+                
                 $yearLevel = isset($studentInfo['YEARLEVEL']) ? $studentInfo['YEARLEVEL'] : 'Not specified';
                 
                 // Check payment status from studentaccount
@@ -263,7 +272,7 @@ function getFallbackResponse($userMessage, $studentId = null) {
                 $response = "Hello $fullName, here's your enrollment information:\n\n";
                 $response .= "Student ID: $studentId\n";
                 $response .= "Student Type: $studentType\n";
-                $response .= "Program/Course: $course\n";
+                $response .= "Program/Course: $courseDisplay\n";
                 $response .= "Year Level: $yearLevel\n";
                 $response .= "Semester: $semester\n";
                 $response .= "Enrollment Status: $enrollmentStatus\n";
