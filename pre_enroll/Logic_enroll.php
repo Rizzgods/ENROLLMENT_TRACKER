@@ -201,7 +201,7 @@ if (isset($_POST['regsubmit'])) {
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssssssissssssssssisssssssss", $IDNO, $FNAME, $LNAME, $MI, $SEX, $BIRTHDATE, $AGE, $BIRTHPLACE, $CIVILSTATUS, $NATIONALITY, $RELIGION, $CONTACT, $PADDRESS, $COURSEID, $SEMESTER, $EMAIL, $student_status, $YEARLEVEL, $NewEnrollees, $stud_type, $form_138, $good_moral, $psa_birthCert, $id_pic, $Brgy_clearance, $tor, $honor_dismissal, $SYEAR);
+            $stmt->bind_param("ssssssissssssssssissssssssss", $IDNO, $FNAME, $LNAME, $MI, $SEX, $BIRTHDATE, $AGE, $BIRTHPLACE, $CIVILSTATUS, $NATIONALITY, $RELIGION, $CONTACT, $PADDRESS, $COURSEID, $SEMESTER, $EMAIL, $student_status, $YEARLEVEL, $NewEnrollees, $stud_type, $form_138, $good_moral, $psa_birthCert, $id_pic, $Brgy_clearance, $tor, $honor_dismissal, $SYEAR);
             if ($stmt->execute()) {
                 // Insert into studentaccount with generated credentials and required fields
                 $sql = "INSERT INTO studentaccount (user_id, username, password, STATUS, PAYMENT, SCHEDULE, test, enrollment_date) 
