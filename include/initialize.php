@@ -6,10 +6,16 @@
 //(\ for windows, / for Unix)
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
-// Fix the path - remove 'onlineenrolmentsystem' from the path since we're already in the root directory on the server
-defined('SITE_ROOT') ? null : define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
+// More flexible approach to define the application root directory
+defined('SITE_ROOT') ? null : define('SITE_ROOT', str_replace('include', '', dirname(__FILE__)));
 
+// Define the include directory path
 defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT.DS.'include');
+
+// Define a web root constant for URLs (useful for links, redirects, etc.)
+$web_root = "http://" . $_SERVER['HTTP_HOST'];
+$doc_root = preg_replace('/\/include$/', '', dirname($_SERVER['PHP_SELF']));
+defined('WEB_ROOT') ? null : define('WEB_ROOT', $web_root . $doc_root . '/');
 
 //load the database configuration first.
 require_once(LIB_PATH.DS."config.php");
@@ -34,5 +40,3 @@ require_once(LIB_PATH.DS."ay.php");
 
 require_once(LIB_PATH.DS."database.php");
 ?>
-
-

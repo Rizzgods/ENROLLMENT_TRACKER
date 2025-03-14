@@ -686,3 +686,26 @@
 [2025-03-05 20:25:19] [INFO] [dm18591v6fse2t0dbe311ss2eu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
 [2025-03-05 20:25:25] [INFO] [dm18591v6fse2t0dbe311ss2eu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
 [2025-03-05 20:26:56] [INFO] [dm18591v6fse2t0dbe311ss2eu] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-13 08:52:32] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-13 08:52:35] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}
+[2025-03-13 08:52:35] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Email verification attempt - {"email":"cenizamaki@gmail.com"}
+[2025-03-13 08:52:35] [DEBUG] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Database connected successfully
+[2025-03-13 08:52:35] [DEBUG] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Database connected successfully
+[2025-03-13 08:52:35] [DEBUG] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Database Query - {"query":"SELECT * FROM tblstudent WHERE EMAIL = ?","params":{"email":"cenizamaki@gmail.com"}}
+[2025-03-13 08:52:35] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Student found by email - {"email":"cenizamaki@gmail.com","studentId":1000000240}
+[2025-03-13 08:52:35] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Verification code generated - {"email":"cenizamaki@gmail.com","code":790322,"studentId":1000000240}
+[2025-03-13 08:52:38] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Verification email sent successfully - {"email":"cenizamaki@gmail.com"}
+[2025-03-13 08:52:38] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Code verification page accessed - {"page":"verify_code.php","ip":"::1"}
+[2025-03-13 08:52:46] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Code verification page accessed - {"page":"verify_code.php","ip":"::1"}
+[2025-03-13 08:52:46] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Code verification attempt - {"email":"cenizamaki@gmail.com","submitted_code":"790322","expected_code":790322}
+[2025-03-13 08:52:46] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Successful verification - {"email":"cenizamaki@gmail.com","studentId":1000000240}
+[2025-03-13 08:52:46] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-13 08:52:50] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-13 08:52:50] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Chat message received - {"user_id":1000000240,"message":"hello there"}
+[2025-03-13 08:52:50] [DEBUG] [uvg7oorhkib0rhbc5rml9ns198] [::1] - New conversation initialized for user - {"user_id":1000000240}
+[2025-03-13 08:52:59] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - API response received successfully - {"response_length":180}
+[2025-03-13 08:52:59] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Using API response - {"response_length":180}
+[2025-03-13 08:53:07] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Chat page accessed - {"user_id":1000000240,"email":"cenizamaki@gmail.com"}
+[2025-03-13 08:53:07] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Chat message received - {"user_id":1000000240,"message":"are you ai?"}
+[2025-03-13 08:53:17] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - API response received successfully - {"response_length":235}
+[2025-03-13 08:53:17] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Using API response - {"response_length":235}

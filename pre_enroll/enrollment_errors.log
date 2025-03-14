@@ -1,160 +1,73 @@
-[25-Feb-2025 05:51:47 UTC] PHP Warning:  Undefined variable $EMAIL in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 8
-[25-Feb-2025 05:51:47 UTC] PHP Stack trace:
-[25-Feb-2025 05:51:47 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\pre_enroll\emailvalidate.php:0
-[25-Feb-2025 05:51:47 UTC] PHP   2. require_once() C:\wamp64\www\onlineenrolmentsystem\pre_enroll\emailvalidate.php:2
-[25-Feb-2025 05:51:47 UTC] Processing enrollment for: 
-[25-Feb-2025 05:51:47 UTC] PHP Warning:  Undefined variable $username in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 9
-[25-Feb-2025 05:51:47 UTC] PHP Stack trace:
-[25-Feb-2025 05:51:47 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\pre_enroll\emailvalidate.php:0
-[25-Feb-2025 05:51:47 UTC] PHP   2. require_once() C:\wamp64\www\onlineenrolmentsystem\pre_enroll\emailvalidate.php:2
-[25-Feb-2025 05:51:47 UTC] Generated username: 
-[25-Feb-2025 05:55:10 UTC] Processing enrollment for: cenizamaki@gmail.com
-[25-Feb-2025 05:55:10 UTC] Generated username: winstonceniza
-[25-Feb-2025 05:55:10 UTC] Password generated from birthdate: 2002-06-11
-[25-Feb-2025 05:55:10 UTC] Student details - Name: Winston C Ceniza, Course: 21, Semester: 1
-[25-Feb-2025 05:55:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'student_status' cannot be null in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:137
-Stack trace:
-#0 C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php(137): mysqli_stmt->execute()
-#1 {main}
-  thrown in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 137SS
-[25-Feb-2025 06:02:34 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[25-Feb-2025 06:02:34 UTC] Generated username: winstonceniza
-[25-Feb-2025 06:02:34 UTC] Password generated from birthdate: 2002-06-11
-[25-Feb-2025 06:02:34 UTC] Student details - Name: Winston C Ceniza, Course: 21, Semester: 1
-[25-Feb-2025 06:02:34 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Duplicate entry '1000000247' for key 'tblstudent.IDNO' in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:142
-Stack trace:
-#0 C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php(142): mysqli_stmt->execute()
-#1 {main}
-  thrown in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 142
-[25-Feb-2025 06:12:33 UTC] Auto-number updated successfully
-[25-Feb-2025 06:12:33 UTC] Generated IDNO: 1000000247
-[25-Feb-2025 06:12:33 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[25-Feb-2025 06:12:33 UTC] Generated username: sojournceniza
-[25-Feb-2025 06:12:33 UTC] Password generated from birthdate: 2002-06-11
-[25-Feb-2025 06:12:33 UTC] Student details - Name: Sojourn C Ceniza, Course: 21, Semester: 1
-[25-Feb-2025 06:12:33 UTC] Error: Duplicate Student ID generated. Please try again.
-[25-Feb-2025 06:14:15 UTC] Auto-number updated successfully
-[25-Feb-2025 06:14:15 UTC] Generated IDNO: 1000000248
-[25-Feb-2025 06:14:15 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[25-Feb-2025 06:14:15 UTC] Generated username: sojournceniza
-[25-Feb-2025 06:14:15 UTC] Password generated from birthdate: 2002-06-11
-[25-Feb-2025 06:14:15 UTC] Student details - Name: Sojourn C Ceniza, Course: 21, Semester: 1
-[25-Feb-2025 06:14:15 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'dbgreenvalley.studentdetails' doesn't exist in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:174
-Stack trace:
-#0 C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php(174): mysqli->prepare('INSERT INTO stu...')
-#1 {main}
-  thrown in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 174
-[25-Feb-2025 06:19:03 UTC] Auto-number updated successfully
-[25-Feb-2025 06:19:03 UTC] Generated IDNO: 1000000249
-[25-Feb-2025 06:19:03 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[25-Feb-2025 06:19:03 UTC] Generated username: winstonceniza
-[25-Feb-2025 06:19:03 UTC] Password generated from birthdate: 2002-06-11
-[25-Feb-2025 06:19:03 UTC] Student details - Name: Winston C Ceniza, Course: 21, Semester: 1
-[26-Feb-2025 12:29:56 UTC] Auto-number updated successfully
-[26-Feb-2025 12:29:56 UTC] Generated IDNO: 1000000250
-[26-Feb-2025 12:29:56 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[26-Feb-2025 12:29:57 UTC] Generated username: reaperceniza
-[26-Feb-2025 12:29:57 UTC] Password generated from birthdate: 2002-06-11
-[26-Feb-2025 12:29:57 UTC] Student details - Name: Reaper C Ceniza, Course: 21, Semester: 1
-[26-Feb-2025 12:54:09 UTC] Auto-number updated successfully
-[26-Feb-2025 12:54:09 UTC] Generated IDNO: 1000000251
-[26-Feb-2025 12:54:09 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[26-Feb-2025 12:54:09 UTC] Generated username: hazardceniza
-[26-Feb-2025 12:54:09 UTC] Password generated from birthdate: 2002-06-11
-[26-Feb-2025 12:54:09 UTC] Student details - Name: Hazard C Ceniza, Course: 21, Semester: 1
-[26-Feb-2025 12:56:25 UTC] Auto-number updated successfully
-[26-Feb-2025 12:56:25 UTC] Generated IDNO: 1000000252
-[26-Feb-2025 12:56:25 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[26-Feb-2025 12:56:25 UTC] Generated username: hazardousceniza
-[26-Feb-2025 12:56:25 UTC] Password generated from birthdate: 2002-06-11
-[26-Feb-2025 12:56:25 UTC] Student details - Name: Hazardous C Ceniza, Course: 21, Semester: 1
-[26-Feb-2025 22:34:51 UTC] Auto-number updated successfully
-[26-Feb-2025 22:34:51 UTC] Generated IDNO: 1000000253
-[26-Feb-2025 22:34:51 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[26-Feb-2025 22:34:51 UTC] Generated username: powerceniza
-[26-Feb-2025 22:34:51 UTC] Password generated from birthdate: 2002-06-11
-[26-Feb-2025 22:34:51 UTC] Student details - Name: Power A Ceniza, Course: 21, Semester: 1
-[26-Feb-2025 22:47:06 UTC] Auto-number updated successfully
-[26-Feb-2025 22:47:06 UTC] Generated IDNO: 1000000254
-[26-Feb-2025 22:47:06 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[26-Feb-2025 22:47:06 UTC] Generated username: jeanceniza
-[26-Feb-2025 22:47:06 UTC] Password generated from birthdate: 2002-06-11
-[26-Feb-2025 22:47:06 UTC] Student details - Name: Jean A Ceniza, Course: 21, Semester: 1
-[04-Mar-2025 14:23:47 UTC] Auto-number updated successfully
-[04-Mar-2025 14:23:47 UTC] Generated IDNO: 1000000255
-[04-Mar-2025 14:23:47 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[04-Mar-2025 14:23:47 UTC] Generated username: peterparker
-[04-Mar-2025 14:23:47 UTC] Password generated from birthdate: 2002-06-11
-[04-Mar-2025 14:23:47 UTC] Student details - Name: Peter Spider Parker, Course: 21, Semester: 1
-[05-Mar-2025 08:31:06 UTC] Auto-number updated successfully
-[05-Mar-2025 08:31:06 UTC] Generated IDNO: 1000000256
-[05-Mar-2025 08:31:06 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[05-Mar-2025 08:31:06 UTC] Generated username: haulcagsawa
-[05-Mar-2025 08:31:06 UTC] Password generated from birthdate: 2002-06-11
-[05-Mar-2025 08:31:06 UTC] Student details - Name: Haul A Cagsawa, Course: BPED, Semester: 1
-[05-Mar-2025 10:47:31 UTC] Auto-number updated successfully
-[05-Mar-2025 10:47:31 UTC] Generated IDNO: 1000000257
-[05-Mar-2025 10:47:31 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[05-Mar-2025 10:47:31 UTC] Generated username: mrceniza
-[05-Mar-2025 10:47:31 UTC] Password generated from birthdate: 2002-06-11
-[05-Mar-2025 10:47:31 UTC] Student details - Name: Mr C Ceniza, Course: 3, Semester: 1
-[05-Mar-2025 11:22:18 UTC] Auto-number updated successfully
-[05-Mar-2025 11:22:18 UTC] Generated IDNO: 1000000258
-[05-Mar-2025 11:22:18 UTC] Processing enrollment for: ryanceniza11@gmail.com (Status: New)
-[05-Mar-2025 11:22:18 UTC] Generated username: ryan pogiceniza
-[05-Mar-2025 11:22:18 UTC] Password generated from birthdate: 2002-07-11
-[05-Mar-2025 11:22:18 UTC] Student details - Name: Ryan pogi C Ceniza, Course: 16, Semester: 1
-[05-Mar-2025 11:54:59 UTC] Auto-number updated successfully
-[05-Mar-2025 11:54:59 UTC] Generated IDNO: 1000000259
-[05-Mar-2025 11:54:59 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[05-Mar-2025 11:54:59 UTC] Generated username: mark joshuaceniza
-[05-Mar-2025 11:54:59 UTC] Password generated from birthdate: 2002-06-11
-[05-Mar-2025 11:54:59 UTC] Student details - Name: Mark Joshua C Ceniza, Course: 16, Semester: 1
-[05-Mar-2025 14:06:35 UTC] Auto-number updated successfully
-[05-Mar-2025 14:06:35 UTC] Generated IDNO: 2100000000
-[05-Mar-2025 14:06:35 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[05-Mar-2025 14:06:35 UTC] Generated username: mark kevinceniza
-[05-Mar-2025 14:06:35 UTC] Password generated from birthdate: 2002-06-11
-[05-Mar-2025 14:06:35 UTC] Student details - Name: Mark Kevin C Ceniza, Course: 8, Semester: 1
-[05-Mar-2025 14:14:02 UTC] Auto-number updated successfully
-[05-Mar-2025 14:14:02 UTC] Generated IDNO: 2100000001
-[05-Mar-2025 14:14:02 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[05-Mar-2025 14:14:02 UTC] Generated username: mark josephceniza
-[05-Mar-2025 14:14:02 UTC] Password generated from birthdate: 2002-06-11
-[05-Mar-2025 14:14:02 UTC] Student details - Name: Mark Joseph C Ceniza, Course: 9, Semester: 1
-[05-Mar-2025 14:31:30 UTC] Auto-number updated successfully
-[05-Mar-2025 14:31:30 UTC] Generated IDNO: 21000002
-[05-Mar-2025 14:31:30 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[05-Mar-2025 14:31:30 UTC] Generated username: michaeljohnceniza
-[05-Mar-2025 14:31:30 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[05-Mar-2025 14:31:30 UTC] Student details - Name: Michael John C Ceniza, Course: 14, Semester: 1
-[05-Mar-2025 14:48:26 UTC] Auto-number updated successfully
-[05-Mar-2025 14:48:26 UTC] Generated IDNO: 21000003
-[05-Mar-2025 14:48:26 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[05-Mar-2025 14:48:26 UTC] Generated username: killuaceniza
-[05-Mar-2025 14:48:26 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[05-Mar-2025 14:48:26 UTC] Student details - Name: Killua C Ceniza, Course: 6, Semester: 1
-[05-Mar-2025 14:56:22 UTC] Auto-number updated successfully
-[05-Mar-2025 14:56:22 UTC] Generated IDNO: 21000004
-[05-Mar-2025 14:56:22 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[05-Mar-2025 14:56:22 UTC] Generated username: gonceniza
-[05-Mar-2025 14:56:22 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[05-Mar-2025 14:56:22 UTC] Student details - Name: Gon C Ceniza, Course: 15, Semester: 1
-[05-Mar-2025 15:52:57 UTC] Auto-number updated successfully
-[05-Mar-2025 15:52:57 UTC] Generated IDNO: 21000005
-[05-Mar-2025 15:52:57 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[05-Mar-2025 15:52:57 UTC] Generated username: megceniza
-[05-Mar-2025 15:52:57 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[05-Mar-2025 15:52:57 UTC] Student details - Name: Meg C Ceniza, Course: 12, Semester: 1
-[05-Mar-2025 15:56:15 UTC] Auto-number updated successfully
-[05-Mar-2025 15:56:15 UTC] Generated IDNO: 21000006
-[05-Mar-2025 15:56:15 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[05-Mar-2025 15:56:15 UTC] Generated username: julieanneceniza
-[05-Mar-2025 15:56:15 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[05-Mar-2025 15:56:15 UTC] Student details - Name: Julie Anne C Ceniza, Course: 10, Semester: 1
-[05-Mar-2025 16:00:36 UTC] Auto-number updated successfully
-[05-Mar-2025 16:00:36 UTC] Generated IDNO: 21000007
-[05-Mar-2025 16:00:36 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[05-Mar-2025 16:00:36 UTC] Generated username: gutsceniza
-[05-Mar-2025 16:00:36 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[05-Mar-2025 16:00:36 UTC] Student details - Name: Guts C Ceniza, Course: 9, Semester: 1
+[13-Mar-2025 17:01:47 UTC] Auto-number updated successfully
+[13-Mar-2025 17:01:47 UTC] Generated IDNO: 210000038
+[13-Mar-2025 17:01:47 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[13-Mar-2025 17:01:47 UTC] Calculated age: 22
+[13-Mar-2025 17:01:47 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
+[13-Mar-2025 17:01:47 UTC] Analyzing content of pdf file: form 138.pdf
+[13-Mar-2025 17:01:47 UTC] Using Smalot PDF Parser library
+[13-Mar-2025 17:01:47 UTC] Successfully extracted text using PdfParser: Form 138
+Form 138
+Form 138
+Form 138
+Form 138
+Form 138
+Form 138...
+[13-Mar-2025 17:01:47 UTC] Successfully extracted text from PDF using local method
+[13-Mar-2025 17:01:47 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
+[13-Mar-2025 17:01:47 UTC] Document Type: Form 138 / Report Card
+[13-Mar-2025 17:01:47 UTC] File Name: form 138.pdf
+[13-Mar-2025 17:01:47 UTC] Extracted Text: 
+[13-Mar-2025 17:01:47 UTC] Form 138
+Form 138
+Form 138
+Form 138
+Form 138
+Form 138
+Form 138
+[13-Mar-2025 17:01:47 UTC] ====================================================
+[13-Mar-2025 17:01:47 UTC] Verifying document content for type: form_138
+[13-Mar-2025 17:01:47 UTC] Text to verify: Form 138
+Form 138
+Form 138
+Form 138
+Form 138
+Form 138
+Form 138
+[13-Mar-2025 17:01:47 UTC] MATCH FOUND for keyword: 'form 138'
+[13-Mar-2025 17:01:47 UTC] Content match found: 'form 138'
+[13-Mar-2025 17:01:47 UTC] Document validation results - Type detected: YES, Content matches: 1/2
+[13-Mar-2025 17:01:47 UTC] Starting content validation for file: TOR - Copy.pdf (size: 7803 bytes)
+[13-Mar-2025 17:01:47 UTC] Analyzing content of pdf file: TOR - Copy.pdf
+[13-Mar-2025 17:01:47 UTC] Using Smalot PDF Parser library
+[13-Mar-2025 17:01:47 UTC] Successfully extracted text using PdfParser: TRANSCRIPT 
+OF 
+RECORDS...
+[13-Mar-2025 17:01:47 UTC] Successfully extracted text from PDF using local method
+[13-Mar-2025 17:01:47 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
+[13-Mar-2025 17:01:47 UTC] Document Type: Transcript of Records
+[13-Mar-2025 17:01:47 UTC] File Name: TOR - Copy.pdf
+[13-Mar-2025 17:01:47 UTC] Extracted Text: 
+[13-Mar-2025 17:01:47 UTC] TRANSCRIPT 
+OF 
+RECORDS
+[13-Mar-2025 17:01:47 UTC] ====================================================
+[13-Mar-2025 17:01:47 UTC] Verifying document content for type: tor
+[13-Mar-2025 17:01:47 UTC] Text to verify: TRANSCRIPT 
+OF 
+RECORDS
+[13-Mar-2025 17:01:47 UTC] Content match found: 'transcript'
+[13-Mar-2025 17:01:47 UTC] Content match found: 'records'
+[13-Mar-2025 17:01:47 UTC] Document validation results - Type detected: NO, Content matches: 2/2
+[13-Mar-2025 17:01:47 UTC] Generated username: pikachucagsawa
+[13-Mar-2025 17:01:47 UTC] Raw password generated: 885J9Gbez+wg
+[13-Mar-2025 17:01:47 UTC] Password length: 12
+[13-Mar-2025 17:01:47 UTC] Password character codes: 56,56,53,74,57,71,98,101,122,43,119,103
+[13-Mar-2025 17:01:47 UTC] Generated secure password length: 12 characters
+[13-Mar-2025 17:01:47 UTC] Generated secure password: [REDACTED FOR SECURITY]
+[13-Mar-2025 17:01:47 UTC] Student details - Name: pikachu A Cagsawa, Course: 18, Semester: 1
+[13-Mar-2025 17:01:48 UTC] Inserting student account for ID: 210000038
+[13-Mar-2025 17:01:48 UTC] Student account creation result: Success
+[13-Mar-2025 17:01:48 UTC] Inserting guardian details for ID: 210000038
+[13-Mar-2025 17:01:48 UTC] Guardian details insertion: Success
+[13-Mar-2025 17:01:48 UTC] Attempting to send email to: cenizamaki@gmail.com
+[13-Mar-2025 17:01:51 UTC] Email successfully sent to: cenizamaki@gmail.com

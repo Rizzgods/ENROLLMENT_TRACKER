@@ -8,6 +8,7 @@ require_once __DIR__ .  "/../include/autonumbers.php";
 require_once __DIR__ .  "/../include/students.php";
 require_once __DIR__ .  "/../include/session.php";
 require_once __DIR__ .  "/../include/function.php";
+require_once __DIR__ .  "/../chatbot/utils/file_validator.php";
 
 // Database credentials - Update with correct server credentials
 $servername = "localhost";
@@ -41,12 +42,45 @@ use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__. '/../vendor/autoload.php'; // Ensure PHPMailer is included
 
-// Add this function at the top of your file
-function handleFileUpload($file) {
-    if (isset($file) && $file['error'] === UPLOAD_ERR_OK) {
+// Update the handleFileUpload function to use DeepSeek API
+function handleFileUpload($file, $fileType = 'document', $documentType = null) {
+    if (!isset($file) || $file['error'] !== UPLOAD_ERR_OK) {
+        return null; // No file uploaded or upload error - treat as "to follow"
+    }
+    
+    try {
+        // Create file validator instance
+        $validator = new FileValidator();
+        
+        // Use the validator to check the file
+        $validationResult = $validator->validateFile($file, $fileType, $documentType);
+        
+        if (!$validationResult['valid']) {
+            error_log("File validation warning: " . $validationResult['message']);
+            
+            // If API_FALLBACK_MODE is enabled, continue with the file despite validation issues
+            if (defined('API_FALLBACK_MODE') && API_FALLBACK_MODE) {
+                error_log("Accepting file despite validation failure due to API_FALLBACK_MODE=true");
+                return file_get_contents($file['tmp_name']);
+            }
+            
+            throw new Exception('File validation failed: ' . $validationResult['message']);
+        }
+        
+        // If validation passes, return file contents
         return file_get_contents($file['tmp_name']);
     }
-    return null;
+    catch (Exception $e) {
+        error_log("Error in handleFileUpload: " . $e->getMessage());
+        
+        // In fallback mode, accept the file despite errors
+        if (defined('API_FALLBACK_MODE') && API_FALLBACK_MODE) {
+            error_log("Accepting file in fallback mode despite error: " . $file['name']);
+            return file_get_contents($file['tmp_name']);
+        }
+        
+        throw $e; // Re-throw the exception for other file types
+    }
 }
 
 if (isset($_POST['regsubmit'])) {
@@ -100,14 +134,14 @@ if (isset($_POST['regsubmit'])) {
 
     // Then in your form processing
     try {
-        // Handle file uploads
-        $form_138 = handleFileUpload($_FILES['form_138'] ?? null);
-        $good_moral = handleFileUpload($_FILES['good_moral'] ?? null);
-        $psa_birthCert = handleFileUpload($_FILES['psa_birthCert'] ?? null);
-        $id_pic = handleFileUpload($_FILES['id_pic'] ?? null);
-        $Brgy_clearance = handleFileUpload($_FILES['Brgy_clearance'] ?? null);
-        $tor = handleFileUpload($_FILES['tor'] ?? null);
-        $honor_dismissal = handleFileUpload($_FILES['honor_dismissal'] ?? null);
+        // Handle file uploads with validation and document type verification
+        $form_138 = handleFileUpload($_FILES['form_138'] ?? null, 'document', 'form_138');
+        $good_moral = handleFileUpload($_FILES['good_moral'] ?? null, 'document', 'good_moral');
+        $psa_birthCert = handleFileUpload($_FILES['psa_birthCert'] ?? null, 'document', 'psa_birthCert');
+        $id_pic = handleFileUpload($_FILES['id_pic'] ?? null, 'image', 'id_pic');
+        $Brgy_clearance = handleFileUpload($_FILES['Brgy_clearance'] ?? null, 'document', 'Brgy_clearance');
+        $tor = handleFileUpload($_FILES['tor'] ?? null, 'document', 'tor');
+        $honor_dismissal = handleFileUpload($_FILES['honor_dismissal'] ?? null, 'document', 'honor_dismissal');
 
         // Check if student already exists
         $student = new Student();
@@ -145,9 +179,9 @@ if (isset($_POST['regsubmit'])) {
             $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $lowercase = 'abcdefghijklmnopqrstuvwxyz';
             $numbers = '0123456789';
-            $special = '@#$%^&*()_-+=';  // Removed problematic characters: <>?
+            $special = '@#$%^&*()_-+=';
             
-            // Ensure we have at least one of each character type
+           
             $password = [
                 $uppercase[rand(0, strlen($uppercase) - 1)],
                 $lowercase[rand(0, strlen($lowercase) - 1)],

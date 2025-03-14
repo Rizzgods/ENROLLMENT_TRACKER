@@ -2,10 +2,18 @@
 // IMPORTANT: Session settings must be set before session_start()
 // Security settings
 define('SESSION_LIFETIME', 3600); // 1 hour in seconds
-ini_set('session.gc_maxlifetime', SESSION_LIFETIME);
-ini_set('session.cookie_httponly', 1);
-if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
-    ini_set('session.cookie_secure', 1);
+
+// Check if session is already started
+if (session_status() == PHP_SESSION_NONE) {
+    // Configure session settings before starting the session
+    ini_set('session.gc_maxlifetime', SESSION_LIFETIME);
+    ini_set('session.cookie_httponly', 1);
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+        ini_set('session.cookie_secure', 1);
+    }
+    
+    // Now it's safe to start the session if needed
+    // session_start(); // Uncomment if you need to start session here
 }
 
 // Database configuration
@@ -15,6 +23,10 @@ $dbConfig = [
     'password' => '', // Set your database password here
     'dbname' => 'schooldb' // Set your database name here
 ];
+
+// Add PDF handling configuration
+define('ENABLE_PDF_EXTRACTION', true);
+define('PDF_MAX_PAGES', 3); // Maximum pages to process from a PDF
 
 // API configuration for AI service
 $apiKey = 'sk-2048931a5e4543338b01664399691300'; // Your DeepSeek API key
@@ -37,6 +49,14 @@ define('EMAIL_PASSWORD', 'kdiq oeqm cuyr yhuz');
 // Logging settings
 define('LOG_LEVEL', 'DEBUG'); // Options: ERROR, WARNING, INFO, DEBUG
 define('LOG_QUERIES', true); // Whether to log database queries
+
+// Add document validation configuration
+define('DOCUMENT_VALIDATION_STRICTNESS', 'medium'); // options: low, medium, high
+define('MAX_DOCUMENT_VALIDATION_ATTEMPTS', 3);
+
+// Add OCR configuration for better text extraction
+define('OCR_STRICT_TEXT_ONLY', true); // Ensures DeepSeek returns only text, not explanations
+define('OCR_MAX_RETRIES', 2); // Number of retry attempts for failed OCR
 
 // Include the logger if it exists
 $loggerPath = __DIR__ . '/utils/logger.php';
