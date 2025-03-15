@@ -92,6 +92,16 @@ class FileValidator {
                             } elseif (!$textVerification['valid']) {
                                 return $textVerification;
                             }
+                            
+                            // Verify document truthfulness
+                            $truthfulnessResult = $this->verifyDocumentTruthfulness($extractedText, $documentType);
+                            
+                            // Add truthfulness result to the validation result
+                            return [
+                                'valid' => true, 
+                                'message' => 'File passed validation',
+                                'truthfulness' => $truthfulnessResult
+                            ];
                         } else {
                             // Just log the fact that we couldn't extract any text
                             error_log("No text could be extracted from document: {$file['name']} (type: {$documentType})");
@@ -113,8 +123,12 @@ class FileValidator {
             }
         }
 
-        // If we got here, file passed validation
-        return ['valid' => true, 'message' => 'File passed validation'];
+        // If we got here, file passed validation but didn't go through truthfulness check
+        return [
+            'valid' => true, 
+            'message' => 'File passed validation',
+            'truthfulness' => ['genuine' => true, 'confidence' => 0.5, 'message' => 'No verification performed']
+        ];
     }
 
     /**
@@ -193,63 +207,9 @@ class FileValidator {
         
         error_log("Analyzing content of $fileType file: $fileName");
         
-        // For PDFs, try local extraction first before API calls
+        // For PDFs, use direct API classification approach instead of local extraction
         if ($fileType === "pdf") {
-            // Try all available extraction methods for PDFs
-            $pdfText = $this->extractPdfTextLocally($file['tmp_name']);
-            
-            if (!empty($pdfText)) {
-                error_log("Successfully extracted text from PDF using local method");
-                return $pdfText;
-            }
-            
-            // If local extraction failed, now try converting to image if possible
-            if (extension_loaded('imagick')) {
-                // Create temporary file for the image
-                $tempImagePath = tempnam(sys_get_temp_dir(), 'pdf_img_') . '.jpg';
-                
-                // Convert first page of PDF to image
-                $imagick = new Imagick();
-                $imagick->setResolution(300, 300); // High resolution for better text recognition
-                $imagick->readImage($file['tmp_name'] . '[0]'); // Read first page
-                $imagick->setImageFormat('jpg');
-                $imagick->setCompressionQuality(95);
-                $imagick->writeImage($tempImagePath);
-                
-                // Now read this image file
-                $fileContent = file_get_contents($tempImagePath);
-                $fileBase64 = base64_encode($fileContent);
-                $mimeType = 'image/jpeg';
-                
-                error_log("PDF converted to image: " . $tempImagePath);
-                
-                // Clean up
-                unlink($tempImagePath);
-                
-                // Now process as image
-                $fileType = "image";
-            } else {
-                error_log("Imagick extension not available for PDF conversion");
-                
-                // Try PdfParser if available via composer
-                if (class_exists('\\Smalot\\PdfParser\\Parser')) {
-                    try {
-                        error_log("Attempting PDF extraction with Smalot/PdfParser");
-                        $parser = new \Smalot\PdfParser\Parser();
-                        $pdf = $parser->parseFile($file['tmp_name']);
-                        $text = $pdf->getText();
-                        
-                        if (!empty($text)) {
-                            error_log("Text successfully extracted from PDF using PdfParser");
-                            return $text;
-                        }
-                    } catch (Exception $e) {
-                        error_log("PdfParser extraction failed: " . $e->getMessage());
-                    }
-                }
-            }
-            
-            // If we get here, try a lower timeout API call to avoid long delays
+            // Try direct API classification for PDFs
             $payload = [
                 'model' => 'deepseek-chat',
                 'messages' => [
@@ -267,19 +227,19 @@ class FileValidator {
             ];
             
             try {
-                error_log("Trying faster API call with reduced timeout");
+                error_log("Calling API for PDF document classification");
                 $apiResponse = $this->callDeepSeekAPIWithTimeout($payload, 10);  // 10 second timeout
                 
                 if (isset($apiResponse['choices'][0]['message']['content'])) {
                     $classification = $apiResponse['choices'][0]['message']['content'];
-                    error_log("Got quick document classification: " . $classification);
+                    error_log("Got document classification: " . $classification);
                     return "Classification: " . $classification;
                 }
             } catch (Exception $e) {
-                error_log("Quick API call failed too: " . $e->getMessage());
+                error_log("API classification failed: " . $e->getMessage());
             }
             
-            // As a last resort, extract meaningful data from the filename
+            // Extract meaningful data from the filename as fallback
             $filenameParts = explode('.', basename($file['name']));
             $basename = $filenameParts[0];
             
@@ -306,7 +266,6 @@ class FileValidator {
             return "Document: " . $basename;
         }
         
-        // For image files, continue with existing API call approach
         // For image files or converted PDFs, use vision-specific prompting
         $payload = [
             'model' => 'deepseek-vision',
@@ -320,7 +279,7 @@ class FileValidator {
                     'content' => [
                         [
                             'type' => 'text',
-                            'text' => "Extract and list ALL text visible in this document or  image. Include all text exactly as it appears, preserving the format where possible. Return ONLY the text content, no explanations."
+                            'text' => "Extract and list ALL text visible in this document or image. Include all text exactly as it appears, preserving the format where possible. Return ONLY the text content, no explanations."
                         ],
                         [
                             'type' => 'image_url',
@@ -348,114 +307,6 @@ class FileValidator {
             error_log("Unexpected API response format: " . json_encode(array_slice($apiResponse, 0, 3)));
             throw new Exception("Failed to get content analysis from API");
         }
-    }
-
-    /**
-     * Extract PDF text using local methods (no API calls)
-     */
-    private function extractPdfTextLocally($pdfPath) {
-        // First check if PdfParser is available and load it if possible
-        $pdfparserInstalled = false;
-        if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
-            require_once __DIR__ . '/../../vendor/autoload.php';
-            $pdfparserInstalled = class_exists('\\Smalot\\PdfParser\\Parser');
-            if ($pdfparserInstalled) {
-                try {
-                    error_log("Using Smalot PDF Parser library");
-                    $parser = new \Smalot\PdfParser\Parser();
-                    $pdf = $parser->parseFile($pdfPath);
-                    $text = $pdf->getText();
-                    
-                    if (!empty(trim($text))) {
-                        error_log("Successfully extracted text using PdfParser: " . substr($text, 0, 100) . "...");
-                        return $text;
-                    }
-                } catch (Exception $e) {
-                    error_log("PdfParser error: " . $e->getMessage());
-                }
-            } else {
-                error_log("Smalot PdfParser not available. Run 'composer install' to install it.");
-            }
-        }
-        
-        // Method 1: Try pdftotext command if available (common on Linux/Unix)
-        if (function_exists('exec')) {
-            $output = [];
-            $returnVar = -1;
-            
-            // Check if pdftotext exists
-            exec('which pdftotext', $output, $returnVar);
-            if ($returnVar === 0) {
-                error_log("Found pdftotext utility, trying to extract text");
-                $tempOutputFile = tempnam(sys_get_temp_dir(), 'pdf_txt_');
-                exec("pdftotext -layout \"$pdfPath\" \"$tempOutputFile\"", $output, $returnVar);
-                
-                if ($returnVar === 0 && file_exists($tempOutputFile)) {
-                    $text = file_get_contents($tempOutputFile);
-                    unlink($tempOutputFile); // Clean up
-                    
-                    if (!empty(trim($text))) {
-                        error_log("Text extracted via pdftotext: " . substr($text, 0, 100) . "...");
-                        return $text;
-                    }
-                }
-            }
-        }
-        
-        // Method 2: Try to extract text directly with PHP
-        try {
-            // Check if we have the pdf_text() function from the PDF extension
-            if (function_exists('pdf_open_file')) {
-                error_log("Using PHP PECL PDF functions");
-                $pdf = pdf_open_file($pdfPath);
-                $pages = pdf_get_numimages($pdf);
-                
-                $text = '';
-                for ($i = 1; $i <= $pages; $i++) {
-                    $text .= pdf_get_text($pdf, $i) . "\n\n";
-                }
-                
-                pdf_close($pdf);
-                
-                if (!empty(trim($text))) {
-                    return $text;
-                }
-            }
-        } catch (Exception $e) {
-            error_log("PHP PDF extension extraction failed: " . $e->getMessage());
-        }
-        
-        // Method 3: Try a simple regex-based approach to extract text
-        // This is very limited but might catch some text
-        $content = file_get_contents($pdfPath);
-        if (!empty($content)) {
-            // Look for text patterns in the raw PDF
-            $text = '';
-            
-            // Extract text between BT and ET tags (basic PDF text blocks)
-            $pattern = '/BT.*?\((.*?)\).*?ET/s';
-            if (preg_match_all($pattern, $content, $matches)) {
-                foreach ($matches[1] as $match) {
-                    $text .= $match . "\n";
-                }
-            }
-            
-            // Look for plain text patterns
-            $pattern = '/\/(F\d+) \d+ Tf.*?\((.*?)\)/s';
-            if (preg_match_all($pattern, $content, $matches)) {
-                foreach ($matches[2] as $match) {
-                    $text .= $match . " ";
-                }
-            }
-            
-            if (!empty(trim($text))) {
-                error_log("Extracted some text with regex: " . substr($text, 0, 100) . "...");
-                return $text;
-            }
-        }
-        
-        // No text could be extracted
-        return '';
     }
 
     /**
@@ -892,6 +743,88 @@ class FileValidator {
                 return 'A PHP extension stopped the file upload';
             default:
                 return 'Unknown upload error';
+        }
+    }
+
+    /**
+     * Verify document truthfulness/genuineness using DeepSeek API
+     */
+    private function verifyDocumentTruthfulness($extractedText, $documentType) {
+        // If there's no text, we can't verify
+        if (empty($extractedText)) {
+            if ($documentType === 'id_pic') {
+                // ID pics don't need text verification
+                return ['genuine' => true, 'confidence' => 0.5, 'message' => 'ID photo - no text verification required'];
+            }
+            return ['genuine' => false, 'confidence' => 0, 'message' => 'No content to verify'];
+        }
+
+        // Construct prompt for DeepSeek API to analyze document truthfulness
+        $payload = [
+            'model' => 'deepseek-chat',
+            'messages' => [
+                [
+                    'role' => 'system',
+                    'content' => 'You are a document verification expert. Your task is to determine if a document appears to be genuine and not fabricated. Focus on analyzing the content structure, language patterns, and expected elements for the document type.'
+                ],
+                [
+                    'role' => 'user',
+                    'content' => "Analyze the following extracted text from a " . $this->getDocumentTypeName($documentType) . 
+                                " and determine if it appears to be a genuine document or if it's likely fabricated. " . 
+                                "Only respond with a simple 'genuine' or 'fabricated' followed by a confidence score between 0.0-1.0, and a brief explanation.\n\n" . 
+                                "Document text:\n\n" . $extractedText
+                ]
+            ],
+            'temperature' => 0.1,
+            'max_tokens' => 150
+        ];
+
+        try {
+            // Call DeepSeek API for document truthfulness verification
+            $response = $this->callDeepSeekAPI($payload);
+            
+            if (!isset($response['choices'][0]['message']['content'])) {
+                throw new Exception('Invalid API response format');
+            }
+            
+            $analysis = $response['choices'][0]['message']['content'];
+            $lower_analysis = strtolower($analysis);
+            
+            // Parse the response to determine if the document is genuine
+            $genuine = (strpos($lower_analysis, 'genuine') !== false);
+            $fabricated = (strpos($lower_analysis, 'fabricated') !== false || 
+                          strpos($lower_analysis, 'not genuine') !== false ||
+                          strpos($lower_analysis, 'fake') !== false);
+            
+            // Extract confidence score if present (look for numbers between 0.0-1.0)
+            $confidence = 0.5; // Default confidence
+            if (preg_match('/(?:confidence|score|probability|certainty)?\s*(?:of|:|\s)\s*(0\.\d+|1\.0|1)/', $lower_analysis, $matches)) {
+                $confidence = floatval($matches[1]);
+            }
+            
+            $is_genuine = ($genuine && !$fabricated) || ($confidence >= 0.5);
+            
+            error_log("Document truthfulness verification result: " . ($is_genuine ? "GENUINE" : "SUSPICIOUS") . 
+                     " (Confidence: " . $confidence . ")");
+            
+            return [
+                'genuine' => $is_genuine,
+                'confidence' => $confidence,
+                'message' => trim($analysis),
+                'documentType' => $documentType
+            ];
+        }
+        catch (Exception $e) {
+            error_log("Error verifying document truthfulness: " . $e->getMessage());
+            
+            // In case of API failure, assume document is genuine but mark with low confidence
+            if (defined('API_FALLBACK_MODE') && API_FALLBACK_MODE) {
+                return ['genuine' => true, 'confidence' => 0.3, 
+                       'message' => 'API Error: Verification failed but accepting document due to API_FALLBACK_MODE',
+                       'documentType' => $documentType];
+            }
+            
+            throw $e;
         }
     }
 }

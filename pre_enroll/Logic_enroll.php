@@ -44,8 +44,21 @@ require_once __DIR__. '/../vendor/autoload.php'; // Ensure PHPMailer is included
 
 // Update the handleFileUpload function to use DeepSeek API
 function handleFileUpload($file, $fileType = 'document', $documentType = null) {
+    // Static arrays to track processed files and verification results
+    static $processedFiles = [];
+    static $verificationResults = [];
+    
     if (!isset($file) || $file['error'] !== UPLOAD_ERR_OK) {
-        return null; // No file uploaded or upload error - treat as "to follow"
+        return ['content' => null, 'verified' => false];
+    }
+    
+    // Generate a unique identifier for this file (using name and size)
+    $fileIdentifier = md5($file['name'] . '_' . $file['size']);
+    
+    // Check if we've already processed this file
+    if (isset($processedFiles[$fileIdentifier])) {
+        error_log("Warning: File {$file['name']} has already been processed as {$processedFiles[$fileIdentifier]['docType']}. Skipping duplicate processing as $documentType.");
+        return $processedFiles[$fileIdentifier];
     }
     
     try {
@@ -55,20 +68,53 @@ function handleFileUpload($file, $fileType = 'document', $documentType = null) {
         // Use the validator to check the file
         $validationResult = $validator->validateFile($file, $fileType, $documentType);
         
+        // Check for truthfulness verification results
+        $verified = false;
+        $verificationMessage = "Not verified";
+        
+        if (isset($validationResult['truthfulness'])) {
+            $truthfulness = $validationResult['truthfulness'];
+            $verified = isset($truthfulness['genuine']) ? $truthfulness['genuine'] : false;
+            $confidence = isset($truthfulness['confidence']) ? $truthfulness['confidence'] : 0;
+            $verificationMessage = isset($truthfulness['message']) ? $truthfulness['message'] : "No verification message";
+            
+            error_log("Document verification for {$documentType}: " . ($verified ? "GENUINE" : "SUSPICIOUS") . 
+                     " (Confidence: {$confidence})");
+            
+            // Add this result to our verification tracking
+            $verificationResults[$documentType] = [
+                'verified' => $verified,
+                'confidence' => $confidence,
+                'message' => $verificationMessage
+            ];
+        }
+        
         if (!$validationResult['valid']) {
             error_log("File validation warning: " . $validationResult['message']);
             
             // If API_FALLBACK_MODE is enabled, continue with the file despite validation issues
             if (defined('API_FALLBACK_MODE') && API_FALLBACK_MODE) {
                 error_log("Accepting file despite validation failure due to API_FALLBACK_MODE=true");
-                return file_get_contents($file['tmp_name']);
+                $result = [
+                    'content' => file_get_contents($file['tmp_name']),
+                    'verified' => false,
+                    'docType' => $documentType
+                ];
+                $processedFiles[$fileIdentifier] = $result;
+                return $result;
             }
             
             throw new Exception('File validation failed: ' . $validationResult['message']);
         }
         
-        // If validation passes, return file contents
-        return file_get_contents($file['tmp_name']);
+        // Store the processed file with verification results
+        $result = [
+            'content' => file_get_contents($file['tmp_name']),
+            'verified' => $verified,
+            'docType' => $documentType
+        ];
+        $processedFiles[$fileIdentifier] = $result;
+        return $result;
     }
     catch (Exception $e) {
         error_log("Error in handleFileUpload: " . $e->getMessage());
@@ -76,11 +122,57 @@ function handleFileUpload($file, $fileType = 'document', $documentType = null) {
         // In fallback mode, accept the file despite errors
         if (defined('API_FALLBACK_MODE') && API_FALLBACK_MODE) {
             error_log("Accepting file in fallback mode despite error: " . $file['name']);
-            return file_get_contents($file['tmp_name']);
+            $result = [
+                'content' => file_get_contents($file['tmp_name']),
+                'verified' => false,
+                'docType' => $documentType
+            ];
+            $processedFiles[$fileIdentifier] = $result;
+            return $result;
         }
         
         throw $e; // Re-throw the exception for other file types
     }
+}
+
+// Add a function to calculate overall document verification status
+function calculateDocumentVerificationStatus($documents) {
+    // If no documents were uploaded, we can't verify
+    if (empty($documents)) {
+        return false;
+    }
+    
+    // Count total and verified documents
+    $totalDocuments = count($documents);
+    $verifiedDocuments = 0;
+    
+    // Required important documents - must be verified
+    $criticalDocuments = ['form_138', 'psa_birthCert'];
+    $criticalVerified = true;
+    
+    foreach ($documents as $docType => $document) {
+        if ($document['verified']) {
+            $verifiedDocuments++;
+        } elseif (in_array($docType, $criticalDocuments)) {
+            $criticalVerified = false;
+        }
+    }
+    
+    // Calculate verification percentage
+    $verificationPercentage = ($totalDocuments > 0) ? ($verifiedDocuments / $totalDocuments) : 0;
+    
+    // Documents are considered verified if:
+    // 1. At least 70% of documents are verified, AND
+    // 2. All critical documents are verified
+    $passed = ($verificationPercentage >= 0.7 && $criticalVerified);
+    
+    error_log("Document verification result: " . ($passed ? "PASSED" : "FAILED") . 
+              " ({$verifiedDocuments}/{$totalDocuments} verified, " . 
+              round($verificationPercentage * 100) . "%, Critical docs verified: " . 
+              ($criticalVerified ? "YES" : "NO") . ")");
+    
+    // Convert the boolean result to an integer for database storage (0 or 1)
+    return $passed ? 1 : 0;
 }
 
 if (isset($_POST['regsubmit'])) {
@@ -134,14 +226,90 @@ if (isset($_POST['regsubmit'])) {
 
     // Then in your form processing
     try {
+        // Check all file inputs to ensure the same file isn't uploaded to multiple fields
+        $uploadedFiles = [];
+        $fileFields = ['form_138', 'good_moral', 'psa_birthCert', 'id_pic', 'Brgy_clearance', 'tor', 'honor_dismissal'];
+        
+        foreach ($fileFields as $field) {
+            if (isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
+                $fileSignature = md5_file($_FILES[$field]['tmp_name']);
+                
+                if (isset($uploadedFiles[$fileSignature])) {
+                    error_log("WARNING: Same file uploaded to multiple fields: {$uploadedFiles[$fileSignature]} and $field");
+                    
+                    // Skip processing this file again - use the first field it was uploaded to
+                    $_FILES[$field]['error'] = UPLOAD_ERR_NO_FILE;
+                } else {
+                    $uploadedFiles[$fileSignature] = $field;
+                }
+            }
+        }
+        
+        // Store document verification results
+        $documentResults = [];
+        
         // Handle file uploads with validation and document type verification
-        $form_138 = handleFileUpload($_FILES['form_138'] ?? null, 'document', 'form_138');
-        $good_moral = handleFileUpload($_FILES['good_moral'] ?? null, 'document', 'good_moral');
-        $psa_birthCert = handleFileUpload($_FILES['psa_birthCert'] ?? null, 'document', 'psa_birthCert');
-        $id_pic = handleFileUpload($_FILES['id_pic'] ?? null, 'image', 'id_pic');
-        $Brgy_clearance = handleFileUpload($_FILES['Brgy_clearance'] ?? null, 'document', 'Brgy_clearance');
-        $tor = handleFileUpload($_FILES['tor'] ?? null, 'document', 'tor');
-        $honor_dismissal = handleFileUpload($_FILES['honor_dismissal'] ?? null, 'document', 'honor_dismissal');
+        $form_138_result = handleFileUpload($_FILES['form_138'] ?? null, 'document', 'form_138');
+        if ($form_138_result) {
+            $form_138 = $form_138_result['content'];
+            $documentResults['form_138'] = $form_138_result;
+        } else {
+            $form_138 = null;
+        }
+        
+        $good_moral_result = handleFileUpload($_FILES['good_moral'] ?? null, 'document', 'good_moral');
+        if ($good_moral_result) {
+            $good_moral = $good_moral_result['content'];
+            $documentResults['good_moral'] = $good_moral_result;
+        } else {
+            $good_moral = null;
+        }
+        
+        $psa_birthCert_result = handleFileUpload($_FILES['psa_birthCert'] ?? null, 'document', 'psa_birthCert');
+        if ($psa_birthCert_result) {
+            $psa_birthCert = $psa_birthCert_result['content'];
+            $documentResults['psa_birthCert'] = $psa_birthCert_result;
+        } else {
+            $psa_birthCert = null;
+        }
+        
+        $id_pic_result = handleFileUpload($_FILES['id_pic'] ?? null, 'image', 'id_pic');
+        if ($id_pic_result) {
+            $id_pic = $id_pic_result['content'];
+            $documentResults['id_pic'] = $id_pic_result;
+        } else {
+            $id_pic = null;
+        }
+        
+        $Brgy_clearance_result = handleFileUpload($_FILES['Brgy_clearance'] ?? null, 'document', 'Brgy_clearance');
+        if ($Brgy_clearance_result) {
+            $Brgy_clearance = $Brgy_clearance_result['content'];
+            $documentResults['Brgy_clearance'] = $Brgy_clearance_result;
+        } else {
+            $Brgy_clearance = null;
+        }
+        
+        $tor_result = handleFileUpload($_FILES['tor'] ?? null, 'document', 'tor');
+        if ($tor_result) {
+            $tor = $tor_result['content'];
+            $documentResults['tor'] = $tor_result;
+        } else {
+            $tor = null;
+        }
+        
+        $honor_dismissal_result = handleFileUpload($_FILES['honor_dismissal'] ?? null, 'document', 'honor_dismissal');
+        if ($honor_dismissal_result) {
+            $honor_dismissal = $honor_dismissal_result['content'];
+            $documentResults['honor_dismissal'] = $honor_dismissal_result;
+        } else {
+            $honor_dismissal = null;
+        }
+        
+        // Calculate overall verification status - ensure it's an integer (0 or 1)
+        $passed_verification = calculateDocumentVerificationStatus($documentResults);
+        
+        // Log verification status
+        error_log("Overall document verification status: " . ($passed_verification ? "PASSED" : "FAILED"));
 
         // Check if student already exists
         $student = new Student();
@@ -230,12 +398,29 @@ if (isset($_POST['regsubmit'])) {
                 throw new Exception("Duplicate Student ID generated. Please try again.");
             }
 
-            // Proceed with insertion if no duplicate found
-            $sql = "INSERT INTO tblstudent (IDNO, FNAME, LNAME, MNAME, SEX, BDAY, AGE, BPLACE, STATUS, NATIONALITY, RELIGION, CONTACT_NO, HOME_ADD, COURSE_ID, SEMESTER, EMAIL, student_status, YEARLEVEL, NewEnrollees, stud_type, form_138, good_moral, psa_birthCert, id_pic, Brgy_clearance, tor, honor_dismissal, SYEAR) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            // Proceed with insertion if no duplicate found, now including PASSED_VER
+            $sql = "INSERT INTO tblstudent (IDNO, FNAME, LNAME, MNAME, SEX, BDAY, AGE, BPLACE, STATUS, NATIONALITY, RELIGION, CONTACT_NO, HOME_ADD, COURSE_ID, SEMESTER, EMAIL, student_status, YEARLEVEL, NewEnrollees, stud_type, form_138, good_moral, psa_birthCert, id_pic, Brgy_clearance, tor, honor_dismissal, SYEAR, PASSED_VER) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+            // Ensure passed_verification is explicitly an integer
+            $passed_verification_int = (int)$passed_verification;
+            
+            // Debug the parameters and types to check for any issues
+            error_log("Parameter count check: SQL has 29 placeholders, binding 29 parameters");
+            error_log("PASSED_VER value: " . $passed_verification_int . " (type: " . gettype($passed_verification_int) . ")");
+            
+            // Create a fresh type definition string to avoid any potential hidden characters
+            $typeString = str_repeat('s', 6) . 'i' . str_repeat('s', 11) . 'i' . str_repeat('s', 9) . 'i';
+            error_log("Type string length: " . strlen($typeString) . ", content: " . $typeString);
+            
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssssssissssssssssissssssssss", $IDNO, $FNAME, $LNAME, $MI, $SEX, $BIRTHDATE, $AGE, $BIRTHPLACE, $CIVILSTATUS, $NATIONALITY, $RELIGION, $CONTACT, $PADDRESS, $COURSEID, $SEMESTER, $EMAIL, $student_status, $YEARLEVEL, $NewEnrollees, $stud_type, $form_138, $good_moral, $psa_birthCert, $id_pic, $Brgy_clearance, $tor, $honor_dismissal, $SYEAR);
+            $stmt->bind_param($typeString, 
+                $IDNO, $FNAME, $LNAME, $MI, $SEX, $BIRTHDATE, $AGE, $BIRTHPLACE, 
+                $CIVILSTATUS, $NATIONALITY, $RELIGION, $CONTACT, $PADDRESS, $COURSEID, 
+                $SEMESTER, $EMAIL, $student_status, $YEARLEVEL, $NewEnrollees, $stud_type, 
+                $form_138, $good_moral, $psa_birthCert, $id_pic, $Brgy_clearance, 
+                $tor, $honor_dismissal, $SYEAR, $passed_verification_int);
+
             if ($stmt->execute()) {
                 // Insert into studentaccount with generated credentials and required fields
                 $sql = "INSERT INTO studentaccount (user_id, username, password, STATUS, PAYMENT, SCHEDULE, test, enrollment_date) 
