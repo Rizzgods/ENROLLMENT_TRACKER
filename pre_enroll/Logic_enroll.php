@@ -10,6 +10,14 @@ require_once __DIR__ .  "/../include/session.php";
 require_once __DIR__ .  "/../include/function.php";
 require_once __DIR__ .  "/../chatbot/utils/file_validator.php";
 
+// Set a higher timeout limit for the entire script
+set_time_limit(300); // 5 minutes max execution time
+
+// Enable API fallback mode to skip actual API calls when they're too slow
+if (!defined('API_FALLBACK_MODE')) {
+    define('API_FALLBACK_MODE', true);
+}
+
 // Database credentials - Update with correct server credentials
 $servername = "localhost";
 $username = "admi_greenvalley";

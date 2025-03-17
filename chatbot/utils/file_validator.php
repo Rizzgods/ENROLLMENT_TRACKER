@@ -209,26 +209,35 @@ class FileValidator {
         
         // For PDFs, use direct API classification approach instead of local extraction
         if ($fileType === "pdf") {
-            // Try direct API classification for PDFs
-            $payload = [
-                'model' => 'deepseek-chat',
-                'messages' => [
-                    [
-                        'role' => 'system',
-                        'content' => 'You are a document classifier that identifies document types.'
-                    ],
-                    [
-                        'role' => 'user',
-                        'content' => "I have a document named \"" . $file['name'] . "\". What type of educational document is this likely to be?"
-                    ]
-                ],
-                'max_tokens' => 50,
-                'timeout' => 10  // Custom timeout parameter
-            ];
+            // Define a constant fallback message in case API calls fail
+            $fallbackClassification = "Document type based on filename: {$fileName}";
             
             try {
-                error_log("Calling API for PDF document classification");
-                $apiResponse = $this->callDeepSeekAPIWithTimeout($payload, 10);  // 10 second timeout
+                // Set API_FALLBACK_MODE to skip actual API calls if needed
+                if (defined('API_FALLBACK_MODE') && API_FALLBACK_MODE) {
+                    error_log("Using filename-based classification due to API_FALLBACK_MODE=true");
+                    return $this->extractDocumentTypeFromFilename($file);
+                }
+                
+                error_log("Calling API for PDF document classification with strict timeout");
+                // Use a very short timeout (5 seconds) to avoid long waits
+                $payload = [
+                    'model' => 'deepseek-chat',
+                    'messages' => [
+                        [
+                            'role' => 'system',
+                            'content' => 'You are a document classifier that identifies document types.'
+                        ],
+                        [
+                            'role' => 'user',
+                            'content' => "I have a document named \"" . $file['name'] . "\". What type of educational document is this likely to be?"
+                        ]
+                    ],
+                    'max_tokens' => 50
+                ];
+                
+                // Use a strict timeout to prevent PHP from hanging
+                $apiResponse = $this->callDeepSeekAPIWithTimeout($payload, 5);
                 
                 if (isset($apiResponse['choices'][0]['message']['content'])) {
                     $classification = $apiResponse['choices'][0]['message']['content'];
@@ -236,83 +245,111 @@ class FileValidator {
                     return "Classification: " . $classification;
                 }
             } catch (Exception $e) {
-                error_log("API classification failed: " . $e->getMessage());
+                error_log("API classification failed: " . $e->getMessage() . " - Using filename fallback");
             }
             
-            // Extract meaningful data from the filename as fallback
-            $filenameParts = explode('.', basename($file['name']));
-            $basename = $filenameParts[0];
-            
-            // Look for common patterns in the filename
-            $commonDocs = [
-                'form_138' => ['form 138', 'form138', 'f138', '138', 'report card'],
-                'tor' => ['tor', 'transcript', 'record'],
-                'good_moral' => ['good moral', 'gmc', 'moral'],
-                'psa_birthCert' => ['birth', 'psa', 'nso']
-            ];
-            
-            $basename = strtolower($basename);
-            foreach ($commonDocs as $docType => $keywords) {
-                foreach ($keywords as $keyword) {
-                    if (strpos($basename, $keyword) !== false) {
-                        error_log("Document type identified from filename as: $docType");
-                        return "Document type: " . $this->getDocumentTypeName($docType) . "\n" .
-                               "Identified from filename: " . $file['name'];
-                    }
-                }
-            }
-            
-            // Last resort - just use filename
-            return "Document: " . $basename;
+            // Fall back to filename-based classification if API call failed
+            return $this->extractDocumentTypeFromFilename($file);
         }
         
-        // For image files or converted PDFs, use vision-specific prompting
-        $payload = [
-            'model' => 'deepseek-vision',
-            'messages' => [
-                [
-                    'role' => 'system',
-                    'content' => 'You are an OCR service. Only extract the actual text visible in the document. Do not provide descriptions, explanations, or interpretations of the document.'
-                ],
-                [
-                    'role' => 'user',
-                    'content' => [
-                        [
-                            'type' => 'text',
-                            'text' => "Extract and list ALL text visible in this document or image. Include all text exactly as it appears, preserving the format where possible. Return ONLY the text content, no explanations."
-                        ],
-                        [
-                            'type' => 'image_url',
-                            'image_url' => [
-                                'url' => "data:{$mimeType};base64,{$fileBase64}"
+        // For image files, also use a fallback approach if needed
+        try {
+            // Set API_FALLBACK_MODE to skip actual API calls if needed
+            if (defined('API_FALLBACK_MODE') && API_FALLBACK_MODE) {
+                error_log("Skipping image analysis due to API_FALLBACK_MODE=true");
+                return "Image document: " . pathinfo($file['name'], PATHINFO_FILENAME);
+            }
+            
+            // For image files or converted PDFs, use vision-specific prompting
+            $payload = [
+                'model' => 'deepseek-vision',
+                'messages' => [
+                    [
+                        'role' => 'system',
+                        'content' => 'You are an OCR service. Only extract the actual text visible in the document. Do not provide descriptions, explanations, or interpretations of the document.'
+                    ],
+                    [
+                        'role' => 'user',
+                        'content' => [
+                            [
+                                'type' => 'text',
+                                'text' => "Extract and list ALL text visible in this document or image. Include all text exactly as it appears, preserving the format where possible. Return ONLY the text content, no explanations."
+                            ],
+                            [
+                                'type' => 'image_url',
+                                'image_url' => [
+                                    'url' => "data:{$mimeType};base64,{$fileBase64}"
+                                ]
                             ]
                         ]
                     ]
-                ]
-            ],
-            'temperature' => 0,
-            'max_tokens' => 1500
-        ];
-        
-        // Call the DeepSeek API
-        error_log("Calling DeepSeek API to analyze document content...");
-        $apiResponse = $this->callDeepSeekAPI($payload);
-        
-        // Extract the content analysis from the response
-        if (isset($apiResponse['choices'][0]['message']['content'])) {
-            $analysis = $apiResponse['choices'][0]['message']['content'];
-            error_log("Content analysis successful, received " . strlen($analysis) . " characters");
-            return $analysis;
-        } else {
-            error_log("Unexpected API response format: " . json_encode(array_slice($apiResponse, 0, 3)));
-            throw new Exception("Failed to get content analysis from API");
+                ],
+                'temperature' => 0,
+                'max_tokens' => 1500
+            ];
+            
+            // Call the DeepSeek API with a strict timeout
+            error_log("Calling DeepSeek API to analyze image content with strict timeout...");
+            $apiResponse = $this->callDeepSeekAPIWithTimeout($payload, 10);
+            
+            // Extract the content analysis from the response
+            if (isset($apiResponse['choices'][0]['message']['content'])) {
+                $analysis = $apiResponse['choices'][0]['message']['content'];
+                error_log("Content analysis successful, received " . strlen($analysis) . " characters");
+                return $analysis;
+            }
+        } catch (Exception $e) {
+            error_log("Image analysis failed: " . $e->getMessage() . " - Using fallback");
         }
+        
+        // Fallback for all failures
+        return "Document: " . pathinfo($file['name'], PATHINFO_FILENAME);
     }
 
     /**
-     * Call the DeepSeek API with a custom timeout
+     * Extract document type from filename as a fallback method
+     */
+    private function extractDocumentTypeFromFilename($file) {
+        $filenameParts = explode('.', basename($file['name']));
+        $basename = strtolower($filenameParts[0]);
+        
+        // Look for common patterns in the filename
+        $commonDocs = [
+            'form_138' => ['form 138', 'form138', 'f138', '138', 'report card'],
+            'tor' => ['tor', 'transcript', 'record'],
+            'good_moral' => ['good moral', 'gmc', 'moral'],
+            'psa_birthCert' => ['birth', 'psa', 'nso']
+        ];
+        
+        foreach ($commonDocs as $docType => $keywords) {
+            foreach ($keywords as $keyword) {
+                if (strpos($basename, $keyword) !== false) {
+                    error_log("Document type identified from filename as: $docType");
+                    return "Document type: " . $this->getDocumentTypeName($docType) . "\n" .
+                           "Identified from filename: " . $file['name'];
+                }
+            }
+        }
+        
+        // Last resort - just use filename
+        return "Document: " . $basename;
+    }
+
+    /**
+     * Call the DeepSeek API with a custom timeout - improved version
      */
     private function callDeepSeekAPIWithTimeout($payload, $timeoutSeconds = 10) {
+        static $failureCount = 0;
+        
+        // Circuit breaker - if too many failures, automatically use fallback mode
+        if ($failureCount > 3) {
+            error_log("Too many API failures, activating circuit breaker");
+            throw new Exception('Circuit breaker activated due to multiple API failures');
+        }
+        
+        // Start timing the API call
+        $startTime = microtime(true);
+        
         $ch = curl_init($this->apiEndpoint);
         
         $headers = [
@@ -330,31 +367,64 @@ class FileValidator {
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_TIMEOUT, $timeoutSeconds); // Use custom timeout
         
-        // Disable SSL verification
+        // Strict timeout settings
+        curl_setopt($ch, CURLOPT_TIMEOUT, $timeoutSeconds);        // Maximum time the request is allowed to take
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeoutSeconds); // Maximum time allowed for connection
+        curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, 120);          // Cache DNS lookups
+        
+        // Disable SSL verification for testing environments
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         
-        $response = curl_exec($ch);
-        $err = curl_error($ch);
+        // Add retry mechanism
+        $retries = 0;
+        $maxRetries = 1;
+        $response = false;
+        
+        while ($retries <= $maxRetries && $response === false) {
+            if ($retries > 0) {
+                error_log("API call retry attempt {$retries}");
+                sleep(1); // Wait before retry
+            }
+            
+            $response = curl_exec($ch);
+            $err = curl_error($ch);
+            
+            if ($response === false) {
+                $retries++;
+            }
+        }
+        
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $totalTime = curl_getinfo($ch, CURLINFO_TOTAL_TIME);
         
         curl_close($ch);
         
-        if ($err) {
-            throw new Exception('cURL Error: ' . $err);
+        // Log detailed timing information
+        $endTime = microtime(true);
+        $duration = $endTime - $startTime;
+        error_log("API call completed in {$duration} seconds (CURL reported: {$totalTime}s), HTTP code: {$httpCode}");
+        
+        if ($err || $response === false) {
+            $failureCount++;
+            throw new Exception('cURL Error: ' . ($err ?: 'No response received within timeout period'));
         }
         
         if ($httpCode >= 400) {
+            $failureCount++;
             $logResponse = substr($response, 0, 500);
             throw new Exception('API Error: HTTP Code ' . $httpCode . ' - ' . $logResponse);
         }
         
         $decodedResponse = json_decode($response, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
+            $failureCount++;
             throw new Exception('Invalid JSON response: ' . json_last_error_msg());
         }
+        
+        // Reset failure count on success
+        $failureCount = 0;
         
         return $decodedResponse;
     }
