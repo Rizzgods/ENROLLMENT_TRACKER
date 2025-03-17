@@ -49,13 +49,11 @@
 
 admin_confirm_logged_in();
 
-  $sql = "SELECT COUNT(*) AS enrollees FROM tblstudent s, course c WHERE s.COURSE_ID=c.COURSE_ID AND NewEnrollees=1 AND student_status='New'";    
-  $mydb->setQuery($sql); 
-  $enrollees = $mydb->loadSingleResult(); 
- 
 
-  $current_page = basename($_SERVER['PHP_SELF']); // Get the current file name
-  $view = isset($_GET['view']) ? $_GET['view'] : ''; // Get the 'view' parameter
+
+
+
+
    
   ?> 
  <?php
@@ -150,17 +148,9 @@ $singleuser = $user->single_user($_SESSION['ACCOUNT_ID']);
                         <li>
                             <a href="<?php echo web_root; ?>admin/index.php"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                         </li>
-                        <li class="<?= ($current_page == 'index.php' && !$view) ? 'active' : ''; ?>">
-    <a href="<?php echo web_root; ?>admin/superadmin/index.php?view=list">
-        <i class="fa fa-dashboard fa-fw"></i> Dashboard
-    </a>
-</li>
-
-<li class="<?= ($view == 'create') ? 'active' : ''; ?>">
-    <a href="<?php echo web_root; ?>admin/superadmin/index.php?view=create">
-        <i class="fa fa-plus fa-fw"></i> Create Account
-    </a>
-</li>
+                        <li>
+                            <a href="<?php echo web_root; ?>admin/superadmin/index.php"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                        </li>
                          <li>
                              <a href="<?php echo web_root; ?>admin/enrollees/index.php" ><i class="fa fa-calendar fa-fw"></i>  Pre-Enrolled 
                              <label class="label pull-right label-primary"><?php echo isset($enrollees->enrollees) ? $enrollees->enrollees : 0; ?></label> </a>
