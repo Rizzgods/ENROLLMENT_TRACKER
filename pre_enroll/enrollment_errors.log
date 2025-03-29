@@ -1,979 +1,227 @@
-[13-Mar-2025 17:01:47 UTC] Auto-number updated successfully
-[13-Mar-2025 17:01:47 UTC] Generated IDNO: 210000038
-[13-Mar-2025 17:01:47 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[13-Mar-2025 17:01:47 UTC] Calculated age: 22
-[13-Mar-2025 17:01:47 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[13-Mar-2025 17:01:47 UTC] Analyzing content of pdf file: form 138.pdf
-[13-Mar-2025 17:01:47 UTC] Using Smalot PDF Parser library
-[13-Mar-2025 17:01:47 UTC] Successfully extracted text using PdfParser: Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138...
-[13-Mar-2025 17:01:47 UTC] Successfully extracted text from PDF using local method
-[13-Mar-2025 17:01:47 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[13-Mar-2025 17:01:47 UTC] Document Type: Form 138 / Report Card
-[13-Mar-2025 17:01:47 UTC] File Name: form 138.pdf
-[13-Mar-2025 17:01:47 UTC] Extracted Text: 
-[13-Mar-2025 17:01:47 UTC] Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-[13-Mar-2025 17:01:47 UTC] ====================================================
-[13-Mar-2025 17:01:47 UTC] Verifying document content for type: form_138
-[13-Mar-2025 17:01:47 UTC] Text to verify: Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-[13-Mar-2025 17:01:47 UTC] MATCH FOUND for keyword: 'form 138'
-[13-Mar-2025 17:01:47 UTC] Content match found: 'form 138'
-[13-Mar-2025 17:01:47 UTC] Document validation results - Type detected: YES, Content matches: 1/2
-[13-Mar-2025 17:01:47 UTC] Starting content validation for file: TOR - Copy.pdf (size: 7803 bytes)
-[13-Mar-2025 17:01:47 UTC] Analyzing content of pdf file: TOR - Copy.pdf
-[13-Mar-2025 17:01:47 UTC] Using Smalot PDF Parser library
-[13-Mar-2025 17:01:47 UTC] Successfully extracted text using PdfParser: TRANSCRIPT 
-OF 
-RECORDS...
-[13-Mar-2025 17:01:47 UTC] Successfully extracted text from PDF using local method
-[13-Mar-2025 17:01:47 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[13-Mar-2025 17:01:47 UTC] Document Type: Transcript of Records
-[13-Mar-2025 17:01:47 UTC] File Name: TOR - Copy.pdf
-[13-Mar-2025 17:01:47 UTC] Extracted Text: 
-[13-Mar-2025 17:01:47 UTC] TRANSCRIPT 
-OF 
-RECORDS
-[13-Mar-2025 17:01:47 UTC] ====================================================
-[13-Mar-2025 17:01:47 UTC] Verifying document content for type: tor
-[13-Mar-2025 17:01:47 UTC] Text to verify: TRANSCRIPT 
-OF 
-RECORDS
-[13-Mar-2025 17:01:47 UTC] Content match found: 'transcript'
-[13-Mar-2025 17:01:47 UTC] Content match found: 'records'
-[13-Mar-2025 17:01:47 UTC] Document validation results - Type detected: NO, Content matches: 2/2
-[13-Mar-2025 17:01:47 UTC] Generated username: pikachucagsawa
-[13-Mar-2025 17:01:47 UTC] Raw password generated: 885J9Gbez+wg
-[13-Mar-2025 17:01:47 UTC] Password length: 12
-[13-Mar-2025 17:01:47 UTC] Password character codes: 56,56,53,74,57,71,98,101,122,43,119,103
-[13-Mar-2025 17:01:47 UTC] Generated secure password length: 12 characters
-[13-Mar-2025 17:01:47 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[13-Mar-2025 17:01:47 UTC] Student details - Name: pikachu A Cagsawa, Course: 18, Semester: 1
-[13-Mar-2025 17:01:48 UTC] Inserting student account for ID: 210000038
-[13-Mar-2025 17:01:48 UTC] Student account creation result: Success
-[13-Mar-2025 17:01:48 UTC] Inserting guardian details for ID: 210000038
-[13-Mar-2025 17:01:48 UTC] Guardian details insertion: Success
-[13-Mar-2025 17:01:48 UTC] Attempting to send email to: cenizamaki@gmail.com
-[13-Mar-2025 17:01:51 UTC] Email successfully sent to: cenizamaki@gmail.com
-[14-Mar-2025 08:06:56 UTC] PHP Parse error:  syntax error, unexpected token ";", expecting ")" in C:\wamp64\www\onlineenrolmentsystem\chatbot\utils\file_validator.php on line 806
-[14-Mar-2025 08:09:04 UTC] Auto-number updated successfully
-[14-Mar-2025 08:09:04 UTC] Generated IDNO: 210000039
-[14-Mar-2025 08:09:04 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[14-Mar-2025 08:09:04 UTC] Calculated age: 22
-[14-Mar-2025 08:09:04 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[14-Mar-2025 08:09:04 UTC] Analyzing content of pdf file: form 138.pdf
-[14-Mar-2025 08:09:04 UTC] Using Smalot PDF Parser library
-[14-Mar-2025 08:09:05 UTC] Successfully extracted text using PdfParser: Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138...
-[14-Mar-2025 08:09:05 UTC] Successfully extracted text from PDF using local method
-[14-Mar-2025 08:09:05 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 08:09:05 UTC] Document Type: Form 138 / Report Card
-[14-Mar-2025 08:09:05 UTC] File Name: form 138.pdf
-[14-Mar-2025 08:09:05 UTC] Extracted Text: 
-[14-Mar-2025 08:09:05 UTC] Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-[14-Mar-2025 08:09:05 UTC] ====================================================
-[14-Mar-2025 08:09:05 UTC] Verifying document content for type: form_138
-[14-Mar-2025 08:09:05 UTC] Text to verify: Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-[14-Mar-2025 08:09:05 UTC] MATCH FOUND for keyword: 'form 138'
-[14-Mar-2025 08:09:05 UTC] Content match found: 'form 138'
-[14-Mar-2025 08:09:05 UTC] Document validation results - Type detected: YES, Content matches: 1/2
-[14-Mar-2025 08:09:05 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[14-Mar-2025 08:09:05 UTC] Analyzing content of pdf file: form 138.pdf
-[14-Mar-2025 08:09:05 UTC] Using Smalot PDF Parser library
-[14-Mar-2025 08:09:05 UTC] Successfully extracted text using PdfParser: Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138...
-[14-Mar-2025 08:09:05 UTC] Successfully extracted text from PDF using local method
-[14-Mar-2025 08:09:05 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 08:09:05 UTC] Document Type: PSA Birth Certificate
-[14-Mar-2025 08:09:05 UTC] File Name: form 138.pdf
-[14-Mar-2025 08:09:05 UTC] Extracted Text: 
-[14-Mar-2025 08:09:05 UTC] Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-[14-Mar-2025 08:09:05 UTC] ====================================================
-[14-Mar-2025 08:09:05 UTC] Verifying document content for type: psa_birthCert
-[14-Mar-2025 08:09:05 UTC] Text to verify: Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-[14-Mar-2025 08:09:05 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[14-Mar-2025 08:09:05 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[14-Mar-2025 08:09:05 UTC] Starting content validation for file: TOR.pdf (size: 7803 bytes)
-[14-Mar-2025 08:09:05 UTC] Analyzing content of pdf file: TOR.pdf
-[14-Mar-2025 08:09:05 UTC] Using Smalot PDF Parser library
-[14-Mar-2025 08:09:05 UTC] Successfully extracted text using PdfParser: TRANSCRIPT 
-OF 
-RECORDS...
-[14-Mar-2025 08:09:05 UTC] Successfully extracted text from PDF using local method
-[14-Mar-2025 08:09:05 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 08:09:05 UTC] Document Type: Transcript of Records
-[14-Mar-2025 08:09:05 UTC] File Name: TOR.pdf
-[14-Mar-2025 08:09:05 UTC] Extracted Text: 
-[14-Mar-2025 08:09:05 UTC] TRANSCRIPT 
-OF 
-RECORDS
-[14-Mar-2025 08:09:05 UTC] ====================================================
-[14-Mar-2025 08:09:05 UTC] Verifying document content for type: tor
-[14-Mar-2025 08:09:05 UTC] Text to verify: TRANSCRIPT 
-OF 
-RECORDS
-[14-Mar-2025 08:09:05 UTC] Content match found: 'transcript'
-[14-Mar-2025 08:09:05 UTC] Content match found: 'records'
-[14-Mar-2025 08:09:05 UTC] Document validation results - Type detected: NO, Content matches: 2/2
-[14-Mar-2025 08:09:05 UTC] Generated username: hauntercagsawa
-[14-Mar-2025 08:09:05 UTC] Raw password generated: &z$Hs9x&29TW
-[14-Mar-2025 08:09:05 UTC] Password length: 12
-[14-Mar-2025 08:09:05 UTC] Password character codes: 38,122,36,72,115,57,120,38,50,57,84,87
-[14-Mar-2025 08:09:05 UTC] Generated secure password length: 12 characters
-[14-Mar-2025 08:09:05 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[14-Mar-2025 08:09:05 UTC] Student details - Name: Haunter A Cagsawa, Course: 18, Semester: 1
-[14-Mar-2025 08:09:05 UTC] Inserting student account for ID: 210000039
-[14-Mar-2025 08:09:05 UTC] Student account creation result: Success
-[14-Mar-2025 08:09:05 UTC] Inserting guardian details for ID: 210000039
-[14-Mar-2025 08:09:05 UTC] Guardian details insertion: Success
-[14-Mar-2025 08:09:05 UTC] Attempting to send email to: cenizamaki@gmail.com
-[14-Mar-2025 08:09:08 UTC] Email successfully sent to: cenizamaki@gmail.com
-[14-Mar-2025 08:58:15 UTC] Auto-number updated successfully
-[14-Mar-2025 08:58:15 UTC] Generated IDNO: 210000040
-[14-Mar-2025 08:58:15 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[14-Mar-2025 08:58:15 UTC] Calculated age: 22
-[14-Mar-2025 08:58:15 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[14-Mar-2025 08:58:15 UTC] Analyzing content of pdf file: form 138.pdf
-[14-Mar-2025 08:58:15 UTC] Using Smalot PDF Parser library
-[14-Mar-2025 08:58:15 UTC] Successfully extracted text using PdfParser: Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138...
-[14-Mar-2025 08:58:15 UTC] Successfully extracted text from PDF using local method
-[14-Mar-2025 08:58:15 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 08:58:15 UTC] Document Type: Form 138 / Report Card
-[14-Mar-2025 08:58:15 UTC] File Name: form 138.pdf
-[14-Mar-2025 08:58:15 UTC] Extracted Text: 
-[14-Mar-2025 08:58:15 UTC] Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-[14-Mar-2025 08:58:15 UTC] ====================================================
-[14-Mar-2025 08:58:15 UTC] Verifying document content for type: form_138
-[14-Mar-2025 08:58:15 UTC] Text to verify: Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-Form 138
-[14-Mar-2025 08:58:15 UTC] MATCH FOUND for keyword: 'form 138'
-[14-Mar-2025 08:58:15 UTC] Content match found: 'form 138'
-[14-Mar-2025 08:58:15 UTC] Document validation results - Type detected: YES, Content matches: 1/2
-[14-Mar-2025 08:58:15 UTC] Starting content validation for file: TOR.pdf (size: 7803 bytes)
-[14-Mar-2025 08:58:15 UTC] Analyzing content of pdf file: TOR.pdf
-[14-Mar-2025 08:58:15 UTC] Using Smalot PDF Parser library
-[14-Mar-2025 08:58:15 UTC] Successfully extracted text using PdfParser: TRANSCRIPT 
-OF 
-RECORDS...
-[14-Mar-2025 08:58:15 UTC] Successfully extracted text from PDF using local method
-[14-Mar-2025 08:58:15 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 08:58:15 UTC] Document Type: Transcript of Records
-[14-Mar-2025 08:58:15 UTC] File Name: TOR.pdf
-[14-Mar-2025 08:58:15 UTC] Extracted Text: 
-[14-Mar-2025 08:58:15 UTC] TRANSCRIPT 
-OF 
-RECORDS
-[14-Mar-2025 08:58:15 UTC] ====================================================
-[14-Mar-2025 08:58:15 UTC] Verifying document content for type: tor
-[14-Mar-2025 08:58:15 UTC] Text to verify: TRANSCRIPT 
-OF 
-RECORDS
-[14-Mar-2025 08:58:15 UTC] Content match found: 'transcript'
-[14-Mar-2025 08:58:15 UTC] Content match found: 'records'
-[14-Mar-2025 08:58:15 UTC] Document validation results - Type detected: NO, Content matches: 2/2
-[14-Mar-2025 08:58:15 UTC] Generated username: gengarcagsawa
-[14-Mar-2025 08:58:15 UTC] Raw password generated: *97BlA2XKj_U
-[14-Mar-2025 08:58:15 UTC] Password length: 12
-[14-Mar-2025 08:58:15 UTC] Password character codes: 42,57,55,66,108,65,50,88,75,106,95,85
-[14-Mar-2025 08:58:15 UTC] Generated secure password length: 12 characters
-[14-Mar-2025 08:58:15 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[14-Mar-2025 08:58:15 UTC] Student details - Name: Gengar A Cagsawa, Course: 17, Semester: 1
-[14-Mar-2025 08:58:15 UTC] Inserting student account for ID: 210000040
-[14-Mar-2025 08:58:15 UTC] Student account creation result: Success
-[14-Mar-2025 08:58:15 UTC] Inserting guardian details for ID: 210000040
-[14-Mar-2025 08:58:15 UTC] Guardian details insertion: Success
-[14-Mar-2025 08:58:15 UTC] Attempting to send email to: cenizamaki@gmail.com
-[14-Mar-2025 08:58:19 UTC] Email successfully sent to: cenizamaki@gmail.com
-[14-Mar-2025 11:35:27 UTC] Auto-number updated successfully
-[14-Mar-2025 11:35:27 UTC] Generated IDNO: 210000041
-[14-Mar-2025 11:35:27 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[14-Mar-2025 11:35:27 UTC] Calculated age: 22
-[14-Mar-2025 11:35:27 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[14-Mar-2025 11:35:27 UTC] Analyzing content of pdf file: form 138.pdf
-[14-Mar-2025 11:35:27 UTC] Calling API for PDF document classification
-[14-Mar-2025 11:35:37 UTC] API classification failed: cURL Error: Operation timed out after 10003 milliseconds with 0 bytes received
-[14-Mar-2025 11:35:37 UTC] Document type identified from filename as: form_138
-[14-Mar-2025 11:35:37 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 11:35:37 UTC] Document Type: Form 138 / Report Card
-[14-Mar-2025 11:35:37 UTC] File Name: form 138.pdf
-[14-Mar-2025 11:35:37 UTC] Extracted Text: 
-[14-Mar-2025 11:35:37 UTC] Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[14-Mar-2025 11:35:37 UTC] ====================================================
-[14-Mar-2025 11:35:37 UTC] Verifying document content for type: form_138
-[14-Mar-2025 11:35:37 UTC] Text to verify: Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[14-Mar-2025 11:35:37 UTC] MATCH FOUND for keyword: 'form 138'
-[14-Mar-2025 11:35:37 UTC] Content match found: 'form 138'
-[14-Mar-2025 11:35:37 UTC] Content match found: 'report card'
-[14-Mar-2025 11:35:37 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[14-Mar-2025 11:35:37 UTC] API payload size: 736 bytes
-[14-Mar-2025 11:35:50 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:35:50 UTC] Document verification for form_138: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:35:50 UTC] Starting content validation for file: TOR.pdf (size: 7803 bytes)
-[14-Mar-2025 11:35:50 UTC] Analyzing content of pdf file: TOR.pdf
-[14-Mar-2025 11:35:50 UTC] Calling API for PDF document classification
-[14-Mar-2025 11:36:00 UTC] API classification failed: cURL Error: Operation timed out after 10002 milliseconds with 0 bytes received
-[14-Mar-2025 11:36:00 UTC] Document type identified from filename as: tor
-[14-Mar-2025 11:36:00 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 11:36:00 UTC] Document Type: Transcript of Records
-[14-Mar-2025 11:36:00 UTC] File Name: TOR.pdf
-[14-Mar-2025 11:36:00 UTC] Extracted Text: 
-[14-Mar-2025 11:36:00 UTC] Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[14-Mar-2025 11:36:00 UTC] ====================================================
-[14-Mar-2025 11:36:00 UTC] Verifying document content for type: tor
-[14-Mar-2025 11:36:00 UTC] Text to verify: Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[14-Mar-2025 11:36:00 UTC] MATCH FOUND for keyword: 'transcript of records'
-[14-Mar-2025 11:36:00 UTC] Content match found: 'transcript'
-[14-Mar-2025 11:36:00 UTC] Content match found: 'records'
-[14-Mar-2025 11:36:00 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[14-Mar-2025 11:36:00 UTC] API payload size: 727 bytes
-[14-Mar-2025 11:36:23 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.9)
-[14-Mar-2025 11:36:23 UTC] Document verification for tor: GENUINE (Confidence: 0.9)
-[14-Mar-2025 11:36:23 UTC] Document verification result: FAILED (2/7 verified, 29%, Critical docs verified: NO)
-[14-Mar-2025 11:36:23 UTC] Overall document verification status: FAILED
-[14-Mar-2025 11:36:24 UTC] Generated username: lamppreycagsawa
-[14-Mar-2025 11:36:24 UTC] Raw password generated: ydm&oHi%l%C4
-[14-Mar-2025 11:36:24 UTC] Password length: 12
-[14-Mar-2025 11:36:24 UTC] Password character codes: 121,100,109,38,111,72,105,37,108,37,67,52
-[14-Mar-2025 11:36:24 UTC] Generated secure password length: 12 characters
-[14-Mar-2025 11:36:24 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[14-Mar-2025 11:36:24 UTC] Student details - Name: Lampprey A Cagsawa, Course: 17, Semester: 1
-[14-Mar-2025 11:36:24 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:405
-Stack trace:
-#0 C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php(405): mysqli_stmt->bind_param('ssssssissssssss...', '210000041', 'Lampprey', 'Cagsawa', 'A', 'Female', '2002-06-11', 22, 'bahay', 'Single', 'penoy', 'satanista', '0931890722', ' hklashjks jkha...', '17', '1', 'cenizamaki@gmai...', 'New', '1', 1, 'freshmen colleg...', '%PDF-1.4\n%\xF6\xE4\xFC\xDF\n...', NULL, NULL, NULL, NULL, '%PDF-1.4\n%\xF6\xE4\xFC\xDF\n...', NULL, '2025-2026', false)
-#1 {main}
-  thrown in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 405
-[14-Mar-2025 11:38:39 UTC] Auto-number updated successfully
-[14-Mar-2025 11:38:39 UTC] Generated IDNO: 210000042
-[14-Mar-2025 11:38:39 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[14-Mar-2025 11:38:39 UTC] Calculated age: 22
-[14-Mar-2025 11:38:39 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[14-Mar-2025 11:38:39 UTC] Analyzing content of pdf file: form 138.pdf
-[14-Mar-2025 11:38:39 UTC] Calling API for PDF document classification
-[14-Mar-2025 11:38:49 UTC] API classification failed: cURL Error: Operation timed out after 10010 milliseconds with 0 bytes received
-[14-Mar-2025 11:38:49 UTC] Document type identified from filename as: form_138
-[14-Mar-2025 11:38:49 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 11:38:49 UTC] Document Type: Form 138 / Report Card
-[14-Mar-2025 11:38:49 UTC] File Name: form 138.pdf
-[14-Mar-2025 11:38:49 UTC] Extracted Text: 
-[14-Mar-2025 11:38:49 UTC] Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[14-Mar-2025 11:38:49 UTC] ====================================================
-[14-Mar-2025 11:38:49 UTC] Verifying document content for type: form_138
-[14-Mar-2025 11:38:49 UTC] Text to verify: Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[14-Mar-2025 11:38:49 UTC] MATCH FOUND for keyword: 'form 138'
-[14-Mar-2025 11:38:49 UTC] Content match found: 'form 138'
-[14-Mar-2025 11:38:49 UTC] Content match found: 'report card'
-[14-Mar-2025 11:38:49 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[14-Mar-2025 11:38:49 UTC] API payload size: 736 bytes
-[14-Mar-2025 11:39:00 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:39:00 UTC] Document verification for form_138: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:39:00 UTC] Starting content validation for file: TOR.pdf (size: 7803 bytes)
-[14-Mar-2025 11:39:00 UTC] Analyzing content of pdf file: TOR.pdf
-[14-Mar-2025 11:39:00 UTC] Calling API for PDF document classification
-[14-Mar-2025 11:39:10 UTC] API classification failed: cURL Error: Operation timed out after 10008 milliseconds with 0 bytes received
-[14-Mar-2025 11:39:10 UTC] Document type identified from filename as: tor
-[14-Mar-2025 11:39:10 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 11:39:10 UTC] Document Type: Transcript of Records
-[14-Mar-2025 11:39:10 UTC] File Name: TOR.pdf
-[14-Mar-2025 11:39:10 UTC] Extracted Text: 
-[14-Mar-2025 11:39:10 UTC] Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[14-Mar-2025 11:39:10 UTC] ====================================================
-[14-Mar-2025 11:39:10 UTC] Verifying document content for type: tor
-[14-Mar-2025 11:39:10 UTC] Text to verify: Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[14-Mar-2025 11:39:10 UTC] MATCH FOUND for keyword: 'transcript of records'
-[14-Mar-2025 11:39:10 UTC] Content match found: 'transcript'
-[14-Mar-2025 11:39:10 UTC] Content match found: 'records'
-[14-Mar-2025 11:39:10 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[14-Mar-2025 11:39:10 UTC] API payload size: 727 bytes
-[14-Mar-2025 11:39:24 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:39:24 UTC] Document verification for tor: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:39:24 UTC] Document verification result: FAILED (2/7 verified, 29%, Critical docs verified: NO)
-[14-Mar-2025 11:39:24 UTC] Overall document verification status: FAILED
-[14-Mar-2025 11:39:24 UTC] Generated username: lamppreycagsawa
-[14-Mar-2025 11:39:24 UTC] Raw password generated: L8a_@MePJd)C
-[14-Mar-2025 11:39:24 UTC] Password length: 12
-[14-Mar-2025 11:39:24 UTC] Password character codes: 76,56,97,95,64,77,101,80,74,100,41,67
-[14-Mar-2025 11:39:24 UTC] Generated secure password length: 12 characters
-[14-Mar-2025 11:39:24 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[14-Mar-2025 11:39:24 UTC] Student details - Name: Lampprey A Cagsawa, Course: 17, Semester: 1
-[14-Mar-2025 11:39:24 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:413
-Stack trace:
-#0 C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php(413): mysqli_stmt->bind_param('sssssisssssssss...', '210000042', 'Lampprey', 'Cagsawa', 'A', 'Female', '2002-06-11', 22, 'bahay', 'Single', 'penoy', 'satanista', '0931890722', ' hklashjks jkha...', '17', '1', 'cenizamaki@gmai...', 'New', '1', 1, 'freshmen colleg...', '%PDF-1.4\n%\xF6\xE4\xFC\xDF\n...', NULL, NULL, NULL, NULL, '%PDF-1.4\n%\xF6\xE4\xFC\xDF\n...', NULL, '2025-2026', 0)
-#1 {main}
-  thrown in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 413
-[14-Mar-2025 11:43:57 UTC] Auto-number updated successfully
-[14-Mar-2025 11:43:57 UTC] Generated IDNO: 210000043
-[14-Mar-2025 11:43:57 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[14-Mar-2025 11:43:57 UTC] Calculated age: 22
-[14-Mar-2025 11:43:57 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[14-Mar-2025 11:43:57 UTC] Analyzing content of pdf file: form 138.pdf
-[14-Mar-2025 11:43:57 UTC] Calling API for PDF document classification
-[14-Mar-2025 11:44:07 UTC] API classification failed: cURL Error: Operation timed out after 10011 milliseconds with 0 bytes received
-[14-Mar-2025 11:44:07 UTC] Document type identified from filename as: form_138
-[14-Mar-2025 11:44:07 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 11:44:07 UTC] Document Type: Form 138 / Report Card
-[14-Mar-2025 11:44:07 UTC] File Name: form 138.pdf
-[14-Mar-2025 11:44:07 UTC] Extracted Text: 
-[14-Mar-2025 11:44:07 UTC] Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[14-Mar-2025 11:44:07 UTC] ====================================================
-[14-Mar-2025 11:44:07 UTC] Verifying document content for type: form_138
-[14-Mar-2025 11:44:07 UTC] Text to verify: Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[14-Mar-2025 11:44:07 UTC] MATCH FOUND for keyword: 'form 138'
-[14-Mar-2025 11:44:07 UTC] Content match found: 'form 138'
-[14-Mar-2025 11:44:07 UTC] Content match found: 'report card'
-[14-Mar-2025 11:44:07 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[14-Mar-2025 11:44:07 UTC] API payload size: 736 bytes
-[14-Mar-2025 11:44:20 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:44:20 UTC] Document verification for form_138: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:44:20 UTC] Starting content validation for file: TOR.pdf (size: 7803 bytes)
-[14-Mar-2025 11:44:20 UTC] Analyzing content of pdf file: TOR.pdf
-[14-Mar-2025 11:44:20 UTC] Calling API for PDF document classification
-[14-Mar-2025 11:44:30 UTC] API classification failed: cURL Error: Operation timed out after 10009 milliseconds with 0 bytes received
-[14-Mar-2025 11:44:30 UTC] Document type identified from filename as: tor
-[14-Mar-2025 11:44:30 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 11:44:30 UTC] Document Type: Transcript of Records
-[14-Mar-2025 11:44:30 UTC] File Name: TOR.pdf
-[14-Mar-2025 11:44:30 UTC] Extracted Text: 
-[14-Mar-2025 11:44:30 UTC] Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[14-Mar-2025 11:44:30 UTC] ====================================================
-[14-Mar-2025 11:44:30 UTC] Verifying document content for type: tor
-[14-Mar-2025 11:44:30 UTC] Text to verify: Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[14-Mar-2025 11:44:30 UTC] MATCH FOUND for keyword: 'transcript of records'
-[14-Mar-2025 11:44:30 UTC] Content match found: 'transcript'
-[14-Mar-2025 11:44:30 UTC] Content match found: 'records'
-[14-Mar-2025 11:44:30 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[14-Mar-2025 11:44:30 UTC] API payload size: 727 bytes
-[14-Mar-2025 11:44:41 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:44:41 UTC] Document verification for tor: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:44:41 UTC] Document verification result: FAILED (2/7 verified, 29%, Critical docs verified: NO)
-[14-Mar-2025 11:44:41 UTC] Overall document verification status: FAILED
-[14-Mar-2025 11:44:41 UTC] Generated username: lamppreycagsawa
-[14-Mar-2025 11:44:41 UTC] Raw password generated: Jtfj3q9BrJ)v
-[14-Mar-2025 11:44:41 UTC] Password length: 12
-[14-Mar-2025 11:44:41 UTC] Password character codes: 74,116,102,106,51,113,57,66,114,74,41,118
-[14-Mar-2025 11:44:41 UTC] Generated secure password length: 12 characters
-[14-Mar-2025 11:44:41 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[14-Mar-2025 11:44:41 UTC] Student details - Name: Lampprey A Cagsawa, Course: 17, Semester: 1
-[14-Mar-2025 11:44:41 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:413
-Stack trace:
-#0 C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php(413): mysqli_stmt->bind_param('sssssisssssssss...', '210000043', 'Lampprey', 'Cagsawa', 'A', 'Female', '2002-06-11', 22, 'bahay', 'Single', 'penoy', 'satanista', '0931890722', ' hklashjks jkha...', '17', '1', 'cenizamaki@gmai...', 'New', '1', 1, 'freshmen colleg...', '%PDF-1.4\n%\xF6\xE4\xFC\xDF\n...', NULL, NULL, NULL, NULL, '%PDF-1.4\n%\xF6\xE4\xFC\xDF\n...', NULL, '2025-2026', 0)
-#1 {main}
-  thrown in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 413
-[14-Mar-2025 11:47:24 UTC] Auto-number updated successfully
-[14-Mar-2025 11:47:24 UTC] Generated IDNO: 210000044
-[14-Mar-2025 11:47:24 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[14-Mar-2025 11:47:24 UTC] Calculated age: 22
-[14-Mar-2025 11:47:24 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[14-Mar-2025 11:47:24 UTC] Analyzing content of pdf file: form 138.pdf
-[14-Mar-2025 11:47:24 UTC] Calling API for PDF document classification
-[14-Mar-2025 11:47:33 UTC] Got document classification: The document named "form 138.pdf" is likely a **Report Card** or **Student Permanent Record**. In the Philippines, Form 138 is the official document issued by schools to students, which contains their academic performance, including grades, attendance,
-[14-Mar-2025 11:47:33 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 11:47:33 UTC] Document Type: Form 138 / Report Card
-[14-Mar-2025 11:47:33 UTC] File Name: form 138.pdf
-[14-Mar-2025 11:47:33 UTC] Extracted Text: 
-[14-Mar-2025 11:47:33 UTC] Classification: The document named "form 138.pdf" is likely a **Report Card** or **Student Permanent Record**. In the Philippines, Form 138 is the official document issued by schools to students, which contains their academic performance, including grades, attendance,
-[14-Mar-2025 11:47:33 UTC] ====================================================
-[14-Mar-2025 11:47:33 UTC] Verifying document content for type: form_138
-[14-Mar-2025 11:47:33 UTC] Text to verify: Classification: The document named "form 138.pdf" is likely a **Report Card** or **Student Permanent Record**. In the Philippines, Form 138 is the official document issued by schools to students, whic
-[14-Mar-2025 11:47:33 UTC] MATCH FOUND for keyword: 'form 138'
-[14-Mar-2025 11:47:33 UTC] Content match found: 'form 138'
-[14-Mar-2025 11:47:33 UTC] Content match found: 'report card'
-[14-Mar-2025 11:47:33 UTC] Content match found: 'grades'
-[14-Mar-2025 11:47:33 UTC] Section match found: 'grades'
-[14-Mar-2025 11:47:33 UTC] Section match found: 'academic'
-[14-Mar-2025 11:47:33 UTC] Section match found: 'performance'
-[14-Mar-2025 11:47:33 UTC] Document validation results - Type detected: YES, Content matches: 6/2
-[14-Mar-2025 11:47:33 UTC] API payload size: 928 bytes
-[14-Mar-2025 11:47:49 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.9)
-[14-Mar-2025 11:47:49 UTC] Document verification for form_138: GENUINE (Confidence: 0.9)
-[14-Mar-2025 11:47:49 UTC] Starting content validation for file: TOR.pdf (size: 7803 bytes)
-[14-Mar-2025 11:47:49 UTC] Analyzing content of pdf file: TOR.pdf
-[14-Mar-2025 11:47:49 UTC] Calling API for PDF document classification
-[14-Mar-2025 11:47:57 UTC] Got document classification: The document named "TOR.pdf" is most likely a **Transcript of Records (TOR)**. This is a common educational document issued by academic institutions that provides a detailed record of a student's academic performance, including courses taken, grades earned, credits completed
-[14-Mar-2025 11:47:57 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 11:47:57 UTC] Document Type: Transcript of Records
-[14-Mar-2025 11:47:57 UTC] File Name: TOR.pdf
-[14-Mar-2025 11:47:57 UTC] Extracted Text: 
-[14-Mar-2025 11:47:57 UTC] Classification: The document named "TOR.pdf" is most likely a **Transcript of Records (TOR)**. This is a common educational document issued by academic institutions that provides a detailed record of a student's academic performance, including courses taken, grades earned, credits completed
-[14-Mar-2025 11:47:57 UTC] ====================================================
-[14-Mar-2025 11:47:57 UTC] Verifying document content for type: tor
-[14-Mar-2025 11:47:57 UTC] Text to verify: Classification: The document named "TOR.pdf" is most likely a **Transcript of Records (TOR)**. This is a common educational document issued by academic institutions that provides a detailed record of 
-[14-Mar-2025 11:47:57 UTC] MATCH FOUND for keyword: 'transcript of records'
-[14-Mar-2025 11:47:57 UTC] Content match found: 'transcript'
-[14-Mar-2025 11:47:57 UTC] Content match found: 'records'
-[14-Mar-2025 11:47:57 UTC] Content match found: 'academic'
-[14-Mar-2025 11:47:57 UTC] Content match found: 'grades'
-[14-Mar-2025 11:47:57 UTC] Section match found: 'grades'
-[14-Mar-2025 11:47:57 UTC] Section match found: 'academic'
-[14-Mar-2025 11:47:57 UTC] Document validation results - Type detected: YES, Content matches: 6/2
-[14-Mar-2025 11:47:57 UTC] API payload size: 949 bytes
-[14-Mar-2025 11:48:12 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.9)
-[14-Mar-2025 11:48:12 UTC] Document verification for tor: GENUINE (Confidence: 0.9)
-[14-Mar-2025 11:48:12 UTC] Document verification result: FAILED (2/7 verified, 29%, Critical docs verified: NO)
-[14-Mar-2025 11:48:12 UTC] Overall document verification status: FAILED
-[14-Mar-2025 11:48:12 UTC] Generated username: lamppreycagsawa
-[14-Mar-2025 11:48:12 UTC] Raw password generated: *fj@+3QilqIT
-[14-Mar-2025 11:48:12 UTC] Password length: 12
-[14-Mar-2025 11:48:12 UTC] Password character codes: 42,102,106,64,43,51,81,105,108,113,73,84
-[14-Mar-2025 11:48:12 UTC] Generated secure password length: 12 characters
-[14-Mar-2025 11:48:12 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[14-Mar-2025 11:48:12 UTC] Student details - Name: Lampprey A Cagsawa, Course: 17, Semester: 1
-[14-Mar-2025 11:48:12 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:413
-Stack trace:
-#0 C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php(413): mysqli_stmt->bind_param('ssssssissssssss...', '210000044', 'Lampprey', 'Cagsawa', 'A', 'Female', '2002-06-11', 22, 'bahay', 'Single', 'penoy', 'satanista', '0931890722', ' hklashjks jkha...', '17', '1', 'cenizamaki@gmai...', 'New', '1', 1, 'freshmen colleg...', '%PDF-1.4\n%\xF6\xE4\xFC\xDF\n...', NULL, NULL, NULL, NULL, '%PDF-1.4\n%\xF6\xE4\xFC\xDF\n...', NULL, '2025-2026', 0)
-#1 {main}
-  thrown in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 413
-[14-Mar-2025 11:49:27 UTC] Auto-number updated successfully
-[14-Mar-2025 11:49:27 UTC] Generated IDNO: 210000045
-[14-Mar-2025 11:49:27 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[14-Mar-2025 11:49:27 UTC] Calculated age: 22
-[14-Mar-2025 11:49:27 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[14-Mar-2025 11:49:27 UTC] Analyzing content of pdf file: form 138.pdf
-[14-Mar-2025 11:49:27 UTC] Calling API for PDF document classification
-[14-Mar-2025 11:49:37 UTC] API classification failed: cURL Error: Operation timed out after 10013 milliseconds with 0 bytes received
-[14-Mar-2025 11:49:37 UTC] Document type identified from filename as: form_138
-[14-Mar-2025 11:49:37 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 11:49:37 UTC] Document Type: Form 138 / Report Card
-[14-Mar-2025 11:49:37 UTC] File Name: form 138.pdf
-[14-Mar-2025 11:49:37 UTC] Extracted Text: 
-[14-Mar-2025 11:49:37 UTC] Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[14-Mar-2025 11:49:37 UTC] ====================================================
-[14-Mar-2025 11:49:37 UTC] Verifying document content for type: form_138
-[14-Mar-2025 11:49:37 UTC] Text to verify: Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[14-Mar-2025 11:49:37 UTC] MATCH FOUND for keyword: 'form 138'
-[14-Mar-2025 11:49:37 UTC] Content match found: 'form 138'
-[14-Mar-2025 11:49:37 UTC] Content match found: 'report card'
-[14-Mar-2025 11:49:37 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[14-Mar-2025 11:49:37 UTC] API payload size: 736 bytes
-[14-Mar-2025 11:49:50 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:49:50 UTC] Document verification for form_138: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:49:50 UTC] Starting content validation for file: TOR.pdf (size: 7803 bytes)
-[14-Mar-2025 11:49:50 UTC] Analyzing content of pdf file: TOR.pdf
-[14-Mar-2025 11:49:50 UTC] Calling API for PDF document classification
-[14-Mar-2025 11:50:00 UTC] API classification failed: cURL Error: Operation timed out after 10007 milliseconds with 0 bytes received
-[14-Mar-2025 11:50:00 UTC] Document type identified from filename as: tor
-[14-Mar-2025 11:50:00 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 11:50:00 UTC] Document Type: Transcript of Records
-[14-Mar-2025 11:50:00 UTC] File Name: TOR.pdf
-[14-Mar-2025 11:50:00 UTC] Extracted Text: 
-[14-Mar-2025 11:50:00 UTC] Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[14-Mar-2025 11:50:00 UTC] ====================================================
-[14-Mar-2025 11:50:00 UTC] Verifying document content for type: tor
-[14-Mar-2025 11:50:00 UTC] Text to verify: Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[14-Mar-2025 11:50:00 UTC] MATCH FOUND for keyword: 'transcript of records'
-[14-Mar-2025 11:50:00 UTC] Content match found: 'transcript'
-[14-Mar-2025 11:50:00 UTC] Content match found: 'records'
-[14-Mar-2025 11:50:00 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[14-Mar-2025 11:50:00 UTC] API payload size: 727 bytes
-[14-Mar-2025 11:50:17 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:50:17 UTC] Document verification for tor: GENUINE (Confidence: 0.85)
-[14-Mar-2025 11:50:17 UTC] Document verification result: FAILED (2/7 verified, 29%, Critical docs verified: NO)
-[14-Mar-2025 11:50:17 UTC] Overall document verification status: FAILED
-[14-Mar-2025 11:50:17 UTC] Generated username: lamppreycagsawa
-[14-Mar-2025 11:50:17 UTC] Raw password generated: +*#kDzm4$NjS
-[14-Mar-2025 11:50:17 UTC] Password length: 12
-[14-Mar-2025 11:50:17 UTC] Password character codes: 43,42,35,107,68,122,109,52,36,78,106,83
-[14-Mar-2025 11:50:17 UTC] Generated secure password length: 12 characters
-[14-Mar-2025 11:50:17 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[14-Mar-2025 11:50:17 UTC] Student details - Name: Lampprey A Cagsawa, Course: 18, Semester: 1
-[14-Mar-2025 11:50:17 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:413
-Stack trace:
-#0 C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php(413): mysqli_stmt->bind_param('ssssssissssssss...', '210000045', 'Lampprey', 'Cagsawa', 'A', 'Female', '2002-09-11', 22, 'bahay', 'Single', 'penoy', 'satanista', '09319089290', 'ashjkjsdakh kln...', '18', '1', 'cenizamaki@gmai...', 'New', '1', 1, 'freshmen colleg...', '%PDF-1.4\n%\xF6\xE4\xFC\xDF\n...', NULL, NULL, NULL, NULL, '%PDF-1.4\n%\xF6\xE4\xFC\xDF\n...', NULL, '2025-2026', 0)
-#1 {main}
-  thrown in C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php on line 413
-[14-Mar-2025 12:33:51 UTC] Auto-number updated successfully
-[14-Mar-2025 12:33:51 UTC] Generated IDNO: 210000046
-[14-Mar-2025 12:33:51 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[14-Mar-2025 12:33:51 UTC] Calculated age: 22
-[14-Mar-2025 12:33:51 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[14-Mar-2025 12:33:51 UTC] Analyzing content of pdf file: form 138.pdf
-[14-Mar-2025 12:33:51 UTC] Calling API for PDF document classification
+[19-Mar-2025 15:16:59 UTC] Auto-number updated successfully
+[19-Mar-2025 15:16:59 UTC] Generated IDNO: 210000056
+[19-Mar-2025 15:16:59 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[19-Mar-2025 15:16:59 UTC] Calculated age: 22
+[19-Mar-2025 15:16:59 UTC] WARNING: Same file uploaded to multiple fields: tor and honor_dismissal
+[19-Mar-2025 15:16:59 UTC] FileValidator initialized with PDF Parser and OCR capability
+[19-Mar-2025 15:16:59 UTC] Starting content validation for file: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg (size: 95787 bytes)
+[19-Mar-2025 15:16:59 UTC] Using Tesseract OCR to extract text from image: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
+[19-Mar-2025 15:16:59 UTC] Tesseract OCR version detected: is
+[19-Mar-2025 15:16:59 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
 
+Make sure you have Tesseract OCR installed on your system:
+https://github.com/tesseract-ocr/tesseract
 
-[14-Mar-2025 12:36:20 UTC] API classification failed: cURL Error: Operation timed out after 10015 milliseconds with 0 bytes received
-[14-Mar-2025 12:36:20 UTC] Document type identified from filename as: form_138
-[14-Mar-2025 12:36:20 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 12:36:20 UTC] Document Type: Form 138 / Report Card
-[14-Mar-2025 12:36:20 UTC] File Name: form 138.pdf
-[14-Mar-2025 12:36:20 UTC] Extracted Text: 
-[14-Mar-2025 12:36:20 UTC] Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[14-Mar-2025 12:36:20 UTC] ====================================================
-[14-Mar-2025 12:36:20 UTC] Verifying document content for type: form_138
-[14-Mar-2025 12:36:20 UTC] Text to verify: Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[14-Mar-2025 12:36:20 UTC] MATCH FOUND for keyword: 'form 138'
-[14-Mar-2025 12:36:20 UTC] Content match found: 'form 138'
-[14-Mar-2025 12:36:20 UTC] Content match found: 'report card'
-[14-Mar-2025 12:36:20 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[14-Mar-2025 12:36:20 UTC] API payload size: 736 bytes
-[14-Mar-2025 12:36:32 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[14-Mar-2025 12:36:32 UTC] Document verification for form_138: GENUINE (Confidence: 0.85)
-[14-Mar-2025 12:36:32 UTC] Starting content validation for file: TOR.pdf (size: 7803 bytes)
-[14-Mar-2025 12:36:32 UTC] Analyzing content of pdf file: TOR.pdf
-[14-Mar-2025 12:36:32 UTC] Calling API for PDF document classification
-[14-Mar-2025 12:36:42 UTC] API classification failed: cURL Error: Operation timed out after 10003 milliseconds with 0 bytes received
-[14-Mar-2025 12:36:42 UTC] Document type identified from filename as: tor
-[14-Mar-2025 12:36:42 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[14-Mar-2025 12:36:42 UTC] Document Type: Transcript of Records
-[14-Mar-2025 12:36:42 UTC] File Name: TOR.pdf
-[14-Mar-2025 12:36:42 UTC] Extracted Text: 
-[14-Mar-2025 12:36:42 UTC] Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[14-Mar-2025 12:36:42 UTC] ====================================================
-[14-Mar-2025 12:36:42 UTC] Verifying document content for type: tor
-[14-Mar-2025 12:36:42 UTC] Text to verify: Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[14-Mar-2025 12:36:42 UTC] MATCH FOUND for keyword: 'transcript of records'
-[14-Mar-2025 12:36:42 UTC] Content match found: 'transcript'
-[14-Mar-2025 12:36:42 UTC] Content match found: 'records'
-[14-Mar-2025 12:36:42 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[14-Mar-2025 12:36:42 UTC] API payload size: 727 bytes
-[14-Mar-2025 12:36:58 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[14-Mar-2025 12:36:58 UTC] Document verification for tor: GENUINE (Confidence: 0.85)
-[14-Mar-2025 12:36:58 UTC] Document verification result: FAILED (2/7 verified, 29%, Critical docs verified: NO)
-[14-Mar-2025 12:36:58 UTC] Overall document verification status: FAILED
-[14-Mar-2025 12:36:58 UTC] Generated username: marowakcagsawa
-[14-Mar-2025 12:36:58 UTC] Raw password generated: +i+_6aDdZdio
-[14-Mar-2025 12:36:58 UTC] Password length: 12
-[14-Mar-2025 12:36:58 UTC] Password character codes: 43,105,43,95,54,97,68,100,90,100,105,111
-[14-Mar-2025 12:36:58 UTC] Generated secure password length: 12 characters
-[14-Mar-2025 12:36:58 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[14-Mar-2025 12:36:58 UTC] Student details - Name: Marowak A Cagsawa, Course: 18, Semester: 1
-[14-Mar-2025 12:36:58 UTC] Parameter count check: SQL has 29 placeholders, binding 29 parameters
-[14-Mar-2025 12:36:58 UTC] PASSED_VER value: 0 (type: integer)
-[14-Mar-2025 12:36:58 UTC] Type string length: 29, content: ssssssisssssssssssisssssssssi
-[14-Mar-2025 12:36:58 UTC] Inserting student account for ID: 210000047
-[14-Mar-2025 12:36:58 UTC] Student account creation result: Success
-[14-Mar-2025 12:36:58 UTC] Inserting guardian details for ID: 210000047
-[14-Mar-2025 12:36:58 UTC] Guardian details insertion: Success
-[14-Mar-2025 12:36:58 UTC] Attempting to send email to: cenizamaki@gmail.com
-[14-Mar-2025 12:37:01 UTC] Email successfully sent to: cenizamaki@gmail.com
-[17-Mar-2025 16:35:09 UTC] Auto-number updated successfully
-[17-Mar-2025 16:35:09 UTC] Generated IDNO: 210000048
-[17-Mar-2025 16:35:09 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[17-Mar-2025 16:35:09 UTC] Calculated age: 22
-[17-Mar-2025 16:35:09 UTC] Starting content validation for file: 482113430_1194487975575698_8808916296344159828_n.jpg (size: 125954 bytes)
-[17-Mar-2025 16:35:09 UTC] Analyzing content of image file: 482113430_1194487975575698_8808916296344159828_n.jpg
-[17-Mar-2025 16:35:09 UTC] Calling DeepSeek API to analyze document content...
-[17-Mar-2025 16:35:09 UTC] API payload size: 169663 bytes
-[17-Mar-2025 16:35:11 UTC] Error analyzing document content: API Error: HTTP Code 422 - Failed to deserialize the JSON body into the target type: messages[1]: data did not match any variant of untagged enum ChatCompletionRequestContent at line 1 column 169628
-[17-Mar-2025 16:35:11 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 16:35:11 UTC] Document Type: Form 138 / Report Card
-[17-Mar-2025 16:35:11 UTC] File Name: 482113430_1194487975575698_8808916296344159828_n.jpg
-[17-Mar-2025 16:35:11 UTC] Extracted Text: 
-[17-Mar-2025 16:35:11 UTC] Document: 482113430_1194487975575698_8808916296344159828_n
-[17-Mar-2025 16:35:11 UTC] ====================================================
-[17-Mar-2025 16:35:11 UTC] Verifying document content for type: form_138
-[17-Mar-2025 16:35:11 UTC] Text to verify: Document: 482113430_1194487975575698_8808916296344159828_n
-[17-Mar-2025 16:35:11 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[17-Mar-2025 16:35:11 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[17-Mar-2025 16:35:11 UTC] API payload size: 716 bytes
-[17-Mar-2025 16:35:30 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.95)
-[17-Mar-2025 16:35:30 UTC] Document verification for form_138: GENUINE (Confidence: 0.95)
-[17-Mar-2025 16:35:30 UTC] Starting content validation for file: 482223489_1360488288440266_8252044502664878419_n.jpg (size: 165980 bytes)
-[17-Mar-2025 16:35:30 UTC] Analyzing content of image file: 482223489_1360488288440266_8252044502664878419_n.jpg
-[17-Mar-2025 16:35:30 UTC] Calling DeepSeek API to analyze document content...
-[17-Mar-2025 16:35:30 UTC] API payload size: 223589 bytes
-[17-Mar-2025 16:35:30 UTC] Error analyzing document content: API Error: HTTP Code 422 - Failed to deserialize the JSON body into the target type: messages[1]: data did not match any variant of untagged enum ChatCompletionRequestContent at line 1 column 223554
-[17-Mar-2025 16:35:30 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 16:35:30 UTC] Document Type: Transcript of Records
-[17-Mar-2025 16:35:30 UTC] File Name: 482223489_1360488288440266_8252044502664878419_n.jpg
-[17-Mar-2025 16:35:30 UTC] Extracted Text: 
-[17-Mar-2025 16:35:30 UTC] Document: 482223489_1360488288440266_8252044502664878419_n
-[17-Mar-2025 16:35:30 UTC] ====================================================
-[17-Mar-2025 16:35:30 UTC] Verifying document content for type: tor
-[17-Mar-2025 16:35:30 UTC] Text to verify: Document: 482223489_1360488288440266_8252044502664878419_n
-[17-Mar-2025 16:35:30 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[17-Mar-2025 16:35:30 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[17-Mar-2025 16:35:30 UTC] API payload size: 714 bytes
-[17-Mar-2025 16:35:46 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.95)
-[17-Mar-2025 16:35:46 UTC] Document verification for tor: GENUINE (Confidence: 0.95)
-[17-Mar-2025 16:35:46 UTC] Document verification result: FAILED (2/7 verified, 29%, Critical docs verified: NO)
-[17-Mar-2025 16:35:46 UTC] Overall document verification status: FAILED
-[17-Mar-2025 16:35:46 UTC] Generated username: bongbongcagsawa
-[17-Mar-2025 16:35:46 UTC] Raw password generated: rtL1n_)h@Op@
-[17-Mar-2025 16:35:46 UTC] Password length: 12
-[17-Mar-2025 16:35:46 UTC] Password character codes: 114,116,76,49,110,95,41,104,64,79,112,64
-[17-Mar-2025 16:35:46 UTC] Generated secure password length: 12 characters
-[17-Mar-2025 16:35:46 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[17-Mar-2025 16:35:46 UTC] Student details - Name: Bongbong A Cagsawa, Course: 16, Semester: 1
-[17-Mar-2025 16:35:46 UTC] Parameter count check: SQL has 29 placeholders, binding 29 parameters
-[17-Mar-2025 16:35:46 UTC] PASSED_VER value: 0 (type: integer)
-[17-Mar-2025 16:35:46 UTC] Type string length: 29, content: ssssssisssssssssssisssssssssi
-[17-Mar-2025 16:35:46 UTC] Inserting student account for ID: 210000048
-[17-Mar-2025 16:35:46 UTC] Student account creation result: Success
-[17-Mar-2025 16:35:46 UTC] Inserting guardian details for ID: 210000048
-[17-Mar-2025 16:35:46 UTC] Guardian details insertion: Success
-[17-Mar-2025 16:35:46 UTC] Attempting to send email to: cenizamaki@gmail.com
-[17-Mar-2025 16:35:49 UTC] Email successfully sent to: cenizamaki@gmail.com
-[17-Mar-2025 16:59:44 UTC] Auto-number updated successfully
-[17-Mar-2025 16:59:44 UTC] Generated IDNO: 210000049
-[17-Mar-2025 16:59:44 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[17-Mar-2025 16:59:44 UTC] Calculated age: 22
-[17-Mar-2025 16:59:44 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[17-Mar-2025 16:59:44 UTC] Analyzing content of pdf file: form 138.pdf
-[17-Mar-2025 16:59:44 UTC] Calling API for PDF document classification
-[17-Mar-2025 16:59:54 UTC] API classification failed: cURL Error: Operation timed out after 10012 milliseconds with 0 bytes received
-[17-Mar-2025 16:59:54 UTC] Document type identified from filename as: form_138
-[17-Mar-2025 16:59:54 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 16:59:54 UTC] Document Type: Form 138 / Report Card
-[17-Mar-2025 16:59:54 UTC] File Name: form 138.pdf
-[17-Mar-2025 16:59:54 UTC] Extracted Text: 
-[17-Mar-2025 16:59:54 UTC] Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[17-Mar-2025 16:59:54 UTC] ====================================================
-[17-Mar-2025 16:59:54 UTC] Verifying document content for type: form_138
-[17-Mar-2025 16:59:54 UTC] Text to verify: Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[17-Mar-2025 16:59:54 UTC] MATCH FOUND for keyword: 'form 138'
-[17-Mar-2025 16:59:54 UTC] Content match found: 'form 138'
-[17-Mar-2025 16:59:54 UTC] Content match found: 'report card'
-[17-Mar-2025 16:59:54 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[17-Mar-2025 16:59:54 UTC] API payload size: 736 bytes
-[17-Mar-2025 17:00:13 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:00:13 UTC] Document verification for form_138: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:00:13 UTC] Starting content validation for file: Good Moral.pdf (size: 7210 bytes)
-[17-Mar-2025 17:00:13 UTC] Analyzing content of pdf file: Good Moral.pdf
-[17-Mar-2025 17:00:13 UTC] Calling API for PDF document classification
-[17-Mar-2025 17:00:23 UTC] API classification failed: cURL Error: Operation timed out after 10008 milliseconds with 0 bytes received
-[17-Mar-2025 17:00:23 UTC] Document type identified from filename as: good_moral
-[17-Mar-2025 17:00:23 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 17:00:23 UTC] Document Type: Certificate of Good Moral Character
-[17-Mar-2025 17:00:23 UTC] File Name: Good Moral.pdf
-[17-Mar-2025 17:00:23 UTC] Extracted Text: 
-[17-Mar-2025 17:00:23 UTC] Document type: Certificate of Good Moral Character
-Identified from filename: Good Moral.pdf
-[17-Mar-2025 17:00:23 UTC] ====================================================
-[17-Mar-2025 17:00:23 UTC] Verifying document content for type: good_moral
-[17-Mar-2025 17:00:23 UTC] Text to verify: Document type: Certificate of Good Moral Character
-Identified from filename: Good Moral.pdf
-[17-Mar-2025 17:00:23 UTC] MATCH FOUND for keyword: 'good moral'
-[17-Mar-2025 17:00:23 UTC] Content match found: 'good moral'
-[17-Mar-2025 17:00:23 UTC] Content match found: 'character'
-[17-Mar-2025 17:00:23 UTC] Content match found: 'certificate'
-[17-Mar-2025 17:00:23 UTC] Section match found: 'moral'
-[17-Mar-2025 17:00:23 UTC] Section match found: 'character'
-[17-Mar-2025 17:00:23 UTC] Document validation results - Type detected: YES, Content matches: 5/2
-[17-Mar-2025 17:00:23 UTC] API payload size: 762 bytes
-[17-Mar-2025 17:00:34 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:00:34 UTC] Document verification for good_moral: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:00:34 UTC] Starting content validation for file: BIRTH CERTIFICATE.pdf (size: 7328 bytes)
-[17-Mar-2025 17:00:34 UTC] Analyzing content of pdf file: BIRTH CERTIFICATE.pdf
-[17-Mar-2025 17:00:34 UTC] Calling API for PDF document classification
-[17-Mar-2025 17:00:44 UTC] API classification failed: cURL Error: Operation timed out after 10006 milliseconds with 0 bytes received
-[17-Mar-2025 17:00:44 UTC] Document type identified from filename as: psa_birthCert
-[17-Mar-2025 17:00:44 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 17:00:44 UTC] Document Type: PSA Birth Certificate
-[17-Mar-2025 17:00:44 UTC] File Name: BIRTH CERTIFICATE.pdf
-[17-Mar-2025 17:00:44 UTC] Extracted Text: 
-[17-Mar-2025 17:00:44 UTC] Document type: PSA Birth Certificate
-Identified from filename: BIRTH CERTIFICATE.pdf
-[17-Mar-2025 17:00:44 UTC] ====================================================
-[17-Mar-2025 17:00:44 UTC] Verifying document content for type: psa_birthCert
-[17-Mar-2025 17:00:44 UTC] Text to verify: Document type: PSA Birth Certificate
-Identified from filename: BIRTH CERTIFICATE.pdf
-[17-Mar-2025 17:00:44 UTC] MATCH FOUND for keyword: 'birth certificate'
-[17-Mar-2025 17:00:44 UTC] Content match found: 'birth certificate'
-[17-Mar-2025 17:00:44 UTC] Content match found: 'psa'
-[17-Mar-2025 17:00:44 UTC] Section match found: 'name'
-[17-Mar-2025 17:00:44 UTC] Section match found: 'birth'
-[17-Mar-2025 17:00:44 UTC] Document validation results - Type detected: YES, Content matches: 4/2
-[17-Mar-2025 17:00:44 UTC] API payload size: 741 bytes
-[17-Mar-2025 17:00:56 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.9)
-[17-Mar-2025 17:00:56 UTC] Document verification for psa_birthCert: GENUINE (Confidence: 0.9)
-[17-Mar-2025 17:00:56 UTC] Starting content validation for file: Untitled design.jpg (size: 31194 bytes)
-[17-Mar-2025 17:00:56 UTC] Analyzing content of image file: Untitled design.jpg
-[17-Mar-2025 17:00:56 UTC] Calling DeepSeek API to analyze document content...
-[17-Mar-2025 17:00:56 UTC] API payload size: 42564 bytes
-[17-Mar-2025 17:00:56 UTC] Error analyzing document content: API Error: HTTP Code 422 - Failed to deserialize the JSON body into the target type: messages[1]: data did not match any variant of untagged enum ChatCompletionRequestContent at line 1 column 42529
-[17-Mar-2025 17:00:56 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 17:00:56 UTC] Document Type: ID Photo
-[17-Mar-2025 17:00:56 UTC] File Name: Untitled design.jpg
-[17-Mar-2025 17:00:56 UTC] Extracted Text: 
-[17-Mar-2025 17:00:56 UTC] Document: Untitled design
-[17-Mar-2025 17:00:56 UTC] ====================================================
-[17-Mar-2025 17:00:56 UTC] Verifying document content for type: id_pic
-[17-Mar-2025 17:00:56 UTC] Text to verify: Document: Untitled design
-[17-Mar-2025 17:00:56 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[17-Mar-2025 17:00:56 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[17-Mar-2025 17:00:56 UTC] API payload size: 668 bytes
-[17-Mar-2025 17:01:13 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.9)
-[17-Mar-2025 17:01:13 UTC] Document verification for id_pic: GENUINE (Confidence: 0.9)
-[17-Mar-2025 17:01:13 UTC] Starting content validation for file: BARANGAY CLEARANCE.pdf (size: 7509 bytes)
-[17-Mar-2025 17:01:13 UTC] Analyzing content of pdf file: BARANGAY CLEARANCE.pdf
-[17-Mar-2025 17:01:13 UTC] Calling API for PDF document classification
-[17-Mar-2025 17:01:24 UTC] API classification failed: cURL Error: Operation timed out after 10010 milliseconds with 0 bytes received
-[17-Mar-2025 17:01:24 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 17:01:24 UTC] Document Type: Barangay Clearance
-[17-Mar-2025 17:01:24 UTC] File Name: BARANGAY CLEARANCE.pdf
-[17-Mar-2025 17:01:24 UTC] Extracted Text: 
-[17-Mar-2025 17:01:24 UTC] Document: barangay clearance
-[17-Mar-2025 17:01:24 UTC] ====================================================
-[17-Mar-2025 17:01:24 UTC] Verifying document content for type: Brgy_clearance
-[17-Mar-2025 17:01:24 UTC] Text to verify: Document: barangay clearance
-[17-Mar-2025 17:01:24 UTC] MATCH FOUND for keyword: 'barangay clearance'
-[17-Mar-2025 17:01:24 UTC] Content match found: 'barangay'
-[17-Mar-2025 17:01:24 UTC] Content match found: 'clearance'
-[17-Mar-2025 17:01:24 UTC] Section match found: 'clearance'
-[17-Mar-2025 17:01:24 UTC] Document validation results - Type detected: YES, Content matches: 3/2
-[17-Mar-2025 17:01:24 UTC] API payload size: 681 bytes
-[17-Mar-2025 17:01:37 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:01:37 UTC] Document verification for Brgy_clearance: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:01:37 UTC] Starting content validation for file: TOR.pdf (size: 7803 bytes)
-[17-Mar-2025 17:01:37 UTC] Analyzing content of pdf file: TOR.pdf
-[17-Mar-2025 17:01:37 UTC] Calling API for PDF document classification
-[17-Mar-2025 17:01:47 UTC] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\wamp64\www\onlineenrolmentsystem\chatbot\utils\file_validator.php on line 339
-[17-Mar-2025 17:01:47 UTC] PHP Stack trace:
-[17-Mar-2025 17:01:47 UTC] PHP   1. {main}() C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:0
-[17-Mar-2025 17:01:47 UTC] PHP   2. handleFileUpload($file = ['name' => 'TOR.pdf', 'type' => 'application/pdf', 'tmp_name' => 'C:\\wamp64\\tmp\\phpAF63.tmp', 'error' => 0, 'size' => 7803], $fileType = 'document', $documentType = 'tor') C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:292
-[17-Mar-2025 17:01:47 UTC] PHP   3. FileValidator->validateFile($file = ['name' => 'TOR.pdf', 'type' => 'application/pdf', 'tmp_name' => 'C:\\wamp64\\tmp\\phpAF63.tmp', 'error' => 0, 'size' => 7803], $fileType = 'document', $documentType = 'tor') C:\wamp64\www\onlineenrolmentsystem\pre_enroll\Logic_enroll.php:69
-[17-Mar-2025 17:01:47 UTC] PHP   4. FileValidator->extractTextFromDocument($file = ['name' => 'TOR.pdf', 'type' => 'application/pdf', 'tmp_name' => 'C:\\wamp64\\tmp\\phpAF63.tmp', 'error' => 0, 'size' => 7803]) C:\wamp64\www\onlineenrolmentsystem\chatbot\utils\file_validator.php:81
-[17-Mar-2025 17:01:47 UTC] PHP   5. FileValidator->analyzeDocumentContent($file = ['name' => 'TOR.pdf', 'type' => 'application/pdf', 'tmp_name' => 'C:\\wamp64\\tmp\\phpAF63.tmp', 'error' => 0, 'size' => 7803], $fileType = 'pdf') C:\wamp64\www\onlineenrolmentsystem\chatbot\utils\file_validator.php:174
-[17-Mar-2025 17:01:47 UTC] PHP   6. FileValidator->callDeepSeekAPIWithTimeout($payload = ['model' => 'deepseek-chat', 'messages' => [0 => [...], 1 => [...]], 'max_tokens' => 50, 'timeout' => 10], $timeoutSeconds = 10) C:\wamp64\www\onlineenrolmentsystem\chatbot\utils\file_validator.php:231
-[17-Mar-2025 17:10:13 UTC] Auto-number updated successfully
-[17-Mar-2025 17:10:13 UTC] Generated IDNO: 210000050
-[17-Mar-2025 17:10:13 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[17-Mar-2025 17:10:13 UTC] Calculated age: 22
-[17-Mar-2025 17:10:13 UTC] Starting content validation for file: form 138.pdf (size: 8137 bytes)
-[17-Mar-2025 17:10:13 UTC] Analyzing content of pdf file: form 138.pdf
-[17-Mar-2025 17:10:13 UTC] Using filename-based classification due to API_FALLBACK_MODE=true
-[17-Mar-2025 17:10:13 UTC] Document type identified from filename as: form_138
-[17-Mar-2025 17:10:13 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 17:10:13 UTC] Document Type: Form 138 / Report Card
-[17-Mar-2025 17:10:13 UTC] File Name: form 138.pdf
-[17-Mar-2025 17:10:13 UTC] Extracted Text: 
-[17-Mar-2025 17:10:13 UTC] Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[17-Mar-2025 17:10:13 UTC] ====================================================
-[17-Mar-2025 17:10:13 UTC] Verifying document content for type: form_138
-[17-Mar-2025 17:10:13 UTC] Text to verify: Document type: Form 138 / Report Card
-Identified from filename: form 138.pdf
-[17-Mar-2025 17:10:13 UTC] MATCH FOUND for keyword: 'form 138'
-[17-Mar-2025 17:10:13 UTC] Content match found: 'form 138'
-[17-Mar-2025 17:10:13 UTC] Content match found: 'report card'
-[17-Mar-2025 17:10:13 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[17-Mar-2025 17:10:13 UTC] API payload size: 736 bytes
-[17-Mar-2025 17:10:27 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:10:27 UTC] Document verification for form_138: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:10:27 UTC] Starting content validation for file: Good Moral.pdf (size: 7210 bytes)
-[17-Mar-2025 17:10:27 UTC] Analyzing content of pdf file: Good Moral.pdf
-[17-Mar-2025 17:10:27 UTC] Using filename-based classification due to API_FALLBACK_MODE=true
-[17-Mar-2025 17:10:27 UTC] Document type identified from filename as: good_moral
-[17-Mar-2025 17:10:27 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 17:10:27 UTC] Document Type: Certificate of Good Moral Character
-[17-Mar-2025 17:10:27 UTC] File Name: Good Moral.pdf
-[17-Mar-2025 17:10:27 UTC] Extracted Text: 
-[17-Mar-2025 17:10:27 UTC] Document type: Certificate of Good Moral Character
-Identified from filename: Good Moral.pdf
-[17-Mar-2025 17:10:27 UTC] ====================================================
-[17-Mar-2025 17:10:27 UTC] Verifying document content for type: good_moral
-[17-Mar-2025 17:10:27 UTC] Text to verify: Document type: Certificate of Good Moral Character
-Identified from filename: Good Moral.pdf
-[17-Mar-2025 17:10:27 UTC] MATCH FOUND for keyword: 'good moral'
-[17-Mar-2025 17:10:27 UTC] Content match found: 'good moral'
-[17-Mar-2025 17:10:27 UTC] Content match found: 'character'
-[17-Mar-2025 17:10:27 UTC] Content match found: 'certificate'
-[17-Mar-2025 17:10:27 UTC] Section match found: 'moral'
-[17-Mar-2025 17:10:27 UTC] Section match found: 'character'
-[17-Mar-2025 17:10:27 UTC] Document validation results - Type detected: YES, Content matches: 5/2
-[17-Mar-2025 17:10:27 UTC] API payload size: 762 bytes
-[17-Mar-2025 17:10:37 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:10:37 UTC] Document verification for good_moral: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:10:37 UTC] Starting content validation for file: BIRTH CERTIFICATE.pdf (size: 7328 bytes)
-[17-Mar-2025 17:10:37 UTC] Analyzing content of pdf file: BIRTH CERTIFICATE.pdf
-[17-Mar-2025 17:10:37 UTC] Using filename-based classification due to API_FALLBACK_MODE=true
-[17-Mar-2025 17:10:37 UTC] Document type identified from filename as: psa_birthCert
-[17-Mar-2025 17:10:37 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 17:10:37 UTC] Document Type: PSA Birth Certificate
-[17-Mar-2025 17:10:37 UTC] File Name: BIRTH CERTIFICATE.pdf
-[17-Mar-2025 17:10:37 UTC] Extracted Text: 
-[17-Mar-2025 17:10:37 UTC] Document type: PSA Birth Certificate
-Identified from filename: BIRTH CERTIFICATE.pdf
-[17-Mar-2025 17:10:37 UTC] ====================================================
-[17-Mar-2025 17:10:37 UTC] Verifying document content for type: psa_birthCert
-[17-Mar-2025 17:10:37 UTC] Text to verify: Document type: PSA Birth Certificate
-Identified from filename: BIRTH CERTIFICATE.pdf
-[17-Mar-2025 17:10:37 UTC] MATCH FOUND for keyword: 'birth certificate'
-[17-Mar-2025 17:10:37 UTC] Content match found: 'birth certificate'
-[17-Mar-2025 17:10:37 UTC] Content match found: 'psa'
-[17-Mar-2025 17:10:37 UTC] Section match found: 'name'
-[17-Mar-2025 17:10:37 UTC] Section match found: 'birth'
-[17-Mar-2025 17:10:37 UTC] Document validation results - Type detected: YES, Content matches: 4/2
-[17-Mar-2025 17:10:37 UTC] API payload size: 741 bytes
-[17-Mar-2025 17:10:50 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:10:50 UTC] Document verification for psa_birthCert: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:10:50 UTC] Starting content validation for file: Untitled design.jpg (size: 31194 bytes)
-[17-Mar-2025 17:10:50 UTC] Analyzing content of image file: Untitled design.jpg
-[17-Mar-2025 17:10:50 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
-[17-Mar-2025 17:10:50 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 17:10:50 UTC] Document Type: ID Photo
-[17-Mar-2025 17:10:50 UTC] File Name: Untitled design.jpg
-[17-Mar-2025 17:10:50 UTC] Extracted Text: 
-[17-Mar-2025 17:10:50 UTC] Image document: Untitled design
-[17-Mar-2025 17:10:50 UTC] ====================================================
-[17-Mar-2025 17:10:50 UTC] Verifying document content for type: id_pic
-[17-Mar-2025 17:10:50 UTC] Text to verify: Image document: Untitled design
-[17-Mar-2025 17:10:50 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[17-Mar-2025 17:10:50 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[17-Mar-2025 17:10:50 UTC] API payload size: 674 bytes
-[17-Mar-2025 17:10:59 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.9)
-[17-Mar-2025 17:10:59 UTC] Document verification for id_pic: GENUINE (Confidence: 0.9)
-[17-Mar-2025 17:10:59 UTC] Starting content validation for file: BARANGAY CLEARANCE.pdf (size: 7509 bytes)
-[17-Mar-2025 17:10:59 UTC] Analyzing content of pdf file: BARANGAY CLEARANCE.pdf
-[17-Mar-2025 17:10:59 UTC] Using filename-based classification due to API_FALLBACK_MODE=true
-[17-Mar-2025 17:10:59 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 17:10:59 UTC] Document Type: Barangay Clearance
-[17-Mar-2025 17:10:59 UTC] File Name: BARANGAY CLEARANCE.pdf
-[17-Mar-2025 17:10:59 UTC] Extracted Text: 
-[17-Mar-2025 17:10:59 UTC] Document: barangay clearance
-[17-Mar-2025 17:10:59 UTC] ====================================================
-[17-Mar-2025 17:10:59 UTC] Verifying document content for type: Brgy_clearance
-[17-Mar-2025 17:10:59 UTC] Text to verify: Document: barangay clearance
-[17-Mar-2025 17:10:59 UTC] MATCH FOUND for keyword: 'barangay clearance'
-[17-Mar-2025 17:10:59 UTC] Content match found: 'barangay'
-[17-Mar-2025 17:10:59 UTC] Content match found: 'clearance'
-[17-Mar-2025 17:10:59 UTC] Section match found: 'clearance'
-[17-Mar-2025 17:10:59 UTC] Document validation results - Type detected: YES, Content matches: 3/2
-[17-Mar-2025 17:10:59 UTC] API payload size: 681 bytes
-[17-Mar-2025 17:11:11 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:11:11 UTC] Document verification for Brgy_clearance: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:11:11 UTC] Starting content validation for file: TOR.pdf (size: 7803 bytes)
-[17-Mar-2025 17:11:11 UTC] Analyzing content of pdf file: TOR.pdf
-[17-Mar-2025 17:11:11 UTC] Using filename-based classification due to API_FALLBACK_MODE=true
-[17-Mar-2025 17:11:11 UTC] Document type identified from filename as: tor
-[17-Mar-2025 17:11:11 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 17:11:11 UTC] Document Type: Transcript of Records
-[17-Mar-2025 17:11:11 UTC] File Name: TOR.pdf
-[17-Mar-2025 17:11:11 UTC] Extracted Text: 
-[17-Mar-2025 17:11:11 UTC] Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[17-Mar-2025 17:11:11 UTC] ====================================================
-[17-Mar-2025 17:11:11 UTC] Verifying document content for type: tor
-[17-Mar-2025 17:11:11 UTC] Text to verify: Document type: Transcript of Records
-Identified from filename: TOR.pdf
-[17-Mar-2025 17:11:11 UTC] MATCH FOUND for keyword: 'transcript of records'
-[17-Mar-2025 17:11:11 UTC] Content match found: 'transcript'
-[17-Mar-2025 17:11:11 UTC] Content match found: 'records'
-[17-Mar-2025 17:11:11 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[17-Mar-2025 17:11:11 UTC] API payload size: 727 bytes
-[17-Mar-2025 17:11:27 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:11:27 UTC] Document verification for tor: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:11:27 UTC] Starting content validation for file: HONORABLE DISMISSAL.pdf (size: 7777 bytes)
-[17-Mar-2025 17:11:27 UTC] Analyzing content of pdf file: HONORABLE DISMISSAL.pdf
-[17-Mar-2025 17:11:27 UTC] Using filename-based classification due to API_FALLBACK_MODE=true
-[17-Mar-2025 17:11:27 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[17-Mar-2025 17:11:27 UTC] Document Type: Honorable Dismissal
-[17-Mar-2025 17:11:27 UTC] File Name: HONORABLE DISMISSAL.pdf
-[17-Mar-2025 17:11:27 UTC] Extracted Text: 
-[17-Mar-2025 17:11:27 UTC] Document: honorable dismissal
-[17-Mar-2025 17:11:27 UTC] ====================================================
-[17-Mar-2025 17:11:27 UTC] Verifying document content for type: honor_dismissal
-[17-Mar-2025 17:11:27 UTC] Text to verify: Document: honorable dismissal
-[17-Mar-2025 17:11:27 UTC] MATCH FOUND for keyword: 'honorable dismissal'
-[17-Mar-2025 17:11:27 UTC] Content match found: 'honorable'
-[17-Mar-2025 17:11:27 UTC] Content match found: 'dismissal'
-[17-Mar-2025 17:11:27 UTC] Document validation results - Type detected: YES, Content matches: 2/2
-[17-Mar-2025 17:11:27 UTC] API payload size: 683 bytes
-[17-Mar-2025 17:11:45 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:11:45 UTC] Document verification for honor_dismissal: GENUINE (Confidence: 0.85)
-[17-Mar-2025 17:11:45 UTC] Document verification result: PASSED (7/7 verified, 100%, Critical docs verified: YES)
-[17-Mar-2025 17:11:45 UTC] Overall document verification status: PASSED
-[17-Mar-2025 17:11:45 UTC] Generated username: lenicagsawa
-[17-Mar-2025 17:11:45 UTC] Raw password generated: AL(QA2ep2upe
-[17-Mar-2025 17:11:45 UTC] Password length: 12
-[17-Mar-2025 17:11:45 UTC] Password character codes: 65,76,40,81,65,50,101,112,50,117,112,101
-[17-Mar-2025 17:11:45 UTC] Generated secure password length: 12 characters
-[17-Mar-2025 17:11:45 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[17-Mar-2025 17:11:45 UTC] Student details - Name: leni A Cagsawa, Course: 18, Semester: 1
-[17-Mar-2025 17:11:45 UTC] Parameter count check: SQL has 29 placeholders, binding 29 parameters
-[17-Mar-2025 17:11:45 UTC] PASSED_VER value: 1 (type: integer)
-[17-Mar-2025 17:11:45 UTC] Type string length: 29, content: ssssssisssssssssssisssssssssi
-[17-Mar-2025 17:11:45 UTC] Inserting student account for ID: 210000050
-[17-Mar-2025 17:11:45 UTC] Student account creation result: Success
-[17-Mar-2025 17:11:45 UTC] Inserting guardian details for ID: 210000050
-[17-Mar-2025 17:11:45 UTC] Guardian details insertion: Success
-[17-Mar-2025 17:11:45 UTC] Attempting to send email to: cenizamaki@gmail.com
-[17-Mar-2025 17:11:49 UTC] Email successfully sent to: cenizamaki@gmail.com
+The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+[19-Mar-2025 15:16:59 UTC] Local OCR returned insufficient text, trying API backup
+[19-Mar-2025 15:16:59 UTC] Analyzing content of image file: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
+[19-Mar-2025 15:16:59 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
+[19-Mar-2025 15:16:59 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
+[19-Mar-2025 15:16:59 UTC] Document Type: Form 138 / Report Card
+[19-Mar-2025 15:16:59 UTC] File Name: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
+[19-Mar-2025 15:16:59 UTC] Extracted Text: 
+[19-Mar-2025 15:16:59 UTC] Image document: f1088010-8845-4415-ac40-444c2b7b42f0
+[19-Mar-2025 15:16:59 UTC] ====================================================
+[19-Mar-2025 15:16:59 UTC] Verifying document content for type: form_138
+[19-Mar-2025 15:16:59 UTC] Text to verify: Image document: f1088010-8845-4415-ac40-444c2b7b42f0
+[19-Mar-2025 15:16:59 UTC] Document validation results - Type detected: NO, Content matches: 0/2
+[19-Mar-2025 15:16:59 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
+[19-Mar-2025 15:16:59 UTC] API payload size: 710 bytes
+[19-Mar-2025 15:17:12 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:17:12 UTC] Document verification for form_138: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:17:12 UTC] FileValidator initialized with PDF Parser and OCR capability
+[19-Mar-2025 15:17:12 UTC] Starting content validation for file: 5014c7e5-3499-4025-ab71-d7d86ef6344d.jpeg (size: 28500 bytes)
+[19-Mar-2025 15:17:12 UTC] Using Tesseract OCR to extract text from image: 5014c7e5-3499-4025-ab71-d7d86ef6344d.jpeg
+[19-Mar-2025 15:17:12 UTC] Tesseract OCR version detected: is
+[19-Mar-2025 15:17:12 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
+
+Make sure you have Tesseract OCR installed on your system:
+https://github.com/tesseract-ocr/tesseract
+
+The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+[19-Mar-2025 15:17:12 UTC] Local OCR returned insufficient text, trying API backup
+[19-Mar-2025 15:17:12 UTC] Analyzing content of image file: 5014c7e5-3499-4025-ab71-d7d86ef6344d.jpeg
+[19-Mar-2025 15:17:12 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
+[19-Mar-2025 15:17:12 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
+[19-Mar-2025 15:17:12 UTC] Document Type: Certificate of Good Moral Character
+[19-Mar-2025 15:17:12 UTC] File Name: 5014c7e5-3499-4025-ab71-d7d86ef6344d.jpeg
+[19-Mar-2025 15:17:12 UTC] Extracted Text: 
+[19-Mar-2025 15:17:12 UTC] Image document: 5014c7e5-3499-4025-ab71-d7d86ef6344d
+[19-Mar-2025 15:17:12 UTC] ====================================================
+[19-Mar-2025 15:17:12 UTC] Verifying document content for type: good_moral
+[19-Mar-2025 15:17:12 UTC] Text to verify: Image document: 5014c7e5-3499-4025-ab71-d7d86ef6344d
+[19-Mar-2025 15:17:12 UTC] Document validation results - Type detected: NO, Content matches: 0/2
+[19-Mar-2025 15:17:12 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
+[19-Mar-2025 15:17:12 UTC] API payload size: 722 bytes
+[19-Mar-2025 15:17:23 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:17:23 UTC] Document verification for good_moral: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:17:23 UTC] FileValidator initialized with PDF Parser and OCR capability
+[19-Mar-2025 15:17:23 UTC] Starting content validation for file: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a.jpeg (size: 156345 bytes)
+[19-Mar-2025 15:17:23 UTC] Using Tesseract OCR to extract text from image: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a.jpeg
+[19-Mar-2025 15:17:23 UTC] Tesseract OCR version detected: is
+[19-Mar-2025 15:17:23 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
+
+Make sure you have Tesseract OCR installed on your system:
+https://github.com/tesseract-ocr/tesseract
+
+The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+[19-Mar-2025 15:17:23 UTC] Local OCR returned insufficient text, trying API backup
+[19-Mar-2025 15:17:23 UTC] Analyzing content of image file: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a.jpeg
+[19-Mar-2025 15:17:23 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
+[19-Mar-2025 15:17:23 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
+[19-Mar-2025 15:17:23 UTC] Document Type: PSA Birth Certificate
+[19-Mar-2025 15:17:23 UTC] File Name: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a.jpeg
+[19-Mar-2025 15:17:23 UTC] Extracted Text: 
+[19-Mar-2025 15:17:23 UTC] Image document: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a
+[19-Mar-2025 15:17:23 UTC] ====================================================
+[19-Mar-2025 15:17:23 UTC] Verifying document content for type: psa_birthCert
+[19-Mar-2025 15:17:23 UTC] Text to verify: Image document: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a
+[19-Mar-2025 15:17:23 UTC] Document validation results - Type detected: NO, Content matches: 0/2
+[19-Mar-2025 15:17:23 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
+[19-Mar-2025 15:17:23 UTC] API payload size: 708 bytes
+[19-Mar-2025 15:17:36 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:17:36 UTC] Document verification for psa_birthCert: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:17:36 UTC] FileValidator initialized with PDF Parser and OCR capability
+[19-Mar-2025 15:17:36 UTC] Starting content validation for file: Untitled design.jpg (size: 31194 bytes)
+[19-Mar-2025 15:17:36 UTC] Using Tesseract OCR to extract text from image: Untitled design.jpg
+[19-Mar-2025 15:17:36 UTC] Tesseract OCR version detected: is
+[19-Mar-2025 15:17:36 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
+
+Make sure you have Tesseract OCR installed on your system:
+https://github.com/tesseract-ocr/tesseract
+
+The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+[19-Mar-2025 15:17:36 UTC] Local OCR returned insufficient text, trying API backup
+[19-Mar-2025 15:17:36 UTC] Analyzing content of image file: Untitled design.jpg
+[19-Mar-2025 15:17:36 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
+[19-Mar-2025 15:17:36 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
+[19-Mar-2025 15:17:36 UTC] Document Type: ID Photo
+[19-Mar-2025 15:17:36 UTC] File Name: Untitled design.jpg
+[19-Mar-2025 15:17:36 UTC] Extracted Text: 
+[19-Mar-2025 15:17:36 UTC] Image document: Untitled design
+[19-Mar-2025 15:17:36 UTC] ====================================================
+[19-Mar-2025 15:17:36 UTC] Verifying document content for type: id_pic
+[19-Mar-2025 15:17:36 UTC] Text to verify: Image document: Untitled design
+[19-Mar-2025 15:17:36 UTC] Document validation results - Type detected: NO, Content matches: 0/2
+[19-Mar-2025 15:17:36 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
+[19-Mar-2025 15:17:36 UTC] API payload size: 674 bytes
+[19-Mar-2025 15:17:52 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.9)
+[19-Mar-2025 15:17:52 UTC] Document verification for id_pic: GENUINE (Confidence: 0.9)
+[19-Mar-2025 15:17:52 UTC] FileValidator initialized with PDF Parser and OCR capability
+[19-Mar-2025 15:17:52 UTC] Starting content validation for file: e7d0ea32-36cb-47d4-bd8e-aaf68067d844.jpeg (size: 88958 bytes)
+[19-Mar-2025 15:17:52 UTC] Using Tesseract OCR to extract text from image: e7d0ea32-36cb-47d4-bd8e-aaf68067d844.jpeg
+[19-Mar-2025 15:17:52 UTC] Tesseract OCR version detected: is
+[19-Mar-2025 15:17:52 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
+
+Make sure you have Tesseract OCR installed on your system:
+https://github.com/tesseract-ocr/tesseract
+
+The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+[19-Mar-2025 15:17:52 UTC] Local OCR returned insufficient text, trying API backup
+[19-Mar-2025 15:17:52 UTC] Analyzing content of image file: e7d0ea32-36cb-47d4-bd8e-aaf68067d844.jpeg
+[19-Mar-2025 15:17:52 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
+[19-Mar-2025 15:17:52 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
+[19-Mar-2025 15:17:52 UTC] Document Type: Barangay Clearance
+[19-Mar-2025 15:17:52 UTC] File Name: e7d0ea32-36cb-47d4-bd8e-aaf68067d844.jpeg
+[19-Mar-2025 15:17:52 UTC] Extracted Text: 
+[19-Mar-2025 15:17:52 UTC] Image document: e7d0ea32-36cb-47d4-bd8e-aaf68067d844
+[19-Mar-2025 15:17:52 UTC] ====================================================
+[19-Mar-2025 15:17:52 UTC] Verifying document content for type: Brgy_clearance
+[19-Mar-2025 15:17:52 UTC] Text to verify: Image document: e7d0ea32-36cb-47d4-bd8e-aaf68067d844
+[19-Mar-2025 15:17:52 UTC] Document validation results - Type detected: NO, Content matches: 0/2
+[19-Mar-2025 15:17:52 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
+[19-Mar-2025 15:17:52 UTC] API payload size: 705 bytes
+[19-Mar-2025 15:18:04 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:18:04 UTC] Document verification for Brgy_clearance: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:18:04 UTC] FileValidator initialized with PDF Parser and OCR capability
+[19-Mar-2025 15:18:04 UTC] Starting content validation for file: 4f265311-6641-46f2-b7c6-b7552fec17e3.jpeg (size: 107742 bytes)
+[19-Mar-2025 15:18:04 UTC] Using Tesseract OCR to extract text from image: 4f265311-6641-46f2-b7c6-b7552fec17e3.jpeg
+[19-Mar-2025 15:18:04 UTC] Tesseract OCR version detected: is
+[19-Mar-2025 15:18:04 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
+
+Make sure you have Tesseract OCR installed on your system:
+https://github.com/tesseract-ocr/tesseract
+
+The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+[19-Mar-2025 15:18:04 UTC] Local OCR returned insufficient text, trying API backup
+[19-Mar-2025 15:18:04 UTC] Analyzing content of image file: 4f265311-6641-46f2-b7c6-b7552fec17e3.jpeg
+[19-Mar-2025 15:18:04 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
+[19-Mar-2025 15:18:04 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
+[19-Mar-2025 15:18:04 UTC] Document Type: Transcript of Records
+[19-Mar-2025 15:18:04 UTC] File Name: 4f265311-6641-46f2-b7c6-b7552fec17e3.jpeg
+[19-Mar-2025 15:18:04 UTC] Extracted Text: 
+[19-Mar-2025 15:18:04 UTC] Image document: 4f265311-6641-46f2-b7c6-b7552fec17e3
+[19-Mar-2025 15:18:04 UTC] ====================================================
+[19-Mar-2025 15:18:04 UTC] Verifying document content for type: tor
+[19-Mar-2025 15:18:04 UTC] Text to verify: Image document: 4f265311-6641-46f2-b7c6-b7552fec17e3
+[19-Mar-2025 15:18:04 UTC] Document validation results - Type detected: NO, Content matches: 0/2
+[19-Mar-2025 15:18:04 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
+[19-Mar-2025 15:18:04 UTC] API payload size: 708 bytes
+[19-Mar-2025 15:18:18 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:18:18 UTC] Document verification for tor: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:18:18 UTC] Document verification result: PASSED (6/7 verified, 86%, Critical docs verified: YES)
+[19-Mar-2025 15:18:18 UTC] Overall document verification status: PASSED
+[19-Mar-2025 15:18:18 UTC] Generated username: ligosardinescagsawa
+[19-Mar-2025 15:18:18 UTC] Raw password generated: iP0(t9+mUF61
+[19-Mar-2025 15:18:18 UTC] Password length: 12
+[19-Mar-2025 15:18:18 UTC] Password character codes: 105,80,48,40,116,57,43,109,85,70,54,49
+[19-Mar-2025 15:18:18 UTC] Generated secure password length: 12 characters
+[19-Mar-2025 15:18:18 UTC] Generated secure password: [REDACTED FOR SECURITY]
+[19-Mar-2025 15:18:18 UTC] Student details - Name: Ligo sardines A Cagsawa, Course: 18, Semester: 1
+[19-Mar-2025 15:18:19 UTC] Parameter count check: SQL has 29 placeholders, binding 29 parameters
+[19-Mar-2025 15:18:19 UTC] PASSED_VER value: 1 (type: integer)
+[19-Mar-2025 15:18:19 UTC] Type string length: 29, content: ssssssisssssssssssisssssssssi
+[19-Mar-2025 15:18:19 UTC] Inserting student account for ID: 210000056
+[19-Mar-2025 15:18:19 UTC] Student account creation result: Success
+[19-Mar-2025 15:18:19 UTC] Inserting guardian details for ID: 210000056
+[19-Mar-2025 15:18:19 UTC] Guardian details insertion: Success
+[19-Mar-2025 15:18:19 UTC] Attempting to send email to: cenizamaki@gmail.com
+[19-Mar-2025 15:18:22 UTC] Email successfully sent to: cenizamaki@gmail.com
+[19-Mar-2025 15:20:37 UTC] Auto-number updated successfully
+[19-Mar-2025 15:20:37 UTC] Generated IDNO: 210000057
+[19-Mar-2025 15:20:37 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[19-Mar-2025 15:20:37 UTC] Calculated age: 22
+[19-Mar-2025 15:20:37 UTC] FileValidator initialized with PDF Parser and OCR capability
+[19-Mar-2025 15:20:37 UTC] Starting content validation for file: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg (size: 95787 bytes)
+[19-Mar-2025 15:20:37 UTC] Using Tesseract OCR to extract text from image: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
+[19-Mar-2025 15:20:37 UTC] Tesseract OCR version detected: is
+[19-Mar-2025 15:20:38 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
+
+Make sure you have Tesseract OCR installed on your system:
+https://github.com/tesseract-ocr/tesseract
+
+The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+[19-Mar-2025 15:20:38 UTC] Local OCR returned insufficient text, trying API backup
+[19-Mar-2025 15:20:38 UTC] Analyzing content of image file: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
+[19-Mar-2025 15:20:38 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
+[19-Mar-2025 15:20:38 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
+[19-Mar-2025 15:20:38 UTC] Document Type: Form 138 / Report Card
+[19-Mar-2025 15:20:38 UTC] File Name: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
+[19-Mar-2025 15:20:38 UTC] Extracted Text: 
+[19-Mar-2025 15:20:38 UTC] Image document: f1088010-8845-4415-ac40-444c2b7b42f0
+[19-Mar-2025 15:20:38 UTC] ====================================================
+[19-Mar-2025 15:20:38 UTC] Verifying document content for type: form_138
+[19-Mar-2025 15:20:38 UTC] Text to verify: Image document: f1088010-8845-4415-ac40-444c2b7b42f0
+[19-Mar-2025 15:20:38 UTC] Document validation results - Type detected: NO, Content matches: 0/2
+[19-Mar-2025 15:20:38 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
+[19-Mar-2025 15:20:38 UTC] API payload size: 710 bytes
+[19-Mar-2025 15:20:55 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:20:55 UTC] Document verification for form_138: GENUINE (Confidence: 0.85)
+[19-Mar-2025 15:20:55 UTC] Document verification result: FAILED (1/7 verified, 14%, Critical docs verified: NO)
+[19-Mar-2025 15:20:55 UTC] Overall document verification status: FAILED
+[19-Mar-2025 15:20:55 UTC] Generated username: kratoscagsawa
+[19-Mar-2025 15:20:55 UTC] Raw password generated: m257aJl_yGmj
+[19-Mar-2025 15:20:55 UTC] Password length: 12
+[19-Mar-2025 15:20:55 UTC] Password character codes: 109,50,53,55,97,74,108,95,121,71,109,106
+[19-Mar-2025 15:20:55 UTC] Generated secure password length: 12 characters
+[19-Mar-2025 15:20:55 UTC] Generated secure password: [REDACTED FOR SECURITY]
+[19-Mar-2025 15:20:55 UTC] Student details - Name: kratos A Cagsawa, Course: 17, Semester: 1
+[19-Mar-2025 15:20:55 UTC] Parameter count check: SQL has 29 placeholders, binding 29 parameters
+[19-Mar-2025 15:20:55 UTC] PASSED_VER value: 0 (type: integer)
+[19-Mar-2025 15:20:55 UTC] Type string length: 29, content: ssssssisssssssssssisssssssssi
+[19-Mar-2025 15:20:55 UTC] Inserting student account for ID: 210000057
+[19-Mar-2025 15:20:55 UTC] Student account creation result: Success
+[19-Mar-2025 15:20:55 UTC] Inserting guardian details for ID: 210000057
+[19-Mar-2025 15:20:55 UTC] Guardian details insertion: Success
+[19-Mar-2025 15:20:55 UTC] Attempting to send email to: cenizamaki@gmail.com
+[19-Mar-2025 15:20:59 UTC] Email successfully sent to: cenizamaki@gmail.com

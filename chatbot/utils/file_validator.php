@@ -1,5 +1,9 @@
 <?php
 require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../../vendor/autoload.php'; // Make sure we include the autoloader
+
+use Smalot\PdfParser\Parser as PdfParser;
+use thiagoalessio\TesseractOCR\TesseractOCR;
 
 class FileValidator {
     private $apiKey;
@@ -7,12 +11,14 @@ class FileValidator {
     private $allowedExtensions;
     private $maxFileSize;
     private $documentTitles;
+    private $pdfParser;
 
     public function __construct() {
         global $apiKey, $apiEndpoint;
         
         $this->apiKey = $apiKey;
         $this->apiEndpoint = $apiEndpoint;
+        $this->pdfParser = new PdfParser();
         
         // Define allowed extensions for different document types
         $this->allowedExtensions = [
@@ -33,6 +39,9 @@ class FileValidator {
         
         // 5MB file size limit
         $this->maxFileSize = 5 * 1024 * 1024;
+
+        // Load the PDF Parser on initialization
+        error_log("FileValidator initialized with PDF Parser and OCR capability");
     }
 
     /**
@@ -160,7 +169,7 @@ class FileValidator {
     }
 
     /**
-     * Extract text from a document using DeepSeek API
+     * Extract text from a document using local methods first, then DeepSeek API as backup
      */
     private function extractTextFromDocument($file) {
         try {
@@ -169,11 +178,37 @@ class FileValidator {
             
             error_log("Starting content validation for file: " . $file['name'] . " (size: " . $file['size'] . " bytes)");
             
-            // Different handling based on file type
+            // For PDFs, try local extraction first
             if ($mimeType === 'application/pdf') {
-                $extractedText = $this->analyzeDocumentContent($file, "pdf");
+                // Try local PDF text extraction with Smalot first
+                $extractedText = $this->extractTextFromPDFLocal($file);
+                
+                // If local extraction fails or returns very little text, use DeepSeek API as backup
+                if (empty(trim($extractedText)) || strlen(trim($extractedText)) < 20) {
+                    error_log("Local PDF extraction returned insufficient text, trying API backup");
+                    $extractedText = $this->analyzeDocumentContent($file, "pdf");
+                } else {
+                    error_log("Successfully extracted text locally using PDF parser");
+                }
+                
+                return $extractedText;
             } else if ($this->isImageType($mimeType)) {
-                $extractedText = $this->analyzeDocumentContent($file, "image");
+                // For images, try local OCR first, then fall back to DeepSeek API if needed
+                try {
+                    $extractedText = $this->extractTextFromImageLocal($file);
+                    
+                    if (!empty(trim($extractedText)) && strlen(trim($extractedText)) > 10) {
+                        error_log("Successfully extracted text from image using local OCR");
+                        return $extractedText;
+                    } else {
+                        error_log("Local OCR returned insufficient text, trying API backup");
+                    }
+                } catch (Exception $e) {
+                    error_log("Local OCR error: " . $e->getMessage() . " - Using API backup");
+                }
+                
+                // Use DeepSeek API as backup for OCR
+                return $this->analyzeDocumentContent($file, "image");
             } else {
                 throw new Exception("Unsupported file type: " . $mimeType);
             }
@@ -195,6 +230,90 @@ class FileValidator {
             throw $e;
         }
     }
+    
+    /**
+     * Extract text from PDF using Smalot PDF Parser (local method)
+     */
+    private function extractTextFromPDFLocal($file) {
+        try {
+            error_log("Using Smalot PDF Parser to extract text from: " . $file['name']);
+            $pdf = $this->pdfParser->parseFile($file['tmp_name']);
+            $text = $pdf->getText();
+            
+            // Basic validation of extracted text
+            if (trim($text) === '') {
+                error_log("Warning: No text extracted from PDF using Smalot parser");
+                return "";
+            }
+            
+            // Truncate overly long text for logs
+            $logText = strlen($text) > 200 ? substr($text, 0, 200) . "..." : $text;
+            error_log("PDF text extracted locally (" . strlen($text) . " chars): " . $logText);
+            
+            return $text;
+        } catch (Exception $e) {
+            error_log("Error in local PDF extraction: " . $e->getMessage());
+            return "";  // Return empty text, the calling function will try API backup
+        }
+    }
+
+    /**
+     * Extract text from an image using Tesseract OCR
+     */
+    private function extractTextFromImageLocal($file) {
+        try {
+            error_log("Using Tesseract OCR to extract text from image: " . $file['name']);
+            
+            // Check if Tesseract is installed
+            if (!$this->isTesseractAvailable()) {
+                error_log("Tesseract OCR not available. Skipping local image OCR.");
+                return "";
+            }
+            
+            // Process the image with Tesseract OCR
+            $tesseract = new TesseractOCR($file['tmp_name']);
+            
+            // Add configuration options to improve OCR quality
+            $tesseract->lang('eng')          // Set language to English
+                     ->dpi(300)              // Higher DPI for better recognition
+                     ->psm(6)                // Page segmentation mode: 6 = Assume a single uniform block of text
+                     ->oem(1);               // OCR Engine Mode: 1 = Neural nets LSTM engine only
+            
+            // Run OCR and get the text
+            $text = $tesseract->run();
+            
+            // Basic validation of extracted text
+            if (trim($text) === '') {
+                error_log("Warning: No text extracted from image using Tesseract OCR");
+                return "";
+            }
+            
+            // Truncate overly long text for logs
+            $logText = strlen($text) > 200 ? substr($text, 0, 200) . "..." : $text;
+            error_log("Image text extracted locally (" . strlen($text) . " chars): " . $logText);
+            
+            return $text;
+        } catch (Exception $e) {
+            error_log("Error in local image OCR: " . $e->getMessage());
+            return "";  // Return empty text, the calling function will try API backup
+        }
+    }
+    
+    /**
+     * Check if Tesseract OCR is available on the system
+     */
+    private function isTesseractAvailable() {
+        try {
+            // Try to create a tesseract instance
+            $tesseract = new TesseractOCR();
+            $version = $tesseract->version();
+            error_log("Tesseract OCR version detected: " . $version);
+            return true;
+        } catch (Exception $e) {
+            error_log("Tesseract OCR not available: " . $e->getMessage() . " - Using DeepSeek API fallback");
+            return false;
+        }
+    }
 
     /**
      * Analyze document content using DeepSeek API
@@ -207,7 +326,20 @@ class FileValidator {
         
         error_log("Analyzing content of $fileType file: $fileName");
         
-        // For PDFs, use direct API classification approach instead of local extraction
+        // For PDFs, try to use Smalot first (this should already have been tried by the caller)
+        if ($fileType === "pdf" && !defined('API_FALLBACK_MODE')) {
+            try {
+                $text = $this->extractTextFromPDFLocal($file);
+                if (!empty(trim($text)) && strlen(trim($text)) > 20) {
+                    return $text;
+                }
+            } catch (Exception $e) {
+                error_log("Local PDF parsing failed, continuing to API: " . $e->getMessage());
+                // Continue to API method if local parsing fails
+            }
+        }
+        
+        // For PDFs, use direct API classification approach as backup
         if ($fileType === "pdf") {
             // Define a constant fallback message in case API calls fail
             $fallbackClassification = "Document type based on filename: {$fileName}";

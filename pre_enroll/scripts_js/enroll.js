@@ -175,7 +175,7 @@ function showSuccessPopup(message = null) {
     }, 1000);
 }
 
-// Update the form submit handler
+// Update the form submit handler to better handle different response types
 document.querySelector('form').addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -188,55 +188,57 @@ document.querySelector('form').addEventListener('submit', async (e) => {
         showLoadingScreen();
         const form = e.target;
         const formData = new FormData(form);
-        formData.append('regsubmit', 'true'); // Ensure this parameter is sent
-        
-        // Debug form data
-        console.log('Submitting form with data:');
-        for (let [key, value] of formData.entries()) {
-            if (key === 'password') {
-                console.log(key + ': [REDACTED]');
-            } else {
-                console.log(key + ': ' + (value instanceof File ? value.name : value));
-            }
-        }
+        formData.append('regsubmit', 'true');
         
         const response = await fetch('Logic_enroll.php', {
             method: 'POST',
             body: formData
         });
 
-        // Get the raw text response
-        const responseText = await response.text();
-        console.log('Raw server response:', responseText);
+        // Check if we got a JSON response or HTML (like the redirect script)
+        const contentType = response.headers.get('content-type');
         
-        let result;
-        try {
-            // Try to parse the response as JSON
-            result = JSON.parse(responseText);
-            console.log('Parsed JSON response:', result);
+        if (contentType && contentType.includes('application/json')) {
+            // Handle JSON response
+            const result = await response.json();
+            console.log('Server response:', result);
             
-            // If we have a student ID, it means core enrollment was successful
-            if (result && (result.status === 'success' || (result.studentID && result.studentID.trim() !== ''))) {
+            if (result.status === 'success') {
                 hideLoadingScreen();
-                showSuccessPopup(result.emailSent === false ? 
-                    'Your enrollment was successful, but the confirmation email could not be sent.' : 
-                    'Your enrollment was successful! Please check your email for confirmation.');
-            } else {
-                throw new Error((result && result.message) || 'Submission failed with unknown error');
-            }
-        } catch (jsonError) {
-            console.error('JSON parsing error:', jsonError);
-            
-            // Check if the response contains success indicators even with invalid JSON
-            if (responseText.includes('Enrollment successful') || 
-                responseText.includes('"status":"success"') || 
-                responseText.includes('studentID')) {
                 
+                // Build custom success message including verification info
+                let message = 'Your enrollment was successful!';
+                
+                if (result.hasOwnProperty('docsVerified') && !result.docsVerified) {
+                    message += ' However, some of your documents need verification. ' +
+                              'Please bring the original documents during campus visit.';
+                }
+                
+                if (result.hasOwnProperty('emailSent') && !result.emailSent) {
+                    message += ' Your confirmation email could not be sent.';
+                }
+                
+                showSuccessPopup(message);
+            } else if (result.status === 'warning') {
                 hideLoadingScreen();
-                showSuccessPopup('Your enrollment appears to be successful, but there was an issue with the server response.');
+                showSuccessPopup(result.message || 'Your enrollment was processed with some warnings.');
             } else {
-                throw new Error('Server returned invalid JSON. Raw response: ' + 
-                    (responseText.length > 100 ? responseText.substring(0, 100) + '...' : responseText));
+                throw new Error(result.message || 'Submission failed with unknown error');
+            }
+        } else {
+            // Handle HTML/text response - could be a redirect script
+            const responseText = await response.text();
+            console.log('Non-JSON response:', responseText);
+            
+            // Check if it's a redirect script
+            if (responseText.includes('window.location') && responseText.includes('home.php')) {
+                hideLoadingScreen();
+                showSuccessPopup('Your enrollment was processed. You will be redirected to the home page.');
+            } else if (responseText.includes('Enrollment successful') || responseText.includes('success')) {
+                hideLoadingScreen();
+                showSuccessPopup('Your enrollment appears to be successful.');
+            } else {
+                throw new Error('Unexpected server response');
             }
         }
     } catch (error) {
@@ -245,23 +247,3 @@ document.querySelector('form').addEventListener('submit', async (e) => {
         alert('An error occurred during submission: ' + error.message);
     }
 });
-
-// Update showSuccessPopup to handle the redirect
-function showSuccessPopup() {
-    const successPopup = document.getElementById('successPopup');
-    successPopup.classList.remove('hidden');
-    successPopup.classList.add('flex');
-    
-    let countdown = 3;
-    const countdownElement = document.getElementById('countdownTimer');
-    
-    const timer = setInterval(() => {
-        countdown--;
-        countdownElement.textContent = countdown;
-        
-        if (countdown <= 0) {
-            clearInterval(timer);
-            window.location.href = 'home.php';
-        }
-    }, 1000);
-}

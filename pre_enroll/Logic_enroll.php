@@ -319,6 +319,19 @@ if (isset($_POST['regsubmit'])) {
         // Log verification status
         error_log("Overall document verification status: " . ($passed_verification ? "PASSED" : "FAILED"));
 
+        // Prevent direct redirects and ensure we always return JSON - add this here:
+        header('Content-Type: application/json');
+
+        // If we have no documents at all, we should notify the user
+        if (empty($documentResults)) {
+            echo json_encode([
+                'status' => 'warning',
+                'message' => 'No documents were uploaded. Your application was received but requires verification.',
+                'redirectTo' => 'home.php'
+            ]);
+            exit;
+        }
+
         // Check if student already exists
         $student = new Student();
         $res = $student->find_all_student($LNAME, $FNAME, $MI);
@@ -569,24 +582,32 @@ if (isset($_POST['regsubmit'])) {
                     }
                     
                     // Return success regardless of email result since the student was created
-                    header('Content-Type: application/json');
-                    echo json_encode([
+                    // When building the JSON response, include verification info:
+                    $responseData = [
                         'status' => 'success', 
                         'message' => 'Enrollment successful',
                         'emailSent' => $emailSent,
-                        'studentID' => $IDNO
-                    ]);
+                        'studentID' => $IDNO,
+                        'docsVerified' => $passed_verification ? true : false
+                    ];
+                    
+                    // Check if we need to add a warning message
+                    if (!$passed_verification) {
+                        $responseData['verificationWarning'] = 'Some documents require verification. You may need to bring the originals during your campus visit.';
+                    }
+                    
+                    echo json_encode($responseData);
                     exit;
                     
                 } catch (Exception $e) {
                     error_log("Email preparation failed: " . $e->getMessage());
                     // Still return success since student record was created
-                    header('Content-Type: application/json');
                     echo json_encode([
                         'status' => 'success', 
                         'message' => 'Enrollment successful but email notification failed',
                         'emailSent' => false,
-                        'studentID' => $IDNO
+                        'studentID' => $IDNO,
+                        'docsVerified' => $passed_verification ? true : false
                     ]);
                     exit;
                 }
@@ -596,15 +617,21 @@ if (isset($_POST['regsubmit'])) {
         } catch (Exception $e) {
             error_log("Database error: " . $e->getMessage());
             // Return JSON error response (end execution)
-            header('Content-Type: application/json');
-            echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);
+            echo json_encode([
+                'status' => 'error', 
+                'message' => 'Database error: ' . $e->getMessage(),
+                'docsVerified' => $passed_verification ? true : false
+            ]);
             exit;
         }
     } catch (Exception $e) {
         error_log("Error: " . $e->getMessage());
         // Return JSON error response (end execution)
-        header('Content-Type: application/json');
-        echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+        echo json_encode([
+            'status' => 'error', 
+            'message' => $e->getMessage(),
+            'docsVerified' => $passed_verification ? true : false
+        ]);
         exit;
     }
 }

@@ -429,8 +429,13 @@ require_once __DIR__ .  "/Logic_validate.php";
                 </svg>
             </div>
             <h3 class="text-xl font-bold text-center text-gray-900 mb-2">Form Successfully Submitted!</h3>
-            <p class="text-gray-600 text-center mb-4">Please check your gmail for updates.</p>
-            <p class="text-gray-500 text-center text-sm">Redirecting to Home in <span id="countdownTimer">3</span>s</p>
+            <p class="text-gray-600 text-center mb-4 max-h-32 overflow-y-auto">Please check your gmail for updates.</p>
+            <p class="text-gray-500 text-center text-sm">Redirecting to Home in <span id="countdownTimer">5</span>s</p>
         </div>
+    </div>
+
+    <!-- Add document verification warning banner -->
+    <div id="verificationBanner" class="fixed top-0 left-0 right-0 bg-yellow-100 border-b border-yellow-300 text-yellow-800 px-4 py-2 text-center hidden">
+        <strong>Note:</strong> Some documents require verification. Please bring original documents during your campus visit.
     </div>
 </body>
