@@ -16,12 +16,13 @@
     <!-- /.col-lg-12 -->
 </div>
 
-<!-- Modified Filter Panel -->
+<!-- Add Filter Panel -->
+<?php if ($_SESSION['ACCOUNT_TYPE'] !== 'Chairperson'): ?>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Filter Students</h3>
+                <h3 class="panel-title">Filter Enrollees</h3>
             </div>
             <div class="panel-body">
                 <form method="GET" action="" class="form-inline">
@@ -43,18 +44,16 @@
                             ?>
                         </select>
                     </div>
-                    
+
                     <div class="form-group" style="margin-right: 10px;">
-                        <label for="sex_filter" style="margin-right: 5px;">Gender:</label>
-                        <select name="sex_filter" id="sex_filter" class="form-control">
+                        <label for="gender_filter" style="margin-right: 5px;">Gender:</label>
+                        <select name="gender_filter" id="gender_filter" class="form-control">
                             <option value="">All</option>
-                            <option value="Male" <?php echo (isset($_GET['sex_filter']) && $_GET['sex_filter'] == 'Male') ? 'selected' : ''; ?>>Male</option>
-                            <option value="Female" <?php echo (isset($_GET['sex_filter']) && $_GET['sex_filter'] == 'Female') ? 'selected' : ''; ?>>Female</option>
+                            <option value="Male" <?php echo (isset($_GET['gender_filter']) && $_GET['gender_filter'] == 'Male') ? 'selected' : ''; ?>>Male</option>
+                            <option value="Female" <?php echo (isset($_GET['gender_filter']) && $_GET['gender_filter'] == 'Female') ? 'selected' : ''; ?>>Female</option>
                         </select>
                     </div>
-                    
-                    <!-- Payment filter has been removed -->
-                    
+
                     <button type="submit" class="btn btn-primary">Apply Filters</button>
                     <a href="index.php?view=list" class="btn btn-default">Reset</a>
                 </form>
@@ -62,8 +61,25 @@
         </div>
     </div>
 </div>
+<?php endif; ?>
 
 <?php
+
+$loggedInUserId = $_SESSION['ACCOUNT_ID'];
+$loggedInUserRole = $_SESSION['ACCOUNT_TYPE'];
+
+$courseFilter = "";
+
+// 🟢 If Chairperson, fetch their department
+if ($loggedInUserRole === 'Chairperson') {
+    $queryDept = "SELECT COURSE_ID FROM course WHERE dept_head = '$loggedInUserId'";
+    $mydb->setQuery($queryDept);
+    $department = $mydb->loadSingleResult();
+
+    if ($department) {
+        $courseFilter = " AND s.COURSE_ID = '".$department->COURSE_ID."'";
+    }
+}
 // Now modify the SQL query to include the filters
 $sql = "SELECT 
     s.IDNO, 
@@ -82,6 +98,7 @@ $sql = "SELECT
 FROM tblstudent s
 JOIN course c ON s.COURSE_ID = c.COURSE_ID
 LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id
+$courseFilter
 WHERE 1=1";
 
 // Add condition for course filter if selected

@@ -48,8 +48,15 @@ if (isset($_SESSION['message'])) {
                         <option value="">Select Account Type</option>
                         <option value="Administrator">Administrator</option>
                         <option value="Registrar">Registrar</option>
+                        <option value="Chairperson">Chairperson</option>
                     </select>
                 </div>
+                <div id="departmentSelectContainer" class="hidden">
+    <label class="block text-gray-700 mb-1" for="department">Select Department</label>
+    <select id="departmentId" name="departmentId" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="">Select Department</option>
+    </select>
+</div>
                 <div>
                     <label class="block text-gray-700 mb-1" for="employeeId">Employee ID</label>
                     <input type="text" id="employeeId" name="employeeId" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>

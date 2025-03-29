@@ -113,6 +113,8 @@ if(isset($_POST['btnLogin'])){
                 redirect(web_root."admin/index.php");
             } elseif($_SESSION['ACCOUNT_TYPE']=='Registrar'){
                 redirect(web_root."admin/index.php");
+            } elseif($_SESSION['ACCOUNT_TYPE']=='Chairperson'){
+                redirect(web_root."admin/index.php");
             } else{
                 redirect(web_root."admin/login.php");
             }

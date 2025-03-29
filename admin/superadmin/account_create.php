@@ -1,6 +1,8 @@
 <?php
 
 require_once ("database.php");
+
+
 ?>
 
 <div class="container">
@@ -42,7 +44,16 @@ require_once ("database.php");
                                 <option value="">Select Account Type</option>
                                 <option value="Administrator">Administrator</option>
                                 <option value="Registrar">Registrar</option>
+                                <option value="Chairperson">Chairperson</option>
                             </select>
+                        </div>
+                    </div>
+                    <div id="departmentSelectContainer" class="col-md-6 hidden">
+                        <div class="form-group">
+                        <label  for="department">Select Department</label>
+    <select id="departmentId" name="departmentId" class="form-control">
+        <option value="">Select Department</option>
+    </select>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -56,10 +67,10 @@ require_once ("database.php");
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" class="form-control">
-                    <p class="help-block">Leave blank to keep current password when editing.</p>
+                    <p id="passwordHint" class="help-block">Leave blank to keep current password when editing.</p>
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Create Account</button>
+                <button id="submitBtn" type="submit" class="btn btn-primary">Create Account</button>
                 <button type="button" class="btn btn-default hidden" id="cancelBtn">Cancel</button>
             </form>
         </div>

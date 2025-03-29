@@ -8,11 +8,6 @@ session_start();
 // Set JSON header early to avoid any output before it
 header('Content-Type: application/json');
 
-// Check if user is logged in
-if (!isset($_SESSION['ACCOUNT_ID'])) {
-    echo json_encode(['success' => false, 'message' => 'Unauthorized access']);
-    exit();
-}
 
 require_once __DIR__ . "/database.php";
 
@@ -24,7 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
     }
 
     $id = $mydb->real_escape_string($_GET['id']);
-    $query = $mydb->query("SELECT ACCOUNT_ID, ACCOUNT_NAME, ACCOUNT_USERNAME, ACCOUNT_TYPE, EMPID FROM useraccounts WHERE ACCOUNT_ID = '$id'");
+    $query = $mydb->query("SELECT a.ACCOUNT_ID, a.ACCOUNT_NAME, a.ACCOUNT_USERNAME, a.ACCOUNT_TYPE, a.EMPID, c.COURSE_NAME
+              FROM useraccounts a
+              LEFT JOIN course c on c.dept_head = a.ACCOUNT_ID  -- ✅ Join course table using dept_head
+              WHERE a.ACCOUNT_ID ='$id'");
     
     if ($query && $query->num_rows > 0) {
         $account = $query->fetch_assoc();
@@ -61,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function createAccount($mydb) {
     try {
         // Validate input
-        $required = ['accountName', 'username', 'accountType', 'employeeId', 'password'];
+        $required = ['accountName', 'username', 'accountType', 'employeeId', 'password', 'departmentId'];
         foreach ($required as $field) {
             if (!isset($_POST[$field]) || empty($_POST[$field])) {
                 echo json_encode(['success' => false, 'message' => ucfirst($field) . ' is required']);
@@ -74,6 +72,7 @@ function createAccount($mydb) {
         $username = $mydb->real_escape_string($_POST['username']);
         $accountType = $mydb->real_escape_string($_POST['accountType']);
         $employeeId = $mydb->real_escape_string($_POST['employeeId']);
+        $departmentId = $mydb->real_escape_string($_POST['departmentId']);
         $password = $_POST['password']; // Will be hashed
         $hashedPassword = sha1($password); // Using sha1 for compatibility with existing login system
         
@@ -86,28 +85,39 @@ function createAccount($mydb) {
         
         // Insert new account
         $query = $mydb->query("
-            INSERT INTO useraccounts 
-            (ACCOUNT_NAME, ACCOUNT_USERNAME, ACCOUNT_PASSWORD, ACCOUNT_TYPE, EMPID, USERIMAGE) 
-            VALUES 
-            ('$accountName', '$username', '$hashedPassword', '$accountType', '$employeeId', '')
-        ");
-        
-        if ($query) {
-            // Log the action
-            $admin_id = $_SESSION['id'] ?? 0;
-            $logQuery = $mydb->query("INSERT INTO tbllogs (USERID, LOGDATETIME, LOGROLE, LOGMODE) 
-                VALUES ('$admin_id', NOW(), 'Superadmin', 'Created account for $accountName')");
-            
-            $_SESSION['message'] = 'Account created successfully!';
-            
-            echo json_encode([
-                'success' => true, 
-                'message' => 'Account created successfully', 
-                'redirect' => 'index.php?view=create'
-            ]);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Failed to create account: ' . $mydb->error]);
+        INSERT INTO useraccounts 
+        (ACCOUNT_NAME, ACCOUNT_USERNAME, ACCOUNT_PASSWORD, ACCOUNT_TYPE, EMPID, USERIMAGE) 
+        VALUES 
+        ('$accountName', '$username', '$hashedPassword', '$accountType', '$employeeId', '')
+    ");
+    
+    if ($query) {
+        // Get the last inserted ACCOUNT_ID
+        $accountId = $mydb->insert_id;
+    
+        // Update the department with the new dept_head
+        $updateDeptQuery = $mydb->query("UPDATE course SET dept_head = '$accountId' WHERE COURSE_NAME = '$departmentId'");
+    
+        if (!$updateDeptQuery) {
+            echo json_encode(['success' => false, 'message' => 'Failed to update department: ' . $mydb->error]);
+            exit();
         }
+    
+        // Log the action
+        $admin_id = $_SESSION['id'] ?? 0;
+        $logQuery = $mydb->query("INSERT INTO tbllogs (USERID, LOGDATETIME, LOGROLE, LOGMODE) 
+            VALUES ('$admin_id', NOW(), 'Superadmin', 'Created account for $accountName and assigned as dept_head')");
+    
+        $_SESSION['message'] = 'Account created successfully!';
+        
+        echo json_encode([
+            'success' => true, 
+            'message' => 'Account created and assigned as department head successfully', 
+            'redirect' => 'index.php?view=create'
+        ]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Failed to create account: ' . $mydb->error]);
+    }
     } catch (Exception $e) {
         // Log the error
         error_log("Error creating account: " . $e->getMessage());
@@ -127,7 +137,7 @@ function updateAccount($mydb) {
             exit();
         }
         
-        $required = ['accountName', 'username', 'accountType', 'employeeId'];
+        $required = ['accountName', 'username', 'accountType', 'employeeId','departmentId'];
         foreach ($required as $field) {
             if (!isset($_POST[$field]) || empty($_POST[$field])) {
                 echo json_encode(['success' => false, 'message' => ucfirst($field) . ' is required']);
@@ -153,7 +163,7 @@ function updateAccount($mydb) {
             exit();
         }
         
-        // Update account
+        // Update account in useraccounts table
         $sql = "
             UPDATE useraccounts SET 
             ACCOUNT_NAME = '$accountName', 
@@ -171,6 +181,57 @@ function updateAccount($mydb) {
         $sql .= " WHERE ACCOUNT_ID = '$accountId'";
         
         $query = $mydb->query($sql);
+        
+      // Sanitize input
+$departmentId = $mydb->real_escape_string($_POST['departmentId']);
+$accountId = $mydb->real_escape_string($_POST['account_id']);
+
+// ❗ Step 1: Reset the previous department that had this user as dept_head
+$resetPreviousDeptQuery = $mydb->query("
+    UPDATE course SET dept_head = NULL WHERE dept_head = '$accountId'
+");
+
+if (!$resetPreviousDeptQuery) {
+    echo json_encode(['success' => false, 'message' => 'Failed to reset previous department: ' . $mydb->error]);
+    exit();
+}
+
+// Step 2: Check if the selected department has an existing dept_head
+$checkDeptQuery = $mydb->query("
+    SELECT dept_head FROM course WHERE COURSE_NAME = '$departmentId'
+");
+
+if ($checkDeptQuery && $checkDeptQuery->num_rows > 0) {
+    $dept = $checkDeptQuery->fetch_assoc();
+    
+    if (!empty($dept['dept_head']) && $dept['dept_head'] !== $accountId) {
+        // ❗ Reset the existing dept_head in the selected department
+        $resetDeptQuery = $mydb->query("
+            UPDATE course SET dept_head = NULL WHERE dept_head = '{$dept['dept_head']}'
+        ");
+
+        if (!$resetDeptQuery) {
+            echo json_encode(['success' => false, 'message' => 'Failed to reset previous department head: ' . $mydb->error]);
+            exit();
+        }
+    }
+
+    // ✅ Step 3: Update with the new dept_head
+    $updateDeptQuery = $mydb->query("
+        UPDATE course SET dept_head = '$accountId' WHERE COURSE_NAME = '$departmentId'
+    ");
+
+    if (!$updateDeptQuery) {
+        echo json_encode(['success' => false, 'message' => 'Failed to update department head: ' . $mydb->error]);
+        exit();
+    }
+
+    echo json_encode(['success' => true, 'message' => 'Department head updated successfully']);
+    exit();
+} else {
+    echo json_encode(['success' => false, 'message' => 'Department not found']);
+    exit();
+}
         
         if ($query) {
             // Log the action
@@ -191,6 +252,7 @@ function updateAccount($mydb) {
     }
     exit();
 }
+
 
 /**
  * Delete an account

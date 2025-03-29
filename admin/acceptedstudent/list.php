@@ -17,11 +17,12 @@
 </div>
 
 <!-- Add Filter Panel -->
+<?php if ($_SESSION['ACCOUNT_TYPE'] !== 'Chairperson'): ?>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Filter Students</h3>
+                <h3 class="panel-title">Filter Enrollees</h3>
             </div>
             <div class="panel-body">
                 <form method="GET" action="" class="form-inline">
@@ -43,16 +44,16 @@
                             ?>
                         </select>
                     </div>
-                    
+
                     <div class="form-group" style="margin-right: 10px;">
-                        <label for="sex_filter" style="margin-right: 5px;">Gender:</label>
-                        <select name="sex_filter" id="sex_filter" class="form-control">
+                        <label for="gender_filter" style="margin-right: 5px;">Gender:</label>
+                        <select name="gender_filter" id="gender_filter" class="form-control">
                             <option value="">All</option>
-                            <option value="Male" <?php echo (isset($_GET['sex_filter']) && $_GET['sex_filter'] == 'Male') ? 'selected' : ''; ?>>Male</option>
-                            <option value="Female" <?php echo (isset($_GET['sex_filter']) && $_GET['sex_filter'] == 'Female') ? 'selected' : ''; ?>>Female</option>
+                            <option value="Male" <?php echo (isset($_GET['gender_filter']) && $_GET['gender_filter'] == 'Male') ? 'selected' : ''; ?>>Male</option>
+                            <option value="Female" <?php echo (isset($_GET['gender_filter']) && $_GET['gender_filter'] == 'Female') ? 'selected' : ''; ?>>Female</option>
                         </select>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary">Apply Filters</button>
                     <a href="index.php?view=list" class="btn btn-default">Reset</a>
                 </form>
@@ -60,6 +61,7 @@
         </div>
     </div>
 </div>
+<?php endif; ?>
 
 <!-- Add this right after the filter panel -->
 <div class="row">
@@ -88,36 +90,6 @@
     </div>
 </div>
 
-<!-- Active Filters Display -->
-<?php if (isset($_GET['course_filter']) || isset($_GET['sex_filter'])): ?>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="alert alert-info">
-            <strong>Active Filters:</strong>
-            <?php
-            // Display course filter
-            if (isset($_GET['course_filter']) && !empty($_GET['course_filter'])) {
-                $courseName = '';
-                foreach ($courses as $course) {
-                    if ($course->COURSE_ID == $_GET['course_filter']) {
-                        $courseName = $course->COURSE_NAME;
-                        break;
-                    }
-                }
-                echo " Course: " . $courseName;
-            }
-            
-            // Display sex filter
-            if (isset($_GET['sex_filter']) && !empty($_GET['sex_filter'])) {
-                echo (isset($_GET['course_filter']) && !empty($_GET['course_filter'])) ? " | " : "";
-                echo " Gender: " . $_GET['sex_filter'];
-            }
-            ?>
-        </div>
-    </div>
-</div>
-<?php endif; ?>
-
 <form action="controller.php?action=delete" Method="POST">  
     <div class="table-responsive">
         <table id="dash-table" class="table table-striped table-bordered table-hover table-responsive" style="font-size:12px" cellspacing="0">
@@ -136,7 +108,23 @@
             </thead>
             <tbody>
                 <?php
-                // Build the query with filters
+                $loggedInUserId = $_SESSION['ACCOUNT_ID'];
+                $loggedInUserRole = $_SESSION['ACCOUNT_TYPE'];
+                
+                $courseFilter = "";
+                
+                // 🟢 If Chairperson, fetch their department
+                if ($loggedInUserRole === 'Chairperson') {
+                    $queryDept = "SELECT COURSE_ID FROM course WHERE dept_head = '$loggedInUserId'";
+                    $mydb->setQuery($queryDept);
+                    $department = $mydb->loadSingleResult();
+                
+                    if ($department) {
+                        $courseFilter = " AND s.COURSE_ID = '".$department->COURSE_ID."'";
+                    }
+                }
+
+
                 $sql = "SELECT 
                     s.IDNO, 
                     s.LNAME, 
@@ -153,6 +141,7 @@
                 JOIN course c ON s.COURSE_ID = c.COURSE_ID
                 LEFT JOIN studentaccount sa ON s.IDNO = sa.user_id
                 INNER JOIN student st ON s.IDNO = st.id  -- Ensures only students in 'student' table are included
+                $courseFilter
                 WHERE 1=1";  // 1=1 allows us to add WHERE conditions with AND
 
                 // Apply course filter if selected

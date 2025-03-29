@@ -86,6 +86,28 @@ fetch('fetchstatistics.php')
         }
     });
 
+    new Chart(document.getElementById('totalStudentsChart'), {
+        type: 'bar',
+        data: {
+            labels: [data.day], // Use daily label
+            datasets: [{
+                label: 'Daily Enrollees',
+                data: [data.dailyCount], // Use daily enrollment count
+                backgroundColor: 'rgba(255, 99, 132, 0.5)', // Different color for daily chart
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: { 
+                y: { 
+                    beginAtZero: true, 
+                    ticks: { stepSize: 1 } // Smaller step size for daily data
+                } 
+            }
+        }
+    });
+
     // Render Enrollment Chart
     const ctx = document.getElementById('weeklyEnrollmentChart').getContext('2d');
     new Chart(ctx, {

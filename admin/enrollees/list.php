@@ -22,6 +22,7 @@ require_once("../../include/initialize.php");
 </div>
 
 <!-- Add Filter Panel -->
+<?php if ($_SESSION['ACCOUNT_TYPE'] !== 'Chairperson'): ?>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -48,9 +49,7 @@ require_once("../../include/initialize.php");
                             ?>
                         </select>
                     </div>
-                    
-                    <!-- Status filter has been removed -->
-                    
+
                     <div class="form-group" style="margin-right: 10px;">
                         <label for="gender_filter" style="margin-right: 5px;">Gender:</label>
                         <select name="gender_filter" id="gender_filter" class="form-control">
@@ -59,7 +58,7 @@ require_once("../../include/initialize.php");
                             <option value="Female" <?php echo (isset($_GET['gender_filter']) && $_GET['gender_filter'] == 'Female') ? 'selected' : ''; ?>>Female</option>
                         </select>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary">Apply Filters</button>
                     <a href="index.php?view=list" class="btn btn-default">Reset</a>
                 </form>
@@ -67,38 +66,51 @@ require_once("../../include/initialize.php");
         </div>
     </div>
 </div>
-
-<!-- Active Filters Display -->
-<?php if (isset($_GET['course_filter']) || isset($_GET['gender_filter'])): ?>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="alert alert-info">
-            <strong>Active Filters:</strong>
-            <?php
-            // Display course filter
-            if (isset($_GET['course_filter']) && !empty($_GET['course_filter'])) {
-                $courseName = '';
-                foreach ($courses as $course) {
-                    if ($course->COURSE_ID == $_GET['course_filter']) {
-                        $courseName = $course->COURSE_NAME;
-                        break;
-                    }
-                }
-                echo " Course: " . $courseName;
-            }
-            
-            // Status filter display removed
-            
-            // Display gender filter
-            if (isset($_GET['gender_filter']) && !empty($_GET['gender_filter'])) {
-                echo (isset($_GET['course_filter']) && !empty($_GET['course_filter'])) ? " | " : "";
-                echo " Gender: " . $_GET['gender_filter'];
-            }
-            ?>
-        </div>
-    </div>
-</div>
 <?php endif; ?>
+<!-- Active Filters Display -->
+<?php if (!isset($_SESSION['ACCOUNT_ID']) || !isset($_SESSION['ACCOUNT_TYPE'])) {
+    die("Access denied. Please log in.");
+}
+
+// Get the logged-in user's ID and role
+$loggedInUserId = $_SESSION['ACCOUNT_ID'];
+$loggedInUserRole = $_SESSION['ACCOUNT_TYPE'];
+
+$courseFilter = "";
+
+// 🟢 If Chairperson, fetch their department
+if ($loggedInUserRole === 'Chairperson') {
+    $queryDept = "SELECT COURSE_ID FROM course WHERE dept_head = '$loggedInUserId'";
+    $mydb->setQuery($queryDept);
+    $department = $mydb->loadSingleResult();
+
+    if ($department) {
+        $courseFilter = " AND s.COURSE_ID = '".$department->COURSE_ID."'";
+    }
+}
+
+
+
+
+// Fetch students, applying filters
+$query = "SELECT * FROM `tblstudent` s, `course` c 
+          WHERE s.COURSE_ID = c.COURSE_ID 
+          AND NewEnrollees = 1 
+          AND s.student_status = 'New' 
+          $courseFilter";  // 🟢 Apply the filter for Chairpersons
+
+// Apply additional filters
+if (isset($_GET['course_filter']) && !empty($_GET['course_filter'])) {
+    $query .= " AND s.COURSE_ID = '".$_GET['course_filter']."'";
+}
+
+if (isset($_GET['gender_filter']) && !empty($_GET['gender_filter'])) {
+    $query .= " AND s.SEX = '".$_GET['gender_filter']."'";
+}
+
+$mydb->setQuery($query);
+$cur = $mydb->loadResultList(); ?>
+
 
 <form action="controller.php?action=delete" method="POST">
     <div class="table-responsive">
@@ -118,8 +130,6 @@ require_once("../../include/initialize.php");
             </thead>
             <tbody>
                 <?php
-                // Fetch latest data from the database with filters
-                $query = "SELECT * FROM `tblstudent` s, `course` c WHERE s.COURSE_ID = c.COURSE_ID AND NewEnrollees = 1";
 
                 // Apply course filter
                 if (isset($_GET['course_filter']) && !empty($_GET['course_filter'])) {

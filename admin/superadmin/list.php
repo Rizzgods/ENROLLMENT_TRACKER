@@ -61,6 +61,9 @@
                             <div class="col-md-6">
                                 <canvas id="weeklyEnrollmentChart"></canvas>
                             </div>
+                            <div class="col-md-6">
+    <canvas id="totalStudentsChart"></canvas>
+</div>
                             <div class="col-md-6 text-center">
                                 <div class="panel panel-primary">
                                     <div class="panel-body">
@@ -170,6 +173,28 @@
                 scales: { y: { beginAtZero: true, ticks: { stepSize: 2 } } }
             }
         });
+
+        new Chart(document.getElementById('totalStudentsChart'), {
+    type: 'bar',
+    data: {
+        labels: [data.day], // Use daily label
+        datasets: [{
+            label: 'Daily Enrollees',
+            data: [data.dailyCount], // Use daily enrollment count
+            backgroundColor: 'rgba(255, 99, 132, 0.5)', // Different color for daily chart
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: { 
+            y: { 
+                beginAtZero: true, 
+                ticks: { stepSize: 1 } // Smaller step size for daily data
+            } 
+        }
+    }
+});
 
         document.getElementById('acceptedPercentage').innerText = data.accepted;
 

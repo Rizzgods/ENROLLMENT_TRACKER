@@ -35,6 +35,7 @@
             <h2 class="text-lg font-bold mb-4">Enrollment Statistics</h2>
             <div class="grid grid-cols-2 gap-4">
                 <div class="w-full h-60"> <canvas id="courseChart"></canvas> </div>
+                <div class="w-full h-60"><canvas id="totalStudentsChart"></canvas></div>
                 <div class="w-full h-60"> <canvas id="weeklyEnrollmentChart"></canvas> </div>
                 <div class="w-96 h-40 bg-blue-500 text-white p-6 rounded-lg shadow-md text-center flex flex-col justify-center items-center mx-auto mt-10">
                     <div class="text-xl font-semibold">
