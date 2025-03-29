@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         otpInput: document.querySelector('input[name="otp"]'),
         otpSentMessage: document.getElementById('otpSentMessage'),
         verifiedEmail: '',  // Add this new property
+        incorrectOtpModal: document.getElementById('incorrectOtpModal'), // Add this new element
     };
 
     function validateEmail(email) {
@@ -137,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else if (data === 'expired') {
                     showModal('otpErrorModal');
                 } else if (data === 'invalid') {
-                    showModal('otpErrorModal');
+                    showModal('incorrectOtpModal'); // Changed from otpErrorModal to incorrectOtpModal
                 } else {
                     showModal('serverErrorModal');
                 }

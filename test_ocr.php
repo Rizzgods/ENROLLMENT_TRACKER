@@ -42,6 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image']) && $_FILES[
             
             // Get the text
             $extractedText = $tesseract->run();
+            if (empty($extractedText)) {
+                throw new Exception("Tesseract could not process the given image. Please ensure the image is clear and readable.");
+            }
             $success = true;
         } else {
             $error = "Failed to upload file.";

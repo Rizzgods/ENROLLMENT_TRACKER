@@ -50,7 +50,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__. '/../vendor/autoload.php'; // Ensure PHPMailer is included
 
-// Update the handleFileUpload function to use DeepSeek API
+// Update the handleFileUpload function to use OCR validation
 function handleFileUpload($file, $fileType = 'document', $documentType = null) {
     // Static arrays to track processed files and verification results
     static $processedFiles = [];
@@ -73,46 +73,64 @@ function handleFileUpload($file, $fileType = 'document', $documentType = null) {
         // Create file validator instance
         $validator = new FileValidator();
         
-        // Use the validator to check the file
-        $validationResult = $validator->validateFile($file, $fileType, $documentType);
-        
-        // Check for truthfulness verification results
-        $verified = false;
-        $verificationMessage = "Not verified";
-        
-        if (isset($validationResult['truthfulness'])) {
-            $truthfulness = $validationResult['truthfulness'];
-            $verified = isset($truthfulness['genuine']) ? $truthfulness['genuine'] : false;
-            $confidence = isset($truthfulness['confidence']) ? $truthfulness['confidence'] : 0;
-            $verificationMessage = isset($truthfulness['message']) ? $truthfulness['message'] : "No verification message";
+        // For document files (except ID pictures), use OCR validation
+        if ($fileType === 'document' && $documentType !== 'id_pic') {
+            error_log("Processing document with OCR+DeepSeek validation: " . $file['name'] . " (type: $documentType)");
             
-            error_log("Document verification for {$documentType}: " . ($verified ? "GENUINE" : "SUSPICIOUS") . 
-                     " (Confidence: {$confidence})");
+            // Run OCR validation which calls Tesseract then DeepSeek in sequence
+            $ocrValidation = $validator->validateDocumentWithOCR($file, $documentType);
             
-            // Add this result to our verification tracking
-            $verificationResults[$documentType] = [
-                'verified' => $verified,
-                'confidence' => $confidence,
-                'message' => $verificationMessage
-            ];
-        }
-        
-        if (!$validationResult['valid']) {
-            error_log("File validation warning: " . $validationResult['message']);
+            // Extract validation results
+            $valid = isset($ocrValidation['valid']) ? $ocrValidation['valid'] : false;
+            $message = isset($ocrValidation['message']) ? $ocrValidation['message'] : 'No validation message';
             
-            // If API_FALLBACK_MODE is enabled, continue with the file despite validation issues
-            if (defined('API_FALLBACK_MODE') && API_FALLBACK_MODE) {
-                error_log("Accepting file despite validation failure due to API_FALLBACK_MODE=true");
-                $result = [
-                    'content' => file_get_contents($file['tmp_name']),
-                    'verified' => false,
-                    'docType' => $documentType
+            // Get verification/truthfulness results from DeepSeek
+            $extractedText = isset($ocrValidation['extractedText']) ? $ocrValidation['extractedText'] : '';
+            $verified = false;
+            
+            if (isset($ocrValidation['truthfulness'])) {
+                $truthfulness = $ocrValidation['truthfulness'];
+                $verified = isset($truthfulness['genuine']) ? $truthfulness['genuine'] : false;
+                $confidence = isset($truthfulness['confidence']) ? $truthfulness['confidence'] : 0;
+                
+                error_log("DeepSeek verification for {$documentType}: " . ($verified ? "GENUINE" : "SUSPICIOUS") . 
+                         " (Confidence: {$confidence})");
+                
+                // Store verification results for later use
+                $verificationResults[$documentType] = [
+                    'verified' => $verified,
+                    'confidence' => $confidence,
+                    'message' => $truthfulness['message'] ?? "No verification message"
                 ];
-                $processedFiles[$fileIdentifier] = $result;
-                return $result;
             }
             
-            throw new Exception('File validation failed: ' . $validationResult['message']);
+            // If validation failed but we're in fallback mode, accept anyway
+            if (!$valid && defined('API_FALLBACK_MODE') && API_FALLBACK_MODE) {
+                error_log("Accepting file despite validation failure due to API_FALLBACK_MODE=true");
+                $valid = true;
+                $message = "Document accepted in fallback mode";
+            }
+            
+            // Continue only if validation passed
+            if (!$valid) {
+                error_log("Document validation failed: " . $message);
+                throw new Exception('File validation failed: ' . $message);
+            }
+            
+        } else {
+            // For images and other file types, use simpler validation
+            $validationResult = $validator->validateFile($file, $fileType, $documentType);
+            
+            if (!$validationResult['valid']) {
+                if (defined('API_FALLBACK_MODE') && API_FALLBACK_MODE) {
+                    error_log("Accepting file in fallback mode despite validation failure: " . $file['name']);
+                } else {
+                    throw new Exception('File validation failed: ' . $validationResult['message']);
+                }
+            }
+            
+            $verified = isset($validationResult['truthfulness']['genuine']) ? 
+                        $validationResult['truthfulness']['genuine'] : false;
         }
         
         // Store the processed file with verification results
@@ -419,28 +437,48 @@ if (isset($_POST['regsubmit'])) {
                 throw new Exception("Duplicate Student ID generated. Please try again.");
             }
 
-            // Proceed with insertion if no duplicate found, now including PASSED_VER
-            $sql = "INSERT INTO tblstudent (IDNO, FNAME, LNAME, MNAME, SEX, BDAY, AGE, BPLACE, STATUS, NATIONALITY, RELIGION, CONTACT_NO, HOME_ADD, COURSE_ID, SEMESTER, EMAIL, student_status, YEARLEVEL, NewEnrollees, stud_type, form_138, good_moral, psa_birthCert, id_pic, Brgy_clearance, tor, honor_dismissal, SYEAR, PASSED_VER) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-            // Ensure passed_verification is explicitly an integer
-            $passed_verification_int = (int)$passed_verification;
+            // Check if PASSED_VER column exists in the tblstudent table
+            $column_check_sql = "SHOW COLUMNS FROM tblstudent LIKE 'PASSED_VER'";
+            $column_check_result = $conn->query($column_check_sql);
+            $passed_ver_column_exists = ($column_check_result->num_rows > 0);
             
-            // Debug the parameters and types to check for any issues
-            error_log("Parameter count check: SQL has 29 placeholders, binding 29 parameters");
-            error_log("PASSED_VER value: " . $passed_verification_int . " (type: " . gettype($passed_verification_int) . ")");
+            // Log column check result
+            error_log("PASSED_VER column exists: " . ($passed_ver_column_exists ? "YES" : "NO"));
             
-            // Create a fresh type definition string to avoid any potential hidden characters
-            $typeString = str_repeat('s', 6) . 'i' . str_repeat('s', 11) . 'i' . str_repeat('s', 9) . 'i';
-            error_log("Type string length: " . strlen($typeString) . ", content: " . $typeString);
-            
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param($typeString, 
-                $IDNO, $FNAME, $LNAME, $MI, $SEX, $BIRTHDATE, $AGE, $BIRTHPLACE, 
-                $CIVILSTATUS, $NATIONALITY, $RELIGION, $CONTACT, $PADDRESS, $COURSEID, 
-                $SEMESTER, $EMAIL, $student_status, $YEARLEVEL, $NewEnrollees, $stud_type, 
-                $form_138, $good_moral, $psa_birthCert, $id_pic, $Brgy_clearance, 
-                $tor, $honor_dismissal, $SYEAR, $passed_verification_int);
+            // Prepare the appropriate SQL statement based on column existence
+            if ($passed_ver_column_exists) {
+                // Use SQL that includes PASSED_VER column
+                $sql = "INSERT INTO tblstudent (IDNO, FNAME, LNAME, MNAME, SEX, BDAY, AGE, BPLACE, STATUS, NATIONALITY, RELIGION, CONTACT_NO, HOME_ADD, COURSE_ID, SEMESTER, EMAIL, student_status, YEARLEVEL, NewEnrollees, stud_type, form_138, good_moral, psa_birthCert, id_pic, Brgy_clearance, tor, honor_dismissal, SYEAR, PASSED_VER) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        
+                // Create a type definition string for binding parameters
+                $typeString = str_repeat('s', 6) . 'i' . str_repeat('s', 11) . 'i' . str_repeat('s', 9) . 'i';
+                
+                // Prepare and bind parameters including PASSED_VER
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param($typeString, 
+                    $IDNO, $FNAME, $LNAME, $MI, $SEX, $BIRTHDATE, $AGE, $BIRTHPLACE, 
+                    $CIVILSTATUS, $NATIONALITY, $RELIGION, $CONTACT, $PADDRESS, $COURSEID, 
+                    $SEMESTER, $EMAIL, $student_status, $YEARLEVEL, $NewEnrollees, $stud_type, 
+                    $form_138, $good_moral, $psa_birthCert, $id_pic, $Brgy_clearance, 
+                    $tor, $honor_dismissal, $SYEAR, $passed_verification);
+            } else {
+                // Use SQL that excludes PASSED_VER column
+                $sql = "INSERT INTO tblstudent (IDNO, FNAME, LNAME, MNAME, SEX, BDAY, AGE, BPLACE, STATUS, NATIONALITY, RELIGION, CONTACT_NO, HOME_ADD, COURSE_ID, SEMESTER, EMAIL, student_status, YEARLEVEL, NewEnrollees, stud_type, form_138, good_moral, psa_birthCert, id_pic, Brgy_clearance, tor, honor_dismissal, SYEAR) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        
+                // Create a type definition string for binding parameters (one less 'i' at the end)
+                $typeString = str_repeat('s', 6) . 'i' . str_repeat('s', 11) . 'i' . str_repeat('s', 9);
+                
+                // Prepare and bind parameters without PASSED_VER
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param($typeString, 
+                    $IDNO, $FNAME, $LNAME, $MI, $SEX, $BIRTHDATE, $AGE, $BIRTHPLACE, 
+                    $CIVILSTATUS, $NATIONALITY, $RELIGION, $CONTACT, $PADDRESS, $COURSEID, 
+                    $SEMESTER, $EMAIL, $student_status, $YEARLEVEL, $NewEnrollees, $stud_type, 
+                    $form_138, $good_moral, $psa_birthCert, $id_pic, $Brgy_clearance, 
+                    $tor, $honor_dismissal, $SYEAR);
+            }
 
             if ($stmt->execute()) {
                 // Insert into studentaccount with generated credentials and required fields

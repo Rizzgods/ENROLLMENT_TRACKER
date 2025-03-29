@@ -1,58 +1,36 @@
 <?php
 require_once __DIR__ . '/../chatbot/config.php';
 require_once __DIR__ . '/../chatbot/utils/file_validator.php';
+require_once __DIR__ . '/../vendor/autoload.php'; // Ensure Tesseract OCR is autoloaded
+use thiagoalessio\TesseractOCR\TesseractOCR;
 
-// PDF text extraction testing tool
+// Image text extraction testing tool
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Function to extract text from PDF using our file validator
-function extractTextFromPDF($filePath) {
+// Function to extract text from an image
+function extractTextFromImage($filePath) {
     if (!file_exists($filePath)) {
         return "Error: File not found - $filePath";
     }
-    
-    if (strtolower(pathinfo($filePath, PATHINFO_EXTENSION)) != 'pdf') {
-        return "Error: Not a PDF file";
+
+    // Validate MIME type to ensure it's an image
+    $mimeType = mime_content_type($filePath);
+    $validMimeTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/bmp', 'image/tiff'];
+    if (!in_array($mimeType, $validMimeTypes)) {
+        return "Error: Not a valid image file (detected MIME type: $mimeType)";
     }
-    
-    // Create mock file array like $_FILES provides
-    $file = [
-        'name' => basename($filePath),
-        'type' => mime_content_type($filePath),
-        'tmp_name' => $filePath,
-        'error' => 0,
-        'size' => filesize($filePath)
-    ];
-    
-    // Create validator
-    $validator = new FileValidator();
-    
-    // Use reflection to access the private method for PDF analysis
-    $reflectionMethod = new ReflectionMethod('FileValidator', 'analyzeDocumentContent');
-    $reflectionMethod->setAccessible(true);
-    
+
     try {
-        // Start timer
-        $startTime = microtime(true);
-        
-        // Call the method
-        $extractedText = $reflectionMethod->invoke($validator, $file, "pdf");
-        
-        // End timer
-        $endTime = microtime(true);
-        $execTime = round($endTime - $startTime, 2);
-        
-        // Clean up text if needed
-        $reflectionCleanMethod = new ReflectionMethod('FileValidator', 'cleanExtractedText');
-        $reflectionCleanMethod->setAccessible(true);
-        $cleanedText = $reflectionCleanMethod->invoke($validator, $extractedText, pathinfo($file['name'], PATHINFO_FILENAME));
-        
+        // Use Tesseract OCR to extract text
+        $ocr = new TesseractOCR($filePath);
+        $extractedText = $ocr->run();
+
         return [
             'success' => true,
             'raw_text' => $extractedText,
-            'cleaned_text' => $cleanedText,
-            'exec_time' => $execTime
+            'cleaned_text' => cleanExtractedText($extractedText), // Implement cleaning logic if needed
+            'exec_time' => round(microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"], 2)
         ];
     } catch (Exception $e) {
         return [
@@ -62,11 +40,16 @@ function extractTextFromPDF($filePath) {
     }
 }
 
+// Helper function to clean extracted text
+function cleanExtractedText($text) {
+    // Implement text cleaning logic if needed
+    return trim($text);
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PDF Text Extraction</title>
+    <title>Image Text Extraction</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 2em; line-height: 1.6; }
         h1, h2, h3 { color: #2874a6; }
@@ -83,17 +66,17 @@ function extractTextFromPDF($filePath) {
 </head>
 <body>
     <div class="container">
-        <h1>PDF Text Extraction Test</h1>
+        <h1>Image Text Extraction Test</h1>
         
         <div class="card">
-            <h2>Upload a PDF</h2>
+            <h2>Upload an Image</h2>
             <div class="info">
-                <p>This tool will convert your PDF to an image and then extract text using DeepSeek.</p>
+                <p>This tool will extract text from your uploaded image using Tesseract OCR.</p>
             </div>
             
             <form method="post" enctype="multipart/form-data">
                 <p>
-                    <input type="file" name="pdfFile" accept=".pdf">
+                    <input type="file" name="imageFile" accept="image/*">
                 </p>
                 <p>
                     <button type="submit" name="extract" class="btn">Extract Text</button>
@@ -102,42 +85,41 @@ function extractTextFromPDF($filePath) {
         </div>
         
         <?php
-        // Process uploaded PDF file
-        if (isset($_POST['extract']) && isset($_FILES['pdfFile']) && $_FILES['pdfFile']['error'] === UPLOAD_ERR_OK) {
-            echo '<div class="card">';
-            echo '<h2>Extraction Results</h2>';
-            
-            echo '<div class="info">';
-            echo '<p>File: <strong>' . htmlspecialchars($_FILES['pdfFile']['name']) . '</strong></p>';
-            echo '<p>Size: ' . round($_FILES['pdfFile']['size'] / 1024, 2) . ' KB</p>';
-            echo '</div>';
-            
-            $result = extractTextFromPDF($_FILES['pdfFile']['tmp_name']);
-            
-            if (isset($result['success']) && $result['success']) {
-                echo '<div class="success">';
-                echo '<p>Extraction successful! (completed in ' . $result['exec_time'] . ' seconds)</p>';
+        // Process uploaded image file
+        if (isset($_POST['extract'])) {
+            if (isset($_FILES['imageFile']) && $_FILES['imageFile']['error'] === UPLOAD_ERR_OK) {
+                echo '<div class="card">';
+                echo '<h2>Extraction Results</h2>';
+                
+                echo '<div class="info">';
+                echo '<p>File: <strong>' . htmlspecialchars($_FILES['imageFile']['name']) . '</strong></p>';
+                echo '<p>Size: ' . round($_FILES['imageFile']['size'] / 1024, 2) . ' KB</p>';
                 echo '</div>';
                 
-                // Compare raw and cleaned text
-                if ($result['raw_text'] !== $result['cleaned_text']) {
-                    echo '<div class="warning">';
-                    echo '<p>The text was cleaned because explanatory content was detected.</p>';
+                $result = extractTextFromImage($_FILES['imageFile']['tmp_name']);
+                
+                if (is_array($result) && isset($result['success']) && $result['success']) {
+                    echo '<div class="success">';
+                    echo '<p>Extraction successful! (completed in ' . $result['exec_time'] . ' seconds)</p>';
+                    echo '</div>';
+                    
+                    echo '<h3>Extracted Text:</h3>';
+                    echo '<pre>' . htmlspecialchars($result['cleaned_text']) . '</pre>';
+                    
+                    echo '<h3>Raw API Response:</h3>';
+                    echo '<pre>' . htmlspecialchars($result['raw_text']) . '</pre>';
+                } else {
+                    echo '<div class="error">';
+                    echo '<p>Extraction failed: ' . (is_array($result) ? htmlspecialchars($result['error']) : htmlspecialchars($result)) . '</p>';
                     echo '</div>';
                 }
                 
-                echo '<h3>Extracted Text:</h3>';
-                echo '<pre>' . htmlspecialchars($result['cleaned_text']) . '</pre>';
-                
-                echo '<h3>Raw API Response:</h3>';
-                echo '<pre>' . htmlspecialchars($result['raw_text']) . '</pre>';
+                echo '</div>';
             } else {
                 echo '<div class="error">';
-                echo '<p>Extraction failed: ' . htmlspecialchars($result['error']) . '</p>';
+                echo '<p>Error: No file uploaded or an error occurred during upload.</p>';
                 echo '</div>';
             }
-            
-            echo '</div>';
         }
         ?>
     </div>

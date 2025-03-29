@@ -57,6 +57,24 @@
             </div>
         </div>
     </div>
+        <!-- Incorrect OTP Modal -->
+        <div id="incorrectOtpModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-sm w-full mx-4 transform transition-all">
+            <div class="text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
+                    <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Incorrect OTP</h3>
+                <p class="text-sm text-gray-500 mb-4">The verification code you entered is incorrect. Please check and try again.</p>
+                <button type="button" onclick="closeModal('incorrectOtpModal')" 
+                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    Try Again
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Error Message Modal -->
     <div id="errorModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
@@ -164,4 +182,6 @@
             </div>
         </div>
     </div>
+    
+
 </body>

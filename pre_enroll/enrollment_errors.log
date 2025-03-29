@@ -1,227 +1,370 @@
-[19-Mar-2025 15:16:59 UTC] Auto-number updated successfully
-[19-Mar-2025 15:16:59 UTC] Generated IDNO: 210000056
-[19-Mar-2025 15:16:59 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[19-Mar-2025 15:16:59 UTC] Calculated age: 22
-[19-Mar-2025 15:16:59 UTC] WARNING: Same file uploaded to multiple fields: tor and honor_dismissal
-[19-Mar-2025 15:16:59 UTC] FileValidator initialized with PDF Parser and OCR capability
-[19-Mar-2025 15:16:59 UTC] Starting content validation for file: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg (size: 95787 bytes)
-[19-Mar-2025 15:16:59 UTC] Using Tesseract OCR to extract text from image: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
-[19-Mar-2025 15:16:59 UTC] Tesseract OCR version detected: is
-[19-Mar-2025 15:16:59 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
-
-Make sure you have Tesseract OCR installed on your system:
-https://github.com/tesseract-ocr/tesseract
-
-The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
-[19-Mar-2025 15:16:59 UTC] Local OCR returned insufficient text, trying API backup
-[19-Mar-2025 15:16:59 UTC] Analyzing content of image file: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
-[19-Mar-2025 15:16:59 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
-[19-Mar-2025 15:16:59 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[19-Mar-2025 15:16:59 UTC] Document Type: Form 138 / Report Card
-[19-Mar-2025 15:16:59 UTC] File Name: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
-[19-Mar-2025 15:16:59 UTC] Extracted Text: 
-[19-Mar-2025 15:16:59 UTC] Image document: f1088010-8845-4415-ac40-444c2b7b42f0
-[19-Mar-2025 15:16:59 UTC] ====================================================
-[19-Mar-2025 15:16:59 UTC] Verifying document content for type: form_138
-[19-Mar-2025 15:16:59 UTC] Text to verify: Image document: f1088010-8845-4415-ac40-444c2b7b42f0
-[19-Mar-2025 15:16:59 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[19-Mar-2025 15:16:59 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[19-Mar-2025 15:16:59 UTC] API payload size: 710 bytes
-[19-Mar-2025 15:17:12 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:17:12 UTC] Document verification for form_138: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:17:12 UTC] FileValidator initialized with PDF Parser and OCR capability
-[19-Mar-2025 15:17:12 UTC] Starting content validation for file: 5014c7e5-3499-4025-ab71-d7d86ef6344d.jpeg (size: 28500 bytes)
-[19-Mar-2025 15:17:12 UTC] Using Tesseract OCR to extract text from image: 5014c7e5-3499-4025-ab71-d7d86ef6344d.jpeg
-[19-Mar-2025 15:17:12 UTC] Tesseract OCR version detected: is
-[19-Mar-2025 15:17:12 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
-
-Make sure you have Tesseract OCR installed on your system:
-https://github.com/tesseract-ocr/tesseract
-
-The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
-[19-Mar-2025 15:17:12 UTC] Local OCR returned insufficient text, trying API backup
-[19-Mar-2025 15:17:12 UTC] Analyzing content of image file: 5014c7e5-3499-4025-ab71-d7d86ef6344d.jpeg
-[19-Mar-2025 15:17:12 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
-[19-Mar-2025 15:17:12 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[19-Mar-2025 15:17:12 UTC] Document Type: Certificate of Good Moral Character
-[19-Mar-2025 15:17:12 UTC] File Name: 5014c7e5-3499-4025-ab71-d7d86ef6344d.jpeg
-[19-Mar-2025 15:17:12 UTC] Extracted Text: 
-[19-Mar-2025 15:17:12 UTC] Image document: 5014c7e5-3499-4025-ab71-d7d86ef6344d
-[19-Mar-2025 15:17:12 UTC] ====================================================
-[19-Mar-2025 15:17:12 UTC] Verifying document content for type: good_moral
-[19-Mar-2025 15:17:12 UTC] Text to verify: Image document: 5014c7e5-3499-4025-ab71-d7d86ef6344d
-[19-Mar-2025 15:17:12 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[19-Mar-2025 15:17:12 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[19-Mar-2025 15:17:12 UTC] API payload size: 722 bytes
-[19-Mar-2025 15:17:23 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:17:23 UTC] Document verification for good_moral: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:17:23 UTC] FileValidator initialized with PDF Parser and OCR capability
-[19-Mar-2025 15:17:23 UTC] Starting content validation for file: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a.jpeg (size: 156345 bytes)
-[19-Mar-2025 15:17:23 UTC] Using Tesseract OCR to extract text from image: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a.jpeg
-[19-Mar-2025 15:17:23 UTC] Tesseract OCR version detected: is
-[19-Mar-2025 15:17:23 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
-
-Make sure you have Tesseract OCR installed on your system:
-https://github.com/tesseract-ocr/tesseract
-
-The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
-[19-Mar-2025 15:17:23 UTC] Local OCR returned insufficient text, trying API backup
-[19-Mar-2025 15:17:23 UTC] Analyzing content of image file: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a.jpeg
-[19-Mar-2025 15:17:23 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
-[19-Mar-2025 15:17:23 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[19-Mar-2025 15:17:23 UTC] Document Type: PSA Birth Certificate
-[19-Mar-2025 15:17:23 UTC] File Name: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a.jpeg
-[19-Mar-2025 15:17:23 UTC] Extracted Text: 
-[19-Mar-2025 15:17:23 UTC] Image document: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a
-[19-Mar-2025 15:17:23 UTC] ====================================================
-[19-Mar-2025 15:17:23 UTC] Verifying document content for type: psa_birthCert
-[19-Mar-2025 15:17:23 UTC] Text to verify: Image document: 3e1a648b-68fa-46c5-ac2c-ce47b4606f9a
-[19-Mar-2025 15:17:23 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[19-Mar-2025 15:17:23 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[19-Mar-2025 15:17:23 UTC] API payload size: 708 bytes
-[19-Mar-2025 15:17:36 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:17:36 UTC] Document verification for psa_birthCert: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:17:36 UTC] FileValidator initialized with PDF Parser and OCR capability
-[19-Mar-2025 15:17:36 UTC] Starting content validation for file: Untitled design.jpg (size: 31194 bytes)
-[19-Mar-2025 15:17:36 UTC] Using Tesseract OCR to extract text from image: Untitled design.jpg
-[19-Mar-2025 15:17:36 UTC] Tesseract OCR version detected: is
-[19-Mar-2025 15:17:36 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
-
-Make sure you have Tesseract OCR installed on your system:
-https://github.com/tesseract-ocr/tesseract
-
-The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
-[19-Mar-2025 15:17:36 UTC] Local OCR returned insufficient text, trying API backup
-[19-Mar-2025 15:17:36 UTC] Analyzing content of image file: Untitled design.jpg
-[19-Mar-2025 15:17:36 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
-[19-Mar-2025 15:17:36 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[19-Mar-2025 15:17:36 UTC] Document Type: ID Photo
-[19-Mar-2025 15:17:36 UTC] File Name: Untitled design.jpg
-[19-Mar-2025 15:17:36 UTC] Extracted Text: 
-[19-Mar-2025 15:17:36 UTC] Image document: Untitled design
-[19-Mar-2025 15:17:36 UTC] ====================================================
-[19-Mar-2025 15:17:36 UTC] Verifying document content for type: id_pic
-[19-Mar-2025 15:17:36 UTC] Text to verify: Image document: Untitled design
-[19-Mar-2025 15:17:36 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[19-Mar-2025 15:17:36 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[19-Mar-2025 15:17:36 UTC] API payload size: 674 bytes
-[19-Mar-2025 15:17:52 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.9)
-[19-Mar-2025 15:17:52 UTC] Document verification for id_pic: GENUINE (Confidence: 0.9)
-[19-Mar-2025 15:17:52 UTC] FileValidator initialized with PDF Parser and OCR capability
-[19-Mar-2025 15:17:52 UTC] Starting content validation for file: e7d0ea32-36cb-47d4-bd8e-aaf68067d844.jpeg (size: 88958 bytes)
-[19-Mar-2025 15:17:52 UTC] Using Tesseract OCR to extract text from image: e7d0ea32-36cb-47d4-bd8e-aaf68067d844.jpeg
-[19-Mar-2025 15:17:52 UTC] Tesseract OCR version detected: is
-[19-Mar-2025 15:17:52 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
-
-Make sure you have Tesseract OCR installed on your system:
-https://github.com/tesseract-ocr/tesseract
-
-The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
-[19-Mar-2025 15:17:52 UTC] Local OCR returned insufficient text, trying API backup
-[19-Mar-2025 15:17:52 UTC] Analyzing content of image file: e7d0ea32-36cb-47d4-bd8e-aaf68067d844.jpeg
-[19-Mar-2025 15:17:52 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
-[19-Mar-2025 15:17:52 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[19-Mar-2025 15:17:52 UTC] Document Type: Barangay Clearance
-[19-Mar-2025 15:17:52 UTC] File Name: e7d0ea32-36cb-47d4-bd8e-aaf68067d844.jpeg
-[19-Mar-2025 15:17:52 UTC] Extracted Text: 
-[19-Mar-2025 15:17:52 UTC] Image document: e7d0ea32-36cb-47d4-bd8e-aaf68067d844
-[19-Mar-2025 15:17:52 UTC] ====================================================
-[19-Mar-2025 15:17:52 UTC] Verifying document content for type: Brgy_clearance
-[19-Mar-2025 15:17:52 UTC] Text to verify: Image document: e7d0ea32-36cb-47d4-bd8e-aaf68067d844
-[19-Mar-2025 15:17:52 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[19-Mar-2025 15:17:52 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[19-Mar-2025 15:17:52 UTC] API payload size: 705 bytes
-[19-Mar-2025 15:18:04 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:18:04 UTC] Document verification for Brgy_clearance: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:18:04 UTC] FileValidator initialized with PDF Parser and OCR capability
-[19-Mar-2025 15:18:04 UTC] Starting content validation for file: 4f265311-6641-46f2-b7c6-b7552fec17e3.jpeg (size: 107742 bytes)
-[19-Mar-2025 15:18:04 UTC] Using Tesseract OCR to extract text from image: 4f265311-6641-46f2-b7c6-b7552fec17e3.jpeg
-[19-Mar-2025 15:18:04 UTC] Tesseract OCR version detected: is
-[19-Mar-2025 15:18:04 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
-
-Make sure you have Tesseract OCR installed on your system:
-https://github.com/tesseract-ocr/tesseract
-
-The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
-[19-Mar-2025 15:18:04 UTC] Local OCR returned insufficient text, trying API backup
-[19-Mar-2025 15:18:04 UTC] Analyzing content of image file: 4f265311-6641-46f2-b7c6-b7552fec17e3.jpeg
-[19-Mar-2025 15:18:04 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
-[19-Mar-2025 15:18:04 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[19-Mar-2025 15:18:04 UTC] Document Type: Transcript of Records
-[19-Mar-2025 15:18:04 UTC] File Name: 4f265311-6641-46f2-b7c6-b7552fec17e3.jpeg
-[19-Mar-2025 15:18:04 UTC] Extracted Text: 
-[19-Mar-2025 15:18:04 UTC] Image document: 4f265311-6641-46f2-b7c6-b7552fec17e3
-[19-Mar-2025 15:18:04 UTC] ====================================================
-[19-Mar-2025 15:18:04 UTC] Verifying document content for type: tor
-[19-Mar-2025 15:18:04 UTC] Text to verify: Image document: 4f265311-6641-46f2-b7c6-b7552fec17e3
-[19-Mar-2025 15:18:04 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[19-Mar-2025 15:18:04 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[19-Mar-2025 15:18:04 UTC] API payload size: 708 bytes
-[19-Mar-2025 15:18:18 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:18:18 UTC] Document verification for tor: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:18:18 UTC] Document verification result: PASSED (6/7 verified, 86%, Critical docs verified: YES)
-[19-Mar-2025 15:18:18 UTC] Overall document verification status: PASSED
-[19-Mar-2025 15:18:18 UTC] Generated username: ligosardinescagsawa
-[19-Mar-2025 15:18:18 UTC] Raw password generated: iP0(t9+mUF61
-[19-Mar-2025 15:18:18 UTC] Password length: 12
-[19-Mar-2025 15:18:18 UTC] Password character codes: 105,80,48,40,116,57,43,109,85,70,54,49
-[19-Mar-2025 15:18:18 UTC] Generated secure password length: 12 characters
-[19-Mar-2025 15:18:18 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[19-Mar-2025 15:18:18 UTC] Student details - Name: Ligo sardines A Cagsawa, Course: 18, Semester: 1
-[19-Mar-2025 15:18:19 UTC] Parameter count check: SQL has 29 placeholders, binding 29 parameters
-[19-Mar-2025 15:18:19 UTC] PASSED_VER value: 1 (type: integer)
-[19-Mar-2025 15:18:19 UTC] Type string length: 29, content: ssssssisssssssssssisssssssssi
-[19-Mar-2025 15:18:19 UTC] Inserting student account for ID: 210000056
-[19-Mar-2025 15:18:19 UTC] Student account creation result: Success
-[19-Mar-2025 15:18:19 UTC] Inserting guardian details for ID: 210000056
-[19-Mar-2025 15:18:19 UTC] Guardian details insertion: Success
-[19-Mar-2025 15:18:19 UTC] Attempting to send email to: cenizamaki@gmail.com
-[19-Mar-2025 15:18:22 UTC] Email successfully sent to: cenizamaki@gmail.com
-[19-Mar-2025 15:20:37 UTC] Auto-number updated successfully
-[19-Mar-2025 15:20:37 UTC] Generated IDNO: 210000057
-[19-Mar-2025 15:20:37 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
-[19-Mar-2025 15:20:37 UTC] Calculated age: 22
-[19-Mar-2025 15:20:37 UTC] FileValidator initialized with PDF Parser and OCR capability
-[19-Mar-2025 15:20:37 UTC] Starting content validation for file: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg (size: 95787 bytes)
-[19-Mar-2025 15:20:37 UTC] Using Tesseract OCR to extract text from image: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
-[19-Mar-2025 15:20:37 UTC] Tesseract OCR version detected: is
-[19-Mar-2025 15:20:38 UTC] Error in local image OCR: Error! The command "tesseract" was not found.
-
-Make sure you have Tesseract OCR installed on your system:
-https://github.com/tesseract-ocr/tesseract
-
-The current $PATH is C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\php-8.4.3;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
-[19-Mar-2025 15:20:38 UTC] Local OCR returned insufficient text, trying API backup
-[19-Mar-2025 15:20:38 UTC] Analyzing content of image file: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
-[19-Mar-2025 15:20:38 UTC] Skipping image analysis due to API_FALLBACK_MODE=true
-[19-Mar-2025 15:20:38 UTC] ============ TEXT EXTRACTED FROM DOCUMENT ============
-[19-Mar-2025 15:20:38 UTC] Document Type: Form 138 / Report Card
-[19-Mar-2025 15:20:38 UTC] File Name: f1088010-8845-4415-ac40-444c2b7b42f0.jpeg
-[19-Mar-2025 15:20:38 UTC] Extracted Text: 
-[19-Mar-2025 15:20:38 UTC] Image document: f1088010-8845-4415-ac40-444c2b7b42f0
-[19-Mar-2025 15:20:38 UTC] ====================================================
-[19-Mar-2025 15:20:38 UTC] Verifying document content for type: form_138
-[19-Mar-2025 15:20:38 UTC] Text to verify: Image document: f1088010-8845-4415-ac40-444c2b7b42f0
-[19-Mar-2025 15:20:38 UTC] Document validation results - Type detected: NO, Content matches: 0/2
-[19-Mar-2025 15:20:38 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
-[19-Mar-2025 15:20:38 UTC] API payload size: 710 bytes
-[19-Mar-2025 15:20:55 UTC] Document truthfulness verification result: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:20:55 UTC] Document verification for form_138: GENUINE (Confidence: 0.85)
-[19-Mar-2025 15:20:55 UTC] Document verification result: FAILED (1/7 verified, 14%, Critical docs verified: NO)
-[19-Mar-2025 15:20:55 UTC] Overall document verification status: FAILED
-[19-Mar-2025 15:20:55 UTC] Generated username: kratoscagsawa
-[19-Mar-2025 15:20:55 UTC] Raw password generated: m257aJl_yGmj
-[19-Mar-2025 15:20:55 UTC] Password length: 12
-[19-Mar-2025 15:20:55 UTC] Password character codes: 109,50,53,55,97,74,108,95,121,71,109,106
-[19-Mar-2025 15:20:55 UTC] Generated secure password length: 12 characters
-[19-Mar-2025 15:20:55 UTC] Generated secure password: [REDACTED FOR SECURITY]
-[19-Mar-2025 15:20:55 UTC] Student details - Name: kratos A Cagsawa, Course: 17, Semester: 1
-[19-Mar-2025 15:20:55 UTC] Parameter count check: SQL has 29 placeholders, binding 29 parameters
-[19-Mar-2025 15:20:55 UTC] PASSED_VER value: 0 (type: integer)
-[19-Mar-2025 15:20:55 UTC] Type string length: 29, content: ssssssisssssssssssisssssssssi
-[19-Mar-2025 15:20:55 UTC] Inserting student account for ID: 210000057
-[19-Mar-2025 15:20:55 UTC] Student account creation result: Success
-[19-Mar-2025 15:20:55 UTC] Inserting guardian details for ID: 210000057
-[19-Mar-2025 15:20:55 UTC] Guardian details insertion: Success
-[19-Mar-2025 15:20:55 UTC] Attempting to send email to: cenizamaki@gmail.com
-[19-Mar-2025 15:20:59 UTC] Email successfully sent to: cenizamaki@gmail.com
+[29-Mar-2025 15:23:39 UTC] Auto-number updated successfully
+[29-Mar-2025 15:23:39 UTC] Generated IDNO: 21000093
+[29-Mar-2025 15:23:39 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[29-Mar-2025 15:23:39 UTC] Calculated age: 23
+[29-Mar-2025 15:23:39 UTC] FileValidator initialized with PDF Parser and OCR capability
+[29-Mar-2025 15:23:39 UTC] Processing document with OCR+DeepSeek validation: sample2.jpg (type: psa_birthCert)
+[29-Mar-2025 15:23:39 UTC] Starting OCR validation for document type: psa_birthCert
+[29-Mar-2025 15:23:39 UTC] Using Tesseract OCR to extract text from image: sample2.jpg
+[29-Mar-2025 15:23:43 UTC] ==== EXTRACTED IMAGE TEXT START ====
+[29-Mar-2025 15:23:43 UTC] a 2 44434) Page 10f1,1Copy
+aoa og Gi a a / baiting d STE He
+Boge nes te Le
+LE Re Foes Republic of the Phlopines (195° Sccompiand musicals sig Back 7) Yh cui fai iaitd
+9 fags Co imsie © orrceorTEGNL REGISTRAR GENERAL 2 : oo oi
+he - Bl CERTIFICATE OF MARRIAGE 4)!
+TING J City/Municipality_San Fabian +% 3 \
+0 TT ee ON TR a
+1. re phon) oad = ha Day) = Toa) I (hoo ;
+a JR, _ (CyMuncpaly) | (Prownce) (Country) (Coymuncipaity)  (Prowincs) (Country) 4
+hh 3 PloceolB® | San Fabian, Pangasinan, Phil. gan Jacinto, Pangasiman, Phil, iy
+0 4a Sex TT] lanes) ; Aw ;
+ |sressmwe | Wig Anglo, San Fabian, Pangasinan, | 46 Anglo, San Fabian, Pangasinan
+Vv | Philippines Philippines ~ iiekaihin 7
+| 2 7 cc mwenw 0 | Biegle J :
+VU Tees, 9 wee) Last (sn Toddde) Ge Hi
+V7 777 7) ree  JUANITO  CASINAS PALLAS LORETO OLIVEROS CORFUZ
+74% 7 py ee eT TTT = 7 i
+i ae Pilipine 54
+| [OMadenName| (Fm) (Midd) (Last) (First) (Mode) (Last)
+ba | Mee | wmowom awe LEONES VIOLETA-  AGSAOAY  EMPERADOR
+Co [mare [7 (Fe) ese “Wes (First) adie) Tes) 7
+To a {House No. St. Barangay, Gly MRmCRaR. Prownce, Coury) THouss No. St. Barangay, CryMuriciaily, Provincs, County) - kar
+Pe wo 8% pene Ce ain a San Fabd pe Fancast i .
+a aii ey i i kr age: 40100 AM : :
+HE og oS 17. Time of Marvige: .... 10100 AM amipm | Lh i H
+i : 5c rir Uoffry Lo Pallas =, \.. Abegail E, Corpus both of 4
+lege age. of our own free will and accord, and In the 08 of the person sclemnizing tis marriage and of the witnesses named below, take ach other | HON i
+| lashusband and wie and carttying further that we: | | have entarsd, a copy of which is herato attached / Xt | have ot entered into a mamiage settement. | vi
+a 7 > mee em eg ep
+| iY LR Disaucy Z ;
+7 ’ Wh. Hb ADR OOM di
+Li Zi 1% Es 15 70 CART, THAT BEFORE ME, cn the dale and lacs sboveetien, personaly appeared the above-mentioned partes, with 0%;
+Vii i eh ne hi era de teen te al of legal age] Tod
+wr [3s mm omen co TIE ton. April 2, 208. Sen Fablen, Pangasinan
+hh _ Ib. no maiage canse was necessary, the mariage boing 80lvized Under AT.........of Executive Order No. 208,
+i prions Gamer HO sl it
+© | icra Over Pied Name of Solemvizing Officer "(posiioniDesignstion) iReigiovaigious Sect, Regiiy oad Eipiair | }
+© |208. WITNESSES (PintNameand Sign:  \ 0 7 —
+L i | nibigs /Me EL a ERA GRRE LL CARER Ed
+UV iim _ BLISCHEL %. GUBATAN Name in Print ENGR, VITIOR Lo TOTIIID Hebi] Hi
+Vr a  [ REMARKSIARNGTATIONS (For LCROIOGRG/Sharia Gircut Registrar Use Only) ) 7 i £577
+a a) oo "6 0£0 CL 2 2 b 0 go {27 a7 2€ 1 / Nis is il
+I 04-GE-120VRV-00898-MI001 Z Prers-adoy
+Lua, nace A
+ies lpia LISA GRACE S. BERSALES, Ph.D
+UCRUEIR promos, en i ir:
+Nh / Philippine Statist i
+ T12845689180pe604302016001 Stamp Tax Paid poine Sagi ma an
+[29-Mar-2025 15:23:43 UTC] ==== EXTRACTED IMAGE TEXT END ====
+[29-Mar-2025 15:23:43 UTC] Tesseract OCR extraction result: SUCCESS (2729 chars)
+[29-Mar-2025 15:23:43 UTC] ==== EXTRACTED TEXT START ====
+[29-Mar-2025 15:23:43 UTC] TEXT CHUNK 1/3: a 2 44434) Page 10f1,1Copy
+aoa og Gi a a / baiting d STE He
+Boge nes te Le
+LE Re Foes Republic of the Phlopines (195° Sccompiand musicals sig Back 7) Yh cui fai iaitd
+9 fags Co imsie © orrceorTEGNL REGISTRAR GENERAL 2 : oo oi
+he - Bl CERTIFICATE OF MARRIAGE 4)!
+TING J City/Municipality_San Fabian +% 3 \
+0 TT ee ON TR a
+1. re phon) oad = ha Day) = Toa) I (hoo ;
+a JR, _ (CyMuncpaly) | (Prownce) (Country) (Coymuncipaity)  (Prowincs) (Country) 4
+hh 3 PloceolB® | San Fabian, Pangasinan, Phil. gan Jacinto, Pangasiman, Phil, iy
+0 4a Sex TT] lanes) ; Aw ;
+ |sressmwe | Wig Anglo, San Fabian, Pangasinan, | 46 Anglo, San Fabian, Pangasinan
+Vv | Philippines Philippines ~ iiekaihin 7
+| 2 7 cc mwenw 0 | Biegle J :
+VU Tees, 9 wee) Last (sn Toddde) Ge Hi
+V7 777 7) ree  JUANITO  CASINAS PALLAS LORETO OLIVEROS CORFUZ
+74% 7 py ee eT TTT = 7 i
+i ae Pilipine 54
+| [OMadenName| (Fm) (Midd) (Last) (First) (Mode) (Last)
+ba | Mee | wmowom awe LEONES VIOLETA-  AGSAOAY  EMPERADOR
+Co [mare [7 (Fe) ese “Wes (F
+[29-Mar-2025 15:23:43 UTC] TEXT CHUNK 2/3: irst) adie) Tes) 7
+To a {House No. St. Barangay, Gly MRmCRaR. Prownce, Coury) THouss No. St. Barangay, CryMuriciaily, Provincs, County) - kar
+Pe wo 8% pene Ce ain a San Fabd pe Fancast i .
+a aii ey i i kr age: 40100 AM : :
+HE og oS 17. Time of Marvige: .... 10100 AM amipm | Lh i H
+i : 5c rir Uoffry Lo Pallas =, \.. Abegail E, Corpus both of 4
+lege age. of our own free will and accord, and In the 08 of the person sclemnizing tis marriage and of the witnesses named below, take ach other | HON i
+| lashusband and wie and carttying further that we: | | have entarsd, a copy of which is herato attached / Xt | have ot entered into a mamiage settement. | vi
+a 7 > mee em eg ep
+| iY LR Disaucy Z ;
+7 ’ Wh. Hb ADR OOM di
+Li Zi 1% Es 15 70 CART, THAT BEFORE ME, cn the dale and lacs sboveetien, personaly appeared the above-mentioned partes, with 0%;
+Vii i eh ne hi era de teen te al of legal age] Tod
+wr [3s mm omen co TIE ton. April 2, 208. Sen Fablen, Pangasinan
+hh _ Ib. no maiage canse was necessa
+[29-Mar-2025 15:23:43 UTC] TEXT CHUNK 3/3: ry, the mariage boing 80lvized Under AT.........of Executive Order No. 208,
+i prions Gamer HO sl it
+© | icra Over Pied Name of Solemvizing Officer "(posiioniDesignstion) iReigiovaigious Sect, Regiiy oad Eipiair | }
+© |208. WITNESSES (PintNameand Sign:  \ 0 7 —
+L i | nibigs /Me EL a ERA GRRE LL CARER Ed
+UV iim _ BLISCHEL %. GUBATAN Name in Print ENGR, VITIOR Lo TOTIIID Hebi] Hi
+Vr a  [ REMARKSIARNGTATIONS (For LCROIOGRG/Sharia Gircut Registrar Use Only) ) 7 i £577
+a a) oo "6 0£0 CL 2 2 b 0 go {27 a7 2€ 1 / Nis is il
+I 04-GE-120VRV-00898-MI001 Z Prers-adoy
+Lua, nace A
+ies lpia LISA GRACE S. BERSALES, Ph.D
+UCRUEIR promos, en i ir:
+Nh / Philippine Statist i
+ T12845689180pe604302016001 Stamp Tax Paid poine Sagi ma an
+[29-Mar-2025 15:23:43 UTC] ==== EXTRACTED TEXT END ====
+[29-Mar-2025 15:23:43 UTC] Verifying document content for type: psa_birthCert
+[29-Mar-2025 15:23:43 UTC] Text to verify: a 2 44434) Page 10f1,1Copy
+aoa og Gi a a / baiting d STE He
+Boge nes te Le
+LE Re Foes Republic of the Phlopines (195° Sccompiand musicals sig Back 7) Yh cui fai iaitd
+9 fags Co imsie © orrceorTEGNL 
+[29-Mar-2025 15:23:43 UTC] Section match found: 'name'
+[29-Mar-2025 15:23:43 UTC] Document validation results - Type detected: NO, Content matches: 1/2
+[29-Mar-2025 15:23:43 UTC] Document accepted due to API_FALLBACK_MODE despite failing validation
+[29-Mar-2025 15:23:43 UTC] Document content verified. Sending to DeepSeek for truthfulness verification...
+[29-Mar-2025 15:23:43 UTC] Sending extracted text to DeepSeek API for psa_birthCert verification
+[29-Mar-2025 15:23:43 UTC] API_FALLBACK_MODE is enabled, skipping actual DeepSeek API call
+[29-Mar-2025 15:23:43 UTC] DeepSeek verification result: GENUINE (Confidence: 0.7)
+[29-Mar-2025 15:23:43 UTC] DeepSeek verification for psa_birthCert: GENUINE (Confidence: 0.7)
+[29-Mar-2025 15:23:43 UTC] Document verification result: FAILED (1/7 verified, 14%, Critical docs verified: NO)
+[29-Mar-2025 15:23:43 UTC] Overall document verification status: FAILED
+[29-Mar-2025 15:23:43 UTC] Generated username: atomicceniza
+[29-Mar-2025 15:23:43 UTC] Raw password generated: 8)tITO2J13Gm
+[29-Mar-2025 15:23:43 UTC] Password length: 12
+[29-Mar-2025 15:23:43 UTC] Password character codes: 56,41,116,73,84,79,50,74,49,51,71,109
+[29-Mar-2025 15:23:43 UTC] Generated secure password length: 12 characters
+[29-Mar-2025 15:23:43 UTC] Generated secure password: [REDACTED FOR SECURITY]
+[29-Mar-2025 15:23:43 UTC] Student details - Name: atomic C Ceniza, Course: 18, Semester: 1
+[29-Mar-2025 15:23:43 UTC] PASSED_VER column exists: NO
+[29-Mar-2025 15:23:43 UTC] Inserting student account for ID: 21000093
+[29-Mar-2025 15:23:43 UTC] Student account creation result: Success
+[29-Mar-2025 15:23:43 UTC] Inserting guardian details for ID: 21000093
+[29-Mar-2025 15:23:43 UTC] Guardian details insertion: Success
+[29-Mar-2025 15:23:43 UTC] Attempting to send email to: cenizamaki@gmail.com
+[29-Mar-2025 15:23:47 UTC] Email successfully sent to: cenizamaki@gmail.com
+[29-Mar-2025 15:27:17 UTC] Auto-number updated successfully
+[29-Mar-2025 15:27:17 UTC] Generated IDNO: 21000094
+[29-Mar-2025 15:27:17 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[29-Mar-2025 15:27:17 UTC] Calculated age: 23
+[29-Mar-2025 15:27:17 UTC] Document verification result: FAILED (0/7 verified, 0%, Critical docs verified: NO)
+[29-Mar-2025 15:27:17 UTC] Overall document verification status: FAILED
+[29-Mar-2025 15:27:17 UTC] Generated username: atomickeceniza
+[29-Mar-2025 15:27:17 UTC] Raw password generated: 8TxWC&v&alyW
+[29-Mar-2025 15:27:17 UTC] Password length: 12
+[29-Mar-2025 15:27:17 UTC] Password character codes: 56,84,120,87,67,38,118,38,97,108,121,87
+[29-Mar-2025 15:27:17 UTC] Generated secure password length: 12 characters
+[29-Mar-2025 15:27:17 UTC] Generated secure password: [REDACTED FOR SECURITY]
+[29-Mar-2025 15:27:17 UTC] Student details - Name: atomicke C Ceniza, Course: 17, Semester: 1
+[29-Mar-2025 15:27:17 UTC] PASSED_VER column exists: NO
+[29-Mar-2025 15:27:17 UTC] Inserting student account for ID: 21000094
+[29-Mar-2025 15:27:17 UTC] Student account creation result: Success
+[29-Mar-2025 15:27:17 UTC] Inserting guardian details for ID: 21000094
+[29-Mar-2025 15:27:17 UTC] Guardian details insertion: Success
+[29-Mar-2025 15:27:17 UTC] Attempting to send email to: cenizamaki@gmail.com
+[29-Mar-2025 15:27:20 UTC] Email successfully sent to: cenizamaki@gmail.com
+[29-Mar-2025 15:29:14 UTC] Auto-number updated successfully
+[29-Mar-2025 15:29:14 UTC] Generated IDNO: 21000095
+[29-Mar-2025 15:29:14 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[29-Mar-2025 15:29:14 UTC] Calculated age: 23
+[29-Mar-2025 15:29:14 UTC] FileValidator initialized with PDF Parser and OCR capability
+[29-Mar-2025 15:29:14 UTC] Processing document with OCR+DeepSeek validation: download.jpeg (type: psa_birthCert)
+[29-Mar-2025 15:29:14 UTC] Starting OCR validation for document type: psa_birthCert
+[29-Mar-2025 15:29:14 UTC] Using Tesseract OCR to extract text from image: download.jpeg
+[29-Mar-2025 15:29:16 UTC] ==== EXTRACTED IMAGE TEXT START ====
+[29-Mar-2025 15:29:16 UTC] re Tre ERT TE Hike
+i Sy Batt Hh LR
+i. feof HBR fis fff
+NCL ome oe ow woman. i
+en CERTIFICATE OF LIVE BIRTH |
+i eT Loxmets
+BE errr BERT
+Bis; CBRN es) Bie ie o ga
+RINE Vee OF RH IF MULTIPLE BIRTH, CHILD WAS EiEMEEESE
+v, 6 MAIDEN. - 5
+Hs 1 rem
+x or A lose =
+ATION 11. Age st te tme- fA Arid
+Elm i
+anlE f
+Pease COVER
+bo
+;
+Laborer SANE 50 youn | ® n Fou
+rr pees pg vf [EBT
+ee al 7
+Ch : + wows 17]
+Err Oe i) ior i:
+196. CERTIFICATION OF BIRTH. = |
+meat vmmone si 5 ve] DETTE]
+AR a_i, Logpept C1 he de
+re oumiesssisoniomcll OSE S00
+Se SE eee meee | TEC
+3 » fae
+ee i sciabay, tagasph city | Si
+frames rym Tossa EE Ze] x
+PREPARED BY Ti eces NE ore oF | | NY Mes
+THE CIVIL AFGISTRAR [1a] = i
+Egg — | Erte Bl] op m0
+08105 FAICPB0041BIO0T | BReN oem
+ST POSBBLE WAGE 00506 ASBINOB 9] age DRS MAPAFRD
+National tician and Civil Registrar General
+Documentary
+DO gone,
+SPL00027296 Ute
+[29-Mar-2025 15:29:16 UTC] ==== EXTRACTED IMAGE TEXT END ====
+[29-Mar-2025 15:29:16 UTC] Tesseract OCR extraction result: SUCCESS (871 chars)
+[29-Mar-2025 15:29:16 UTC] ==== EXTRACTED TEXT START ====
+[29-Mar-2025 15:29:16 UTC] TEXT CHUNK 1/1: re Tre ERT TE Hike
+i Sy Batt Hh LR
+i. feof HBR fis fff
+NCL ome oe ow woman. i
+en CERTIFICATE OF LIVE BIRTH |
+i eT Loxmets
+BE errr BERT
+Bis; CBRN es) Bie ie o ga
+RINE Vee OF RH IF MULTIPLE BIRTH, CHILD WAS EiEMEEESE
+v, 6 MAIDEN. - 5
+Hs 1 rem
+x or A lose =
+ATION 11. Age st te tme- fA Arid
+Elm i
+anlE f
+Pease COVER
+bo
+;
+Laborer SANE 50 youn | ® n Fou
+rr pees pg vf [EBT
+ee al 7
+Ch : + wows 17]
+Err Oe i) ior i:
+196. CERTIFICATION OF BIRTH. = |
+meat vmmone si 5 ve] DETTE]
+AR a_i, Logpept C1 he de
+re oumiesssisoniomcll OSE S00
+Se SE eee meee | TEC
+3 » fae
+ee i sciabay, tagasph city | Si
+frames rym Tossa EE Ze] x
+PREPARED BY Ti eces NE ore oF | | NY Mes
+THE CIVIL AFGISTRAR [1a] = i
+Egg — | Erte Bl] op m0
+08105 FAICPB0041BIO0T | BReN oem
+ST POSBBLE WAGE 00506 ASBINOB 9] age DRS MAPAFRD
+National tician and Civil Registrar General
+Documentary
+DO gone,
+SPL00027296 Ute
+[29-Mar-2025 15:29:16 UTC] ==== EXTRACTED TEXT END ====
+[29-Mar-2025 15:29:16 UTC] Verifying document content for type: psa_birthCert
+[29-Mar-2025 15:29:16 UTC] Text to verify: re Tre ERT TE Hike
+i Sy Batt Hh LR
+i. feof HBR fis fff
+NCL ome oe ow woman. i
+en CERTIFICATE OF LIVE BIRTH |
+i eT Loxmets
+BE errr BERT
+Bis; CBRN es) Bie ie o ga
+RINE Vee OF RH IF MULTIPLE BIRTH, CHILD
+[29-Mar-2025 15:29:16 UTC] MATCH FOUND for keyword: 'certificate of live birth'
+[29-Mar-2025 15:29:16 UTC] Section match found: 'birth'
+[29-Mar-2025 15:29:16 UTC] Document validation results - Type detected: YES, Content matches: 1/2
+[29-Mar-2025 15:29:16 UTC] Document content verified. Sending to DeepSeek for truthfulness verification...
+[29-Mar-2025 15:29:16 UTC] Sending extracted text to DeepSeek API for psa_birthCert verification
+[29-Mar-2025 15:29:16 UTC] API_FALLBACK_MODE is enabled, skipping actual DeepSeek API call
+[29-Mar-2025 15:29:16 UTC] DeepSeek verification result: GENUINE (Confidence: 0.7)
+[29-Mar-2025 15:29:16 UTC] DeepSeek verification for psa_birthCert: GENUINE (Confidence: 0.7)
+[29-Mar-2025 15:29:16 UTC] Document verification result: FAILED (1/7 verified, 14%, Critical docs verified: NO)
+[29-Mar-2025 15:29:16 UTC] Overall document verification status: FAILED
+[29-Mar-2025 15:29:16 UTC] Generated username: atomineceniza
+[29-Mar-2025 15:29:16 UTC] Raw password generated: p&Y2Fa)hZg9J
+[29-Mar-2025 15:29:16 UTC] Password length: 12
+[29-Mar-2025 15:29:16 UTC] Password character codes: 112,38,89,50,70,97,41,104,90,103,57,74
+[29-Mar-2025 15:29:16 UTC] Generated secure password length: 12 characters
+[29-Mar-2025 15:29:16 UTC] Generated secure password: [REDACTED FOR SECURITY]
+[29-Mar-2025 15:29:16 UTC] Student details - Name: atomine C Ceniza, Course: 17, Semester: 1
+[29-Mar-2025 15:29:16 UTC] PASSED_VER column exists: NO
+[29-Mar-2025 15:29:16 UTC] Inserting student account for ID: 21000095
+[29-Mar-2025 15:29:16 UTC] Student account creation result: Success
+[29-Mar-2025 15:29:16 UTC] Inserting guardian details for ID: 21000095
+[29-Mar-2025 15:29:16 UTC] Guardian details insertion: Success
+[29-Mar-2025 15:29:16 UTC] Attempting to send email to: cenizamaki@gmail.com
+[29-Mar-2025 15:29:19 UTC] Email successfully sent to: cenizamaki@gmail.com
+[29-Mar-2025 16:47:31 UTC] Auto-number updated successfully
+[29-Mar-2025 16:47:31 UTC] Generated IDNO: 21000096
+[29-Mar-2025 16:47:31 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[29-Mar-2025 16:47:31 UTC] Calculated age: 22
+[29-Mar-2025 16:47:31 UTC] Document verification result: FAILED (0/7 verified, 0%, Critical docs verified: NO)
+[29-Mar-2025 16:47:31 UTC] Overall document verification status: FAILED
+[29-Mar-2025 16:47:31 UTC] Generated username: atominedceniza
+[29-Mar-2025 16:47:31 UTC] Raw password generated: nz)(+4cIz5YF
+[29-Mar-2025 16:47:31 UTC] Password length: 12
+[29-Mar-2025 16:47:31 UTC] Password character codes: 110,122,41,40,43,52,99,73,122,53,89,70
+[29-Mar-2025 16:47:31 UTC] Generated secure password length: 12 characters
+[29-Mar-2025 16:47:31 UTC] Generated secure password: [REDACTED FOR SECURITY]
+[29-Mar-2025 16:47:31 UTC] Student details - Name: atomined C Ceniza, Course: , Semester: 
+[29-Mar-2025 16:47:31 UTC] PASSED_VER column exists: NO
+[29-Mar-2025 16:47:31 UTC] Inserting student account for ID: 21000096
+[29-Mar-2025 16:47:31 UTC] Student account creation result: Success
+[29-Mar-2025 16:47:31 UTC] Inserting guardian details for ID: 21000096
+[29-Mar-2025 16:47:31 UTC] Guardian details insertion: Success
+[29-Mar-2025 16:47:31 UTC] Attempting to send email to: cenizamaki@gmail.com
+[29-Mar-2025 16:47:34 UTC] Email successfully sent to: cenizamaki@gmail.com
+[29-Mar-2025 16:54:38 UTC] Auto-number updated successfully
+[29-Mar-2025 16:54:38 UTC] Generated IDNO: 21000097
+[29-Mar-2025 16:54:38 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[29-Mar-2025 16:54:38 UTC] Calculated age: 23
+[29-Mar-2025 16:54:38 UTC] Document verification result: FAILED (0/7 verified, 0%, Critical docs verified: NO)
+[29-Mar-2025 16:54:38 UTC] Overall document verification status: FAILED
+[29-Mar-2025 16:54:38 UTC] Generated username: atomineddddceniza
+[29-Mar-2025 16:54:38 UTC] Raw password generated: &&6OSmb5oc7@
+[29-Mar-2025 16:54:38 UTC] Password length: 12
+[29-Mar-2025 16:54:38 UTC] Password character codes: 38,38,54,79,83,109,98,53,111,99,55,64
+[29-Mar-2025 16:54:38 UTC] Generated secure password length: 12 characters
+[29-Mar-2025 16:54:38 UTC] Generated secure password: [REDACTED FOR SECURITY]
+[29-Mar-2025 16:54:38 UTC] Student details - Name: atominedddd C Ceniza, Course: 18, Semester: 1
+[29-Mar-2025 16:54:38 UTC] PASSED_VER column exists: NO
+[29-Mar-2025 16:54:38 UTC] Inserting student account for ID: 21000097
+[29-Mar-2025 16:54:38 UTC] Student account creation result: Success
+[29-Mar-2025 16:54:38 UTC] Inserting guardian details for ID: 21000097
+[29-Mar-2025 16:54:38 UTC] Guardian details insertion: Success
+[29-Mar-2025 16:54:38 UTC] Attempting to send email to: cenizamaki@gmail.com
+[29-Mar-2025 16:54:42 UTC] Email successfully sent to: cenizamaki@gmail.com
+[29-Mar-2025 17:38:39 UTC] Auto-number updated successfully
+[29-Mar-2025 17:38:39 UTC] Generated IDNO: 21000098
+[29-Mar-2025 17:38:39 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[29-Mar-2025 17:38:39 UTC] Calculated age: 21
+[29-Mar-2025 17:38:39 UTC] Document verification result: FAILED (0/7 verified, 0%, Critical docs verified: NO)
+[29-Mar-2025 17:38:39 UTC] Overall document verification status: FAILED
+[29-Mar-2025 17:38:39 UTC] Generated username: atominedddddddasceniza
+[29-Mar-2025 17:38:39 UTC] Raw password generated: PojX0=NWLD+-
+[29-Mar-2025 17:38:39 UTC] Password length: 12
+[29-Mar-2025 17:38:39 UTC] Password character codes: 80,111,106,88,48,61,78,87,76,68,43,45
+[29-Mar-2025 17:38:39 UTC] Generated secure password length: 12 characters
+[29-Mar-2025 17:38:39 UTC] Generated secure password: [REDACTED FOR SECURITY]
+[29-Mar-2025 17:38:39 UTC] Student details - Name: atominedddddddas C Ceniza, Course: 17, Semester: 1
+[29-Mar-2025 17:38:39 UTC] PASSED_VER column exists: NO
+[29-Mar-2025 17:38:39 UTC] Inserting student account for ID: 21000098
+[29-Mar-2025 17:38:39 UTC] Student account creation result: Success
+[29-Mar-2025 17:38:39 UTC] Inserting guardian details for ID: 21000098
+[29-Mar-2025 17:38:39 UTC] Guardian details insertion: Success
+[29-Mar-2025 17:38:39 UTC] Attempting to send email to: cenizamaki@gmail.com
+[29-Mar-2025 17:38:43 UTC] Email successfully sent to: cenizamaki@gmail.com
+[29-Mar-2025 18:11:53 UTC] Auto-number updated successfully
+[29-Mar-2025 18:11:53 UTC] Generated IDNO: 21000099
+[29-Mar-2025 18:11:53 UTC] Processing enrollment for: cenizamaki@gmail.com (Status: New)
+[29-Mar-2025 18:11:53 UTC] Calculated age: 23
+[29-Mar-2025 18:11:53 UTC] Document verification result: FAILED (0/7 verified, 0%, Critical docs verified: NO)
+[29-Mar-2025 18:11:53 UTC] Overall document verification status: FAILED
+[29-Mar-2025 18:11:53 UTC] Generated username: atominedddddddasasdasdceniza
+[29-Mar-2025 18:11:53 UTC] Raw password generated: 5wb$7xHxYj6*
+[29-Mar-2025 18:11:53 UTC] Password length: 12
+[29-Mar-2025 18:11:53 UTC] Password character codes: 53,119,98,36,55,120,72,120,89,106,54,42
+[29-Mar-2025 18:11:53 UTC] Generated secure password length: 12 characters
+[29-Mar-2025 18:11:53 UTC] Generated secure password: [REDACTED FOR SECURITY]
+[29-Mar-2025 18:11:54 UTC] Student details - Name: atominedddddddasasdasd C Ceniza, Course: 18, Semester: 1
+[29-Mar-2025 18:11:54 UTC] PASSED_VER column exists: NO
+[29-Mar-2025 18:11:54 UTC] Inserting student account for ID: 21000099
+[29-Mar-2025 18:11:54 UTC] Student account creation result: Success
+[29-Mar-2025 18:11:54 UTC] Inserting guardian details for ID: 21000099
+[29-Mar-2025 18:11:54 UTC] Guardian details insertion: Success
+[29-Mar-2025 18:11:54 UTC] Attempting to send email to: cenizamaki@gmail.com
+[29-Mar-2025 18:11:57 UTC] Email successfully sent to: cenizamaki@gmail.com

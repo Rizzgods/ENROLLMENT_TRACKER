@@ -709,3 +709,4 @@
 [2025-03-13 08:53:07] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Chat message received - {"user_id":1000000240,"message":"are you ai?"}
 [2025-03-13 08:53:17] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - API response received successfully - {"response_length":235}
 [2025-03-13 08:53:17] [INFO] [uvg7oorhkib0rhbc5rml9ns198] [::1] - Using API response - {"response_length":235}
+[2025-03-29 09:54:56] [INFO] [0e9dtcr5s8qgu3o4bo5uakm5ig] [::1] - Email verification page accessed - {"page":"verify_email.php","ip":"::1"}

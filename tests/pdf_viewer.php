@@ -88,17 +88,21 @@ function extractPdfText($filePath) {
         ];
     }
     
-    if (strtolower(pathinfo($filePath, PATHINFO_EXTENSION)) != 'pdf') {
+    $fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+    $mimeType = mime_content_type($filePath);
+    
+    // More permissive check - accept files with PDF extension or PDF mime type
+    if ($fileExtension != 'pdf' && $mimeType != 'application/pdf') {
         return [
             'success' => false,
-            'error' => "Error: Not a PDF file"
+            'error' => "Error: Not a PDF file (Detected mime type: $mimeType)"
         ];
     }
     
     // Create mock file array like $_FILES provides
     $file = [
         'name' => basename($filePath),
-        'type' => mime_content_type($filePath),
+        'type' => $mimeType,
         'tmp_name' => $filePath,
         'error' => 0,
         'size' => filesize($filePath)
