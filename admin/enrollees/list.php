@@ -59,6 +59,16 @@ require_once("../../include/initialize.php");
                         </select>
                     </div>
 
+
+                    <div class="form-group" style="margin-right: 10px;">
+                        <label for="verification_filter" style="margin-right: 5px;">AI Verification:</label>
+                        <select name="verification_filter" id="verification_filter" class="form-control">
+                            <option value="">All</option>
+                            <option value="Verified" <?php echo (isset($_GET['verification_filter']) && $_GET['verification_filter'] == 'Verified') ? 'selected' : ''; ?>>Verified</option>
+                            <option value="Unverified" <?php echo (isset($_GET['verification_filter']) && $_GET['verification_filter'] == 'Unverified') ? 'selected' : ''; ?>>Unverified</option>
+                        </select>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Apply Filters</button>
                     <a href="index.php?view=list" class="btn btn-default">Reset</a>
                 </form>
@@ -108,6 +118,14 @@ if (isset($_GET['gender_filter']) && !empty($_GET['gender_filter'])) {
     $query .= " AND s.SEX = '".$_GET['gender_filter']."'";
 }
 
+if (!empty($_GET['verification_filter'])) {
+    if ($_GET['verification_filter'] === 'Verified') {
+        $whereClauses[] = "s.PASSED_VER = TRUE";
+    } elseif ($_GET['verification_filter'] === 'Unverified') {
+        $whereClauses[] = "s.PASSED_VER = FALSE";
+    }
+}
+
 $mydb->setQuery($query);
 $cur = $mydb->loadResultList(); ?>
 
@@ -125,6 +143,7 @@ $cur = $mydb->loadResultList(); ?>
                     <th>Contact No.</th>
                     <th>Status</th>
                     <th>Course</th>
+                    <th>Verified by AI</th>
                     <th width="14%">Action</th>
                 </tr>
             </thead>
@@ -144,6 +163,14 @@ $cur = $mydb->loadResultList(); ?>
                     $query .= " AND s.SEX = '".$_GET['gender_filter']."'";
                 }
 
+                if (!empty($_GET['verification_filter'])) {
+                    if ($_GET['verification_filter'] === 'Verified') {
+                        $query .= " AND s.PASSED_VER = 1"; // Verified students
+                    } elseif ($_GET['verification_filter'] === 'Unverified') {
+                        $query .= " AND (s.PASSED_VER = 0 OR s.PASSED_VER IS NULL)"; // Unverified students include NULL values
+                    }
+                }
+
                 $mydb->setQuery($query);
                 $cur = $mydb->loadResultList();
 
@@ -158,6 +185,7 @@ $cur = $mydb->loadResultList(); ?>
                     echo '<td>' . $result->CONTACT_NO . '</td>';
                     echo '<td>' . $result->student_status . '</td>';
                     echo '<td>' . $result->COURSE_NAME . '</td>';
+                    echo '<td>' . ($result->PASSED_VER ? 'Verified' : 'Unverified') . '</td>';
                     echo '<td align="center">
                             <a title="Confirm" href="controller.php?action=confirm&IDNO=' . $result->IDNO . '" class="btn btn-success btn-xs">Confirm <span class="fa fa-info-circle fw-fa"></span></a>
                             <a title="Reject" href="controller.php?action=reject&IDNO=' . $result->IDNO . '" class="btn btn-danger btn-xs">Reject <span class="fa fa-info-circle fw-fa"></span></a>
