@@ -177,15 +177,27 @@ require_once __DIR__ .  "/Logic_validate.php";
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-4">
                             <label for="FNAME" class="block text-sm font-medium text-gray-700">First Name <span class="text-red-500">*</span></label>
-                            <input required id="FNAME" name="FNAME" placeholder="Enter your first name" type="text" value="<?php echo isset($_SESSION['FNAME']) ? $_SESSION['FNAME'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <input required id="FNAME" name="FNAME" placeholder="Enter your first name" type="text" 
+                                   pattern="[A-Za-z\s]+" title="Only letters are allowed"
+                                   value="<?php echo isset($_SESSION['FNAME']) ? $_SESSION['FNAME'] : ''; ?>" 
+                                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                                   oninput="validateLettersOnly(this)">
                         </div>
                         <div class="space-y-4">
                             <label for="LNAME" class="block text-sm font-medium text-gray-700">Last Name <span class="text-red-500">*</span></label>
-                            <input required id="LNAME" name="LNAME" placeholder="Last Name" type="text" value="<?php echo isset($_SESSION['LNAME']) ? $_SESSION['LNAME'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <input required id="LNAME" name="LNAME" placeholder="Last Name" type="text" 
+                                   pattern="[A-Za-z\s]+" title="Only letters are allowed"
+                                   value="<?php echo isset($_SESSION['LNAME']) ? $_SESSION['LNAME'] : ''; ?>" 
+                                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                                   oninput="validateLettersOnly(this)">
                         </div>
                         <div class="space-y-4">
                             <label for="MI" class="block text-sm font-medium text-gray-700">Middle Name <span class="text-red-500">*</span></label>
-                            <input required id="MI" name="MI" placeholder="Middle Name" type="text" value="<?php echo isset($_SESSION['MI']) ? $_SESSION['MI'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <input required id="MI" name="MI" placeholder="Middle Name" type="text" 
+                                   pattern="[A-Za-z\s]+" title="Only letters are allowed"
+                                   value="<?php echo isset($_SESSION['MI']) ? $_SESSION['MI'] : ''; ?>" 
+                                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                                   oninput="validateLettersOnly(this)">
                         </div>
                         <div class="space-y-4">
                             <label for="PADDRESS" class="block text-sm font-medium text-gray-700">Address <span class="text-red-500">*</span></label>
@@ -240,7 +252,11 @@ require_once __DIR__ .  "/Logic_validate.php";
                         </div>
                         <div class="space-y-4">
                             <label for="CONTACT" class="block text-sm font-medium text-gray-700">Contact No. <span class="text-red-500">*</span></label>
-                            <input required id="CONTACT" name="CONTACT" placeholder="Contact Number" type="number" maxlength="11" value="<?php echo isset($_SESSION['CONTACT']) ? $_SESSION['CONTACT'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <input required id="CONTACT" name="CONTACT" placeholder="Contact Number" type="text" 
+                                   pattern="[0-9]+" title="Only numbers are allowed"
+                                   maxlength="11" value="<?php echo isset($_SESSION['CONTACT']) ? $_SESSION['CONTACT'] : ''; ?>" 
+                                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                                   oninput="validateNumbersOnly(this)">
                         </div>
                         <div class="space-y-4">
                             <label for="COURSE" class="block text-sm font-medium text-gray-700">Course/Year <span class="text-red-500">*</span></label>
@@ -296,11 +312,19 @@ require_once __DIR__ .  "/Logic_validate.php";
                         </div>
                         <div class="space-y-4">
                             <label for="GUARDIAN" class="block text-sm font-medium text-gray-700">Guardian <span class="text-red-500">*</span></label>
-                            <input required id="GUARDIAN" name="GUARDIAN" placeholder="Guardian Name" type="text" value="<?php echo isset($_SESSION['GUARDIAN']) ? $_SESSION['GUARDIAN'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <input required id="GUARDIAN" name="GUARDIAN" placeholder="Guardian Name" type="text" 
+                                   pattern="[A-Za-z\s]+" title="Only letters are allowed"
+                                   value="<?php echo isset($_SESSION['GUARDIAN']) ? $_SESSION['GUARDIAN'] : ''; ?>" 
+                                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                                   oninput="validateLettersOnly(this)">
                         </div>
                         <div class="space-y-4">
                             <label for="GCONTACT" class="block text-sm font-medium text-gray-700">Guardian Contact <span class="text-red-500">*</span></label>
-                            <input required id="GCONTACT" name="GCONTACT" placeholder="Contact Number" type="text" value="<?php echo isset($_SESSION['GCONTACT']) ? $_SESSION['GCONTACT'] : ''; ?>" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                            <input required id="GCONTACT" name="GCONTACT" placeholder="Contact Number" type="text" 
+                                   pattern="[0-9]+" title="Only numbers are allowed"
+                                   value="<?php echo isset($_SESSION['GCONTACT']) ? $_SESSION['GCONTACT'] : ''; ?>" 
+                                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                                   oninput="validateNumbersOnly(this)">
                         </div>
                     </div>
                 </div>
@@ -698,6 +722,49 @@ require_once __DIR__ .  "/Logic_validate.php";
                     dropZone.querySelector('.border').classList.remove('border-blue-500', 'bg-blue-50');
                 });
             });
+
+            // Validation functions for input fields
+            window.validateLettersOnly = function(input) {
+                // Replace any non-letter characters (except spaces)
+                input.value = input.value.replace(/[^A-Za-z\s]/g, '');
+                
+                // Add visual feedback
+                if (input.value.trim() === '') {
+                    input.classList.add('border-red-500');
+                } else if (/^[A-Za-z\s]+$/.test(input.value)) {
+                    input.classList.remove('border-red-500');
+                    input.classList.add('border-green-500');
+                } else {
+                    input.classList.add('border-red-500');
+                    input.classList.remove('border-green-500');
+                }
+            };
+            
+            window.validateNumbersOnly = function(input) {
+                // Replace any non-numeric characters
+                input.value = input.value.replace(/[^0-9]/g, '');
+                
+                // Add visual feedback
+                if (input.value.trim() === '') {
+                    input.classList.add('border-red-500');
+                } else if (/^[0-9]+$/.test(input.value)) {
+                    input.classList.remove('border-red-500');
+                    input.classList.add('border-green-500');
+                } else {
+                    input.classList.add('border-red-500');
+                    input.classList.remove('border-green-500');
+                }
+            };
+            
+            // Add validation handlers to parent name field
+            const parentNameField = document.getElementById('parent_name');
+            if (parentNameField) {
+                parentNameField.setAttribute('pattern', '[A-Za-z\\s]+');
+                parentNameField.setAttribute('title', 'Only letters are allowed');
+                parentNameField.addEventListener('input', function() {
+                    validateLettersOnly(this);
+                });
+            }
         });
     </script>
 
