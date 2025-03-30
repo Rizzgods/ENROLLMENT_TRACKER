@@ -59,7 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function createAccount($mydb) {
     try {
         // Validate input
-        $required = ['accountName', 'username', 'accountType', 'employeeId', 'password', 'departmentId'];
+        $required = ['accountName', 'username', 'accountType', 'employeeId', 'password'];
+        if (isset($_POST['accountType']) && $_POST['accountType'] === 'chairperson') {
+            $required[] = 'departmentId'; // Require departmentId only for chairpersons
+        }
+
         foreach ($required as $field) {
             if (!isset($_POST[$field]) || empty($_POST[$field])) {
                 echo json_encode(['success' => false, 'message' => ucfirst($field) . ' is required']);
@@ -137,7 +141,11 @@ function updateAccount($mydb) {
             exit();
         }
         
-        $required = ['accountName', 'username', 'accountType', 'employeeId','departmentId'];
+        $required = ['accountName', 'username', 'accountType', 'employeeId', 'password'];
+        if (isset($_POST['accountType']) && $_POST['accountType'] === 'chairperson') {
+            $required[] = 'departmentId'; // Require departmentId only for chairpersons
+        }
+
         foreach ($required as $field) {
             if (!isset($_POST[$field]) || empty($_POST[$field])) {
                 echo json_encode(['success' => false, 'message' => ucfirst($field) . ' is required']);
