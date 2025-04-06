@@ -4,5 +4,11 @@
         "smalot/pdfparser": "^2.5",
         "guzzlehttp/guzzle": "^7.0",
         "thiagoalessio/tesseract_ocr": "^2.13"
-    } 
+    },
+    "config": {
+        "platform": {
+            "php": "7.4.33"
+        },
+        "platform-check": false
+    }
 }
