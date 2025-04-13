@@ -161,7 +161,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                 </div>
             </div>
 
-            <form id="registrationForm" action="Logic_enroll.php" method="post" class="space-y-8" enctype="multipart/form-data">
+            <form action="Logic_enroll.php" method="post" class="space-y-8" enctype="multipart/form-data">
                 <!-- Hidden fields to store consent data -->
                 <input type="hidden" id="hidden_privacy_agreement" name="hidden_privacy_agreement" value="">
                 <input type="hidden" id="hidden_age_verification" name="hidden_age_verification" value="">
@@ -527,6 +527,255 @@ require_once __DIR__ .  "/Logic_validate.php";
         </div>
     </div>
 
+    <script src="scripts_js/enroll.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Container references
+            const dataPrivacyContainer = document.getElementById('data_privacy_container');
+            const parentConsentContainer = document.getElementById('parent_consent_container');
+            const registrationContainer = document.getElementById('registration_container');
+            
+            // Button references
+            const proceedFromPrivacyBtn = document.getElementById('proceedFromPrivacy');
+            const backToPrivacyBtn = document.getElementById('backToPrivacy');
+            const proceedToRegistrationBtn = document.getElementById('proceedToRegistration');
+            
+            // Store parent/guardian name for later use in registration form
+            let parentGuardianName = '';
+            
+            // Proceed from privacy to next step
+            proceedFromPrivacyBtn.addEventListener('click', function() {
+                // Validate privacy agreements
+                const privacyAgreement = document.getElementById('privacy_agreement');
+                const termsAgreement = document.getElementById('terms_agreement');
+                const ageVerification = document.querySelector('input[name="age_verification"]:checked');
+                
+                let isValid = true;
+                
+                // Validate privacy agreement
+                if (!privacyAgreement.checked) {
+                    privacyAgreement.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    privacyAgreement.classList.remove('border-red-500');
+                }
+                
+                // Validate terms agreement
+                if (!termsAgreement.checked) {
+                    termsAgreement.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    termsAgreement.classList.remove('border-red-500');
+                }
+                
+                // Validate age verification
+                if (!ageVerification) {
+                    document.querySelectorAll('input[name="age_verification"]').forEach(radio => {
+                        radio.closest('label').classList.add('text-red-500');
+                    });
+                    isValid = false;
+                } else {
+                    document.querySelectorAll('input[name="age_verification"]').forEach(radio => {
+                        radio.closest('label').classList.remove('text-red-500');
+                    });
+                }
+                
+                if (!isValid) {
+                    alert('Please complete all required fields before proceeding.');
+                    return;
+                }
+                
+                // Store values in hidden fields
+                document.getElementById('hidden_privacy_agreement').value = privacyAgreement.checked ? '1' : '0';
+                document.getElementById('hidden_age_verification').value = ageVerification.value;
+                document.getElementById('hidden_terms_agreement').value = termsAgreement.checked ? '1' : '0';
+                
+                // Determine next step based on age
+                if (ageVerification.value === 'under18') {
+                    // Show parent consent container
+                    dataPrivacyContainer.classList.add('hidden');
+                    parentConsentContainer.classList.remove('hidden');
+                } else {
+                    // Skip to registration form
+                    dataPrivacyContainer.classList.add('hidden');
+                    registrationContainer.classList.remove('hidden');
+                }
+            });
+            
+            // Go back from parent consent to privacy
+            backToPrivacyBtn.addEventListener('click', function() {
+                parentConsentContainer.classList.add('hidden');
+                dataPrivacyContainer.classList.remove('hidden');
+            });
+            
+            // Proceed from parent consent to registration
+            proceedToRegistrationBtn.addEventListener('click', function() {
+                // Validate parent consent form
+                const parentName = document.getElementById('parent_name');
+                const parentRelation = document.getElementById('parent_relation');
+                const parentAgreement = document.getElementById('parent_agreement');
+                
+                let isValid = true;
+                
+                if (parentName.value.trim() === '') {
+                    parentName.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    parentName.classList.remove('border-red-500');
+                }
+                
+                if (parentRelation.value.trim() === '') {
+                    parentRelation.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    parentRelation.classList.remove('border-red-500');
+                }
+                
+                if (!parentAgreement.checked) {
+                    parentAgreement.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    parentAgreement.classList.remove('border-red-500');
+                }
+                
+                if (!isValid) {
+                    alert('Please complete all required parent/guardian consent fields before proceeding.');
+                    return;
+                }
+                
+                // Store parent/guardian info
+                parentGuardianName = parentName.value;
+                document.getElementById('hidden_parent_name').value = parentGuardianName;
+                document.getElementById('hidden_parent_relation').value = parentRelation.value;
+                document.getElementById('hidden_parent_agreement').value = parentAgreement.checked ? '1' : '0';
+                
+                // Proceed to registration form
+                parentConsentContainer.classList.add('hidden');
+                registrationContainer.classList.remove('hidden');
+            });
+
+            // Listen for step changes to auto-fill guardian name in Step 4
+            document.getElementById('next').addEventListener('click', function() {
+                // Current step is tracked in the enroll.js file
+                // We need to check if we're about to show Step 4
+                const currentStepShown = document.querySelector('.step:not(.hidden)');
+                const currentStepIndex = Array.from(document.querySelectorAll('.step')).indexOf(currentStepShown);
+                
+                // If we're moving from Step 3 to Step 4
+                if (currentStepIndex === 2) {
+                    // This will be called when next is clicked on Step 3, before Step 4 is shown
+                    setTimeout(function() {
+                        const guardianField = document.getElementById('GUARDIAN');
+                        // Only auto-fill if the field is empty and we have a parent/guardian name
+                        if (guardianField && guardianField.value === '' && parentGuardianName) {
+                            guardianField.value = parentGuardianName;
+                        }
+                    }, 100); // Small delay to ensure step has changed
+                }
+            });
+
+            // Existing code for email handling and file uploads
+            const verifiedEmail = localStorage.getItem('verifiedEmail');
+            if (verifiedEmail) {
+                const emailInput = document.getElementById('email');
+                emailInput.value = verifiedEmail;
+                emailInput.setAttribute('readonly', true);
+            }
+
+            function updateFileName(input) {
+                const fileName = input.files[0]?.name || 'Choose file...';
+                const fileNameElement = input.parentElement.querySelector('.file-name');
+                if (fileNameElement) {
+                    fileNameElement.textContent = fileName;
+                }
+                
+                // Update border color based on validation
+                const container = input.parentElement.querySelector('.border');
+                if (input.files.length > 0) {
+                    container.classList.remove('border-red-500');
+                    container.classList.add('border-green-500');
+                } else {
+                    container.classList.remove('border-green-500');
+                    container.classList.add('border-red-500');
+                }
+            }
+
+            // Add drag and drop functionality
+            document.querySelectorAll('.relative').forEach(dropZone => {
+                dropZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    dropZone.querySelector('.border').classList.add('border-blue-500', 'bg-blue-50');
+                });
+
+                dropZone.addEventListener('dragleave', (e) => {
+                    e.preventDefault();
+                    dropZone.querySelector('.border').classList.remove('border-blue-500', 'bg-blue-50');
+                });
+
+                dropZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    const input = dropZone.querySelector('input[type="file"]');
+                    const dt = e.dataTransfer;
+                    input.files = dt.files;
+                    updateFileName(input);
+                    dropZone.querySelector('.border').classList.remove('border-blue-500', 'bg-blue-50');
+                });
+            });
+
+            // Validation functions for input fields
+            window.validateLettersOnly = function(input) {
+                // Replace any non-letter characters (except spaces)
+                input.value = input.value.replace(/[^A-Za-z\s]/g, '');
+                
+                // Add visual feedback
+                if (input.value.trim() === '') {
+                    input.classList.add('border-red-500');
+                } else if (/^[A-Za-z\s]+$/.test(input.value)) {
+                    input.classList.remove('border-red-500');
+                    input.classList.add('border-green-500');
+                } else {
+                    input.classList.add('border-red-500');
+                    input.classList.remove('border-green-500');
+                }
+            };
+            
+            window.validateNumbersOnly = function(input) {
+                // Replace any non-numeric characters
+                input.value = input.value.replace(/[^0-9]/g, '');
+                
+                // Add visual feedback
+                if (input.value.trim() === '') {
+                    input.classList.add('border-red-500');
+                } else if (/^[0-9]+$/.test(input.value)) {
+                    input.classList.remove('border-red-500');
+                    input.classList.add('border-green-500');
+                } else {
+                    input.classList.add('border-red-500');
+                    input.classList.remove('border-green-500');
+                }
+            };
+            
+            // Add validation handlers to parent name field
+            const parentNameField = document.getElementById('parent_name');
+            if (parentNameField) {
+                parentNameField.setAttribute('pattern', '[A-Za-z\\s]+');
+                parentNameField.setAttribute('title', 'Only letters are allowed');
+                parentNameField.addEventListener('input', function() {
+                    validateLettersOnly(this);
+                });
+            }
+        });
+    </script>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-lg shadow-xl flex flex-col items-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-500"></div>
+            <p class="mt-4 text-gray-700">Submitting your application...</p>
+        </div>
+    </div>
+
     <!-- Success Popup -->
     <div id="successPopup" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
         <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full mx-4">
@@ -545,7 +794,4 @@ require_once __DIR__ .  "/Logic_validate.php";
     <div id="verificationBanner" class="fixed top-0 left-0 right-0 bg-yellow-100 border-b border-yellow-300 text-yellow-800 px-4 py-2 text-center hidden">
         <strong>Note:</strong> Some documents require verification. Please bring original documents during your campus visit.
     </div>
-    
-    <!-- Only include the single comprehensive JavaScript file -->
-    <script src="scripts_js/enroll.js"></script>
 </body>
