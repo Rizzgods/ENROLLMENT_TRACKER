@@ -1,6 +1,8 @@
 <?php
-// Start the session
-session_start();
+// Make sure we have a session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Check if user came from a successful enrollment
 if (!isset($_SESSION['enrollment_success']) || $_SESSION['enrollment_success'] !== true) {

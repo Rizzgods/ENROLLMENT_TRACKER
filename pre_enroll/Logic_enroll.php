@@ -1,4 +1,7 @@
 <?php
+// Buffer all output from the start to prevent "headers already sent" errors
+ob_start();
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('log_errors', 1);
@@ -6,7 +9,7 @@ ini_set('error_log', __DIR__ . '/enrollment_errors.log');
 
 require_once __DIR__ .  "/../include/autonumbers.php";
 require_once __DIR__ .  "/../include/students.php";
-require_once __DIR__ .  "/../include/session.php";
+require_once __DIR__ .  "/../include/session.php"; // This likely starts the session already
 require_once __DIR__ .  "/../include/function.php";
 require_once __DIR__ .  "/../chatbot/utils/file_validator.php";
 
@@ -202,8 +205,6 @@ function calculateDocumentVerificationStatus($documents) {
 }
 
 if (isset($_POST['regsubmit'])) {
-    // Buffer all output to prevent headers already sent issues
-    ob_start();
     require_once "../include/database.php"; 
 
     // Generate new IDNO using Autonumber class
@@ -620,7 +621,6 @@ if (isset($_POST['regsubmit'])) {
                     }
                     
                     // Redirect to a success page or back with a success message
-                    session_start();
                     $_SESSION['enrollment_success'] = true;
                     $_SESSION['student_id'] = $IDNO;
                     
@@ -628,50 +628,71 @@ if (isset($_POST['regsubmit'])) {
                     $_SESSION['success_message'] = "Your enrollment has been submitted successfully! Please check your email for confirmation.";
                     
                     // Actually redirect rather than trying to use JavaScript or JSON
-                    header("Location: enrollment_success.php");
-                    exit;
+                    if (!headers_sent()) {
+                        header("Location: enrollment_success.php");
+                        exit;
+                    } else {
+                        echo "<script>window.location.href = 'enrollment_success.php';</script>";
+                        exit;
+                    }
                     
                 } catch (Exception $e) {
                     error_log("Email preparation failed: " . $e->getMessage());
                     
-                    session_start();
                     $_SESSION['enrollment_error'] = true;
                     $_SESSION['error_message'] = "Failed to send email notification.";
                     
                     // Redirect back to the form with error message
-                    header("Location: enrollform.php?error=email");
-                    exit;
+                    if (!headers_sent()) {
+                        header("Location: enrollform.php?error=email");
+                        exit;
+                    } else {
+                        echo "<script>window.location.href = 'enrollform.php?error=email';</script>";
+                        exit;
+                    }
                 }
             } else {
                 // Handle error case
                 error_log("Database insert failed: " . $stmt->error);
-                session_start();
                 $_SESSION['enrollment_error'] = true;
                 $_SESSION['error_message'] = "Failed to create student record: " . $stmt->error;
                 
                 // Redirect back to the form with error message
-                header("Location: enrollform.php?error=database");
-                exit;
+                if (!headers_sent()) {
+                    header("Location: enrollform.php?error=database");
+                    exit;
+                } else {
+                    echo "<script>window.location.href = 'enrollform.php?error=database';</script>";
+                    exit;
+                }
             }
         } catch (Exception $e) {
             error_log("Database error: " . $e->getMessage());
-            session_start();
             $_SESSION['enrollment_error'] = true;
             $_SESSION['error_message'] = "Database error: " . $e->getMessage();
             
             // Redirect back to the form with error message
-            header("Location: enrollform.php?error=database");
-            exit;
+            if (!headers_sent()) {
+                header("Location: enrollform.php?error=database");
+                exit;
+            } else {
+                echo "<script>window.location.href = 'enrollform.php?error=database';</script>";
+                exit;
+            }
         }
     } catch (Exception $e) {
         error_log("Error: " . $e->getMessage());
-        session_start();
         $_SESSION['enrollment_error'] = true;
         $_SESSION['error_message'] = $e->getMessage();
         
         // Redirect back to the form with error message
-        header("Location: enrollform.php?error=general");
-        exit;
+        if (!headers_sent()) {
+            header("Location: enrollform.php?error=general");
+            exit;
+        } else {
+            echo "<script>window.location.href = 'enrollform.php?error=general';</script>";
+            exit;
+        }
     }
 }
 
@@ -685,3 +706,4 @@ $autonum = $studAuto->stud_autonumber();
 ?>
 
 <?php
+?>
