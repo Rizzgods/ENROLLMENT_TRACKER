@@ -765,6 +765,89 @@ require_once __DIR__ .  "/Logic_validate.php";
                     validateLettersOnly(this);
                 });
             }
+
+            // Form submission handling
+            const registrationForm = document.querySelector('form');
+            
+            if (registrationForm) {
+                registrationForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent default form submission
+                    
+                    // Show loading screen
+                    document.getElementById('loadingScreen').style.display = 'flex';
+                    
+                    // Submit form via fetch API
+                    fetch(registrationForm.action, {
+                        method: 'POST',
+                        body: new FormData(registrationForm)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Hide loading screen
+                        document.getElementById('loadingScreen').style.display = 'none';
+                        
+                        // Handle success
+                        if (data.status === 'success') {
+                            // Show success popup
+                            const successPopup = document.getElementById('successPopup');
+                            successPopup.style.display = 'flex';
+                            
+                            // If documents need verification, show the banner
+                            if (!data.docsVerified && data.verificationWarning) {
+                                const verificationBanner = document.getElementById('verificationBanner');
+                                verificationBanner.textContent = data.verificationWarning;
+                                verificationBanner.classList.remove('hidden');
+                            }
+                            
+                            // Set up countdown timer for redirect
+                            let countdown = 5;
+                            const timerElement = document.getElementById('countdownTimer');
+                            
+                            const countdownInterval = setInterval(function() {
+                                countdown--;
+                                timerElement.textContent = countdown;
+                                
+                                if (countdown <= 0) {
+                                    clearInterval(countdownInterval);
+                                    window.location.href = 'home.php';
+                                }
+                            }, 1000);
+                        } else {
+                            // Handle error
+                            alert('Error: ' + (data.message || 'An unknown error occurred'));
+                        }
+                    })
+                    .catch(error => {
+                        // Hide loading screen
+                        document.getElementById('loadingScreen').style.display = 'none';
+                        
+                        // Show error message
+                        console.error('Submission error:', error);
+                        alert('Error submitting form. Please try again.');
+                    });
+                });
+            }
+
+            // File upload handling improvements
+            const fileInputs = document.querySelectorAll('input[type="file"]');
+            fileInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const fileContainer = this.parentElement.querySelector('.border');
+                    const fileName = this.files[0]?.name || 'Choose file...';
+                    const fileNameElement = this.parentElement.querySelector('.file-name');
+                    
+                    if (fileNameElement) {
+                        fileNameElement.textContent = fileName;
+                    }
+                    
+                    if (this.files.length > 0) {
+                        fileContainer.classList.remove('border-red-500');
+                        fileContainer.classList.add('border-green-500');
+                    } else {
+                        fileContainer.classList.remove('border-green-500');
+                    }
+                });
+            });
         });
     </script>
 
