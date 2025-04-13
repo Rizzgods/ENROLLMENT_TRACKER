@@ -527,6 +527,27 @@ require_once __DIR__ .  "/Logic_validate.php";
         </div>
     </div>
 
+    <!-- Add this script before any other scripts to make updateFileName globally available -->
+    <script>
+        // Make updateFileName globally accessible
+        function updateFileName(input) {
+            const fileName = input.files[0]?.name || 'Choose file...';
+            const fileNameElement = input.parentElement.querySelector('.file-name');
+            if (fileNameElement) {
+                fileNameElement.textContent = fileName;
+            }
+            
+            // Update border color based on validation
+            const container = input.parentElement.querySelector('.border');
+            if (input.files.length > 0) {
+                container.classList.remove('border-red-500');
+                container.classList.add('border-green-500');
+            } else {
+                container.classList.remove('border-green-500');
+            }
+        }
+    </script>
+
     <script src="scripts_js/enroll.js"></script>
 
     <script>
@@ -683,23 +704,6 @@ require_once __DIR__ .  "/Logic_validate.php";
                 emailInput.setAttribute('readonly', true);
             }
 
-            function updateFileName(input) {
-                const fileName = input.files[0]?.name || 'Choose file...';
-                const fileNameElement = input.parentElement.querySelector('.file-name');
-                if (fileNameElement) {
-                    fileNameElement.textContent = fileName;
-                }
-                
-                // Update border color based on validation
-                const container = input.parentElement.querySelector('.border');
-                if (input.files.length > 0) {
-                    container.classList.remove('border-red-500');
-                    container.classList.add('border-green-500');
-                } else {
-                    container.classList.remove('border-green-500');
-                }
-            }
-
             // Add drag and drop functionality
             document.querySelectorAll('.relative').forEach(dropZone => {
                 dropZone.addEventListener('dragover', (e) => {
@@ -719,6 +723,13 @@ require_once __DIR__ .  "/Logic_validate.php";
                     input.files = dt.files;
                     updateFileName(input);
                     dropZone.querySelector('.border').classList.remove('border-blue-500', 'bg-blue-50');
+                });
+            });
+
+            // Also attach event listeners programmatically for better reliability
+            document.querySelectorAll('input[type="file"]').forEach(input => {
+                input.addEventListener('change', function() {
+                    updateFileName(this);
                 });
             });
 
