@@ -634,11 +634,24 @@ if (isset($_POST['regsubmit'])) {
                         $responseData['verificationWarning'] = 'Some documents require verification. You may need to bring the originals during your campus visit.';
                     }
                     
+                    // Make sure to clear any previous output before sending JSON
+                    if (ob_get_length()) ob_clean();
+                    
+                    // Set proper JSON header
+                    header('Content-Type: application/json');
+                    
                     echo json_encode($responseData);
                     exit;
                     
                 } catch (Exception $e) {
                     error_log("Email preparation failed: " . $e->getMessage());
+                    
+                    // Clear any previous output
+                    if (ob_get_length()) ob_clean();
+                    
+                    // Set proper JSON header
+                    header('Content-Type: application/json');
+                    
                     // Still return success since student record was created
                     echo json_encode([
                         'status' => 'success', 
@@ -654,6 +667,13 @@ if (isset($_POST['regsubmit'])) {
             }
         } catch (Exception $e) {
             error_log("Database error: " . $e->getMessage());
+            
+            // Clear any previous output
+            if (ob_get_length()) ob_clean();
+            
+            // Set proper JSON header
+            header('Content-Type: application/json');
+            
             // Return JSON error response (end execution)
             echo json_encode([
                 'status' => 'error', 
@@ -664,6 +684,13 @@ if (isset($_POST['regsubmit'])) {
         }
     } catch (Exception $e) {
         error_log("Error: " . $e->getMessage());
+        
+        // Clear any previous output
+        if (ob_get_length()) ob_clean();
+        
+        // Set proper JSON header
+        header('Content-Type: application/json');
+        
         // Return JSON error response (end execution)
         echo json_encode([
             'status' => 'error', 

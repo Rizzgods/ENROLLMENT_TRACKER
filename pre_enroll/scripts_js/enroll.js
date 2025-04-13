@@ -98,29 +98,42 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create form data object
         const formData = new FormData(form);
         
+        // Log to console for debugging
+        console.log('Submitting form...');
+        
         // Send AJAX request
         fetch('Logic_enroll.php', {
             method: 'POST',
             body: formData
         })
         .then(response => {
-            // Try to parse as JSON, but handle text response if needed
+            console.log('Response received:', response);
+            console.log('Response status:', response.status);
+            
             return response.text().then(text => {
+                console.log('Response text:', text);
+                
+                // Try to parse as JSON
                 try {
                     return JSON.parse(text);
                 } catch (e) {
-                    console.error('Response is not valid JSON:', text);
-                    throw new Error('Invalid server response');
+                    console.error('JSON parse error:', e);
+                    console.error('Raw response:', text);
+                    throw new Error('Failed to parse response as JSON');
                 }
             });
         })
         .then(data => {
+            console.log('Parsed data:', data);
+            
             // Hide loading screen
             loadingScreen.classList.add('hidden');
             loadingScreen.classList.remove('flex');
             
             // Process the response
-            if (data.status === 'success') {
+            if (data && data.status === 'success') {
+                console.log('Success response detected');
+                
                 // Show verification warning if needed
                 const verificationBanner = document.getElementById('verificationBanner');
                 if (data.docsVerified === false && data.verificationWarning) {
@@ -130,15 +143,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Show success popup
                 const successPopup = document.getElementById('successPopup');
+                console.log('Success popup element:', successPopup);
                 successPopup.classList.remove('hidden');
                 successPopup.classList.add('flex');
                 
                 // Start countdown
                 let countdown = 5;
                 const countdownTimer = document.getElementById('countdownTimer');
+                console.log('Countdown timer element:', countdownTimer);
+                
                 const timer = setInterval(() => {
                     countdown--;
                     countdownTimer.textContent = countdown;
+                    console.log('Countdown:', countdown);
                     
                     if (countdown <= 0) {
                         clearInterval(timer);
@@ -147,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 1000);
             } else {
                 // Show error message
+                console.error('Error in response:', data.message || 'Unknown error');
                 alert(data.message || 'An error occurred. Please try again.');
             }
         })
@@ -155,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loadingScreen.classList.add('hidden');
             loadingScreen.classList.remove('flex');
             
-            console.error('Error:', error);
+            console.error('Fetch error:', error);
             alert('An unexpected error occurred. Please try again.');
         });
     });

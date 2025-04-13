@@ -794,4 +794,15 @@ require_once __DIR__ .  "/Logic_validate.php";
     <div id="verificationBanner" class="fixed top-0 left-0 right-0 bg-yellow-100 border-b border-yellow-300 text-yellow-800 px-4 py-2 text-center hidden">
         <strong>Note:</strong> Some documents require verification. Please bring original documents during your campus visit.
     </div>
+    
+    <!-- Add this script to ensure success popup works -->
+    <script>
+        // Make sure all required elements are available
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded. Checking elements:');
+            console.log('- Success Popup:', document.getElementById('successPopup'));
+            console.log('- Loading Screen:', document.getElementById('loadingScreen'));
+            console.log('- Verification Banner:', document.getElementById('verificationBanner'));
+        });
+    </script>
 </body>
