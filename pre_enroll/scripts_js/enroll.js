@@ -82,15 +82,82 @@ document.addEventListener('DOMContentLoaded', function() {
         showStep(currentStep);
     });
     
-    // Form submit handler
+    // Form submit handler - MODIFIED TO USE AJAX
     form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        
         if (!validateStep(currentStep)) {
-            e.preventDefault();
             alert('Please fill in all required fields.');
-        } else {
-            loadingScreen.classList.remove('hidden');
-            loadingScreen.classList.add('flex');
+            return;
         }
+        
+        // Show loading screen
+        loadingScreen.classList.remove('hidden');
+        loadingScreen.classList.add('flex');
+        
+        // Create form data object
+        const formData = new FormData(form);
+        
+        // Send AJAX request
+        fetch('Logic_enroll.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            // Try to parse as JSON, but handle text response if needed
+            return response.text().then(text => {
+                try {
+                    return JSON.parse(text);
+                } catch (e) {
+                    console.error('Response is not valid JSON:', text);
+                    throw new Error('Invalid server response');
+                }
+            });
+        })
+        .then(data => {
+            // Hide loading screen
+            loadingScreen.classList.add('hidden');
+            loadingScreen.classList.remove('flex');
+            
+            // Process the response
+            if (data.status === 'success') {
+                // Show verification warning if needed
+                const verificationBanner = document.getElementById('verificationBanner');
+                if (data.docsVerified === false && data.verificationWarning) {
+                    verificationBanner.textContent = data.verificationWarning;
+                    verificationBanner.classList.remove('hidden');
+                }
+                
+                // Show success popup
+                const successPopup = document.getElementById('successPopup');
+                successPopup.classList.remove('hidden');
+                successPopup.classList.add('flex');
+                
+                // Start countdown
+                let countdown = 5;
+                const countdownTimer = document.getElementById('countdownTimer');
+                const timer = setInterval(() => {
+                    countdown--;
+                    countdownTimer.textContent = countdown;
+                    
+                    if (countdown <= 0) {
+                        clearInterval(timer);
+                        window.location.href = '../index.php'; // Redirect to home
+                    }
+                }, 1000);
+            } else {
+                // Show error message
+                alert(data.message || 'An error occurred. Please try again.');
+            }
+        })
+        .catch(error => {
+            // Hide loading screen
+            loadingScreen.classList.add('hidden');
+            loadingScreen.classList.remove('flex');
+            
+            console.error('Error:', error);
+            alert('An unexpected error occurred. Please try again.');
+        });
     });
     
     // Initialize the form

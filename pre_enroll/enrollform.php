@@ -161,7 +161,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                 </div>
             </div>
 
-            <form action="Logic_enroll.php" method="post" class="space-y-8" enctype="multipart/form-data">
+            <form id="registrationForm" action="Logic_enroll.php" method="post" class="space-y-8" enctype="multipart/form-data">
                 <!-- Hidden fields to store consent data -->
                 <input type="hidden" id="hidden_privacy_agreement" name="hidden_privacy_agreement" value="">
                 <input type="hidden" id="hidden_age_verification" name="hidden_age_verification" value="">
