@@ -264,12 +264,30 @@ class FileValidator {
         try {
             error_log("Using Tesseract OCR to extract text from image: " . $file['name']);
             
-            // Define path to local Tesseract executable
-            $tesseractPath = 'C:/wamp64/www/onlineenrolmentsystem/bin/tesseract/tesseract.exe';
+            // Define possible paths to look for Tesseract executable
+            $possiblePaths = [
+                'C:/wamp64/www/onlineenrolmentsystem/bin/tesseract/tesseract.exe',  // Absolute path
+                __DIR__ . '/../../../bin/tesseract/tesseract.exe',                   // Relative path from current file
+                __DIR__ . '/../../bin/tesseract/tesseract.exe',                      // Alternative relative path
+                'C:/Program Files/Tesseract-OCR/tesseract.exe',                      // Standard Windows install location
+                '/usr/bin/tesseract'                                                 // Linux location
+            ];
             
-            // Check if Tesseract is installed at the defined path
-            if (!file_exists($tesseractPath)) {
-                error_log("Tesseract executable not found at: $tesseractPath");
+            // Find the first valid tesseract path
+            $tesseractPath = null;
+            foreach ($possiblePaths as $path) {
+                if (file_exists($path)) {
+                    $tesseractPath = $path;
+                    error_log("Found Tesseract at: $tesseractPath");
+                    break;
+                }
+            }
+            
+            // Check if Tesseract was found at any of the paths
+            if (!$tesseractPath) {
+                error_log("ERROR: Tesseract executable not found in any of the expected locations!");
+                // Log all the paths we checked to help with debugging
+                error_log("Checked paths: " . implode(', ', $possiblePaths));
                 return "";
             }
             
@@ -290,33 +308,38 @@ class FileValidator {
             }
             
             // Process the image with Tesseract OCR
-            $tesseract = new TesseractOCR($tempFilePath);
-            $tesseract->executable($tesseractPath);
-            
-            // Add configuration options to improve OCR quality
-            $tesseract->lang('eng')          // Set language to English
-                     ->dpi(300)              // Higher DPI for better recognition
-                     ->psm(6)                // Page segmentation mode: 6 = Assume a single uniform block of text
-                     ->oem(1);               // OCR Engine Mode: 1 = Neural nets LSTM engine only
-            
-            // Run OCR and get the text
-            $text = $tesseract->run();
-            
-            // Clean up the temporary file
-            @unlink($tempFilePath);
-            
-            // Basic validation of extracted text
-            if (trim($text) === '') {
-                error_log("Warning: No text extracted from image using Tesseract OCR");
+            try {
+                $tesseract = new TesseractOCR($tempFilePath);
+                $tesseract->executable($tesseractPath);
+                
+                // Add configuration options to improve OCR quality
+                $tesseract->lang('eng')          // Set language to English
+                         ->dpi(300)              // Higher DPI for better recognition
+                         ->psm(6)                // Page segmentation mode: 6 = Assume a single uniform block of text
+                         ->oem(1);               // OCR Engine Mode: 1 = Neural nets LSTM engine only
+                
+                // Run OCR and get the text
+                $text = $tesseract->run();
+                
+                // Clean up the temporary file
+                @unlink($tempFilePath);
+                
+                // Basic validation of extracted text
+                if (trim($text) === '') {
+                    error_log("Warning: No text extracted from image using Tesseract OCR");
+                    return "";
+                }
+                
+                // Log the full extracted text
+                error_log("==== EXTRACTED IMAGE TEXT START ====");
+                error_log($text);
+                error_log("==== EXTRACTED IMAGE TEXT END ====");
+                
+                return $text;
+            } catch (Exception $tessException) {
+                error_log("Tesseract execution error: " . $tessException->getMessage());
                 return "";
             }
-            
-            // Log the full extracted text
-            error_log("==== EXTRACTED IMAGE TEXT START ====");
-            error_log($text);
-            error_log("==== EXTRACTED IMAGE TEXT END ====");
-            
-            return $text;
         } catch (Exception $e) {
             error_log("Error in local image OCR: " . $e->getMessage());
             return "";  // Return empty text, the calling function will try API backup
