@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
         showStep(currentStep);
     });
     
-    // Form submit handler
-    form.addEventListener('submit', function(e) {
+    // Define the form submit handler as a named function so it can be removed
+    window.formSubmitHandler = function(e) {
         if (!validateStep(currentStep)) {
             e.preventDefault();
             alert('Please fill in all required fields.');
@@ -91,7 +91,10 @@ document.addEventListener('DOMContentLoaded', function() {
             loadingScreen.classList.remove('hidden');
             loadingScreen.classList.add('flex');
         }
-    });
+    };
+    
+    // Attach the form submit handler
+    form.addEventListener('submit', window.formSubmitHandler);
     
     // Initialize the form
     showStep(currentStep);

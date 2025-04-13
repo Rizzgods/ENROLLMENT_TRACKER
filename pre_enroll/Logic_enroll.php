@@ -619,84 +619,70 @@ if (isset($_POST['regsubmit'])) {
                         error_log("Email exception caught but continuing: " . $emailEx->getMessage());
                     }
                     
-                    // Return success regardless of email result since the student was created
-                    // When building the JSON response, include verification info:
-                    $responseData = [
-                        'status' => 'success', 
-                        'message' => 'Enrollment successful',
-                        'emailSent' => $emailSent,
-                        'studentID' => $IDNO,
-                        'docsVerified' => $passed_verification ? true : false
-                    ];
+                    // Simplify response handling
+                    echo "<html><body>";
+                    echo "<script>";
+                    echo "window.parent.document.getElementById('loadingScreen').style.display = 'none';";
+                    echo "window.parent.document.getElementById('successPopup').style.display = 'flex';";
+                    echo "window.parent.document.getElementById('verificationBanner').textContent = 'Some documents require verification. Please bring original documents during your campus visit.';";
+                    echo "window.parent.document.getElementById('verificationBanner').classList.remove('hidden');";
                     
-                    // Check if we need to add a warning message
-                    if (!$passed_verification) {
-                        $responseData['verificationWarning'] = 'Some documents require verification. You may need to bring the originals during your campus visit.';
-                    }
-                    
-                    // Make sure to clear any previous output before sending JSON
-                    if (ob_get_length()) ob_clean();
-                    
-                    // Set proper JSON header
-                    header('Content-Type: application/json');
-                    
-                    echo json_encode($responseData);
+                    echo "var countdown = 5;";
+                    echo "var timerElement = window.parent.document.getElementById('countdownTimer');";
+                    echo "var countdownInterval = setInterval(function() {";
+                    echo "  countdown--;";
+                    echo "  timerElement.textContent = countdown;";
+                    echo "  if (countdown <= 0) {";
+                    echo "    clearInterval(countdownInterval);";
+                    echo "    window.parent.location.href = 'home.php';";
+                    echo "  }";
+                    echo "}, 1000);";
+                    echo "</script>";
+                    echo "</body></html>";
                     exit;
                     
                 } catch (Exception $e) {
                     error_log("Email preparation failed: " . $e->getMessage());
                     
-                    // Clear any previous output
-                    if (ob_get_length()) ob_clean();
-                    
-                    // Set proper JSON header
-                    header('Content-Type: application/json');
-                    
-                    // Still return success since student record was created
-                    echo json_encode([
-                        'status' => 'success', 
-                        'message' => 'Enrollment successful but email notification failed',
-                        'emailSent' => false,
-                        'studentID' => $IDNO,
-                        'docsVerified' => $passed_verification ? true : false
-                    ]);
+                    // Simplify response handling
+                    echo "<html><body>";
+                    echo "<script>";
+                    echo "window.parent.document.getElementById('loadingScreen').style.display = 'none';";
+                    echo "window.parent.alert('Error: Failed to send email notification.');";
+                    echo "</script>";
+                    echo "</body></html>";
                     exit;
                 }
             } else {
-                throw new Exception("Failed to create student record: " . $stmt->error);
+                // Handle error
+                echo "<html><body>";
+                echo "<script>";
+                echo "window.parent.document.getElementById('loadingScreen').style.display = 'none';";
+                echo "window.parent.alert('Error: Failed to create student record. Please try again.');";
+                echo "</script>";
+                echo "</body></html>";
+                exit;
             }
         } catch (Exception $e) {
-            error_log("Database error: " . $e->getMessage());
-            
-            // Clear any previous output
-            if (ob_get_length()) ob_clean();
-            
-            // Set proper JSON header
-            header('Content-Type: application/json');
-            
-            // Return JSON error response (end execution)
-            echo json_encode([
-                'status' => 'error', 
-                'message' => 'Database error: ' . $e->getMessage(),
-                'docsVerified' => $passed_verification ? true : false
-            ]);
+            // Handle exception
+            echo "<html><body>";
+            echo "<script>";
+            echo "window.parent.document.getElementById('loadingScreen').style.display = 'none';";
+            echo "window.parent.alert('Error: " . addslashes($e->getMessage()) . "');";
+            echo "</script>";
+            echo "</body></html>";
             exit;
         }
     } catch (Exception $e) {
         error_log("Error: " . $e->getMessage());
         
-        // Clear any previous output
-        if (ob_get_length()) ob_clean();
-        
-        // Set proper JSON header
-        header('Content-Type: application/json');
-        
-        // Return JSON error response (end execution)
-        echo json_encode([
-            'status' => 'error', 
-            'message' => $e->getMessage(),
-            'docsVerified' => $passed_verification ? true : false
-        ]);
+        // Simplify response handling
+        echo "<html><body>";
+        echo "<script>";
+        echo "window.parent.document.getElementById('loadingScreen').style.display = 'none';";
+        echo "window.parent.alert('Error: " . addslashes($e->getMessage()) . "');";
+        echo "</script>";
+        echo "</body></html>";
         exit;
     }
 }

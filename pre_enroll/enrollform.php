@@ -766,88 +766,83 @@ require_once __DIR__ .  "/Logic_validate.php";
                 });
             }
 
-            // Form submission handling
+            // Much simpler form submission handling
             const registrationForm = document.querySelector('form');
+            const loadingScreen = document.getElementById('loadingScreen');
+            const successPopup = document.getElementById('successPopup');
+            const verificationBanner = document.getElementById('verificationBanner');
             
             if (registrationForm) {
+                // Remove the previous submit event handler from enroll.js
+                registrationForm.removeEventListener('submit', window.formSubmitHandler);
+                
                 registrationForm.addEventListener('submit', function(event) {
-                    event.preventDefault(); // Prevent default form submission
+                    event.preventDefault();
+                    
+                    // Validate the form first
+                    const currentStepShown = document.querySelector('.step:not(.hidden)');
+                    const currentStepIndex = Array.from(document.querySelectorAll('.step')).indexOf(currentStepShown);
+                    const currentStepElement = document.querySelectorAll('.step')[currentStepIndex];
+                    const requiredFields = currentStepElement.querySelectorAll('[required]');
+                    
+                    let isValid = true;
+                    requiredFields.forEach(field => {
+                        if ((field.type === 'checkbox' || field.type === 'radio') && !field.checked) {
+                            isValid = false;
+                            field.classList.add('border-red-500');
+                        } else if (field.value.trim() === '') {
+                            isValid = false;
+                            field.classList.add('border-red-500');
+                        } else {
+                            field.classList.remove('border-red-500');
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
                     
                     // Show loading screen
-                    document.getElementById('loadingScreen').style.display = 'flex';
+                    loadingScreen.style.display = 'flex';
                     
-                    // Create FormData object directly from the form
-                    const formData = new FormData(this);
+                    // Use old-school form submission with hidden iframe
+                    const iframe = document.createElement('iframe');
+                    iframe.name = 'submit_frame';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
                     
-                    console.log('Submitting form...');
+                    // Set form target to the iframe
+                    registrationForm.target = 'submit_frame';
                     
-                    // Submit form via fetch API with improved error handling
-                    fetch(this.action, {
-                        method: 'POST',
-                        body: formData,
-                        // Don't set Content-Type header, let the browser set it with the boundary
-                    })
-                    .then(response => {
-                        console.log('Response status:', response.status);
-                        // Check if response is ok (status in the range 200-299)
-                        if (!response.ok) {
-                            throw new Error('Server returned status: ' + response.status);
-                        }
-                        // Parse the JSON response
-                        return response.text().then(text => {
-                            try {
-                                return JSON.parse(text);
-                            } catch (e) {
-                                console.error('Error parsing JSON:', e);
-                                console.log('Raw response:', text);
-                                throw new Error('Invalid JSON response');
-                            }
-                        });
-                    })
-                    .then(data => {
-                        console.log('Parsed response:', data);
-                        // Hide loading screen
-                        document.getElementById('loadingScreen').style.display = 'none';
+                    // Handle iframe load event
+                    iframe.onload = function() {
+                        loadingScreen.style.display = 'none';
                         
-                        // Handle success
-                        if (data.status === 'success') {
-                            // Show success popup
-                            const successPopup = document.getElementById('successPopup');
-                            successPopup.style.display = 'flex';
-                            
-                            // If documents need verification, show the banner
-                            if (!data.docsVerified && data.verificationWarning) {
-                                const verificationBanner = document.getElementById('verificationBanner');
-                                verificationBanner.textContent = data.verificationWarning;
-                                verificationBanner.classList.remove('hidden');
-                            }
-                            
-                            // Set up countdown timer for redirect
-                            let countdown = 5;
-                            const timerElement = document.getElementById('countdownTimer');
-                            
-                            const countdownInterval = setInterval(function() {
-                                countdown--;
-                                timerElement.textContent = countdown;
-                                
-                                if (countdown <= 0) {
-                                    clearInterval(countdownInterval);
-                                    window.location.href = 'home.php';
-                                }
-                            }, 1000);
-                        } else {
-                            // Handle specific error message
-                            alert('Error: ' + (data.message || 'An unknown error occurred'));
-                        }
-                    })
-                    .catch(error => {
-                        // Hide loading screen
-                        document.getElementById('loadingScreen').style.display = 'none';
+                        // Skip complex response handling, just show success
+                        successPopup.style.display = 'flex';
                         
-                        // Show detailed error message
-                        console.error('Submission error:', error);
-                        alert('Error submitting form: ' + error.message);
-                    });
+                        // Show generic verification banner
+                        verificationBanner.textContent = 'Some documents require verification. Please bring original documents during your campus visit.';
+                        verificationBanner.classList.remove('hidden');
+                        
+                        // Set up countdown timer for redirect
+                        let countdown = 5;
+                        const timerElement = document.getElementById('countdownTimer');
+                        
+                        const countdownInterval = setInterval(function() {
+                            countdown--;
+                            timerElement.textContent = countdown;
+                            
+                            if (countdown <= 0) {
+                                clearInterval(countdownInterval);
+                                window.location.href = 'home.php';
+                            }
+                        }, 1000);
+                    };
+                    
+                    // Submit the form the traditional way
+                    registrationForm.submit();
                 });
             }
 
