@@ -765,20 +765,17 @@ require_once __DIR__ .  "/Logic_validate.php";
                 });
             }
 
-            // Much simpler form submission handling
+            // Ultra-simple form submission handling - no fancy stuff
             const registrationForm = document.querySelector('form');
             const loadingScreen = document.getElementById('loadingScreen');
-            const successPopup = document.getElementById('successPopup');
-            const verificationBanner = document.getElementById('verificationBanner');
             
             if (registrationForm) {
-                // Remove the previous submit event handler from enroll.js
-                registrationForm.removeEventListener('submit', window.formSubmitHandler);
+                // Remove any existing event listeners
+                const oldSubmit = registrationForm.onsubmit;
+                registrationForm.onsubmit = null;
                 
                 registrationForm.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    
-                    // Validate the form first
+                    // Only validate the current step
                     const currentStepShown = document.querySelector('.step:not(.hidden)');
                     const currentStepIndex = Array.from(document.querySelectorAll('.step')).indexOf(currentStepShown);
                     const currentStepElement = document.querySelectorAll('.step')[currentStepIndex];
@@ -798,103 +795,18 @@ require_once __DIR__ .  "/Logic_validate.php";
                     });
                     
                     if (!isValid) {
+                        event.preventDefault();
                         alert('Please fill in all required fields.');
-                        return;
+                        return false;
                     }
                     
                     // Show loading screen
                     loadingScreen.style.display = 'flex';
                     
-                    // Create hidden div to capture response messages from the iframe
-                    let messageDiv = document.getElementById('server_message');
-                    if (!messageDiv) {
-                        messageDiv = document.createElement('div');
-                        messageDiv.id = 'server_message';
-                        messageDiv.style.display = 'none';
-                        document.body.appendChild(messageDiv);
-                    }
-                    
-                    // Use old-school form submission with hidden iframe
-                    let iframe = document.getElementById('submit_frame');
-                    if (!iframe) {
-                        iframe = document.createElement('iframe');
-                        iframe.id = 'submit_frame';
-                        iframe.name = 'submit_frame';
-                        iframe.style.display = 'none';
-                        document.body.appendChild(iframe);
-                    }
-                    
-                    // Clear the message div
-                    messageDiv.innerHTML = '';
-                    
-                    // Set form target to the iframe
-                    registrationForm.target = 'submit_frame';
-                    
-                    // Create a global function that the iframe can call to signal success
-                    window.submissionComplete = function(status, message, studentId) {
-                        console.log('Submission response:', status, message, studentId);
-                        loadingScreen.style.display = 'none';
-                        
-                        if (status === 'success') {
-                            // Show success popup
-                            successPopup.style.display = 'flex';
-                            
-                            // Show verification banner
-                            verificationBanner.textContent = 'Some documents require verification. Please bring original documents during your campus visit.';
-                            verificationBanner.classList.remove('hidden');
-                            
-                            // Set up countdown timer for redirect
-                            let countdown = 5;
-                            const timerElement = document.getElementById('countdownTimer');
-                            
-                            const countdownInterval = setInterval(function() {
-                                countdown--;
-                                timerElement.textContent = countdown;
-                                
-                                if (countdown <= 0) {
-                                    clearInterval(countdownInterval);
-                                    window.location.href = 'home.php';
-                                }
-                            }, 1000);
-                        } else {
-                            // Show error
-                            alert('Error: ' + message);
-                        }
-                    };
-                    
-                    // Failsafe - if iframe doesn't call our completion function within 30 seconds
-                    const submissionTimeout = setTimeout(function() {
-                        loadingScreen.style.display = 'none';
-                        alert('The server is taking too long to respond. Your form may or may not have been submitted. Please check your email for confirmation.');
-                    }, 30000);
-                    
-                    // Create a function to cancel the timeout
-                    window.cancelSubmissionTimeout = function() {
-                        clearTimeout(submissionTimeout);
-                    };
-                    
-                    // Submit the form the traditional way
-                    registrationForm.submit();
+                    // Let the form submit naturally
+                    return true;
                 });
             }
-
-            // Make updateFileName function available globally
-            window.updateFileName = function(input) {
-                const fileName = input.files[0]?.name || 'Choose file...';
-                const fileNameElement = input.parentElement.querySelector('.file-name');
-                if (fileNameElement) {
-                    fileNameElement.textContent = fileName;
-                }
-                
-                // Update border color based on validation
-                const container = input.parentElement.querySelector('.border');
-                if (input.files.length > 0) {
-                    container.classList.remove('border-red-500');
-                    container.classList.add('border-green-500');
-                } else {
-                    container.classList.remove('border-green-500');
-                }
-            };
         });
     </script>
 

@@ -619,85 +619,58 @@ if (isset($_POST['regsubmit'])) {
                         error_log("Email exception caught but continuing: " . $emailEx->getMessage());
                     }
                     
-                    // Output HTML that will properly communicate success to the parent page
-                    echo "<html><body>";
-                    echo "<script>";
-                    echo "try {";
-                    echo "    if (window.parent.cancelSubmissionTimeout) window.parent.cancelSubmissionTimeout();";
-                    echo "    window.parent.submissionComplete('success', 'Enrollment successful! Please check your email for confirmation.', '{$IDNO}');";
-                    echo "} catch(e) {";
-                    echo "    console.error('Error calling parent function:', e);";
-                    echo "}";
-                    echo "</script>";
-                    echo "<div id='result' data-status='success' data-message='Enrollment successful!' data-id='{$IDNO}'></div>";
-                    echo "<p>Form submitted successfully! Please check your email for confirmation.</p>";
-                    echo "</body></html>";
+                    // Redirect to a success page or back with a success message
+                    session_start();
+                    $_SESSION['enrollment_success'] = true;
+                    $_SESSION['student_id'] = $IDNO;
+                    
+                    // Set a success message
+                    $_SESSION['success_message'] = "Your enrollment has been submitted successfully! Please check your email for confirmation.";
+                    
+                    // Actually redirect rather than trying to use JavaScript or JSON
+                    header("Location: enrollment_success.php");
                     exit;
                     
                 } catch (Exception $e) {
                     error_log("Email preparation failed: " . $e->getMessage());
                     
-                    // Simplify response handling
-                    echo "<html><body>";
-                    echo "<script>";
-                    echo "try {";
-                    echo "    if (window.parent.cancelSubmissionTimeout) window.parent.cancelSubmissionTimeout();";
-                    echo "    window.parent.submissionComplete('error', 'Failed to send email notification.', '');";
-                    echo "} catch(e) {";
-                    echo "    console.error('Error calling parent function:', e);";
-                    echo "}";
-                    echo "</script>";
-                    echo "<div id='result' data-status='error' data-message='Failed to send email notification'></div>";
-                    echo "<p>Error: Failed to send email notification.</p>";
-                    echo "</body></html>";
+                    session_start();
+                    $_SESSION['enrollment_error'] = true;
+                    $_SESSION['error_message'] = "Failed to send email notification.";
+                    
+                    // Redirect back to the form with error message
+                    header("Location: enrollform.php?error=email");
                     exit;
                 }
             } else {
-                // Handle failure
-                echo "<html><body>";
-                echo "<script>";
-                echo "try {";
-                echo "    if (window.parent.cancelSubmissionTimeout) window.parent.cancelSubmissionTimeout();";
-                echo "    window.parent.submissionComplete('error', 'Failed to create student record: {$stmt->error}', '');";
-                echo "} catch(e) {";
-                echo "    console.error('Error calling parent function:', e);";
-                echo "}";
-                echo "</script>";
-                echo "<div id='result' data-status='error' data-message='Failed to create student record'></div>";
-                echo "<p>Error: Failed to create student record. Please try again.</p>";
-                echo "</body></html>";
+                // Handle error case
+                error_log("Database insert failed: " . $stmt->error);
+                session_start();
+                $_SESSION['enrollment_error'] = true;
+                $_SESSION['error_message'] = "Failed to create student record: " . $stmt->error;
+                
+                // Redirect back to the form with error message
+                header("Location: enrollform.php?error=database");
                 exit;
             }
         } catch (Exception $e) {
             error_log("Database error: " . $e->getMessage());
-            echo "<html><body>";
-            echo "<script>";
-            echo "try {";
-            echo "    if (window.parent.cancelSubmissionTimeout) window.parent.cancelSubmissionTimeout();";
-            echo "    window.parent.submissionComplete('error', 'Database error: " . addslashes($e->getMessage()) . "', '');";
-            echo "} catch(e) {";
-            echo "    console.error('Error calling parent function:', e);";
-            echo "}";
-            echo "</script>";
-            echo "<div id='result' data-status='error' data-message='Database error: " . htmlspecialchars($e->getMessage()) . "'></div>";
-            echo "<p>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
-            echo "</body></html>";
+            session_start();
+            $_SESSION['enrollment_error'] = true;
+            $_SESSION['error_message'] = "Database error: " . $e->getMessage();
+            
+            // Redirect back to the form with error message
+            header("Location: enrollform.php?error=database");
             exit;
         }
     } catch (Exception $e) {
         error_log("Error: " . $e->getMessage());
-        echo "<html><body>";
-        echo "<script>";
-        echo "try {";
-        echo "    if (window.parent.cancelSubmissionTimeout) window.parent.cancelSubmissionTimeout();";
-        echo "    window.parent.submissionComplete('error', '" . addslashes($e->getMessage()) . "', '');";
-        echo "} catch(e) {";
-        echo "    console.error('Error calling parent function:', e);";
-        echo "}";
-        echo "</script>";
-        echo "<div id='result' data-status='error' data-message='" . htmlspecialchars($e->getMessage()) . "'></div>";
-        echo "<p>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
-        echo "</body></html>";
+        session_start();
+        $_SESSION['enrollment_error'] = true;
+        $_SESSION['error_message'] = $e->getMessage();
+        
+        // Redirect back to the form with error message
+        header("Location: enrollform.php?error=general");
         exit;
     }
 }
