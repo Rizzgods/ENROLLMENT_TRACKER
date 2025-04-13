@@ -697,7 +697,6 @@ require_once __DIR__ .  "/Logic_validate.php";
                     container.classList.add('border-green-500');
                 } else {
                     container.classList.remove('border-green-500');
-                    container.classList.add('border-red-500');
                 }
             }
 
@@ -806,39 +805,72 @@ require_once __DIR__ .  "/Logic_validate.php";
                     // Show loading screen
                     loadingScreen.style.display = 'flex';
                     
+                    // Create hidden div to capture response messages from the iframe
+                    let messageDiv = document.getElementById('server_message');
+                    if (!messageDiv) {
+                        messageDiv = document.createElement('div');
+                        messageDiv.id = 'server_message';
+                        messageDiv.style.display = 'none';
+                        document.body.appendChild(messageDiv);
+                    }
+                    
                     // Use old-school form submission with hidden iframe
-                    const iframe = document.createElement('iframe');
-                    iframe.name = 'submit_frame';
-                    iframe.style.display = 'none';
-                    document.body.appendChild(iframe);
+                    let iframe = document.getElementById('submit_frame');
+                    if (!iframe) {
+                        iframe = document.createElement('iframe');
+                        iframe.id = 'submit_frame';
+                        iframe.name = 'submit_frame';
+                        iframe.style.display = 'none';
+                        document.body.appendChild(iframe);
+                    }
+                    
+                    // Clear the message div
+                    messageDiv.innerHTML = '';
                     
                     // Set form target to the iframe
                     registrationForm.target = 'submit_frame';
                     
-                    // Handle iframe load event
-                    iframe.onload = function() {
+                    // Create a global function that the iframe can call to signal success
+                    window.submissionComplete = function(status, message, studentId) {
+                        console.log('Submission response:', status, message, studentId);
                         loadingScreen.style.display = 'none';
                         
-                        // Skip complex response handling, just show success
-                        successPopup.style.display = 'flex';
-                        
-                        // Show generic verification banner
-                        verificationBanner.textContent = 'Some documents require verification. Please bring original documents during your campus visit.';
-                        verificationBanner.classList.remove('hidden');
-                        
-                        // Set up countdown timer for redirect
-                        let countdown = 5;
-                        const timerElement = document.getElementById('countdownTimer');
-                        
-                        const countdownInterval = setInterval(function() {
-                            countdown--;
-                            timerElement.textContent = countdown;
+                        if (status === 'success') {
+                            // Show success popup
+                            successPopup.style.display = 'flex';
                             
-                            if (countdown <= 0) {
-                                clearInterval(countdownInterval);
-                                window.location.href = 'home.php';
-                            }
-                        }, 1000);
+                            // Show verification banner
+                            verificationBanner.textContent = 'Some documents require verification. Please bring original documents during your campus visit.';
+                            verificationBanner.classList.remove('hidden');
+                            
+                            // Set up countdown timer for redirect
+                            let countdown = 5;
+                            const timerElement = document.getElementById('countdownTimer');
+                            
+                            const countdownInterval = setInterval(function() {
+                                countdown--;
+                                timerElement.textContent = countdown;
+                                
+                                if (countdown <= 0) {
+                                    clearInterval(countdownInterval);
+                                    window.location.href = 'home.php';
+                                }
+                            }, 1000);
+                        } else {
+                            // Show error
+                            alert('Error: ' + message);
+                        }
+                    };
+                    
+                    // Failsafe - if iframe doesn't call our completion function within 30 seconds
+                    const submissionTimeout = setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                        alert('The server is taking too long to respond. Your form may or may not have been submitted. Please check your email for confirmation.');
+                    }, 30000);
+                    
+                    // Create a function to cancel the timeout
+                    window.cancelSubmissionTimeout = function() {
+                        clearTimeout(submissionTimeout);
                     };
                     
                     // Submit the form the traditional way
@@ -846,26 +878,23 @@ require_once __DIR__ .  "/Logic_validate.php";
                 });
             }
 
-            // File upload handling improvements
-            const fileInputs = document.querySelectorAll('input[type="file"]');
-            fileInputs.forEach(input => {
-                input.addEventListener('change', function() {
-                    const fileContainer = this.parentElement.querySelector('.border');
-                    const fileName = this.files[0]?.name || 'Choose file...';
-                    const fileNameElement = this.parentElement.querySelector('.file-name');
-                    
-                    if (fileNameElement) {
-                        fileNameElement.textContent = fileName;
-                    }
-                    
-                    if (this.files.length > 0) {
-                        fileContainer.classList.remove('border-red-500');
-                        fileContainer.classList.add('border-green-500');
-                    } else {
-                        fileContainer.classList.remove('border-green-500');
-                    }
-                });
-            });
+            // Make updateFileName function available globally
+            window.updateFileName = function(input) {
+                const fileName = input.files[0]?.name || 'Choose file...';
+                const fileNameElement = input.parentElement.querySelector('.file-name');
+                if (fileNameElement) {
+                    fileNameElement.textContent = fileName;
+                }
+                
+                // Update border color based on validation
+                const container = input.parentElement.querySelector('.border');
+                if (input.files.length > 0) {
+                    container.classList.remove('border-red-500');
+                    container.classList.add('border-green-500');
+                } else {
+                    container.classList.remove('border-green-500');
+                }
+            };
         });
     </script>
 

@@ -619,25 +619,18 @@ if (isset($_POST['regsubmit'])) {
                         error_log("Email exception caught but continuing: " . $emailEx->getMessage());
                     }
                     
-                    // Simplify response handling
+                    // Output HTML that will properly communicate success to the parent page
                     echo "<html><body>";
                     echo "<script>";
-                    echo "window.parent.document.getElementById('loadingScreen').style.display = 'none';";
-                    echo "window.parent.document.getElementById('successPopup').style.display = 'flex';";
-                    echo "window.parent.document.getElementById('verificationBanner').textContent = 'Some documents require verification. Please bring original documents during your campus visit.';";
-                    echo "window.parent.document.getElementById('verificationBanner').classList.remove('hidden');";
-                    
-                    echo "var countdown = 5;";
-                    echo "var timerElement = window.parent.document.getElementById('countdownTimer');";
-                    echo "var countdownInterval = setInterval(function() {";
-                    echo "  countdown--;";
-                    echo "  timerElement.textContent = countdown;";
-                    echo "  if (countdown <= 0) {";
-                    echo "    clearInterval(countdownInterval);";
-                    echo "    window.parent.location.href = 'home.php';";
-                    echo "  }";
-                    echo "}, 1000);";
+                    echo "try {";
+                    echo "    if (window.parent.cancelSubmissionTimeout) window.parent.cancelSubmissionTimeout();";
+                    echo "    window.parent.submissionComplete('success', 'Enrollment successful! Please check your email for confirmation.', '{$IDNO}');";
+                    echo "} catch(e) {";
+                    echo "    console.error('Error calling parent function:', e);";
+                    echo "}";
                     echo "</script>";
+                    echo "<div id='result' data-status='success' data-message='Enrollment successful!' data-id='{$IDNO}'></div>";
+                    echo "<p>Form submitted successfully! Please check your email for confirmation.</p>";
                     echo "</body></html>";
                     exit;
                     
@@ -647,41 +640,63 @@ if (isset($_POST['regsubmit'])) {
                     // Simplify response handling
                     echo "<html><body>";
                     echo "<script>";
-                    echo "window.parent.document.getElementById('loadingScreen').style.display = 'none';";
-                    echo "window.parent.alert('Error: Failed to send email notification.');";
+                    echo "try {";
+                    echo "    if (window.parent.cancelSubmissionTimeout) window.parent.cancelSubmissionTimeout();";
+                    echo "    window.parent.submissionComplete('error', 'Failed to send email notification.', '');";
+                    echo "} catch(e) {";
+                    echo "    console.error('Error calling parent function:', e);";
+                    echo "}";
                     echo "</script>";
+                    echo "<div id='result' data-status='error' data-message='Failed to send email notification'></div>";
+                    echo "<p>Error: Failed to send email notification.</p>";
                     echo "</body></html>";
                     exit;
                 }
             } else {
-                // Handle error
+                // Handle failure
                 echo "<html><body>";
                 echo "<script>";
-                echo "window.parent.document.getElementById('loadingScreen').style.display = 'none';";
-                echo "window.parent.alert('Error: Failed to create student record. Please try again.');";
+                echo "try {";
+                echo "    if (window.parent.cancelSubmissionTimeout) window.parent.cancelSubmissionTimeout();";
+                echo "    window.parent.submissionComplete('error', 'Failed to create student record: {$stmt->error}', '');";
+                echo "} catch(e) {";
+                echo "    console.error('Error calling parent function:', e);";
+                echo "}";
                 echo "</script>";
+                echo "<div id='result' data-status='error' data-message='Failed to create student record'></div>";
+                echo "<p>Error: Failed to create student record. Please try again.</p>";
                 echo "</body></html>";
                 exit;
             }
         } catch (Exception $e) {
-            // Handle exception
+            error_log("Database error: " . $e->getMessage());
             echo "<html><body>";
             echo "<script>";
-            echo "window.parent.document.getElementById('loadingScreen').style.display = 'none';";
-            echo "window.parent.alert('Error: " . addslashes($e->getMessage()) . "');";
+            echo "try {";
+            echo "    if (window.parent.cancelSubmissionTimeout) window.parent.cancelSubmissionTimeout();";
+            echo "    window.parent.submissionComplete('error', 'Database error: " . addslashes($e->getMessage()) . "', '');";
+            echo "} catch(e) {";
+            echo "    console.error('Error calling parent function:', e);";
+            echo "}";
             echo "</script>";
+            echo "<div id='result' data-status='error' data-message='Database error: " . htmlspecialchars($e->getMessage()) . "'></div>";
+            echo "<p>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
             echo "</body></html>";
             exit;
         }
     } catch (Exception $e) {
         error_log("Error: " . $e->getMessage());
-        
-        // Simplify response handling
         echo "<html><body>";
         echo "<script>";
-        echo "window.parent.document.getElementById('loadingScreen').style.display = 'none';";
-        echo "window.parent.alert('Error: " . addslashes($e->getMessage()) . "');";
+        echo "try {";
+        echo "    if (window.parent.cancelSubmissionTimeout) window.parent.cancelSubmissionTimeout();";
+        echo "    window.parent.submissionComplete('error', '" . addslashes($e->getMessage()) . "', '');";
+        echo "} catch(e) {";
+        echo "    console.error('Error calling parent function:', e);";
+        echo "}";
         echo "</script>";
+        echo "<div id='result' data-status='error' data-message='" . htmlspecialchars($e->getMessage()) . "'></div>";
+        echo "<p>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
         echo "</body></html>";
         exit;
     }
