@@ -776,13 +776,36 @@ require_once __DIR__ .  "/Logic_validate.php";
                     // Show loading screen
                     document.getElementById('loadingScreen').style.display = 'flex';
                     
-                    // Submit form via fetch API
-                    fetch(registrationForm.action, {
+                    // Create FormData object directly from the form
+                    const formData = new FormData(this);
+                    
+                    console.log('Submitting form...');
+                    
+                    // Submit form via fetch API with improved error handling
+                    fetch(this.action, {
                         method: 'POST',
-                        body: new FormData(registrationForm)
+                        body: formData,
+                        // Don't set Content-Type header, let the browser set it with the boundary
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        console.log('Response status:', response.status);
+                        // Check if response is ok (status in the range 200-299)
+                        if (!response.ok) {
+                            throw new Error('Server returned status: ' + response.status);
+                        }
+                        // Parse the JSON response
+                        return response.text().then(text => {
+                            try {
+                                return JSON.parse(text);
+                            } catch (e) {
+                                console.error('Error parsing JSON:', e);
+                                console.log('Raw response:', text);
+                                throw new Error('Invalid JSON response');
+                            }
+                        });
+                    })
                     .then(data => {
+                        console.log('Parsed response:', data);
                         // Hide loading screen
                         document.getElementById('loadingScreen').style.display = 'none';
                         
@@ -813,7 +836,7 @@ require_once __DIR__ .  "/Logic_validate.php";
                                 }
                             }, 1000);
                         } else {
-                            // Handle error
+                            // Handle specific error message
                             alert('Error: ' + (data.message || 'An unknown error occurred'));
                         }
                     })
@@ -821,9 +844,9 @@ require_once __DIR__ .  "/Logic_validate.php";
                         // Hide loading screen
                         document.getElementById('loadingScreen').style.display = 'none';
                         
-                        // Show error message
+                        // Show detailed error message
                         console.error('Submission error:', error);
-                        alert('Error submitting form. Please try again.');
+                        alert('Error submitting form: ' + error.message);
                     });
                 });
             }
