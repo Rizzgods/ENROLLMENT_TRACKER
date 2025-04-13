@@ -10,7 +10,7 @@ $success = false;
 $uploadedFile = '';
 
 // Define path to local Tesseract executable - With explicit full path
-$tesseractPath = '/bin/tesseract/tesseract.exe';
+$tesseractPath = 'bin/tesseract/tesseract.exe';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     try {
