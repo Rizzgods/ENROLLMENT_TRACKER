@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const prevBtn = document.getElementById('prev');
     const nextBtn = document.getElementById('next');
-    const submitBtn = document.getElementById('submitBtn'); // Updated ID to match the new button ID
+    const submitBtn = document.getElementById('submit'); // Updated ID to match the new button ID
     const stepCounter = document.getElementById('stepCounter');
     const progressBar = document.getElementById('progressBar');
     const steps = document.querySelectorAll('.step');

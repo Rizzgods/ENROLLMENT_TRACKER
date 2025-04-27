@@ -428,3 +428,23 @@ RINE Vee OF RH IF MULTIPLE BIRTH, CHILD
 [30-Mar-2025 09:59:08 UTC] Guardian details insertion: Success
 [30-Mar-2025 09:59:08 UTC] Attempting to send email to: cenizamaki@gmail.com
 [30-Mar-2025 09:59:11 UTC] Email successfully sent to: cenizamaki@gmail.com
+[27-Apr-2025 09:05:16 UTC] Auto-number updated successfully
+[27-Apr-2025 09:05:16 UTC] Generated IDNO: 21000088
+[27-Apr-2025 09:05:16 UTC] Processing enrollment for: ryanceniza11@gmail.com (Status: New)
+[27-Apr-2025 09:05:16 UTC] Calculated age: 196
+[27-Apr-2025 09:05:16 UTC] Document verification result: FAILED (0/7 verified, 0%, Critical docs verified: NO)
+[27-Apr-2025 09:05:16 UTC] Overall document verification status: FAILED
+[27-Apr-2025 09:05:16 UTC] Generated username: bnnmbnasdasd
+[27-Apr-2025 09:05:16 UTC] Raw password generated: x9H9l4Jh&p+#
+[27-Apr-2025 09:05:16 UTC] Password length: 12
+[27-Apr-2025 09:05:16 UTC] Password character codes: 120,57,72,57,108,52,74,104,38,112,43,35
+[27-Apr-2025 09:05:16 UTC] Generated secure password length: 12 characters
+[27-Apr-2025 09:05:16 UTC] Generated secure password: [REDACTED FOR SECURITY]
+[27-Apr-2025 09:05:16 UTC] Student details - Name: BNNMBN ASDAS ASDASD, Course: 23, Semester: 1
+[27-Apr-2025 09:05:16 UTC] PASSED_VER column exists: NO
+[27-Apr-2025 09:05:16 UTC] Inserting student account for ID: 21000088
+[27-Apr-2025 09:05:16 UTC] Student account creation result: Success
+[27-Apr-2025 09:05:16 UTC] Inserting guardian details for ID: 21000088
+[27-Apr-2025 09:05:16 UTC] Guardian details insertion: Success
+[27-Apr-2025 09:05:16 UTC] Attempting to send email to: ryanceniza11@gmail.com
+[27-Apr-2025 09:05:19 UTC] Email successfully sent to: ryanceniza11@gmail.com
