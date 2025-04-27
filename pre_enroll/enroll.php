@@ -32,6 +32,7 @@ require_once __DIR__ .  "/Logic_validate.php";
 
     <!-- Swiper JS CDN -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="scripts_js/script.js"></script>
+    <script src="scripts_js/enroll.js"></script>
+
 </body>
 </html>

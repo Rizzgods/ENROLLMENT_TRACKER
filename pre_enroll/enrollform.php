@@ -548,8 +548,7 @@ require_once __DIR__ .  "/Logic_validate.php";
         }
     </script>
 
-    <script src="scripts_js/enroll.js"></script>
-
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Container references
